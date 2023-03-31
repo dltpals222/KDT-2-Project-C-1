@@ -1,7 +1,7 @@
 {
   "name": "kdt-2-project-c-1",
   "version": "1.0.0",
-  "description": "",
+  "description": "Team-Prac 폴더 내의 각자 이니셜 폴더에서 개인 작업 진행\r Public 폴더는 정식으로 진행된 사항만 push할 것.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,5 +18,6 @@
   "homepage": "https://github.com/kongukjae/KDT-2-Project-C-1#readme",
   "dependencies": {
     "mysql": "^2.18.1"
-  }
+  },
+  "keywords": []
 }
