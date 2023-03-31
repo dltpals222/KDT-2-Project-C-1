@@ -21,12 +21,12 @@ fs.readFile(filePath, 'utf-8', (err, data) => {
 
   const pokemonData = JSON.parse(data);
 
-  const query = 'insert into node (name, type, level) values ?';
+  const query = 'insert into node (name, type, level) values (?)';
   // 이때 ?는 값이 아니라 값의 위치를 의미한다. 매개변수와 같은 의미이다.
   const values = pokemonData.map(value => [value.name, value.type, value.level])
   console.log(values);
   //쿼리 실행
-  connection.query(query, [values], (err, results) => {
+  connection.query(query, values, (err, results) => {
     if (err) {
       console.error('쿼리실행 실패', err);
     } else {
