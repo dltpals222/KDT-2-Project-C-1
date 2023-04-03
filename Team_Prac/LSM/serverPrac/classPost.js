@@ -1,5 +1,3 @@
-import http from 'http'
-import fs from 'fs'
 import mysql from 'mysql2'
 import dbInsert from './mysqlQuerymodule.js'
 
@@ -42,7 +40,7 @@ const dbConfig = {
   user : 'root',
   password : 'dltpals123!!',
   port : '3306',
-  datebase : 'prolog',
+  datebase : 'pracnode',
   connetionLimit : 5
 }
 
@@ -59,13 +57,29 @@ function convertUserToJSON (userInfo) {
 function saveUserJSONToDatabase (userJSON){
   const datebase = mysql.createConnection(dbConfig);
   
-  datebase.connet((err)=>{
+  datebase.connect((err)=>{
     if(err) {
       console.error('연결실패',err);
       return;
     }
     console.log(`${dbConfig.port}로 연결 성공`)
-  })
 
-  
+    //객체화 해줌
+    const usersDateParse = JSON.parse(userJSON);
+    const values = usersDateParse.map(value => {value._name,value._phone,value._email});
+    console.log(values);
+
+    //query 실행
+    datebase.query(dbInsert, values, (err, results)=>{
+      if(err){
+        console.error('쿼리실행 실패',err);
+      } else {
+        console.log('결과물 확인',results);
+      }
+      //연결 종료
+      connetion.end();
+    })//쿼리 실행문 끝
+  })
 }
+
+export default {users, convertUserToJSON, saveUserJSONToDatabase};
