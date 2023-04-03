@@ -1,0 +1,1 @@
+export default queryString = `INSERT INTO prolog (name, phone, email) VALUES (?)`
