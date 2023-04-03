@@ -1,1 +1,3 @@
-export default queryString = `INSERT INTO prolog (name, phone, email) VALUES (?)`
+const queryString = `INSERT INTO users (name, phone, email) VALUES (?)`
+
+export default queryString
