@@ -2,6 +2,13 @@ import http from 'http'
 import url from 'url'
 import fs from 'fs'
 import path, { resolve } from 'path';
+import usersClass from './classPost.js'
+import mysqlQuerymodule from './mysqlQuerymodule.js'
+import queryString from 'querystring';
+
+const users = usersClass.users;
+const convertUserToJSON = usersClass.convertUserToJSON;
+const saveUserJSONToDatabase = usersClass.saveUserJSONToDatabase;
 
 class Server {
   constructor(port){
@@ -33,9 +40,12 @@ class Server {
         }) //req.on data끝
         req.on('end',()=> {
           console.log(body)
-          res.writeHead(200, {'content-type':'text/html charset=utf8'});
-          res.write(`<h1>${body}</h1>`)
-          res.end();
+          const bodyList = new queryString.parse(body)
+          console.log(bodyList)
+          const convertUser = JSON.stringify(bodyList)
+          saveUserJSONToDatabase(convertUser)
+
+
         }) //req.on end 끝
       } //post 끝
     }).listen(this.port,console.log(`${this.port} 정상작동 합니다.`)) // createserver 끝
