@@ -66,7 +66,8 @@ function saveUserJSONToDatabase (userJSON){
 
     //객체화 해줌
     const usersDateParse = JSON.parse(userJSON);
-    const values = usersDateParse.map(value => {value._name,value._phone,value._email});
+    // const values = usersDateParse.map(value => {value._name,value._phone,value._email});
+    const values = usersDateParse.map(value => {value.name,value.phone,value.email});
     console.log(values);
 
     //query 실행
