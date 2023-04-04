@@ -42,7 +42,6 @@ class Server {
   }
 
   handlePostRequest(req, res) {
-
     let body = '';
     req.on('data', chunk => {
       body += chunk;
@@ -51,9 +50,9 @@ class Server {
       let post = qs.parse(body);
       let name = post.name;
       let type = post.type;
-      let taek = post.taek;
+      let level = post.level;
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.write(`<!doctype html>
+      let htm = `<!doctype html>
         <html>
         <head>
           <title>POST</title>
@@ -61,29 +60,30 @@ class Server {
         </head>
         <body>
         <form action="/post_test" method="post">
-          <p>title : ${name}</p>
-          <p>description : ${type}</p>
-          <p>title : ${taek}</p>
+          <p>name : ${name}</p>
+          <p>type : ${type}</p>
+          <p>level : ${level}</p>
           </form>
         </body>
         </html>`
-      );
+      ;
+      res.end(htm);
 
       function user(a, b, c){
         this.name = a;
         this.type = b;
         this.level = c;
       }
-      let namename = [name];
-      let typename = [type];
-      let taekname = [taek];
+      let Name = [name];
+      let Type = [type];
+      let Level = [level];
 
       let array = [];
-      for(let i = 0 ; i<namename.length; i++){
-        array.push(new user(namename[i],typename[i],taekname[i]));
+      for(let i = 0 ; i<Name.length; i++){
+        array.push(new user(Name[i],Type[i],parseInt(Level[i],10)));
       }
       console.log(array);
-      fs.writeFileSync("db.json",JSON.stringify(array, null, 2), "utf-8")
+      fs.writeFileSync("insert-db.json",JSON.stringify(array, null, 2), "utf-8")
 
       const db = mysql.createConnection({
         //본인 아이디 패스워드 db이름 사용할 것 
@@ -96,7 +96,7 @@ class Server {
       db.connect();
       
       // JSON 파일 경로
-      const filePath = './db.json'; 
+      const filePath = './insert-db.json'; 
       
       // fs 모듈을 사용하여 JSON 파일 읽기
       fs.readFile(filePath, 'utf-8', (err, data) => {
@@ -107,30 +107,29 @@ class Server {
         
       
         //테이블 데이터 전체 삭제
-        // db.query('DELETE FROM pokemon WHERE level < 100000'); 
+        // db.query("DELETE FROM pokemon WHERE level <100000"); 
         //데이터 추가 
         const sql = 'INSERT INTO pokemon (name, type, level) VALUES (?)';
         // const sqlUpdate = 'UPDATE text SET (id, name, email) WHERE id>10 ?';
         const values = jsonData.map(value=> [value.name, value.type, value.level]);
         console.log(values);
         db.query(sql, values, (err, result) => {
-          if (err) {
-            console.err('실패했다 이놈아');
+          if (err)throw err;
+
+          //text이름의 테이블 데이터 파일에 Json파일로 저장하기 
+          db.query('SELECT * FROM  pokemon',function(err,results,fields){
+            if(err)throw err
             
-          }else{
-          console.log('성공했다 이놈아');
-          }
+            fs.writeFileSync('db.json', JSON.stringify(results, null, 2),(err)=>{
+              if(err)throw err
+            })
+          });
           db.end();
+      res.end();
         });
       });
-      
-      res.end();
     })
   }
 }
 const server = new Server(2080);
 server.start();
-
-
-
-
