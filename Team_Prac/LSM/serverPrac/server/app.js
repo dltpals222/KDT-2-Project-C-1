@@ -1,14 +1,10 @@
-import http from 'http'
-import url from 'url'
-import fs from 'fs'
-import path, { resolve } from 'path';
-import usersClass from './classPost.js'
-import mysqlQuerymodule from './mysqlQuerymodule.js'
-import queryString from 'querystring';
+const http = require('http')
+const url = require('url')
+const fs = require('fs')
+const path = require('path')
+const usersClass = require('./classPost.js')
+const queryString = require('querystring')
 
-const users = usersClass.users;
-const convertUserToJSON = usersClass.convertUserToJSON;
-const saveUserJSONToDatabase = usersClass.saveUserJSONToDatabase;
 
 class Server {
   constructor(port){
@@ -43,7 +39,6 @@ class Server {
           const bodyList = new queryString.parse(body)
           console.log(bodyList)
           const convertUser = JSON.stringify(bodyList)
-          saveUserJSONToDatabase(convertUser)
 
 
         }) //req.on end 끝

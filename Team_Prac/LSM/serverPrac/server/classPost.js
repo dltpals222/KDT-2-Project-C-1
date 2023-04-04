@@ -1,5 +1,5 @@
-import mysql from 'mysql2'
-import dbInsert from './mysqlQuerymodule.js'
+const mysql = require('mysql')
+const dbInsert = require('./mysqlQuerymodule.js')
 
 class users {
   constructor(name, phone, email){
@@ -83,4 +83,4 @@ function saveUserJSONToDatabase (userJSON){
   })
 }
 
-export default {users, convertUserToJSON, saveUserJSONToDatabase};
+exports.classPost = {users, convertUserToJSON, saveUserJSONToDatabase};
