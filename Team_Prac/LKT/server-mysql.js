@@ -40,7 +40,6 @@ class Server {
       });
   }
 
-
   handleGetRequest(req, res) {
     fs.readFile('index.html', (err, data) => {
       if (err) {
