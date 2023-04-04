@@ -5,19 +5,6 @@ const qs = require('querystring');
 const path = require('path');
 const mysql = require('mysql');
 
-const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: 'kids0302',
-  database: 'taek',
-  port: 3306, //Mysql 포트
-  connectionLimit: 5, //동시에 db에 접속가능한 클라이언트 수
-  waitForConnections: true //클라이언트가 연결을 요청할 때 대기 여부
-};
-
-const connection = mysql.createConnection(dbConfig);
-connection.connect();
-
 class Server {
   constructor(port) {
     this.port = port;
@@ -30,8 +17,9 @@ class Server {
 
       if (Method === 'GET' && pathName === '/') {
         this.handleGetRequest(req, res);
-      }
-      else if (Method === 'POST' && pathName === '/post') {
+      } else if (Method === 'POST' && pathName === '/post') {
+        this.handleGet(req, res);
+      } else if (Method === 'POST' && pathName === '/set') {
         this.handlePostRequest(req, res);
       }
     })
@@ -41,7 +29,7 @@ class Server {
   }
 
   handleGetRequest(req, res) {
-    fs.readFile('index.html', (err, data) => {
+    fs.readFile('first.html', (err, data) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'text/html' });
         res.write('500 ');
@@ -54,8 +42,21 @@ class Server {
     });
   }
 
-  handlePostRequest(req, res) {
+  handleGet(req, res) {
+    fs.readFile('second.html', (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'text/html' });
+        res.write('500 ');
+        res.end();
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        res.end();
+      }
+    })
+  }
 
+  handlePostRequest(req, res) {
     let body = '';
     req.on('data', chunk => {
       body += chunk;
@@ -82,32 +83,57 @@ class Server {
         </html>`
       );
 
+      const dbConfig = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'kids0302',
+        database: 'taek',
+        port: 3306, //Mysql 포트
+        connectionLimit: 5, //동시에 db에 접속가능한 클라이언트 수
+        waitForConnections: true //클라이언트가 연결을 요청할 때 대기 여부
+      })
+
+      dbConfig.connect();
       function user(a, b, c) {
         this.name = a;
         this.type = b;
-        this.level = c;
+        this.taek = c;
       }
+
       let namename = [name];
       let typename = [type];
       let taekname = [taek];
 
       let array = [];
       for (let i = 0; i < namename.length; i++) {
-        array.push(new user(namename[i], typename[i], taekname[i]));
+        array.push(new user(namename[i], typename[i], parseInt(taekname[i], 10)));
       }
-      console.log(array);
-      fs.writeFileSync("b.JSON", JSON.stringify(array, null, 2), "utf-8");
 
-      const query = 'insert into node (name, type, level) values (?)';
-      const values =array.map(value => [value.name, value.type, value.level]);
+      const query = 'insert into a (name, type, taek) values (?)';
+      const values = array.map(value => [value.name, value.type, value.taek]);
+      console.log(values);
 
-      connection.query(query, values, (err, results) => {
+      dbConfig.query(query, values, (err) => {
         if (err) {
           console.error('쿼리실행 실패', err);
         } else {
-          console.log('결과물 확인', results);
+          fs.writeFileSync("b.JSON", JSON.stringify(array, null, 2), "utf-8");
         }
-        connection.end();
+      })
+
+      fs.readFile('./b.JSON', 'utf-8', (err, data) => {
+        if (err) throw err;
+
+        const query2 = 'select * from a';
+
+        dbConfig.query(query2, (err, results) => {
+          if (err) {
+            console.error("실행 실패", err);
+          } else {
+            fs.writeFileSync('result.JSON', JSON.stringify(results, null, 2))
+          }
+        })
+        dbConfig.end();
       })
       res.end();
     })
