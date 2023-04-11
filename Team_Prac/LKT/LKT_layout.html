@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="root"></div>
+  <script>
+    const root = document.getElementById('root');
+
+    // 구조 작성 함수
+    function makeElement(tagName, parent, addNum) {
+      for (let i = 0; i < addNum; i++) {
+        const element = document.createElement(tagName);
+        parent.appendChild(element);
+      }
+    }
+
+    //속성 추가 함수
+    function makeAttribute(attriName, attriValue, parent) {
+      parent.setAttribute(attriName, attriValue);
+    }
+
+    // text 작성 함수
+    function makeText(parent, ...text) {
+      parent.innerHTML = text;
+    }
+
+    // style 작성 함수
+    function Objectmake(object) {
+      for (let i = 0; i < object.firstArray.length; i++) {
+        object.element.style[object.firstArray[i]] = object.secondArray[i];
+      }
+    }
+
+    function getid(){
+      
+    }
+    
+    // 구조 작성 함수 호출
+    makeElement('header', root, 1);
+    makeElement('main', root, 1);
+    makeElement('footer', root, 1);
+    makeElement('div', root.children[0], 3);
+    makeElement('div', root.children[2], 3);
+    
+    makeAttribute('id','head',root.children[0]);
+    const header = document.getElementById('head');
+
+    // root style
+    const rootStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["100vw", "100vh"],
+      element: root
+    }
+    Objectmake(rootStyle);
+
+    const headerStyle = {
+      firstArray: ["width", "height", "display", "flexDirection"],
+      secondArray: ["100vw", "20vh", "flex", "row"],
+      element: header
+    }
+    Objectmake(headerStyle);
+
+    const mainStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["100vw", "60vh"],
+      element: root.children[1]
+    }
+    Objectmake(mainStyle);
+
+    const footerStyle = {
+      firstArray: ["width", "height", "display", "flexDirection"],
+      secondArray: ["100vw", "20vh", "flex", "row"],
+      element: root.children[2]
+    }
+    Objectmake(footerStyle);
+
+    const headeroneStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["10vw", "20vh"],
+      element: root.children[0].children[0]
+    }
+    Objectmake(headeroneStyle);
+
+    const headertwoStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["50vw", "20vh"],
+      element: root.children[0].children[1]
+    }
+    Objectmake(headertwoStyle);
+
+    const headerthreeStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["40vw", "20vh"],
+      element: root.children[0].children[2]
+    }
+    Objectmake(headerthreeStyle);
+
+    const footeroneStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["35vw", "20vh"],
+      element: root.children[2].children[0]
+    }
+    Objectmake(footeroneStyle);
+
+    const footertwoStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["35vw", "20vh"],
+      element: root.children[2].children[1]
+    }
+    Objectmake(footertwoStyle);
+
+    const footerthreeStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["30vw", "20vh"],
+      element: root.children[2].children[2]
+    }
+    Objectmake(footerthreeStyle);
+
+
+    // // ul>li style
+    // for (let liststyle = 0; liststyle < listarray.length; liststyle++) {
+    //   const ulliStyle = {
+    //     firstArray: ["width", "height", "listStyleType","margin"],
+    //     secondArray: ["80%", "8%", "none","5%"],
+    //     element: root.children[2].children[0].children[liststyle]
+    //   }
+    //   ObjectmakeStyle(ulliStyle);
+    //   makeText(root.children[2].children[0].children[liststyle],listarray[liststyle])
+    // }
+
+    // // main>div style
+    // const maindivStyle = {
+    //   firstArray: ["width", "height", "display", "flexDirection", "justifyContent", "alignItems"],
+    //   secondArray: ["60%", "100%", "flex", "column", "space-around", "center"],
+    //   element: root.children[2].children[1]
+    // }
+    // ObjectmakeStyle(maindivStyle);
+
+
+  </script>
+</body>
+
+</html>
