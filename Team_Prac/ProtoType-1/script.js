@@ -148,22 +148,15 @@ const tempData = [
   },
 ];
 
-console.dir(tempData);
 const tempDataTwenty = [];
-console.dir(tempDataTwenty);
-if (tempData.length <= 20) {
-  for (let j = 0; j < tempData.length / 20; j++) {
-    //
-    tempDataTwenty.push(a);
-    for (let i = 0; i < 20; i++) {
-      //
-      let a = [];
-      a.push(tempData[i]);
-      console.log(a);
-    }
-  }
-}
 
+//
+for (let i = 0; i < tempData.length; i += 20) {
+  //
+  const a = tempData.slice(i, i + 20);
+  tempDataTwenty.push(a);
+}
+console.dir(tempDataTwenty);
 function formActionSeletor(action, method, ele) {
   //form 설정함수
   ele.action = action;
@@ -267,7 +260,7 @@ function contentFromMaker(parent) {
   // }
 
   //@ 컨텐츠 부분 목록 출력[내림차순]
-  for (let i = tempData.length - 1; i >= 0; i--) {
+  for (let i = 19; i >= 0; i--) {
     //tempData = 임시객체
     const element = document.createElement("form");
     element.style.padding = "2px 20px";

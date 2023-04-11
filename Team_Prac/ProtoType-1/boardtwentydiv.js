@@ -1,4 +1,4 @@
-const tempData = [
+let tempData = [
   {
     index: 1,
     subject: "첫번째 글",
@@ -145,10 +145,11 @@ const tempData = [
   },
 ];
 
-const tempDataTwenty = [];
-console.dir(Math.floor(tempData.length / 20 + 1));
-if (tempData.length <= 20) {
-  tempDataTwenty = tempData.slice(0, 20);
+let tempDataTwenty = [];
+for (let i = 0; i < tempData.length; i += 20) {
+  const a = tempData.slice(i, i + 20);
+  tempDataTwenty.push(a);
 }
-
+console.dir(Math.floor(tempData.length / 20 + 1));
+// console.log(tempData);
 console.dir(tempDataTwenty);
