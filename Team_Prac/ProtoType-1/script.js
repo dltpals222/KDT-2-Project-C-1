@@ -26,7 +26,143 @@ const tempData = [
     content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
     name: "김폭도",
   },
+  {
+    index: 5,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 6,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 7,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 8,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 9,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 10,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 11,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 12,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 13,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 14,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 15,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 16,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 17,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 18,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 19,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 20,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 21,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 22,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 23,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
+  {
+    index: 24,
+    subject: "네번째 글",
+    content: "로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 로렘 ",
+    name: "김폭도",
+  },
 ];
+
+console.dir(tempData);
+const tempDataTwenty = [];
+console.dir(tempDataTwenty);
+if (tempData.length <= 20) {
+  for (let j = 0; j < tempData.length / 20; j++) {
+    //
+    tempDataTwenty.push(a);
+    for (let i = 0; i < 20; i++) {
+      //
+      let a = [];
+      a.push(tempData[i]);
+      console.log(a);
+    }
+  }
+}
 
 function formActionSeletor(action, method, ele) {
   //form 설정함수
@@ -87,10 +223,10 @@ layoutEditor("1060px", "680px", "#EEEEEE", boardDiv);
 felexEditor("flex", "column", "center", "", boardDiv);
 
 const rowTitle = tagMaker("ul", boardDiv, "rowTitle"); //번호 제목 작성자
-rowTitle.style.padding = "10px 0px";
+rowTitle.style.padding = "10px 20px";
 rowTitle.style.borderBottom = "2px black solid";
 rowTitle.style.listStyleType = "none";
-layoutEditor("75vw", "80px", "", rowTitle);
+layoutEditor("70%", "80px", "", rowTitle);
 felexEditor("flex", "row", "end", "space-between", rowTitle);
 multiTagMaker("li", rowTitle, 3);
 rowTitle.children[0].textContent = "번호";
@@ -99,7 +235,7 @@ rowTitle.children[2].textContent = "작성자";
 
 const contentWrap = tagMaker("div", boardDiv, "contentWrap"); //컨텐트 랩
 contentWrap.style.borderBottom = "2px black solid";
-layoutEditor("75vw", "", "#ffffff", contentWrap);
+layoutEditor("70%", "", "#ffffff", contentWrap);
 felexEditor("flex", "column", "center", "", contentWrap);
 
 const contentUl = tagMaker("ul", contentWrap, "contentUl"); //컨텐트랩-컨텐트UL
@@ -134,7 +270,7 @@ function contentFromMaker(parent) {
   for (let i = tempData.length - 1; i >= 0; i--) {
     //tempData = 임시객체
     const element = document.createElement("form");
-    element.style.padding = "2px 0px";
+    element.style.padding = "2px 20px";
     element.style.borderBottom = "1px black solid";
     layoutEditor("100%", "", "", element);
     felexEditor("flex", "row", "", "space-between", element);
@@ -157,7 +293,7 @@ contentFromMaker(contentUl);
 const searchWrap = tagMaker("div", boardDiv, "searchWrap");
 searchWrap.style.padding = "0px 20px";
 positionEditor("absolute", "", "0", "", "", searchWrap);
-layoutEditor("75vw", "5vh", "#ccccff", searchWrap);
+layoutEditor("70%", "5vh", "#ccccff", searchWrap);
 felexEditor("flex", "row", "center", "space-around", searchWrap);
 
 //서치바-검색폼
@@ -178,6 +314,10 @@ function optionValues() {
   for (let i = 0; i < Object.keys(tempData[0]).length; i++) {
     searchOptionSelect.children[i].value = Object.keys(tempData[0])[i];
     searchOptionSelect.children[i].textContent = Object.keys(tempData[0])[i];
+    //드롭다운 기본 옵션
+    if (searchOptionSelect.children[i].value === "subject") {
+      searchOptionSelect.children[i].selected = true;
+    }
   }
 }
 optionValues();
