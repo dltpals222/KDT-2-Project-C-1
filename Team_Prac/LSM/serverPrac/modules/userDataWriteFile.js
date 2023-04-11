@@ -1,11 +1,11 @@
-const fs = require("fs");
+import exp from "constants";
+import fs from "fs";
 
 function userDataWriteFile(value) {
   fs.readFile("../JSON/userDate.json", "utf-8", (err, data) => {
     if (err) throw err;
     const userDateParse = JSON.parse(data);
-    const newUserDate = new value();
-    userDateParse.push(newUserDate);
+    userDateParse.push(value);
 
     fs.writeFile(
       "../JSON/userDate.json",
@@ -21,4 +21,4 @@ function userDataWriteFile(value) {
 //   fs.appendFile('../JSON/userDate.json',value,(err) => {console.error(err)})
 // }
 
-module.exports = userDataWriteFile;
+export default userDataWriteFile;

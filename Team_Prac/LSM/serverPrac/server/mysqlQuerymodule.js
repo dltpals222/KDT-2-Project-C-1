@@ -1,3 +1,3 @@
-const queryString = `INSERT INTO users (name, phone, email) VALUES (?)`
+const queryString = `INSERT INTO users (name, phone, email) VALUES (?)`;
 
-module.exports = queryString;
+export default queryString;

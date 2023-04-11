@@ -1,9 +1,9 @@
-const http = require("http");
-const url = require("url");
-const fs = require("fs");
-const path = require("path");
-const qs = require("querystring");
-const fsWF = require("../modules/userDataWriteFile");
+import http from "http";
+import url from "url";
+import fs from "fs";
+import path from "path";
+import qs from "querystring";
+import fsWF from "../modules/userDataWriteFile";
 // const udts = require('../mysql/mysqlStringify')
 
 class Server {
