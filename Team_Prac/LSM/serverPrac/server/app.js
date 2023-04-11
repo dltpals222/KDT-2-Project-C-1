@@ -1,9 +1,8 @@
 import http from "http";
 import url from "url";
 import fs from "fs";
-import path from "path";
-import qs from "querystring";
-import fsWF from "../modules/userDataWriteFile";
+import path, { resolve } from "path";
+import fsWF from "../modules/userDataWriteFile.js";
 // const udts = require('../mysql/mysqlStringify')
 
 class Server {
@@ -19,7 +18,7 @@ class Server {
         const method = req.method;
 
         if (pathName === "/" && method === "GET") {
-          fs.readFile(path.join(__dirname, "index.html"), (err, data) => {
+          fs.readFile(path.join(resolve(), "index.html"), (err, data) => {
             if (err) {
               res.writeHead(500, { "content-type": "text/plain" });
               res.end("500 서버에 문제가 있습니다.");
@@ -37,8 +36,7 @@ class Server {
           }); //req.on data끝
           req.on("end", () => {
             console.log(body);
-            let bodyParse = new qs.parse(body);
-            fsWF(bodyParse);
+            fsWF(body);
 
             // console.log(bodyParse);
             // let bodyStringify = JSON.stringify(bodyParse,null,2);
