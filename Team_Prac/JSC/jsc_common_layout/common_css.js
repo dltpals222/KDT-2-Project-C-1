@@ -31,7 +31,7 @@ for (let i = 0; i < 5; i++) {
   menu.children[i].style.fontSize = "20px";
 }
 //search css
-flexMaker(search, "flex", "", "center", "center", "30vw", "100vh");
+flexMaker(search, "flex", "", "center", "center", "30%", "100%");
 //search select
 flexMaker(search.children[0], "", "", "", "", "15%", "20px");
 //search input
