@@ -59,8 +59,3 @@ const searchButton = tagMakeCall(search, "button", "검색", function (element) 
 const main = tagMakeCall(root, "div", "", function (element) {
   element.setAttribute("id", "main");
 });
-tagMakeCall(main, "div");
-//footer
-const footer = tagMakeCall(root, "div", "", function (element) {
-  element.setAttribute("id", "footer");
-});
