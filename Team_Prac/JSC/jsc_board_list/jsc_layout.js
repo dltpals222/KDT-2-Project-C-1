@@ -11,6 +11,12 @@ function tagMakeCall(parentName, tagName, text, callback) {
   }
   return element;
 }
+function loopMaker(parentName, tagname, Num, callback) {
+  for (let i = 0; i < Num; i++) {
+    const element = document.createElement(tagname);
+    parentName.appendChild(element);
+  }
+}
 
 /* const rootDiv = tagMakeCall(root, "div", function (element) {
   element.setAttribute("id", "root-div");
@@ -55,11 +61,23 @@ const searchInput = tagMakeCall(search, "input", "", function (element) {
 const searchButton = tagMakeCall(search, "button", "검색", function (element) {
   element.setAttribute("id", "search-button");
 });
+
 //main
 const main = tagMakeCall(root, "div", "", function (element) {
   element.setAttribute("id", "main");
 });
-tagMakeCall(main, "div");
+//main boardcategory
+const boardCategory = tagMakeCall(main, "div", "", function (element) {
+  element.setAttribute("id", "board-category");
+});
+loopMaker(boardCategory, "div", 2);
+boardCategory.children[0].textContent = "질문게시판";
+boardCategory.children[1].textContent = "자유게시판";
+//main boardlist
+const boardList = tagMakeCall(main, "div", "", function (element) {
+  element.setAttribute("id", "board-list");
+});
+
 //footer
 const footer = tagMakeCall(root, "div", "", function (element) {
   element.setAttribute("id", "footer");

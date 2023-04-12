@@ -40,7 +40,7 @@ flexMaker(search.children[2], "", "", "", "", "3vw", "20px");
 search.children[2].style.fontWeight = "bold";
 //main
 flexMaker(main, "flex", "row", "start", "center", "100vw", "75vh");
-main.children[0].style.overflow = "auto";
+main.children[1].style.overflow = "auto";
 //footer
 flexMaker(footer, "flex", "row", "start", "center", "100vw", "20vh");
 footer.style.backgroundColor = "royalblue";
