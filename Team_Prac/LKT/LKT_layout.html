@@ -24,7 +24,7 @@
     // 구조 작성 함수
     function makeElement(tagName, parent, addNum) {
       for (let i = 0; i < addNum; i++) {
-        const element = document.createElement(tagName);
+        let element = document.createElement(tagName);
         parent.appendChild(element);
       }
     }
@@ -46,21 +46,26 @@
       }
     }
 
-    function getid(){
-      
+    // 속성 부여하고 그 id값 찾기
+    function makeAttributeGetid(attriName, attriValue, parent) {
+      parent.setAttribute(attriName, attriValue);
+      let element = document.getElementById(attriValue);
+      return element;
     }
-    
+
     // 구조 작성 함수 호출
     makeElement('header', root, 1);
     makeElement('main', root, 1);
     makeElement('footer', root, 1);
     makeElement('div', root.children[0], 3);
     makeElement('div', root.children[2], 3);
+    makeElement('div', root.children[0].children[1], 5);
     
-    makeAttribute('id','head',root.children[0]);
-    const header = document.getElementById('head');
+    // header, main, footer 경로 간소화하기
+    const header = makeAttributeGetid('id', 'header', root.children[0]);
+    const main = makeAttributeGetid('id', 'main', root.children[1]);
+    const footer = makeAttributeGetid('id', 'footer', root.children[2]);
 
-    // root style
     const rootStyle = {
       firstArray: ["width", "height"],
       secondArray: ["100vw", "100vh"],
@@ -70,66 +75,75 @@
 
     const headerStyle = {
       firstArray: ["width", "height", "display", "flexDirection"],
-      secondArray: ["100vw", "20vh", "flex", "row"],
+      secondArray: ["100vw", "10vh", "flex", "row"],
       element: header
     }
     Objectmake(headerStyle);
 
     const mainStyle = {
       firstArray: ["width", "height"],
-      secondArray: ["100vw", "60vh"],
-      element: root.children[1]
+      secondArray: ["100vw", "75vh"],
+      element: main
     }
     Objectmake(mainStyle);
 
     const footerStyle = {
       firstArray: ["width", "height", "display", "flexDirection"],
-      secondArray: ["100vw", "20vh", "flex", "row"],
-      element: root.children[2]
+      secondArray: ["100vw", "15vh", "flex", "row"],
+      element: footer
     }
     Objectmake(footerStyle);
 
-    const headeroneStyle = {
+    const headerOneStyle = {
       firstArray: ["width", "height"],
-      secondArray: ["10vw", "20vh"],
-      element: root.children[0].children[0]
+      secondArray: ["10vw", "10vh"],
+      element: header.children[0]
     }
-    Objectmake(headeroneStyle);
+    Objectmake(headerOneStyle);
 
-    const headertwoStyle = {
-      firstArray: ["width", "height"],
-      secondArray: ["50vw", "20vh"],
-      element: root.children[0].children[1]
+    const headerTwoStyle = {
+      firstArray: ["width", "height", "display", "flexDirection"],
+      secondArray: ["50vw", "10vh", "flex", "row"],
+      element: header.children[1]
     }
-    Objectmake(headertwoStyle);
+    Objectmake(headerTwoStyle);
 
-    const headerthreeStyle = {
-      firstArray: ["width", "height"],
-      secondArray: ["40vw", "20vh"],
-      element: root.children[0].children[2]
+    for(let i = 0; i < 5; i++){
+      const headerTwoMenuStyle = {
+        firstArray: ["width", "height"],
+        secondArray: ["10vw", "10vh"],
+        element: header.children[1].children[i]
+      }
+      Objectmake(headerTwoMenuStyle)
     }
-    Objectmake(headerthreeStyle);
 
-    const footeroneStyle = {
+    const headerThreeStyle = {
       firstArray: ["width", "height"],
-      secondArray: ["35vw", "20vh"],
-      element: root.children[2].children[0]
+      secondArray: ["40vw", "10vh"],
+      element: header.children[2]
     }
-    Objectmake(footeroneStyle);
+    Objectmake(headerThreeStyle);
 
-    const footertwoStyle = {
+    const footerOneStyle = {
       firstArray: ["width", "height"],
-      secondArray: ["35vw", "20vh"],
-      element: root.children[2].children[1]
+      secondArray: ["35vw", "15vh"],
+      element:footer.children[0]
     }
-    Objectmake(footertwoStyle);
+    Objectmake(footerOneStyle);
 
-    const footerthreeStyle = {
+    const footerTwoStyle = {
       firstArray: ["width", "height"],
-      secondArray: ["30vw", "20vh"],
-      element: root.children[2].children[2]
+      secondArray: ["35vw", "15vh"],
+      element: footer.children[1]
     }
-    Objectmake(footerthreeStyle);
+    Objectmake(footerTwoStyle);
+
+    const footerThreeStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["30vw", "15vh"],
+      element: footer.children[2]
+    }
+    Objectmake(footerThreeStyle);
 
 
     // // ul>li style
