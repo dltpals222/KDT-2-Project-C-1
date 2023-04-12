@@ -18,6 +18,7 @@ console.log(root.style);
 //header css
 flexMaker(header, "flex", "row", "start", "center", "100vw", "5vh");
 header.style.backgroundColor = "royalblue";
+header.style.position = "fixed";
 //logo css
 flexMaker(logo, "flex", "row", "center", "center", "10%", "100%");
 //menu css
