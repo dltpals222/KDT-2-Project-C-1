@@ -11,6 +11,7 @@
     "url": "git+https://github.com/KyoungTaekLee/2023-03-29-construct.git"
   },
   "author": "",
+  "type" : "module",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/KyoungTaekLee/2023-03-29-construct/issues"
