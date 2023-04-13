@@ -41,7 +41,7 @@ flexMaker(search.children[1], "", "", "", "", "30%", "15px");
 flexMaker(search.children[2], "", "", "", "", "10%", "20px");
 search.children[2].style.fontWeight = "bold";
 //main
-flexMaker(main, "flex", "row", "start", "center", "100vw", "200vh");
+flexMaker(main, "flex", "row", "start", "center", "100vw", "75vh");
 //footer
 flexMaker(footer, "flex", "row", "start", "center", "100vw", "20vh");
 footer.style.backgroundColor = "royalblue";
