@@ -16,9 +16,10 @@ function flexMaker(
 }
 console.log(root.style);
 //header css
-flexMaker(header, "flex", "row", "start", "center", "100vw", "5vh");
-header.style.backgroundColor = "royalblue";
-header.style.position = "fixed";
+flexMaker(header, "", "", "", "", "", "5vh");
+flexMaker(headerDiv, "flex", "row", "start", "center", "100vw", "5vh");
+headerDiv.style.backgroundColor = "royalblue";
+headerDiv.style.position = "fixed";
 //logo css
 flexMaker(logo, "flex", "row", "center", "center", "10%", "100%");
 //menu css
@@ -40,7 +41,7 @@ flexMaker(search.children[1], "", "", "", "", "30%", "15px");
 flexMaker(search.children[2], "", "", "", "", "10%", "20px");
 search.children[2].style.fontWeight = "bold";
 //main
-flexMaker(main, "flex", "row", "start", "center", "100vw", "75vh");
+flexMaker(main, "flex", "row", "start", "center", "100vw", "200vh");
 //footer
 flexMaker(footer, "flex", "row", "start", "center", "100vw", "20vh");
 footer.style.backgroundColor = "royalblue";

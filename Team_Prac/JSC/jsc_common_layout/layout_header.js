@@ -20,10 +20,13 @@ function tagMakeCall(parentName, tagName, text, callback) {
 const header = tagMakeCall(root, "div", "", function (element) {
   element.setAttribute("id", "header");
 });
-const logo = tagMakeCall(header, "div", "로고", function (element) {
+const headerDiv = tagMakeCall(header, "div", "", function (element) {
+  element.setAttribute("id", "headerDiv");
+});
+const logo = tagMakeCall(headerDiv, "div", "로고", function (element) {
   element.setAttribute("id", "logo");
 });
-const menu = tagMakeCall(header, "div", "", function (element) {
+const menu = tagMakeCall(headerDiv, "div", "", function (element) {
   element.setAttribute("id", "menu");
 });
 tagMakeCall(menu, "div", "레시피검색");
@@ -32,7 +35,7 @@ tagMakeCall(menu, "div", "커뮤니티");
 tagMakeCall(menu, "div", "고객센터");
 tagMakeCall(menu, "div", "소개");
 
-const search = tagMakeCall(header, "div", "", function (element) {
+const search = tagMakeCall(headerDiv, "div", "", function (element) {
   element.setAttribute("id", "search");
 });
 //search-select
