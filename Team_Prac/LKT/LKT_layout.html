@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="root"></div>
+  <script>
+    const root = document.getElementById('root');
+
+    // 구조 작성 함수
+    function makeElement(tagName, parent, addNum) {
+      for (let i = 0; i < addNum; i++) {
+        let element = document.createElement(tagName);
+        parent.appendChild(element);
+      }
+    }
+
+    //속성 추가 함수
+    function makeAttribute(attriName, attriValue, parent) {
+      parent.setAttribute(attriName, attriValue);
+    }
+
+    // text 작성 함수
+    function makeText(parent, ...text) {
+      parent.innerHTML = text;
+    }
+
+    // style 작성 함수
+    function Objectmake(object) {
+      for (let i = 0; i < object.firstArray.length; i++) {
+        object.element.style[object.firstArray[i]] = object.secondArray[i];
+      }
+    }
+
+    // 속성 부여하고 그 id값 찾기
+    function makeAttributeGetid(attriName, attriValue, parent) {
+      parent.setAttribute(attriName, attriValue);
+      let element = document.getElementById(attriValue);
+      return element;
+    }
+
+    // 구조 작성 함수 호출
+    makeElement('div', root, 3);
+    makeElement('div', root.children[0], 3);
+    makeElement('div', root.children[2], 3);
+    makeElement('div', root.children[0].children[1], 5);
+    
+    // header, main, footer 경로 간소화하기
+    const header = makeAttributeGetid('id', 'header', root.children[0]);
+    const main = makeAttributeGetid('id', 'main', root.children[1]);
+    const footer = makeAttributeGetid('id', 'footer', root.children[2]);
+
+    const rootStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["100vw", "100vh"],
+      element: root
+    }
+    Objectmake(rootStyle);
+
+    const headerStyle = {
+      firstArray: ["width", "height", "display", "flexDirection"],
+      secondArray: ["100%", "10%", "flex", "row"],
+      element: header
+    }
+    Objectmake(headerStyle);
+
+    const mainStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["100%", "75%"],
+      element: main
+    }
+    Objectmake(mainStyle);
+
+    const footerStyle = {
+      firstArray: ["width", "height", "display", "flexDirection"],
+      secondArray: ["100%", "15%", "flex", "row"],
+      element: footer
+    }
+    Objectmake(footerStyle);
+
+    const headerOneStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["10%", "100%"],
+      element: header.children[0]
+    }
+    Objectmake(headerOneStyle);
+
+    const headerTwoStyle = {
+      firstArray: ["width", "height", "display", "flexDirection"],
+      secondArray: ["50%", "100%", "flex", "row"],
+      element: header.children[1]
+    }
+    Objectmake(headerTwoStyle);
+
+    for(let i = 0; i < 5; i++){
+      const headerTwoMenuStyle = {
+        firstArray: ["width", "height"],
+        secondArray: ["20%", "100%"],
+        element: header.children[1].children[i]
+      }
+      Objectmake(headerTwoMenuStyle)
+    }
+
+    const headerThreeStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["40%", "100%"],
+      element: header.children[2]
+    }
+    Objectmake(headerThreeStyle);
+
+    const footerOneStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["35%", "100%"],
+      element:footer.children[0]
+    }
+    Objectmake(footerOneStyle);
+
+    const footerTwoStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["35%", "100%"],
+      element: footer.children[1]
+    }
+    Objectmake(footerTwoStyle);
+
+    const footerThreeStyle = {
+      firstArray: ["width", "height"],
+      secondArray: ["30%", "100%"],
+      element: footer.children[2]
+    }
+    Objectmake(footerThreeStyle);
+
+
+    // // ul>li style
+    // for (let liststyle = 0; liststyle < listarray.length; liststyle++) {
+    //   const ulliStyle = {
+    //     firstArray: ["width", "height", "listStyleType","margin"],
+    //     secondArray: ["80%", "8%", "none","5%"],
+    //     element: root.children[2].children[0].children[liststyle]
+    //   }
+    //   ObjectmakeStyle(ulliStyle);
+    //   makeText(root.children[2].children[0].children[liststyle],listarray[liststyle])
+    // }
+
+    // // main>div style
+    // const maindivStyle = {
+    //   firstArray: ["width", "height", "display", "flexDirection", "justifyContent", "alignItems"],
+    //   secondArray: ["60%", "100%", "flex", "column", "space-around", "center"],
+    //   element: root.children[2].children[1]
+    // }
+    // ObjectmakeStyle(maindivStyle);
+
+
+  </script>
+</body>
+
+</html>
