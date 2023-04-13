@@ -39,9 +39,9 @@ flexMaker(search.children[0], "", "", "", "", "15%", "20px");
 flexMaker(search.children[1], "", "", "", "", "30%", "15px");
 //search button
 flexMaker(search.children[2], "", "", "", "", "10%", "20px");
-search.children[2].style.fontWeight = "bold"; 
+search.children[2].style.fontWeight = "bold";
 //main
-flexMaker(main, "flex", "row", "start", "center", "100vw", "75vh");
+flexMaker(main, "flex", "row", "start", "center", "100vw", "");
 //footer
 flexMaker(footer, "flex", "row", "start", "center", "100vw", "20vh");
 footer.style.backgroundColor = "royalblue";
