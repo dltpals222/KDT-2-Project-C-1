@@ -12,10 +12,6 @@ function tagMakeCall(parentName, tagName, text, callback) {
   return element;
 }
 
-/* const rootDiv = tagMakeCall(root, "div", function (element) {
-  element.setAttribute("id", "root-div");
-  // return document.getElementById('root-div')
-}); */
 //header
 const header = tagMakeCall(root, "div", "", function (element) {
   element.setAttribute("id", "header");
