@@ -4,6 +4,7 @@ function tagMakeCall(parentName, tagName, text, callback) {
   parentName.appendChild(element);
   if (callback) {
     callback(element);
-  }
+  } 
   return element;
+  
 }

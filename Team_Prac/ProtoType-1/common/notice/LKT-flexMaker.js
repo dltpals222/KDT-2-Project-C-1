@@ -9,7 +9,7 @@ function flexMaker(
   parent.style.height = height;
   if (callback) {
     callback(parent);
-  } else {
-    return parent;
   }
+  return parent;
+
 }

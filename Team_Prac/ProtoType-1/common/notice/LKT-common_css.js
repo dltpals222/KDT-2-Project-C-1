@@ -1,6 +1,6 @@
 //header css
-flexMaker(header, "", "", "", "", "", "5vh");
-flexMaker(headerDiv, "flex", "row", "start", "center", "100vw", "5vh", function (parent) {
+flexMaker(header, "flex", "row", "center", "center", "100vw", "5vh");
+flexMaker(headerDiv, "flex", "row", "center", "center", "100vw", "5vh", function (parent) {
   parent.style.backgroundColor = "royalblue";
   parent.style.position = "fixed";
 });
@@ -21,14 +21,16 @@ flexMaker(search, "flex", "", "center", "center", "30%", "100%");
 //search select
 flexMaker(search.children[0], "", "", "", "", "15%", "20px");
 //search input
-flexMaker(search.children[1], "", "", "", "", "30%", "15px");
+flexMaker(search.children[1], "", "", "", "", "30%", "20px");
 //search button
 flexMaker(search.children[2], "", "", "", "", "10%", "20px", function (parent) {
-
   parent.style.fontWeight = "bold";
 });
+
+// -----------------여기서부터 main----------
+
 //main
-flexMaker(main, "flex", "row", "center", "center", "100vw", "75vh");
+flexMaker(main, "flex", "row", "center", "center", "100vw", "100vh");
 //footer
 flexMaker(footer, "flex", "row", "start", "center", "100vw", "20vh", function (parent) {
   parent.style.backgroundColor = "royalblue";
@@ -42,20 +44,16 @@ flexMaker(noticeheader, "flex", "", "center", "center", "80%", "10%", function (
   parent.style.fontSize = "30px";
 });
 flexMaker(noticemain, "flex", "column", "center", "center", "80%", "70%");
-flexMaker(noticefooter, "", "", "", "", "80%", "10%");
-for (let i = 0; i < 10; i++) {
-  flexMaker(noticemain.children[i], "flex", "row", "center", "center", "100%", "10%");
+flexMaker(noticefooter, "flex", "", "center", "center", "80%", "10%");
 
-  flexMaker(noticemain.children[i].children[0], "flex", "column", "center", "center", "15%", "100%",function(parent){
-    parent.textContent = i+1;
-  });
-  flexMaker(noticemain.children[i].children[1], "flex", "", "center", "center", "70%", "100%",function(parent){
-    parent.textContent = "룰루랄라"+(i+1);
-  });
-  flexMaker(noticemain.children[i].children[2], "", "", "", "", "15%", "100%",function(parent){
-    parent.textContent = "나"+(i+1);
-  });
-}
+
+
+
+
+
+// ------------여기서 부터 map---------
+
+
 // map style
 flexMaker(map.children[0], "flex", "", "center", "center", "80%", "10%", function (parent) {
   parent.style.fontSize = "30px"

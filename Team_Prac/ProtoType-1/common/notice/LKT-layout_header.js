@@ -1,6 +1,5 @@
 const root = document.getElementById("root");
 const body = document.body;
-body.style.margin = "0%";
 //header
 const header = tagMakeCall(root, "div", "", function (element) {
   element.setAttribute("id", "header");
