@@ -29,42 +29,21 @@ const recipeImageMain = tagMakeCall(recipeImage, "img", "", function (element) {
 const recipeName = tagMakeCall(mainWrapp, "div", "", function (element) {
   element.setAttribute("id", "recipe-name");
 });
-loopMaker(recipeName, "div", 1);
-loopMaker(recipeName.children[0], "div", 1);
-recipeName.children[0].children[0].innerHTML = "레시피의 이름 : ";
-loopMaker(recipeName.children[0], "textarea", 1);
-recipeName.children[0].children[1].placeholder = "레시피의 이름";
-loopMaker(recipeName, "div", 1);
-loopMaker(recipeName.children[1], "div", 1);
-recipeName.children[1].children[0].innerHTML = "재료 : ";
-const recipeIngre_1 = tagMakeCall(
-  recipeName.children[1],
-  "textarea",
-  "",
-  function (element) {
-    element.setAttribute("type", "text");
-  }
-);
-recipeName.children[1].children[1].placeholder =
-  "ex) 고블린의 심장 100g, 고양이의 털 50가닥 ";
-loopMaker(recipeName.children[1], "div", 1);
-const recipeIngre_2 = tagMakeCall(
-  recipeName.children[1],
-  "textarea",
-  "",
-  function (element) {
-    element.setAttribute("type", "text");
-  }
-);
-recipeName.children[1].children[3].placeholder =
-  "ex) 고블린의 심장 100g, 고양이의 털 50가닥 ";
+loopMaker(recipeName, "div", 2);
+recipeName.children[0].textContent = "레시피의 이름";
+loopMaker(recipeName.children[1], "div", 4);
+recipeName.children[1].children[0].textContent = "재료 : ";
+recipeName.children[1].children[1].innerHTML =
+  "고블린의 심장 100g, </br> 고양이의 털 50가닥";
+recipeName.children[1].children[3].innerHTML =
+  "고블린의 심장 100g, </br> 고양이의 털 50가닥";
 
 //아래쪽 조리 방법
 const recipeCooking = tagMakeCall(mainWrapp, "div", "", function (element) {
   element.setAttribute("id", "recipe-cooking");
 });
 tagMakeCall(recipeCooking, "div", "");
-recipeCooking.children[0].innerHTML = "조리 방법";
+recipeCooking.children[0].innerHTML = "조리도구 : +12강 전설의검, 마녀냄비";
 
 //상세 조리방법
 const recipeCookingMethod = tagMakeCall(
@@ -81,14 +60,14 @@ for (
   reciCookMe < recipeCookingMethod.children.length;
   reciCookMe++
 ) {
-  loopMaker(recipeCookingMethod.children[reciCookMe], "textarea", 1);
+  loopMaker(recipeCookingMethod.children[reciCookMe], "div", 2);
 }
 //상세 조리방법 text
-recipeCookingMethod.children[0].children[0].placeholder = "ex) 1. 먼저";
-recipeCookingMethod.children[1].children[0].placeholder = "ex) 2. 도마";
-recipeCookingMethod.children[2].children[0].placeholder = "ex) 3. 준비";
-recipeCookingMethod.children[3].children[0].placeholder = "ex) 4. 하세";
-recipeCookingMethod.children[4].children[0].placeholder = "ex) 5. 요";
+recipeCookingMethod.children[0].children[0].innerHTML = "1. 안";
+recipeCookingMethod.children[1].children[0].innerHTML = "2. 녕";
+recipeCookingMethod.children[2].children[0].innerHTML = "3. 하";
+recipeCookingMethod.children[3].children[0].innerHTML = "4. 세";
+recipeCookingMethod.children[4].children[0].innerHTML = "5. 요";
 
 //상세 조리방법 이미지
 const recipeCookingMethod_1 = tagMakeCall(
@@ -146,8 +125,3 @@ const recipeCookingMethod_5 = tagMakeCall(
     );
   }
 );
-//확인 버튼
-const submitButton = tagMakeCall(mainWrapp, "button", "", function (element) {
-  element.setAttribute("type", "submit");
-});
-submitButton.innerHTML = "등록";
