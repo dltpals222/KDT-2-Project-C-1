@@ -58,7 +58,10 @@ const searchInput = tagMakeCall(search, "input", "", function (element) {
 const searchButton = tagMakeCall(search, "button", "검색", function (element) {
   element.setAttribute("id", "search-button");
 });
+
+/*
 //main
 const main = tagMakeCall(root, "div", "", function (element) {
   element.setAttribute("id", "main");
 });
+*/

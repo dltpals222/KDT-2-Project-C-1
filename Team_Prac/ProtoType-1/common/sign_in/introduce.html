@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduce</title>
+  </head>
+
+  <body>
+    <div id="root">
+      <div id="firstBox">
+        <h3>&#128046&#128054<strong>소개</strong>&#128046&#128054</h3>
+        <p>본 사이트는 요리레시피에 대한 정보 및 각자의 스타일대로 만든 레시피를 자랑하는 사이트입니다.</p>
+        <p>This Web site is produced by team 만수무강. Also offering for people who need recipe to make for meal or cusine, <br>
+            besides this Web site is able to upload or post your own style recipe to show other users <br>
+            and proving into ranking by people who recommended.</p>
+        <hr>
+        <ul id="teamList">
+          <li>Developed By Team 만수무강</li>
+          <li>팀장 : 박달재</li>
+          <li>팀원 : 이세민</li>
+          <li>팀원 : 허진</li>
+          <li>팀원 : 이경택</li>
+          <li>팀원 : 정성철</li>
+        </ul>
+      </div>
+
+      <div id="secondBox">
+        <h1>요너두</h1>
+        <p>항상 레시피를 찾는데에 있어서 재료를 기준으로 정확한 레시피를 찾을 수 없었습니다. <br>
+            더구다나 물가상승으로 인한 외식에 대한 부담감과 배달비 인상으로 곤두박칠 치는 요즘 시대에 <br>
+            엎친데 덮친격으로 냉장고가 빈약한 입장의 사람들에게 있어서 이런점은 굉장히 아쉬운 점으로 다가옵니다. <br>
+            그렇기 때문에 초소 한두개의 재료 혹은 정확히 보유중인 재료만으로도 충분히 만들 수 있는 <br>
+            레시피 사이트를 제공하는 것이 이 사이트의 목표이자 만들게 된 계기입니다.</p>
+      </div>
+    </div>
+
+    <script>
+        ///CSS부분
+      const ulStyle = document.getElementById("teamList");
+      ulStyle.style.listStyleType = "square";
+
+      const mainContainer = document.getElementById('root');
+      mainContainer.style.display = 'flex';
+      mainContainer.style.flexDirection = 'row';
+      mainContainer.style.justifyContent = 'space-around';
+      mainContainer.style.backgroundColor = 'lightsalmon';
+      mainContainer.style.border = '7px dashed lightgray';
+
+      /*
+      const firstDiv = document.getElementById('firstBox');
+      firstDiv.style.display = 'flex';
+      firstDiv.style.flexDirection = 'column';
+      firstDiv.style.justifyContent = 'center';
+      firstDiv.style.alignContent = 'center';
+      */
+
+
+      /*
+      const lineBar = document.createElement('div');
+      lineBar.style.width = '10px';
+      lineBar.style.height = '80px';
+      lineBar.style.backgroundColor = 'lightgray';
+      lineBar.setAttribute('id', line);
+      const introBox = document.getElementById('firstBox');
+      introBox.appendChild(lineBar);
+      */
+
+      const intro = document.querySelector('h3');
+      intro.style.textAlign = 'center';
+
+      const yoneodu = document.querySelector("h1");
+      yoneodu.style.textAlign = 'center';
+      //yoneodu.style.fontFamily = 'sans-serif';
+
+
+
+      ///JS function 부분
+
+
+    </script>
+  </body>
+</html>
