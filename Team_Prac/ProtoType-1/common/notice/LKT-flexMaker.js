@@ -1,11 +1,5 @@
 function flexMaker(
-  parent,
-  display,
-  flexDirection,
-  justifyContent,
-  alignItems,
-  width,
-  height
+  parent, display, flexDirection, justifyContent, alignItems, width, height, callback
 ) {
   parent.style.display = display;
   parent.style.flexDirection = flexDirection;
@@ -13,4 +7,9 @@ function flexMaker(
   parent.style.alignItems = alignItems;
   parent.style.width = width;
   parent.style.height = height;
+  if (callback) {
+    callback(parent);
+  } else {
+    return parent;
+  }
 }
