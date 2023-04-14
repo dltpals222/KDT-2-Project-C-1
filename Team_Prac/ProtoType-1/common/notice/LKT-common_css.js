@@ -41,14 +41,20 @@ flexMaker(map, "flex", "column", "center", "center", "50%", "100%")
 flexMaker(noticeheader, "flex", "", "center", "center", "80%", "10%", function (parent) {
   parent.style.fontSize = "30px";
 });
-flexMaker(noticemain, "", "", "", "", "80%", "70%");
+flexMaker(noticemain, "flex", "column", "center", "center", "80%", "70%");
 flexMaker(noticefooter, "", "", "", "", "80%", "10%");
 for (let i = 0; i < 10; i++) {
   flexMaker(noticemain.children[i], "flex", "row", "center", "center", "100%", "10%");
 
-  flexMaker(noticemain.children[i].children[0], "", "", "", "", "15%", "100%");
-  flexMaker(noticemain.children[i].children[1], "", "", "", "", "70%", "100%");
-  flexMaker(noticemain.children[i].children[2], "", "", "", "", "15%", "100%");
+  flexMaker(noticemain.children[i].children[0], "flex", "column", "center", "center", "15%", "100%",function(parent){
+    parent.textContent = i+1;
+  });
+  flexMaker(noticemain.children[i].children[1], "flex", "", "center", "center", "70%", "100%",function(parent){
+    parent.textContent = "룰루랄라"+(i+1);
+  });
+  flexMaker(noticemain.children[i].children[2], "", "", "", "", "15%", "100%",function(parent){
+    parent.textContent = "나"+(i+1);
+  });
 }
 // map style
 flexMaker(map.children[0], "flex", "", "center", "center", "80%", "10%", function (parent) {
