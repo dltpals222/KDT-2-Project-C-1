@@ -37,6 +37,7 @@
     </div>
 
     <script>
+    
         ///CSS부분
       const ulStyle = document.getElementById("teamList");
       ulStyle.style.listStyleType = "square";
@@ -47,7 +48,7 @@
       mainContainer.style.justifyContent = 'space-around';
       mainContainer.style.backgroundColor = 'lightsalmon';
       mainContainer.style.border = '7px dashed lightgray';
-
+    
       /*
       const firstDiv = document.getElementById('firstBox');
       firstDiv.style.display = 'flex';
@@ -67,18 +68,33 @@
       introBox.appendChild(lineBar);
       */
 
+      
       const intro = document.querySelector('h3');
       intro.style.textAlign = 'center';
 
       const yoneodu = document.querySelector("h1");
       yoneodu.style.textAlign = 'center';
+
       //yoneodu.style.fontFamily = 'sans-serif';
-
-
+    
 
       ///JS function 부분
-
-
     </script>
+
+
+<script>
+    ///동적으로 만들 js부분
+/*
+    const mainRoot = document.getElementById('root');
+    const firstContainer = document.createElement('div');
+    firstContainer.textContent = '소개';
+    firstContainer.style.display = 'flex';
+    firstContainer.style.flexDirection = 'column';
+    mainRoot.appendChild(firstContainer);
+*/
+
+</script>
+
+
   </body>
 </html>
