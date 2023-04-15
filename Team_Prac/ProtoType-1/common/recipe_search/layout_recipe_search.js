@@ -104,8 +104,22 @@ const dSeaTag = [
 for (let i = 0; i < dSeaTag.length; i++) {
   tagMake(dSeaTag[i][0], dSeaTag[i][1], dSeaTag[i][2], dSeaTag[i][3]);
 }
-
 //dSea 끝
+//dSBt 태그 생성
+const dSBtForm = tagMake(dSBt, "form", 1, (element) => {
+  element.setAttribute("method", "get");
+});
+tagMake(dSBtForm, "button", 1, (element) => {
+  element.setAttribute("type", "submit");
+  element.innerText = "검색";
+});
+//dSBt 끝
+//dFol 태그 생성
+tagMake(dFol, "div", 1, (element) => {
+  element.innerText = "접기";
+  element.addEventListener("click", () => {});
+});
+//dFol 끝
 export default {
   main,
   detailedSearch,
