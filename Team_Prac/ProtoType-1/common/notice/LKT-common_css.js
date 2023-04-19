@@ -31,28 +31,34 @@ flexMaker(search.children[2], "", "", "", "", "10%", "20px", function (parent) {
 
 //main
 flexMaker(main, "flex", "row", "center", "center", "100vw", "100vh");
-//footer
-flexMaker(footer, "flex", "row", "start", "center", "100vw", "20vh", function (parent) {
-  parent.style.backgroundColor = "royalblue";
-});
+
 //main_notice
 flexMaker(notice, "flex", "column", "center", "center", "50%", "100%");
-// main-map
-flexMaker(map, "flex", "column", "center", "center", "50%", "100%")
+
 // notice style
 flexMaker(noticeheader, "flex", "", "center", "center", "80%", "10%", function (parent) {
   parent.style.fontSize = "30px";
 });
 flexMaker(noticemain, "flex", "column", "center", "center", "80%", "70%");
+
+//main_noticemain에 값넣기
+for (let i = 0; i < 10; i++) {
+  flexMaker(noticemain.children[i], "flex", "row", "center", "center", "100%", "10%");
+
+  flexMaker(noticemain.children[i].children[0], "flex", "column", "center", "center", "15%", "100%",function(parent){
+    parent.textContent = Data[i].index;
+  });
+  flexMaker(noticemain.children[i].children[1], "flex", "", "center", "center", "70%", "100%",function(parent){
+    parent.textContent = Data[i].subject;
+  });
+  flexMaker(noticemain.children[i].children[2], "", "", "", "", "15%", "100%",function(parent){
+    parent.textContent = Data[i].name;
+  });
+}
 flexMaker(noticefooter, "flex", "", "center", "center", "80%", "10%");
 
-
-
-
-
-
-// ------------여기서 부터 map---------
-
+// main-map
+flexMaker(map, "flex", "column", "center", "center", "50%", "100%")
 
 // map style
 flexMaker(map.children[0], "flex", "", "center", "center", "80%", "10%", function (parent) {
@@ -60,3 +66,9 @@ flexMaker(map.children[0], "flex", "", "center", "center", "80%", "10%", functio
 });
 flexMaker(map.children[1], "", "", "", "", "80%", "80%");
 
+// ---------------여기서 부터 footer------------
+
+//footer
+flexMaker(footer, "flex", "row", "start", "center", "100vw", "20vh", function (parent) {
+  parent.style.backgroundColor = "royalblue";
+});

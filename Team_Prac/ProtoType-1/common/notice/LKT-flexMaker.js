@@ -10,6 +10,5 @@ function flexMaker(
   if (callback) {
     callback(parent);
   }
-  return parent;
 
 }
