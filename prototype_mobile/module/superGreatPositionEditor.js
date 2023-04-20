@@ -4,19 +4,20 @@
 // 해당 변수들을 사용해야 한다.
 
 function superGreatPosition(parent, position, object, zindex, callback) {
-  parent.style.position = position;
-  parent.style.top = object.top;
-  parent.style.bottom = object.bottom;
-  parent.style.left = object.left;
-  parent.style.right = object.right;
-  parent.style.zindex = zindex;
+  const a = parent.style;
+  a.position = position;
+  a.top = object.top;
+  a.bottom = object.bottom;
+  a.left = object.left;
+  a.right = object.right;
+  a.zindex = zindex;
 
   if (callback) {
-    callback(parent);
+    callback(a);
   }
 }
 
-// export default superGreatPosition;
+export default superGreatPosition;
 
 // let PositionSet = {
 //   top: "50px",
@@ -26,6 +27,6 @@ function superGreatPosition(parent, position, object, zindex, callback) {
 // }
 
 
-// superGreatPosition(root, "fixed", PositionSet, 0, function (parent) {
-//   parent.style.background = "red"
+// superGreatPosition(root, "fixed", PositionSet, 0, function (a) {
+//   a.background = "red"
 // })
