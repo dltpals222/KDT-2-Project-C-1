@@ -1,3 +1,13 @@
+// ※callback, return 따로 언급이 없는 곳은 둘 다 있는 곳이다.
+//
+// 1. 제일 먼저 인식되는 것은 length이므로 2 이상일 경우 tagName으로 지정된 태그를 갯수대로 만듦(callback, return 없음)
+// 2. length는 기본값이 1이므로 빈칸으로 놓더라도 1로 설정됨
+// 3. id는 기본값으로 ""설정되어있다. (type은 string이다)
+// 4. id에 string과 number 입력 -> 하나의 태그에 id의 값으로 저장된다.
+// 5. id에 배열을 입력 -> 배열이 1개인 경우 5번과 같은 동작을 한다.
+// 6. id에 배열을 입력 -> 배열이 2개 이상인 경우 loop로 동작되며 여기서는 callback과 return이 없다.
+// 7. id에 객체를 입력 -> 객체의 키가 속성(id, type 등과 같은)이 되며 하나의 태그에 여러개의 속성이 만들어진다.
+
 function multiAndSingleTagMaker(
   parent,
   tagName,
@@ -19,7 +29,7 @@ function multiAndSingleTagMaker(
         if (callback) {
           callback(element);
         }
-        return callback;
+        return element;
       } else {
         // ""이외 나머지 string 혹은 number시 작동
 
@@ -29,7 +39,7 @@ function multiAndSingleTagMaker(
         if (callback) {
           callback(element);
         }
-        return callback;
+        return element;
       }
       //string number 작동 끝
     } else if (typeof id === "object") {
@@ -47,7 +57,7 @@ function multiAndSingleTagMaker(
           if (callback) {
             callback(element);
           }
-          return callback;
+          return element;
         } else if (id.length > 1) {
           // 배열이 두개 이상일때
 
@@ -68,7 +78,7 @@ function multiAndSingleTagMaker(
         if (callback) {
           callback(element);
         }
-        return callback;
+        return element;
       }
     }
   } else {
