@@ -10,6 +10,6 @@ function kingGodFlexEditor(parent,flexDirection,alignItems,justifyContent,callba
   }
 }
 
-kingGodFlexEditor(div,row,center,center,'');
+//kingGodFlexEditor(div,'row','center','center','');
 
 export default kingGodFlexEditor;
