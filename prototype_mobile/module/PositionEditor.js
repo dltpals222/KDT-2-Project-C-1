@@ -17,16 +17,16 @@ function PositionEditor(element, position, zindex, object, callback) {
   }
 }
 
-// export default PositionEditor;
+export default PositionEditor;
 
-let PositionSet = {
-  top: "50px",
-  bottom: "300px",
-  left: "500px",
-  right: "30px"
-}
+// let PositionSet = {
+//   top: "50px",
+//   bottom: "300px",
+//   left: "500px",
+//   right: "30px"
+// }
 
 
-PositionEditor(root, "fixed", 0, PositionSet, function (element) {
-  element.background = "red"
-})
+// PositionEditor(root, "fixed", 0, PositionSet, function (element) {
+//   element.background = "red"
+// })
