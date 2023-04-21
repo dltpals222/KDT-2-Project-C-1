@@ -3,7 +3,7 @@
 // 그러므로 top, bottom, left, right에 value를 부여하려면
 // 해당 변수들을 사용해야 한다.
 
-function superGreatPosition(element, position, object, zindex, callback) {
+function PositionEditor(element, position, object, zindex, callback) {
   const a = element.style;
   a.position = position;
   a.top = object.top;
@@ -17,7 +17,7 @@ function superGreatPosition(element, position, object, zindex, callback) {
   }
 }
 
-export default superGreatPosition;
+export default PositionEditor;
 
 // let PositionSet = {
 //   top: "50px",
