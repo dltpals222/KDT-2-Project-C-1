@@ -3,30 +3,30 @@
 // 그러므로 top, bottom, left, right에 value를 부여하려면
 // 해당 변수들을 사용해야 한다.
 
-function PositionEditor(element, position, object, zindex, callback) {
-  const a = element.style;
-  a.position = position;
-  a.top = object.top;
-  a.bottom = object.bottom;
-  a.left = object.left;
-  a.right = object.right;
-  a.zindex = zindex;
-
+function PositionEditor(element, position, zindex, object, callback) {
+  const elementStyle = element.style;
+  elementStyle.position = position;
+  elementStyle.zindex = zindex;
+  if (typeof object === "object") {
+    for (let i in object) {
+      elementStyle[i] = object[i];
+    }
+  }
   if (callback) {
-    callback(a);
+    callback(elementStyle);
   }
 }
 
-export default PositionEditor;
+// export default PositionEditor;
 
-// let PositionSet = {
-//   top: "50px",
-//   bottom: "300px",
-//   left: "500px",
-//   right: "30px"
-// }
+let PositionSet = {
+  top: "50px",
+  bottom: "300px",
+  left: "500px",
+  right: "30px"
+}
 
 
-// superGreatPosition(root, "fixed", PositionSet, 0, function (a) {
-//   a.background = "red"
-// })
+PositionEditor(root, "fixed", 0, PositionSet, function (element) {
+  element.background = "red"
+})
