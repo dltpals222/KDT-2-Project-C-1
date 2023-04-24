@@ -6,6 +6,7 @@
 5. id의 bth은 마지막에 붙이기(xxxXxxXxxBtn id명 (예시))
 6. prototype -m의 하위 폴더는 page별 추가생성.
 7. 파일 이름 
+
     a. root 폴더 : prototype_mobile
     
         i. common : 공통 레이아웃(헤더)
