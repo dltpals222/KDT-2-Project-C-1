@@ -20,19 +20,18 @@ const ids = {
 const root = document.getElementById('root');
 
 const header = multiAndSingleTagMaker(root, 'div', 'header')
-
 const main = multiAndSingleTagMaker(root, 'div', 'main')
+const footer = multiAndSingleTagMaker(root, 'div', 'footer')
+
 const advancedSearch = multiAndSingleTagMaker(main, 'div', 'advanced-search',1, element=> {
   element.innerHTML = '상세검색'
 })
 const recipeListWrap = multiAndSingleTagMaker(main, 'div', 'recipe-list-wrap')
+const numberListWrap = multiAndSingleTagMaker(main, 'div', 'number-list-wrap')
+const recipeBtnWrap = multiAndSingleTagMaker(main, 'form', 'recipe-btn-wrap')
+const recipeBtn = multiAndSingleTagMaker(recipeBtnWrap, 'button', 'recipe-btn')
 const recipeListBox = multiAndSingleTagMaker(recipeListWrap, 'div', 'recipe-list-box')
 const recipeListImage = multiAndSingleTagMaker(recipeListBox, 'image', 'recipe-list-image')
 const recipeListTextWrap = multiAndSingleTagMaker(recipeListBox, 'div', 'recipe-list-text-wrap')
 const recipeListText = multiAndSingleTagMaker(recipeListTextWrap, 'div', ids.recipeListTextId)
 
-const numberListWrap = multiAndSingleTagMaker(main, 'div', 'number-list-wrap')
-const recipeBtnWrap = multiAndSingleTagMaker(main, 'form', 'recipe-btn-wrap')
-const recipeBtn = multiAndSingleTagMaker(recipeBtnWrap, 'button', 'recipe-btn')
-
-const footer = multiAndSingleTagMaker(root, 'div', 'footer')
