@@ -13,3 +13,4 @@
         iv. recipe_view : 레시피 뷰
      b. index.html : 메인 페이지
      c. app.js : 정적 라우팅서버
+8. 제작과정에서 함수를 모듈화시켜, 별도의 파일로 관리시 모듈파일은 root/module로 저장 할 것
