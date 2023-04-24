@@ -7,7 +7,7 @@
 6. prototype -m의 하위 폴더는 page별 추가생성.
 7. 파일 이름 
     a. root 폴더 : prototype_mobile
-        i. common : 공통 레이아웃(헤더)
+        i. common : 공통 레이아웃(헤더)\
         ii. recipe_list : 레시피 리스트
         iii. recipe_write : 레시피 등록
         iv. recipe_view : 레시피 뷰
