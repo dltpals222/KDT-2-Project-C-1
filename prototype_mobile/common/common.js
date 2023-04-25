@@ -16,7 +16,7 @@ const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, 'input', {
 const headerSearchSelect = multiAndSingleTagMaker(headerSearch, 'select', 'hs-select')
 const headerSearchInput = multiAndSingleTagMaker(headerSearch, 'input', 'hs-input')
 const headerSearchEnter = multiAndSingleTagMaker(headerSearch, 'input', { id: 'hs-btn', type: "submit", value : "검색" })
-
+ console.log(root)
 // menu
 function moduleMaker(Num) {
   const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"] 
