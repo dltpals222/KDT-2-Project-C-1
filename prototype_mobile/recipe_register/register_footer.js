@@ -7,3 +7,4 @@ footer.style.border = '2px solid black';
 const button = document.createElement('button');
 button.textContent = '레시피 등록';
 button.style.textAlign = 'center';
+footer.appendChild(button);
