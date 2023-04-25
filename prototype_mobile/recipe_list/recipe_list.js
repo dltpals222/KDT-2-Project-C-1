@@ -147,6 +147,7 @@ const recipeListBoxStyle = {
   backgroundColor : "#DAB988"
 }
 
+//레시피 리스트 이미지 스타일
 const recipeListImage = {
   width : "30%",
   height : "100%",
@@ -157,7 +158,7 @@ for(let a = 0; a < recipeListWrap.children.length; a++){
   allMightyStyleEditor(recipeListWrap.children[a],recipeListBoxStyle)
   allMightyStyleEditor(recipeListWrap.children[a].children[0], recipeListImage)
 }
-
+// (맨처음 이전 1,2,3,4,5 다음 맨끝) 스타일
 const numberListWrapStyle = {
   display : "flex",
   flexDirection: "row",
@@ -167,6 +168,7 @@ const numberListWrapStyle = {
 } 
 allMightyStyleEditor(numberListWrap,numberListWrapStyle)
 
+// 레시피 등록 버튼 스타일
 const recipeBtnStyle = {
   width : "100%",
   height : "100%",
