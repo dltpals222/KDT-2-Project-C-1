@@ -9,9 +9,14 @@ const footer = multiAndSingleTagMaker(root, 'div', 'footer');
 const headerWrap = multiAndSingleTagMaker(header, 'div','header-wrap');
 const headerSearch = multiAndSingleTagMaker(header, 'div', 'header-search');
 const headerMenu = multiAndSingleTagMaker(header, 'div', 'header-menu');
-const headerWrapLeft = multiAndSingleTagMaker(headerWrap, 'div','header-Left')
-const headerWrapTitle = multiAndSingleTagMaker(headerWrap,'div','header-title');
-const headerWrapLogin = multiAndSingleTagMaker(headerWrap,'div','header-Right')
+// const headerMenuTop = multiAndSingleTagMaker(headerMenu,'div','headermenu-top')
+// const headerMenuBottom = multiAndSingleTagMaker(headerMenu,'div','headermenu-bottom');
+const headerMenuModule = multiAndSingleTagMaker(headerMenu,'div','headerMenu-module');
+const headerMenuModuleTop = multiAndSingleTagMaker(headerMenuModule,'button','headerMenuModule-top');
+const headerMenuModuleBottom = multiAndSingleTagMaker(headerMenuModule,'div','headerMenuModuleBottom')
+const headerWrapLeft = multiAndSingleTagMaker(headerWrap, 'div','headerwrap-Left')
+const headerWrapTitle = multiAndSingleTagMaker(headerWrap,'div','headerwrap-title');
+const headerWrapLogin = multiAndSingleTagMaker(headerWrap,'div','headerwrap-Right')
 const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin,'button','hl-btn')
 const headerSearchSelect = multiAndSingleTagMaker(headerSearch,'select','hs-select')
 const headerSearchInput = multiAndSingleTagMaker(headerSearch,'input','hs-input')
@@ -52,6 +57,21 @@ const headerMenuCss = {
   height : "40%"
 }
 
+const headerMenuModuleCss = {
+  width : "60px",
+  height : "80px",
+}
+
+const headerMenuModuleTopCss = {
+  width : "100%",
+  height : "70%",
+  borderRadius : "20%"
+}
+
+const headerMenuModuleBottomCss = {
+  width : "100%",
+  height : "30%"
+}
 const headerWrapLeftCss = {
   width : "30%",
   height : "100%"
@@ -97,6 +117,9 @@ allMightyStyleEditor(footer, footerCss);
 allMightyStyleEditor(headerWrap,headerWrapCss);
 allMightyStyleEditor(headerSearch, headerSearchCss);
 allMightyStyleEditor(headerMenu,headerMenuCss);
+allMightyStyleEditor(headerMenuModule,headerMenuModuleCss);
+allMightyStyleEditor(headerMenuModuleTop,headerMenuModuleTopCss)
+allMightyStyleEditor(headerMenuModuleBottom,headerMenuModuleBottomCss)
 allMightyStyleEditor(headerWrapLeft, headerWrapLeftCss);
 allMightyStyleEditor(headerWrapTitle,headerWrapTitleCss,function(element){element.innerHTML = "요너두"});
 // headerWrapTitle.innerHTML = "요너두"
@@ -110,3 +133,4 @@ kingGodFlexEditor(headerWrap,"flex","row", "center", "center");
 kingGodFlexEditor(headerWrapTitle,'flex','row','center','center')
 kingGodFlexEditor(headerWrapLogin,'flex','row','center','right')
 kingGodFlexEditor(headerSearch,'flex','row','center','center')
+kingGodFlexEditor(headerMenu,'flex','row','center','center')
