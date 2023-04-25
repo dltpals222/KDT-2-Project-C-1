@@ -13,7 +13,6 @@ const {multiAndSingleTagMaker,PositionEditor,fontAndLayoutEditor,kingGodFlexEdit
   // h : //빈칸으로 둘 시 a와 같은 동작을 함
 } */
 const root = document.getElementById('root');
-
 const header = multiAndSingleTagMaker(root, 'div', 'header')
 const main = multiAndSingleTagMaker(root, 'div', 'main')
 const footer = multiAndSingleTagMaker(root, 'div', 'footer')
