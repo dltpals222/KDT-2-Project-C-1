@@ -11,7 +11,6 @@ fontAndLayoutEditor(header,"100%","25%");
 
 //main style
 fontAndLayoutEditor(main,"100%","65%");
-
 //footer style
 fontAndLayoutEditor(footer,"100%","10%");
 
