@@ -17,6 +17,7 @@ const ids = {
   number : ['number-1'],
   // h : //빈칸으로 둘 시 a와 같은 동작을 함
 } 
+const body = document.body
 const root = document.getElementById('root');
 
 const header = multiAndSingleTagMaker(root, 'div', 'header')
