@@ -11,7 +11,11 @@ const headerSearch = multiAndSingleTagMaker(header, 'div', 'header-search');
 const headerMenu = multiAndSingleTagMaker(header, 'div', 'header-menu');
 const headerWrapLeft = multiAndSingleTagMaker(headerWrap, 'div','header-Left')
 const headerWrapTitle = multiAndSingleTagMaker(headerWrap,'div','header-title');
-const headerWrapRight = multiAndSingleTagMaker(headerWrap,'div','header-Right')
+const headerWrapLogin = multiAndSingleTagMaker(headerWrap,'div','header-Right')
+const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin,'button','hl-btn')
+const headerSearchSelect = multiAndSingleTagMaker(headerSearch,'select','hs-select')
+const headerSearchInput = multiAndSingleTagMaker(headerSearch,'input','hs-input')
+const headerSearchEnter = multiAndSingleTagMaker(headerSearch,'button','hs-btn')
 
 const rootCss = {
   width : "100vw",
@@ -55,13 +59,36 @@ const headerWrapLeftCss = {
 
 const headerWrapTitleCss = {
   width : "40%",
-  height : "100%"
+  height : "100%",
+  fontSize : "40px"
 }
 
-const headerWrapRightCss = {
+const headerWrapLoginCss = {
   width : "30%",
   height : "100%"
 }
+
+const headerWrapLoginButtonCss = {
+  width : "60px",
+  height : "60px",
+  borderRadius : "50%"
+}
+
+const headerSearchSelectCss = {
+  width : "30px",
+  height : "30px"
+}
+
+const headerSearchInputCss = {
+  width : "100px",
+  height : "30px"
+}
+
+const headerSearchEnterCss = {
+  width : "30px",
+  height : "30px"
+}
+console.dir(root.style)
 
 allMightyStyleEditor(root, rootCss);
 allMightyStyleEditor(header, headerCss);
@@ -71,7 +98,15 @@ allMightyStyleEditor(headerWrap,headerWrapCss);
 allMightyStyleEditor(headerSearch, headerSearchCss);
 allMightyStyleEditor(headerMenu,headerMenuCss);
 allMightyStyleEditor(headerWrapLeft, headerWrapLeftCss);
-allMightyStyleEditor(headerWrapTitle,headerWrapTitleCss);
-allMightyStyleEditor(headerWrapRight,headerWrapRightCss);
+allMightyStyleEditor(headerWrapTitle,headerWrapTitleCss,function(element){element.innerHTML = "요너두"});
+// headerWrapTitle.innerHTML = "요너두"
+allMightyStyleEditor(headerWrapLogin,headerWrapLoginCss);
+allMightyStyleEditor(headerWrapLoginButton, headerWrapLoginButtonCss)
+allMightyStyleEditor(headerSearchSelect,headerSearchSelectCss);
+allMightyStyleEditor(headerSearchInput, headerSearchInputCss);
+allMightyStyleEditor(headerSearchEnter,headerSearchEnterCss)
 
 kingGodFlexEditor(headerWrap,"flex","row", "center", "center");
+kingGodFlexEditor(headerWrapTitle,'flex','row','center','center')
+kingGodFlexEditor(headerWrapLogin,'flex','row','center','right')
+kingGodFlexEditor(headerSearch,'flex','row','center','center')
