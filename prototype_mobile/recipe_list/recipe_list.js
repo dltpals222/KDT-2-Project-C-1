@@ -14,7 +14,7 @@ const {multiAndSingleTagMaker,PositionEditor,fontAndLayoutEditor,kingGodFlexEdit
 } */
 const ids = {
   recipeListTextId : ['recipe-name','recipe-need-ingredient','recipe-need-equipment','recipe-writer','recipe-number-referrals'],
-  number : ['number-1','number-2','number-3','number-4','number-5',],
+  number : ['number-1'],
   // h : //빈칸으로 둘 시 a와 같은 동작을 함
 } 
 const root = document.getElementById('root');
@@ -37,10 +37,38 @@ const recipeListText = multiAndSingleTagMaker(recipeListTextWrap, 'div', ids.rec
 //레시피 <<맨앞 <이전 1, 2, 3, 4, 5 다음> 맨뒤>> 
 const numberListWrap = multiAndSingleTagMaker(main, 'div', 'number-list-wrap')
 // 맨앞
-const startNumber = multiAndSingleTagMaker(numberListWrap, 'div', 'start-number')
+const startNumber = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element =>{
+  element.innerHTML = "<<맨앞";
+})
 // 이전
-const beforeNumber = multiAndSingleTagMaker(numberListWrap, 'div', 'before-number')
-const numberList = multiAndSingleTagMaker(numberListWrap, 'div', '',5,)
+const beforeNumber = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "<이전";
+})
+//1~5번
+const number1 = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "1";
+})
+const number2 = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "2";
+})
+const number3 = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "3";
+})
+const number4 = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "4";
+})
+const number5 = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "5";
+})
+
+//다음
+const nextNumber = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "다음>";
+})
+//맨뒤 
+const endNumber = multiAndSingleTagMaker(numberListWrap, 'div', '',1, element => {
+  element.innerHTML = "맨뒤>>";
+})
 
 //레시피 등록 버튼
 const recipeBtnWrap = multiAndSingleTagMaker(main, 'form', 'recipe-btn-wrap')
