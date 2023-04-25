@@ -12,36 +12,42 @@ const headerMenu = multiAndSingleTagMaker(header, 'div', 'header-menu');
 const headerWrapLeft = multiAndSingleTagMaker(headerWrap, 'div', 'headerwrap-Left')
 const headerWrapTitle = multiAndSingleTagMaker(headerWrap, 'div', 'headerwrap-title');
 const headerWrapLogin = multiAndSingleTagMaker(headerWrap, 'div', 'headerwrap-Right')
-const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, 'button', 'hl-btn')
+const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, 'button', { id: 'hl-btn', type: "submit" },1,function(element){
+  element.innerHTML = "Login"
+})
 const headerSearchSelect = multiAndSingleTagMaker(headerSearch, 'select', 'hs-select')
 const headerSearchInput = multiAndSingleTagMaker(headerSearch, 'input', 'hs-input')
-const headerSearchEnter = multiAndSingleTagMaker(headerSearch, 'button', 'hs-btn')
+const headerSearchEnter = multiAndSingleTagMaker(headerSearch, 'button', { id: 'hs-btn', type: "submit" })
 
 // menu
 function moduleMaker(Num) {
-  for(let i = 1; i <= Num; i++ ){
-    const headerMenuModule = multiAndSingleTagMaker(headerMenu, 'div', 'headerMenu-module'+i);
-    const headerMenuModuleTop = multiAndSingleTagMaker(headerMenuModule, 'button', 'headerMenuModule-top'+i);
-    const headerMenuModuleBottom = multiAndSingleTagMaker(headerMenuModule, 'div', 'headerMenuModuleBottom'+i)
+  const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"] 
+  for (let i = 1; i <= Num; i++) {
+    const headerMenuModule = multiAndSingleTagMaker(headerMenu, 'div', { id: 'headerMenu-module' + i });
+    const headerMenuModuleTop = multiAndSingleTagMaker(headerMenuModule, 'button', { id: 'headerMenuModule-top' + i, type: "submit" });
+    const headerMenuModuleBottom = multiAndSingleTagMaker(headerMenuModule, 'div', 'headerMenuModuleBottom' + i)
     const headerMenuModuleCss = {
       width: "60px",
       height: "80px",
-      margin: "1%"
+      margin: "1%",
+      fontSize : "10px"
     }
-  
+
     const headerMenuModuleTopCss = {
       width: "100%",
       height: "70%",
       borderRadius: "20%"
     }
-  
+
     const headerMenuModuleBottomCss = {
       width: "100%",
       height: "30%"
     }
     allMightyStyleEditor(headerMenuModule, headerMenuModuleCss);
     allMightyStyleEditor(headerMenuModuleTop, headerMenuModuleTopCss)
-    allMightyStyleEditor(headerMenuModuleBottom, headerMenuModuleBottomCss)
+    allMightyStyleEditor(headerMenuModuleBottom, headerMenuModuleBottomCss,function(element){element.innerHTML = menuName[i-1]})
+
+    kingGodFlexEditor(headerMenuModuleBottom,'flex','row','center','center')
   }
 }
 moduleMaker(4);
@@ -117,7 +123,7 @@ const headerSearchEnterCss = {
   width: "30px",
   height: "30px"
 }
-console.dir(root.style)
+// console.dir(root.style)
 
 allMightyStyleEditor(root, rootCss);
 allMightyStyleEditor(header, headerCss);
