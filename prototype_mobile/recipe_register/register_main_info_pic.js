@@ -10,16 +10,17 @@ mainBody.style.width = '30vw';
 mainBody.style.height = '65vh';
 //mainBody.style.border = '2px solid black';
 mainBody.style.borderRadius = '10px';
-mainBody.style.display = 'grid';
-mainBody.style.gridTemplateRows = '80px';
-
+//mainBody.style.display = 'grid';
+//mainBody.style.gridTemplateRows = '80px';
+mainBody.style.display = 'flex';
+mainBody.style.flexDirection = 'column';
 
 ///제목부분 : 레시피 이름
 const title = document.createElement('h2');
 title.textContent = '레시피 이름';
 title.style.textAlign = 'center';
 mainBody.appendChild(title);
-console.dir(mainBody);
+//console.dir(mainBody);
 
 
 //console.dir(mainBody.children[1]);
@@ -72,7 +73,7 @@ for(let i = 0; i < 3; i++){
 */
 
 //const ingredientList = document.createElement('ul');
-for(let i = 0; i < 7; i++){
+for(let i = 0; i < 5; i++){
   const ingredientList = document.createElement('li');
   ingredientList.style.listStyleType = 'square';
   ingredientList.style.borderBottom = '2px solid black';
