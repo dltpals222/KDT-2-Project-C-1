@@ -152,6 +152,7 @@ function fontAndLayoutEditor(element,width,height,border,backgroundColor,font,ca
 
 function kingGodFlexEditor(element,flexDirection,alignItems,justifyContent,callback){
   const t = element.style;
+  t.display = 'flex'
   t.flexDirection = flexDirection;
   t.alignItems = alignItems;
   t.justifyContent = justifyContent;
