@@ -88,6 +88,8 @@ function multiAndSingleTagMaker(
       parent.appendChild(element);
     }
   }
+
+
 }
 
 
@@ -148,10 +150,9 @@ function fontAndLayoutEditor(element,width,height,border,backgroundColor,font,ca
 
 
 
-
-
-function kingGodFlexEditor(element,flexDirection,alignItems,justifyContent,callback){
+function kingGodFlexEditor(element,display,flexDirection,alignItems,justifyContent,callback){
   const t = element.style;
+  t.display = display;
   t.flexDirection = flexDirection;
   t.alignItems = alignItems;
   t.justifyContent = justifyContent;
@@ -162,12 +163,15 @@ function kingGodFlexEditor(element,flexDirection,alignItems,justifyContent,callb
 
 
 
-function allMightyStyleEditor(element, object){
+function allMightyStyleEditor(element, object, callback){
   let elementStyle = element.style
   if (typeof object === "object") {
     for (let i in object) {
       elementStyle[i] = object[i];
     }
+  }
+  if(callback){
+    callback(element)
   }
   }
 
