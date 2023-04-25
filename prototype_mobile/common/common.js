@@ -7,24 +7,22 @@ const header = multiAndSingleTagMaker(root, 'div', 'header');
 const main = multiAndSingleTagMaker(root, 'div', 'main');
 const footer = multiAndSingleTagMaker(root, 'div', 'footer');
 const headerWrap = multiAndSingleTagMaker(header, 'div', 'header-wrap');
-const headerSearch = multiAndSingleTagMaker(header, 'div', 'header-search');
+const headerSearch = multiAndSingleTagMaker(header, 'form', 'header-search');
 const headerMenu = multiAndSingleTagMaker(header, 'div', 'header-menu');
 const headerWrapLeft = multiAndSingleTagMaker(headerWrap, 'div', 'headerwrap-Left')
 const headerWrapTitle = multiAndSingleTagMaker(headerWrap, 'div', 'headerwrap-title');
-const headerWrapLogin = multiAndSingleTagMaker(headerWrap, 'div', 'headerwrap-Right')
-const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, 'button', { id: 'hl-btn', type: "submit" },1,function(element){
-  element.innerHTML = "Login"
-})
+const headerWrapLogin = multiAndSingleTagMaker(headerWrap, 'form', 'headerwrap-Right')
+const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, 'input', { id: 'hl-btn', type: "submit",value : "Login" })
 const headerSearchSelect = multiAndSingleTagMaker(headerSearch, 'select', 'hs-select')
 const headerSearchInput = multiAndSingleTagMaker(headerSearch, 'input', 'hs-input')
-const headerSearchEnter = multiAndSingleTagMaker(headerSearch, 'button', { id: 'hs-btn', type: "submit" })
+const headerSearchEnter = multiAndSingleTagMaker(headerSearch, 'input', { id: 'hs-btn', type: "submit", value : "검색" })
 
 // menu
 function moduleMaker(Num) {
   const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"] 
   for (let i = 1; i <= Num; i++) {
-    const headerMenuModule = multiAndSingleTagMaker(headerMenu, 'div', { id: 'headerMenu-module' + i });
-    const headerMenuModuleTop = multiAndSingleTagMaker(headerMenuModule, 'button', { id: 'headerMenuModule-top' + i, type: "submit" });
+    const headerMenuModule = multiAndSingleTagMaker(headerMenu, 'form','headerMenu-module' + i);
+    const headerMenuModuleTop = multiAndSingleTagMaker(headerMenuModule, 'input', { id: 'headerMenuModule-top' + i, type: "submit" ,value : " "});
     const headerMenuModuleBottom = multiAndSingleTagMaker(headerMenuModule, 'div', 'headerMenuModuleBottom' + i)
     const headerMenuModuleCss = {
       width: "60px",
@@ -44,6 +42,7 @@ function moduleMaker(Num) {
       height: "30%"
     }
     allMightyStyleEditor(headerMenuModule, headerMenuModuleCss);
+   
     allMightyStyleEditor(headerMenuModuleTop, headerMenuModuleTopCss)
     allMightyStyleEditor(headerMenuModuleBottom, headerMenuModuleBottomCss,function(element){element.innerHTML = menuName[i-1]})
 
@@ -120,7 +119,7 @@ const headerSearchInputCss = {
 }
 
 const headerSearchEnterCss = {
-  width: "30px",
+  width: "40px",
   height: "30px"
 }
 // console.dir(root.style)
