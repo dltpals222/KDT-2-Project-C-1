@@ -88,21 +88,17 @@ function multiAndSingleTagMaker(
       parent.appendChild(element);
     }
   }
-
-
 }
-
-
 
 // 요소에 position 속성을 부여하는 함수
 // top, bottom, left, right는 object 아래의 변수의 값에 해당
 // 그러므로 top, bottom, left, right에 value를 부여하려면
 // 해당 변수들을 사용해야 한다.
 
-function PositionEditor(element, position, zindex, object, callback) {
+function positionEditor(element, position, zIndex, object, callback) {
   const elementStyle = element.style;
   elementStyle.position = position;
-  elementStyle.zindex = zindex;
+  elementStyle.zIndex = zIndex;
   if (typeof object === "object") {
     for (let i in object) {
       elementStyle[i] = object[i];
@@ -113,8 +109,6 @@ function PositionEditor(element, position, zindex, object, callback) {
   }
 }
 
-
-
 //border 값을 "1"로주면 "1px solid black"
 // 원하는 폰트 바꾸고 싶을때 직접 객체를 만들 것
 // 객체 만드는 예시
@@ -122,18 +116,26 @@ function PositionEditor(element, position, zindex, object, callback) {
 // const fontStyle = { fontSize: "30px", color: "white" };
 //함수 호출시 순서 (parent, 넓이, 높이, 외곽선, 배경, 폰트, 콜백)
 
-function fontAndLayoutEditor(element,width,height,border,backgroundColor,font,callback) {
+function fontAndLayoutEditor(
+  element,
+  width,
+  height,
+  border,
+  backgroundColor,
+  font,
+  callback
+) {
   const parentStyle = element.style;
   parentStyle.width = width;
   parentStyle.height = height;
   parentStyle.backgroundColor = backgroundColor;
-  
+
   if (border === "1") {
     parentStyle.border = "1px solid black";
   } else if (typeof border === "string") {
     parentStyle.border = border;
   }
-  
+
   if (typeof font === "string") {
     parentStyle.fontSize = font;
   } else if (typeof font === "object") {
@@ -141,40 +143,45 @@ function fontAndLayoutEditor(element,width,height,border,backgroundColor,font,ca
       parentStyle[i] = font[i];
     }
   }
-  
+
   if (callback) {
     callback(parentStyle);
   }
 }
 
-
-
-
-function kingGodFlexEditor(element,display,flexDirection,alignItems,justifyContent,callback){
+function kingGodFlexEditor(
+  element,
+  flexDirection,
+  alignItems,
+  justifyContent,
+  callback
+) {
   const t = element.style;
-  t.display = display;
+  t.display = "flex";
   t.flexDirection = flexDirection;
   t.alignItems = alignItems;
   t.justifyContent = justifyContent;
-  if(callback){
-    callback(t)
+  if (callback) {
+    callback(t);
   }
 }
 
-
-
-function allMightyStyleEditor(element, object, callback){
-  let elementStyle = element.style
+function allMightyStyleEditor(element, object, callback) {
+  let elementStyle = element.style;
   if (typeof object === "object") {
     for (let i in object) {
       elementStyle[i] = object[i];
     }
   }
-  if(callback){
-    callback(element)
+  if (callback) {
+    callback(element);
   }
-  }
+}
 
-
-
-export default {multiAndSingleTagMaker,PositionEditor,fontAndLayoutEditor,kingGodFlexEditor,allMightyStyleEditor}
+export default {
+  multiAndSingleTagMaker,
+  positionEditor,
+  fontAndLayoutEditor,
+  kingGodFlexEditor,
+  allMightyStyleEditor,
+};
