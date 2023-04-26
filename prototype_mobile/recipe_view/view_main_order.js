@@ -10,3 +10,7 @@ container.style.alignItems = 'center';
 mainBody.appendChild(container);
 */
 
+const orderBox = document.createElement('div');
+orderBox.style.width = '50%';
+orderBox.style.height = '30%';
+orderBox.style.border = '2px solid black';
