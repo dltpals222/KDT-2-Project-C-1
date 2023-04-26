@@ -1,11 +1,11 @@
 import amEditor from "../module/all_mighty_editor.js";
 
-const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = amEditor;
+const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = amEditor;
 
 const root = document.getElementById("root");
 const header = multiAndSingleTagMaker(root, 'div', 'header');
-const main = multiAndSingleTagMaker(root, 'div', 'main');
-const footer = multiAndSingleTagMaker(root, 'div', 'footer');
+// const main = multiAndSingleTagMaker(root, 'div', 'main');
+// const footer = multiAndSingleTagMaker(root, 'div', 'footer');
 const headerWrap = multiAndSingleTagMaker(header, 'div', 'header-wrap');
 const headerSearch = multiAndSingleTagMaker(header, 'form', 'header-search');
 const headerMenu = multiAndSingleTagMaker(header, 'div', 'header-menu');
@@ -46,7 +46,7 @@ function moduleMaker(Num) {
     allMightyStyleEditor(headerMenuModuleTop, headerMenuModuleTopCss)
     allMightyStyleEditor(headerMenuModuleBottom, headerMenuModuleBottomCss,function(element){element.innerHTML = menuName[i-1]})
 
-    kingGodFlexEditor(headerMenuModuleBottom,'flex','row','center','center')
+    kingGodFlexEditor(headerMenuModuleBottom,'row','center','center')
   }
 }
 moduleMaker(4);
@@ -105,7 +105,8 @@ const headerWrapLoginCss = {
 const headerWrapLoginButtonCss = {
   width: "60px",
   height: "60px",
-  borderRadius: "50%"
+  borderRadius: "50%",
+  margin : "5%"
 }
 
 const headerSearchSelectCss = {
@@ -126,8 +127,8 @@ const headerSearchEnterCss = {
 
 allMightyStyleEditor(root, rootCss);
 allMightyStyleEditor(header, headerCss);
-allMightyStyleEditor(main, mainCss);
-allMightyStyleEditor(footer, footerCss);
+// allMightyStyleEditor(main, mainCss);
+// allMightyStyleEditor(footer, footerCss);
 allMightyStyleEditor(headerWrap, headerWrapCss);
 allMightyStyleEditor(headerSearch, headerSearchCss);
 allMightyStyleEditor(headerMenu, headerMenuCss);
@@ -139,8 +140,19 @@ allMightyStyleEditor(headerSearchSelect, headerSearchSelectCss);
 allMightyStyleEditor(headerSearchInput, headerSearchInputCss);
 allMightyStyleEditor(headerSearchEnter, headerSearchEnterCss)
 
+
 kingGodFlexEditor(headerWrap,"row", "center", "center");
 kingGodFlexEditor(headerWrapTitle,'row', 'center', 'center')
 kingGodFlexEditor(headerWrapLogin,'row', 'center', 'right')
 kingGodFlexEditor(headerSearch,'row', 'center', 'center')
 kingGodFlexEditor(headerMenu,'row', 'center', 'center')
+
+positionEditor(header,'fixed',1);
+console.dir(root.style)
+// positionEditor(main,'absolute','','',function(element){
+//   element.top = "25%"
+// })
+// positionEditor(footer,'absolute','','',function(element){
+//   element.top = "90%"
+// })
+
