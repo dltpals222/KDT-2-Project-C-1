@@ -95,10 +95,10 @@ function multiAndSingleTagMaker(
 // 그러므로 top, bottom, left, right에 value를 부여하려면
 // 해당 변수들을 사용해야 한다.
 
-function PositionEditor(element, position, zindex, object, callback) {
+function positionEditor(element, position, zIndex, object, callback) {
   const elementStyle = element.style;
   elementStyle.position = position;
-  elementStyle.zindex = zindex;
+  elementStyle.zIndex = zIndex;
   if (typeof object === "object") {
     for (let i in object) {
       elementStyle[i] = object[i];
@@ -180,7 +180,7 @@ function allMightyStyleEditor(element, object, callback) {
 
 export default {
   multiAndSingleTagMaker,
-  PositionEditor,
+  positionEditor,
   fontAndLayoutEditor,
   kingGodFlexEditor,
   allMightyStyleEditor,
