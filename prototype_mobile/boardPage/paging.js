@@ -14,15 +14,15 @@ const ids = {
     third : ["", 'div','page-up'],
   },
   mainPageGrandChild : {
-    first : [["",'div',"start-number",1,element => {
+    first : [["",'a',{href : '#',id : "start-number"},1,element => {
       element.innerText = '<<맨앞'
-    }],["",'div',"before-number",1,element => {
+    }],["",'a',{href : '#',id : "before-number"},1,element => {
       element.innerText = '<이전'
     }]],
-    second : ["", 'div',"",1],
-    third : [["", 'div','next-number',1,element => {
+    second : ["", 'a',{href : '#'},1],
+    third : [["", 'a',{href : '#',id : 'next-number'},1,element => {
       element.innerText = '다음>'
-    }],["", 'div','end-number',1,element => {
+    }],["", 'a',{href : '#',id : 'end-number'},1,element => {
       element.innerText = '맨뒤>>'
     }]]
   }
@@ -63,11 +63,35 @@ fontAndLayoutEditor(currentPage,'35%','','1')
 kingGodFlexEditor(currentPage,'','center','space-evenly')
 
 const pagination = {
-  totalPaper : 462, //게시물 전체 갯수
-  onePageData : 10,  //한페이지에 나타낼 데이터 수
-  currentPage : 1, //현재 페이지
-  onePageNumber : 5, //한 화면에 나타낼 페이지 수
-  totalPage : Math.ceil(this.totalPaper/this.onePageData),
-  pageGroup : Math.ceil(this.currentPage/this.onePageNumber)
+  totalPaper : 462,   //게시물 전체 갯수
+  onePageData : 20,   //한페이지에 나타낼 데이터 수
+  currentPage : 1,    //현재 페이지
+  onePageNumber : 10, //한 화면에 나타낼 페이지 수
 }
 
+//총 페이지 수
+const totalPage = Math.ceil(pagination.totalPaper/pagination.onePageData);
+
+//화면에 보여질 페이지 그룹
+const aPage = Math.ceil(pagination.currentPage/pagination.onePageNumber)
+
+//화면에 그려질 첫번째 페이지
+let displayOnePage = 0;
+if(totalPage - (pagination.onePageNumber -1) < 0){
+  displayOnePage = 1;
+} else {
+  displayOnePage = totalPage - (pagination.onePageNumber -1);
+}
+
+//화면에 그려질 마지막 페이지
+let displayEndPage = 0;
+if((aPage * pagination.onePageNumber) > totalPage){
+  displayEndPage = totalPage;
+} else {
+  displayEndPage = aPage * pagination.onePageNumber;
+}
+
+
+
+console.log(totalPage)
+console.log(MathCeil)
