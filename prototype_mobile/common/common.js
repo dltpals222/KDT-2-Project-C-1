@@ -139,8 +139,8 @@ allMightyStyleEditor(headerSearchSelect, headerSearchSelectCss);
 allMightyStyleEditor(headerSearchInput, headerSearchInputCss);
 allMightyStyleEditor(headerSearchEnter, headerSearchEnterCss)
 
-kingGodFlexEditor(headerWrap, "flex", "row", "center", "center");
-kingGodFlexEditor(headerWrapTitle, 'flex', 'row', 'center', 'center')
-kingGodFlexEditor(headerWrapLogin, 'flex', 'row', 'center', 'right')
-kingGodFlexEditor(headerSearch, 'flex', 'row', 'center', 'center')
-kingGodFlexEditor(headerMenu, 'flex', 'row', 'center', 'center')
+kingGodFlexEditor(headerWrap,"row", "center", "center");
+kingGodFlexEditor(headerWrapTitle,'row', 'center', 'center')
+kingGodFlexEditor(headerWrapLogin,'row', 'center', 'right')
+kingGodFlexEditor(headerSearch,'row', 'center', 'center')
+kingGodFlexEditor(headerMenu,'row', 'center', 'center')
