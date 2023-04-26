@@ -1,54 +1,89 @@
 import amEditor from "../module/all_mighty_editor.js";
 
-const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = amEditor;
+const {
+  multiAndSingleTagMaker,
+  positionEditor,
+  fontAndLayoutEditor,
+  kingGodFlexEditor,
+  allMightyStyleEditor,
+} = amEditor;
 
 // 구조 작성하기
 const root = document.getElementById("root");
-const header = multiAndSingleTagMaker(root, 'div', 'header');
-const headerUp = multiAndSingleTagMaker(header,'div','headerUp')
-const headerUpLogin = multiAndSingleTagMaker(headerUp,'input',{ id: 'hul-btn', type: "submit",value : "Login" })
-const headerDown = multiAndSingleTagMaker(header,'div','header-Down')
-const main = multiAndSingleTagMaker(root, 'div', 'main');
-const footer = multiAndSingleTagMaker(root, 'div', 'footer');
-const mainTitle = multiAndSingleTagMaker(main, 'div', 'header-wrap');
-const mainSearch = multiAndSingleTagMaker(main, 'form', 'header-search');
-const mainMenu = multiAndSingleTagMaker(main, 'div', 'main-menu');
-const mainSearchSelect = multiAndSingleTagMaker(mainSearch, 'select', 'hs-select')
-const mainSearchInput = multiAndSingleTagMaker(mainSearch, 'input', 'hs-input')
-const mainSearchEnter = multiAndSingleTagMaker(mainSearch, 'input', { id: 'hs-btn', type: "submit", value : "검색" })
- console.log(root)
+const header = multiAndSingleTagMaker(root, "div", "header");
+const headerUp = multiAndSingleTagMaker(header, "div", "header-up");
+const headerUpLogin = multiAndSingleTagMaker(headerUp, "input", {
+  id: "hul-btn",
+  type: "submit",
+  value: "Login",
+});
+const headerDown = multiAndSingleTagMaker(header, "div", "header-down");
+const main = multiAndSingleTagMaker(root, "div", "main");
+const footer = multiAndSingleTagMaker(root, "div", "footer");
+const mainTitle = multiAndSingleTagMaker(main, "div", "main-title");
+const mainSearch = multiAndSingleTagMaker(main, "form", "main-search");
+const mainMenu = multiAndSingleTagMaker(main, "div", "main-menu");
+const mainSearchSelect = multiAndSingleTagMaker(
+  mainSearch,
+  "select",
+  "ms-select"
+);
+const mainSearchInput = multiAndSingleTagMaker(mainSearch, "input", "ms-input");
+const mainSearchEnter = multiAndSingleTagMaker(mainSearch, "input", {
+  id: "mse-btn",
+  type: "submit",
+  value: "검색",
+});
+console.log(root);
 
-
-// 메인 메뉴의 버튼 하나별 모듈 함수 
+// 메인 메뉴의 버튼 하나별 모듈 함수
 function moduleMaker(Num) {
-  const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"] 
+  const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"];
   for (let i = 1; i <= Num; i++) {
-    const mainMenuModule = multiAndSingleTagMaker(mainMenu, 'form','mainMenu-module' + i);
-    const mainMenuModuleTop = multiAndSingleTagMaker(mainMenuModule, 'input', { id: 'mainMenuModule-top' + i, type: "submit" ,value : " "});
-    const mainMenuModuleBottom = multiAndSingleTagMaker(mainMenuModule, 'div', 'mainMenuModuleBottom' + i)
+    const mainMenuModule = multiAndSingleTagMaker(
+      mainMenu,
+      "form",
+      "main-menu-module" + i
+    );
+    const mainMenuModuleTop = multiAndSingleTagMaker(mainMenuModule, "input", {
+      id: "main-menu-module-top" + i,
+      type: "submit",
+      value: " ",
+    });
+    const mainMenuModuleBottom = multiAndSingleTagMaker(
+      mainMenuModule,
+      "div",
+      "main-menu-module-bottom" + i
+    );
     const mainMenuModuleCss = {
       width: "60px",
       height: "80px",
       margin: "1%",
-      fontSize : "10px"
-    }
+      fontSize: "10px",
+    };
 
     const mainMenuModuleTopCss = {
       width: "100%",
       height: "70%",
-      borderRadius: "20%"
-    }
+      borderRadius: "20%",
+    };
 
     const mainMenuModuleBottomCss = {
       width: "100%",
-      height: "30%"
-    }
+      height: "30%",
+    };
 
     allMightyStyleEditor(mainMenuModule, mainMenuModuleCss);
-    allMightyStyleEditor(mainMenuModuleTop, mainMenuModuleTopCss)
-    allMightyStyleEditor(mainMenuModuleBottom, mainMenuModuleBottomCss,function(element){element.innerHTML = menuName[i-1]})
+    allMightyStyleEditor(mainMenuModuleTop, mainMenuModuleTopCss);
+    allMightyStyleEditor(
+      mainMenuModuleBottom,
+      mainMenuModuleBottomCss,
+      function (element) {
+        element.innerHTML = menuName[i - 1];
+      }
+    );
 
-    kingGodFlexEditor(mainMenuModuleBottom,'row','center','center')
+    kingGodFlexEditor(mainMenuModuleBottom, "row", "center", "center");
   }
 }
 // 모듈 함수 호출하기
@@ -56,92 +91,92 @@ moduleMaker(4);
 
 const rootCss = {
   width: "100vw",
-  height: "100vh"
-}
+  height: "100vh",
+};
 
 const headerCss = {
   width: "100%",
-  height: "35%"
-}
+  height: "35%",
+};
 
 const mainCss = {
   width: "100%",
-  height: "30%"
-}
+  height: "30%",
+};
 
 const footerCss = {
   width: "100%",
-  height: "35%"
-}
+  height: "35%",
+};
 
 const headerUpCss = {
   width: "100%",
-  height: "30%"
-}
+  height: "30%",
+};
 
 const headerUpLoginCss = {
   width: "60px",
   height: "60px",
   borderRadius: "50%",
-  margin : "5%"
-}
+  margin: "5%",
+};
 
 const headerDownCss = {
   width: "100%",
-  height: "70%"
-}
+  height: "70%",
+};
 
 const mainTitleCss = {
   width: "100%",
   height: "30%",
-  fontSize: "40px"
-}
+  fontSize: "40px",
+};
 
 const mainSearchCss = {
   width: "100%",
-  height: "30%"
-}
+  height: "30%",
+};
 
 const mainMenuCss = {
   width: "100%",
   height: "40%",
-}
+};
 
 const mainSearchSelectCss = {
   width: "30px",
-  height: "30px"
-}
+  height: "30px",
+};
 
 const mainSearchInputCss = {
   width: "100px",
-  height: "30px"
-}
+  height: "30px",
+};
 
 const mainSearchEnterCss = {
   width: "40px",
-  height: "30px"
-}
+  height: "30px",
+};
 // console.dir(root.style)
 
 // 스타일 설정 부분
 allMightyStyleEditor(root, rootCss);
 allMightyStyleEditor(header, headerCss);
-allMightyStyleEditor(headerUp,headerUpCss);
-allMightyStyleEditor(headerUpLogin,headerUpLoginCss)
-allMightyStyleEditor(headerDown,headerDownCss);
+allMightyStyleEditor(headerUp, headerUpCss);
+allMightyStyleEditor(headerUpLogin, headerUpLoginCss);
+allMightyStyleEditor(headerDown, headerDownCss);
 allMightyStyleEditor(main, mainCss);
 allMightyStyleEditor(footer, footerCss);
-allMightyStyleEditor(mainTitle, mainTitleCss,function (element) { element.innerHTML = "요너두" });
+allMightyStyleEditor(mainTitle, mainTitleCss, function (element) {
+  element.innerHTML = "요너두";
+});
 allMightyStyleEditor(mainSearch, mainSearchCss);
 allMightyStyleEditor(mainMenu, mainMenuCss);
 allMightyStyleEditor(mainSearchSelect, mainSearchSelectCss);
 allMightyStyleEditor(mainSearchInput, mainSearchInputCss);
-allMightyStyleEditor(mainSearchEnter, mainSearchEnterCss)
+allMightyStyleEditor(mainSearchEnter, mainSearchEnterCss);
 
 // flex 설정 부분
-kingGodFlexEditor(headerUp,'row', 'center', 'right')
-kingGodFlexEditor(mainTitle,"row", "center", "center");
-kingGodFlexEditor(mainSearch,'row', 'center', 'center')
-kingGodFlexEditor(mainMenu,'row', 'center', 'center')
-
-
+kingGodFlexEditor(headerUp, "row", "center", "right");
+kingGodFlexEditor(mainTitle, "row", "center", "center");
+kingGodFlexEditor(mainSearch, "row", "center", "center");
+kingGodFlexEditor(mainMenu, "row", "center", "center");
