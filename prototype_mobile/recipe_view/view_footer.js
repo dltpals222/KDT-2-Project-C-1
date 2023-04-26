@@ -8,6 +8,8 @@ footer.style.flexDirection = 'center';
 footer.style.justifyContent = 'center';
 footer.style.alignItems = 'center';
 
+
+//버튼을 만들어 footer부분에 삽입
 const button = document.createElement('button');
 button.textContent = '목록';
 button.style.textAlign = 'center';
