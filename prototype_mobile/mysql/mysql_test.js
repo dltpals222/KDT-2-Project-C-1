@@ -1,8 +1,19 @@
 import http from 'http'
 import Url from 'url'
 import fs from 'fs'
-import serverReadFileModule from './module/server_readfile.js'
+import mysql from 'mysql'
+import serverReadFileModule from '../module/server_readfile.js'
 
+//mysql 연동
+const db = mysql.createConnection({
+  //본인 아이디 패스워드 db이름 사용할 것 
+  host:'localhost',
+  user:'root',
+  password:'admin123',
+  database:'test1',
+}) 
+
+db.connect(); 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
 const server = http.createServer((req, res) => {
@@ -18,7 +29,11 @@ const server = http.createServer((req, res) => {
   //나머지 페이지는 레시피리스트처럼 action에 적을 것 예상하고 추가하면 됩니다.
   if(urlMethod === 'GET'){
     switch(urlPathName){
-      //메인 페이지
+      case '/':
+        serverReadFileModule(res, 'mysql.html', 'text/html',200)
+        break 
+
+/*       //메인 페이지
       case '/':
         serverReadFileModule(res, 'main/main.html', 'text/html',200)
         break 
@@ -53,11 +68,33 @@ const server = http.createServer((req, res) => {
       default:
         serverReadFileModule(res, '404.html','text/html',404)
         console.log(urlPathName)
-        break
+        break 
+*/
     } //if 문 내 switch 끝
 
   } else if (urlMethod === 'POST') {
-
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      const params = new URLSearchParams(body);
+      const title = params.get('title');
+      const ingredients = params.get('ingredients');
+      const content = params.get('content');
+      const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?, ?, ?)`;
+      db.query(sql, [title, ingredients, content], (error, result) => {
+        if (error) {
+          console.error(error);
+          res.writeHead(500, {'Content-Type': 'text/plain'});
+          res.write('Internal Server Error');
+          res.end();
+          return;
+        }
+        res.writeHead(302, { 'Location': '/' });
+        res.end();
+      });
+    });
   }//createServer 내 if 문 끝
 }) //server 함수 끝
 
@@ -68,3 +105,5 @@ server.listen(2080,err => {
     console.log('2080포트가 정상작동합니다.')
   }
 })// listen 끝
+
+
