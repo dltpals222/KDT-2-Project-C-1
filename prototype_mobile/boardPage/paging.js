@@ -15,17 +15,27 @@ const ids = {
   mainPageGrandChild : {
     first : [["",'a',{href : '#',id : "start-number"},1,element => {
       element.innerText = '<<맨앞'
+      allMightyStyleEditor(element,aTagObject)
     }],["",'a',{href : '#',id : "before-number"},1,element => {
       element.innerText = '<이전'
+      allMightyStyleEditor(element,aTagObject)
     }]],
     second : ["", 'a',{href : '#'},1],
     third : [["", 'a',{href : '#',id : 'next-number'},1,element => {
       element.innerText = '다음>'
+      allMightyStyleEditor(element,aTagObject)
     }],["", 'a',{href : '#',id : 'end-number'},1,element => {
       element.innerText = '맨뒤>>'
+      allMightyStyleEditor(element,aTagObject)
     }]]
   }
 }
+
+const aTagObject = {
+  'text-decoration':'none',
+  color:'black',
+}
+// allMightyStyleEditor(element,aTagObject)
 
 const numberStyle = ['15px','10px',"1"]
 const tagASet={href : '#'}
@@ -78,7 +88,7 @@ kingGodFlexEditor(currentPage,'','center','space-evenly')
 const pagination = {
   totalDoc : 462,     //게시물 전체 갯수
   onePageData : 20,     //한페이지에 나타낼 데이터 수(게시글 수)
-  currentPage : 1,      //현재 페이지
+  currentPage : 6,      //현재 페이지
   onePageNumber : 5,   //한 화면에 나타낼 페이지 수(밑에 12345 숫자 누르는 버튼)
 }
 
@@ -108,7 +118,7 @@ if((aPageGroup * pagination.onePageNumber) > totalPage){
 }
 
 //맨앞, 이전 버튼 디스플레이
-if(displayOnePage === 1){
+if(aPageGroup === 1){
   startNumber.style.display = 'none'
   beforeNumber.style.display = 'none'
 } else {
@@ -118,7 +128,17 @@ if(displayOnePage === 1){
 
 //현재 페이지 버튼
 for(let i =0; i< pagination.onePageNumber;i++){
-  multiAndSingleTagMaker(currentPage,ids.mainPageGrandChild.second[1],ids.mainPageGrandChild.second[2],ids.mainPageGrandChild.second[3],element => {element.setAttribute('id',`number-${i+1}`), element.innerText = i+1})
+  multiAndSingleTagMaker(currentPage,ids.mainPageGrandChild.second[1],ids.mainPageGrandChild.second[2],ids.mainPageGrandChild.second[3],
+    element => {
+      element.setAttribute('data-num',i+1), 
+      element.innerText = i+1
+      allMightyStyleEditor(element,aTagObject)
+
+      const currentChildA = Array.from(document.querySelectorAll('#current-page>a'))
+      const index = currentChildA.map()
+      console.log(index)
+    }
+  )
 }
 
 //맨뒤, 다음 버튼 디스플레이
@@ -129,3 +149,4 @@ if(aPageGroup === EndPageGroup){
   nextNumber.style.display = 'block'
   endNumber.style.display = 'block'
 }
+
