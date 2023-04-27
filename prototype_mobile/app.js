@@ -24,6 +24,17 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res,'index.js','text/javascript',200)
         break
 
+      //레시피 리스트 만들기
+      case '/recipe_list':
+        serverReadFileModule(res, 'recipe_list/recipe_list.html', 'text/html', 200)
+        break
+        case '/common/common_header.js':
+          serverReadFileModule(res, '../common/common_header.js', 'text/javascript', 200)
+          break
+      case '/recipe_list.js':
+        serverReadFileModule(res, 'recipe_list/recipe_list.js', 'text/javascript', 200)
+        break
+
       //favicon에러처리
       case '/favicon.ico':
         err => {if (err) {throw err}}
@@ -53,4 +64,3 @@ server.listen(2080,err => {
     console.log('2080포트가 정상작동합니다.')
   }
 })// listen 끝
-
