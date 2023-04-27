@@ -14,6 +14,8 @@ const server = http.createServer((req, res) => {
   // console.log(urlMethod)
 
   //페이지별 폴더 제작 후 페이지별로 html, js파일 case에 넣기 주석으로 구분해주시면 감사하겠습니다.
+  //html파일에 script type='module'로 추가시 밑에 common파일 추가한것 참고
+  //나머지 페이지는 레시피리스트처럼 action에 적을 것 예상하고 추가하면 됩니다.
   if(urlMethod === 'GET'){
     switch(urlPathName){
       //메인 페이지
