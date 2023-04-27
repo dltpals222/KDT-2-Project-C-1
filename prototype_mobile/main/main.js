@@ -39,11 +39,18 @@ console.log(root);
 // 메인 메뉴의 버튼 하나별 모듈 함수
 function moduleMaker(Num) {
   const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"];
+  const menuAction = ["/recipe_list", "recipe_write", "고객센터", "소개"];
+
   for (let i = 1; i <= Num; i++) {
     const mainMenuModule = multiAndSingleTagMaker(
       mainMenu,
       "form",
-      "main-menu-module" + i
+      "main-menu-module" + i,
+      1,
+      function (element) {
+        element.action = [menuAction[i - 1]];
+        element.method = "GET";
+      }
     );
     const mainMenuModuleTop = multiAndSingleTagMaker(mainMenuModule, "input", {
       id: "main-menu-module-top" + i,
