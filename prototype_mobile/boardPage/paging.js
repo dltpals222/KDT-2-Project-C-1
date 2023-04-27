@@ -3,7 +3,6 @@ import all_mighty_editor from '../module/all_mighty_editor.js'
 const {multiAndSingleTagMaker,positionEditor,fontAndLayoutEditor,kingGodFlexEditor,allMightyStyleEditor} = all_mighty_editor
 
 const root = document.getElementById('root')
-const GClength = 5
 const ids = {
   mainList : ["", 'div','board-list'],
   mainPage : ["", 'div','number-list-wrap'],
@@ -51,10 +50,6 @@ const startNumber = multiAndSingleTagMaker(pageDown,ids.mainPageGrandChild.first
 //이전 버튼
 const beforeNumber = multiAndSingleTagMaker(pageDown,ids.mainPageGrandChild.first[1][1],ids.mainPageGrandChild.first[1][2],ids.mainPageGrandChild.first[1][3],ids.mainPageGrandChild.first[1][4])
 
-//현재 페이지 버튼
-for(let i =0; i< GClength;i++){
-  multiAndSingleTagMaker(currentPage,ids.mainPageGrandChild.second[1],ids.mainPageGrandChild.second[2],ids.mainPageGrandChild.second[3],element => {element.setAttribute('id',`number-${i+1}`), element.innerText = i+1})
-}
 
 //다음 버튼
 const nextNumber = multiAndSingleTagMaker(pageUp,ids.mainPageGrandChild.third[0][1],ids.mainPageGrandChild.third[0][2],ids.mainPageGrandChild.third[0][3],ids.mainPageGrandChild.third[0][4])
@@ -81,14 +76,14 @@ kingGodFlexEditor(currentPage,'','center','space-evenly')
 
 
 const pagination = {
-  totalPaper : 462,   //게시물 전체 갯수
-  onePageData : 20,   //한페이지에 나타낼 데이터 수
-  currentPage : 1,    //현재 페이지
-  onePageNumber : 10, //한 화면에 나타낼 페이지 수
+  totalDoc : 462,     //게시물 전체 갯수
+  onePageData : 20,     //한페이지에 나타낼 데이터 수(게시글 수)
+  currentPage : 1,      //현재 페이지
+  onePageNumber : 5,   //한 화면에 나타낼 페이지 수(밑에 12345 숫자 누르는 버튼)
 }
 
 //총 페이지 수
-const totalPage = Math.ceil(pagination.totalPaper/pagination.onePageData);
+const totalPage = Math.ceil(pagination.totalDoc/pagination.onePageData);
 
 //화면에 보여질 페이지 그룹
 const aPageGroup = Math.ceil(pagination.currentPage/pagination.onePageNumber)
@@ -99,7 +94,7 @@ const EndPageGroup = Math.ceil(totalPage/pagination.onePageNumber)
 //화면에 그려질 첫번째 페이지
 let displayOnePage = 0;
 if(totalPage - (pagination.onePageNumber -1) < 0){
-  displayOnePage = 1; //계산된 값이 0 이하면 첫번째 페이지이다.
+  displayOnePage = 1; //계산된 값이 0 이하면 첫번째 페이지
 } else {
   displayOnePage = totalPage - (pagination.onePageNumber -1);
 }
@@ -107,8 +102,30 @@ if(totalPage - (pagination.onePageNumber -1) < 0){
 //화면에 그려질 마지막 페이지
 let displayEndPage = 0;
 if((aPageGroup * pagination.onePageNumber) > totalPage){
-  displayEndPage = totalPage; //계산된 값이 총페이지보다 많으면 마지막 페이지이다.
+  displayEndPage = totalPage; //계산된 값이 총페이지보다 많으면 마지막 페이지
 } else {
   displayEndPage = aPageGroup * pagination.onePageNumber;
 }
 
+//맨앞, 이전 버튼 디스플레이
+if(displayOnePage === 1){
+  startNumber.style.display = 'none'
+  beforeNumber.style.display = 'none'
+} else {
+  startNumber.style.display = 'block'
+  beforeNumber.style.display = 'block'
+}
+
+//현재 페이지 버튼
+for(let i =0; i< pagination.onePageNumber;i++){
+  multiAndSingleTagMaker(currentPage,ids.mainPageGrandChild.second[1],ids.mainPageGrandChild.second[2],ids.mainPageGrandChild.second[3],element => {element.setAttribute('id',`number-${i+1}`), element.innerText = i+1})
+}
+
+//맨뒤, 다음 버튼 디스플레이
+if(aPageGroup === EndPageGroup){
+  nextNumber.style.display = 'none'
+  endNumber.style.display = 'none'
+} else {
+  nextNumber.style.display = 'block'
+  endNumber.style.display = 'block'
+}
