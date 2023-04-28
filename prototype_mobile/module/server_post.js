@@ -9,9 +9,9 @@ const server = http.createServer((req, res) => {
   const pathName = parseUrl.pathname;
   const Method = req.method;
 
-  if(Method === 'GET' && pathName === '/'){
-    serverReadFileModule(res, '../mysql/mysql_input.html','text/html',200);
-  }else if(Method === 'POST' && pathName === '/set' ){
+  if (Method === 'GET' && pathName === '/') {
+    serverReadFileModule(res, '../mysql/mysql_input.html', 'text/html', 200);
+  } else if (Method === 'POST' && pathName === '/set') {
     serverPostModule(req, res);
   }
 })
@@ -24,32 +24,26 @@ server.listen(2080, function (err) {
   }
 })
 
-function serverReadFileModule (res, path, contentTypeValue, statusCode){
-  fs.readFile(path, (err, data)  => {
-    if(err){
-      res.writeHead(500,{'content-type':'text/html'});
+function serverReadFileModule(res, path, contentTypeValue, statusCode) {
+  fs.readFile(path, (err, data) => {
+    if (err) {
+      res.writeHead(500, { 'content-type': 'text/html' });
       res.write('500 internet error');
       res.end();
     } else {
-      res.writeHead(statusCode, {'content-type':contentTypeValue});
+      res.writeHead(statusCode, { 'content-type': contentTypeValue });
       res.write(data);
       res.end();
-    } 
+    }
   }) //readFile 끝
 }
 
 function serverPostModule(req, res) {
-  let body = '';
-  req.on('data', function (chunk) {
-    body += chunk;
-  });
 
-  req.on('end', function () {
-    let post = qs.parse(body);
-    let name = post.name;
-    let type = post.type;
-    let taek = post.taek;
-    console.log(name);
+  req.on('data', function (chunk) {
+    let body = '';
+    body += chunk;
+
     const dbConfig = mysql.createConnection({
       host: 'localhost',
       user: 'root',
@@ -61,34 +55,31 @@ function serverPostModule(req, res) {
     })
 
     dbConfig.connect();
-
-    function user(a, b, c) {
-      this.name = a;
-      this.type = b;
-      this.taek = c;
-    }
-
-    let namename = [name];
-    let typename = [type];
-    let taekname = [taek];
+    console.log(body);
+    let post = qs.parse(body);
+    console.log(post)
+    let name = post.name;
+    let type = post.type;
+    let taek = post.taek;
+    console.log(name);
 
     let array = [];
-    for (let i = 0; i < namename.length; i++) {
-      array.push(new user(namename[i], typename[i], parseInt(taekname[i], 10)));
-    }
+    array.push(name, type, parseInt(taek, 10));
     console.log(array);
+    const query = 'insert into a (name, type, taek) values (?,?,?)';
 
-    const query = 'insert into a (name, type, taek) values (?)';
-    const values = array.map(value => [value.name, value.type, value.taek]);
-    console.log(values);
-
-    dbConfig.query(query, values, (err) => {
+    dbConfig.query(query, array, (err) => {
       if (err) {
         console.error('쿼리실행 실패', err);
       } else {
         console.log("쿼리실행성공");
       }
     })
+    dbConfig.end();
+  });
+
+  req.on('end', function () {
+
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write("포스트 방식 성공");
     res.end();
