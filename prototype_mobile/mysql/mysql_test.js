@@ -2,7 +2,7 @@ import http from "http";
 import Url from "url";
 import fs from "fs";
 import mysql from "mysql";
-import qs from "querystring";
+import qs, { stringify } from "querystring";
 import serverReadFileModule from "../module/server_readfile.js";
 
 //mysql 연동
@@ -78,22 +78,34 @@ const server = http.createServer((req, res) => {
       body += chunk.toString();
     });
     req.on("end", () => {
+      const newArray = [];
+      // newArray.push(stringify(qsParse));
       const qsParse = qs.parse(body);
       const title = qsParse.title;
+
       const ingredients = qsParse.ingredients;
       const content = qsParse.content;
-      const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?, ?, ?)`;
-      db.query(sql, [title, ingredients, content], (error, result) => {
-        if (error) {
-          console.error(error);
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.write("Internal Server Error");
-          res.end();
-          return;
-        }
-        res.writeHead(302, { Location: "/" });
-        res.end();
-      });
+      newArray.push(title, ingredients, content);
+      console.log(qsParse);
+      console.log(newArray);
+      // const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?, ?, ?)`;
+      // const value = qsParse.map((value) => [
+      //   value.title,
+      //   value.ingredients,
+      //   value.content,
+      // ]);
+      // console.log(value);
+      // db.query(sql, value, (error, result) => {
+      //   if (error) {
+      //     console.error(error);
+      //     res.writeHead(500, { "Content-Type": "text/plain" });
+      //     res.write("Internal Server Error");
+      //     res.end();
+      //     return;
+      //   }
+      //   res.writeHead(302, { Location: "/" });
+      //   res.end();
+      // });
     });
   } //createServer 내 if 문 끝
 }); //server 함수 끝
