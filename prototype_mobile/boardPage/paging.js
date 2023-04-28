@@ -135,11 +135,23 @@ for(let i =0; i< pagination.onePageNumber;i++){
       allMightyStyleEditor(element,aTagObject)
 
       const currentChildA = Array.from(document.querySelectorAll('#current-page>a'))
-      const index = currentChildA.map()
-      console.log(index)
-    }
-  )
-}
+      currentChildA.map((childElement, j)=>{
+        childElement.addEventListener('click',event => {
+
+          //페이지 클릭할 시 타켓 설정
+          const index = currentChildA.indexOf(event.target);
+
+          //페이지 숫자 클릭시 스타일 지정
+          currentChildA.forEach((page, k)=>{
+            page.style.fontWight = k === index ? 'bold' : 'normal';
+          });
+
+
+        }) // addEventListener 끝
+      }) // map 끝 
+    } // 콜백 끝
+  ) // 싱멀태그메이커 끝
+} // for문 끝
 
 //맨뒤, 다음 버튼 디스플레이
 if(aPageGroup === EndPageGroup){
