@@ -75,7 +75,7 @@ for(let i = 0;i<root.children.length;i++){
 for(let i = 0;i<numberListWrap.children.length;i++){
   kingGodFlexEditor(numberListWrap.children[i],'','center','center')
   fontAndLayoutEditor(numberListWrap.children[i],'','','1',"","",element => {
-    element.margin = '5px'
+    element.margin = '2px'
   })
 }
 
@@ -127,15 +127,15 @@ if(aPageGroup === 1){
 }
 
 //현재 페이지 버튼
-for(let i =0; i< pagination.onePageNumber;i++){
+for(let i =pagination.currentPage; i<= pagination.currentPage+pagination.onePageNumber-1;i++){
   multiAndSingleTagMaker(currentPage,ids.mainPageGrandChild.second[1],ids.mainPageGrandChild.second[2],ids.mainPageGrandChild.second[3],
     element => {
-      element.setAttribute('data-num',i+1), 
-      element.innerText = i+1
+      element.setAttribute('data-num',i), 
+      element.innerText = i
       allMightyStyleEditor(element,aTagObject)
 
-      const currentChildA = Array.from(document.querySelectorAll('#current-page>a'))
-      currentChildA.map((childElement, j)=>{
+      const currentChildA = Array.from(currentPage.querySelectorAll('a'))
+      currentChildA.map((childElement)=>{
         childElement.addEventListener('click',event => {
 
           //페이지 클릭할 시 타켓 설정
@@ -145,8 +145,6 @@ for(let i =0; i< pagination.onePageNumber;i++){
           currentChildA.forEach((page, k)=>{
             page.style.fontWight = k === index ? 'bold' : 'normal';
           });
-
-
         }) // addEventListener 끝
       }) // map 끝 
     } // 콜백 끝
