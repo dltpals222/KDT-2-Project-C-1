@@ -28,9 +28,6 @@ const ids = {
         (element) => {
           element.innerText = "<<맨앞";
           allMightyStyleEditor(element, aTagObject);
-          element.addEventListener('click',() => {
-            
-          })
         },
       ],
       [
@@ -44,7 +41,7 @@ const ids = {
         },
       ],
     ],
-    second: ["", "a","", 1],
+    second: ["", "a", "", 1],
     third: [
       [
         "",
@@ -73,8 +70,8 @@ const ids = {
 const aTagObject = {
   "text-decoration": "none",
   color: "black",
-  display : 'flex',
-  justifyContent : 'center'
+  display: "flex",
+  justifyContent: "center",
 };
 // allMightyStyleEditor(element,aTagObject)
 
@@ -106,7 +103,7 @@ const numberListWrap = multiAndSingleTagMaker(
 const pageDown = multiAndSingleTagMaker(
   numberListWrap,
   ids.mainPageChild.first[1],
-  ids.mainPageChild.first[2],
+  ids.mainPageChild.first[2]
 );
 //현재 페이지 나타내는 구간
 const currentPage = multiAndSingleTagMaker(
@@ -118,7 +115,7 @@ const currentPage = multiAndSingleTagMaker(
 const pageUp = multiAndSingleTagMaker(
   numberListWrap,
   ids.mainPageChild.third[1],
-  ids.mainPageChild.third[2],
+  ids.mainPageChild.third[2]
 );
 
 //맨앞 버튼
@@ -221,12 +218,10 @@ if (aPageGroup === 1) {
   beforeNumber.style.display = "block";
 }
 
-
 //맨앞 버튼 addEventListener
-startNumber.addEventListener('click',() => {
+startNumber.addEventListener("click", () => {
   pagination.currentPage = 1;
-})
-
+});
 
 //현재 페이지 버튼
 function currPageBtn(page) {
@@ -238,39 +233,36 @@ function currPageBtn(page) {
       ids.mainPageGrandChild.second[3],
       (element) => {
         element.setAttribute("data-num", i);
-        element.setAttribute("href",`#`);
+        element.setAttribute("href", `#`);
         element.innerText = i;
-        element.style.width = '20%'
+        element.style.width = "20%";
         allMightyStyleEditor(element, aTagObject);
-        
+
         const currentChildA = Array.from(currentPage.querySelectorAll("a"));
         currentChildA.map((childElement) => {
           childElement.addEventListener("click", (event) => {
             //페이지 클릭할 시 타켓 설정
             const index = currentChildA.indexOf(event.target);
-            
+
             //페이지 숫자 클릭시 스타일 지정
             currentChildA.forEach((page, k) => {
-              page.style.fontWeight = k === index ? 'bold' : "normal";
+              page.style.fontWeight = k === index ? "bold" : "normal";
               page.style.backgroundColor = k === index ? "#9A6E44" : "";
               page.style.color = k === index ? "white" : "black";
-              
             });
           }); // addEventListener 끝
         }); // map 끝
         //초기 첫번째 페이지 선택
-        if(i === page){
-          element.style.fontWeight = 'bold' ;
-          element.style.backgroundColor = "#9A6E44" ;
-          element.style.color = "white" ;
+        if (i === page) {
+          element.style.fontWeight = "bold";
+          element.style.backgroundColor = "#9A6E44";
+          element.style.color = "white";
         }
       } // 콜백 끝
-      
-      ); // 싱멀태그메이커 끝
+    ); // 싱멀태그메이커 끝
   } // for문 끝
 }
 // console.dir(currentPage.children)
-
 
 //맨뒤, 다음 버튼 디스플레이
 if (aPageGroup === EndPageGroup) {
@@ -282,10 +274,6 @@ if (aPageGroup === EndPageGroup) {
 }
 
 //맨뒤 버튼 addEventListener
-
-
-
-
 
 //board-list 추가
 const makeContent = (i) => {
@@ -304,17 +292,21 @@ const renderContent = (page) => {
     boardList.removeChild(contents.lastChild);
   }
 
-  for (let i=(page -1)*pagination.onePageData+1; i <= page * pagination.onePageData && pagination.totalDoc;i++){
-    boardList.appendChild(makeContent(i))
+  for (
+    let i = (page - 1) * pagination.onePageData + 1;
+    i <= page * pagination.onePageData && pagination.totalDoc;
+    i++
+  ) {
+    boardList.appendChild(makeContent(i));
   }
+};
+
+async function allPaging(page) {
+  await currPageBtn(page);
+  renderContent(page);
 }
 
-async function allPaging(page){
-  await currPageBtn(page)
-  renderContent(page)
-}
-
-allPaging(pagination.currentPage)
+allPaging(pagination.currentPage);
 
 // currPageBtn(pagination.currentPage)
 
