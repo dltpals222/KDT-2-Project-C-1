@@ -15,13 +15,13 @@ const db = mysql.createConnection({
 });
 
 db.connect();
-const newDbArray = [];
-db.query("SELECT * FROM  add_recipe", function (err, results, fields) {
-  const dbJson = JSON.stringify(results, null, 2);
-  newDbArray.push(dbJson);
-  // console.log(newDbArray);
-  const qsParse = qs.parse(dbJson);
-  console.log(qsParse);
+
+const na = [];
+db.query(`SELECT * FROM  add_recipe`, function (err, results, fields) {
+  const html = results.map((result) => [result.title,result.ingredients,result.content]).join("");
+  console.log(html)
+  na.push(html)
+console.log(na)
 });
 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
@@ -30,6 +30,8 @@ const server = http.createServer((req, res) => {
   const urlParse = Url.parse(req.url);
   const urlPathName = urlParse.pathname;
   const urlMethod = req.method;
+
+
 
   // console.log(urlPathName)
   // console.log(urlMethod)
@@ -94,21 +96,15 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
   } else if (urlMethod === "POST") {
-    /*     let body = "";
     req.on("data", (chunk) => {
-      body += chunk.toString();
+      chunk.toString() += body;
     });
     req.on("end", () => {
-      const newArray = [];
-      const qsParse = qs.parse(body);
-      const title = qsParse.title;
-      const ingredients = qsParse.ingredients;
-      const content = qsParse.content;
-      newArray.push(title, ingredients, parseInt(content));
-      console.log(newArray);
-      console.log(title);
-      const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?,?,?)`;
-      db.query(sql, newArray, (error, result) => {
+
+
+
+      const sql = `SELECT * FROM  add_recipe`;
+      db.query(sql, newDbArray, (error, result) => {
         if (error) {
           console.error(error);
           res.writeHead(500, { "Content-Type": "text/plain" });
@@ -119,7 +115,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(302, { Location: "/" });
         res.end();
       });
-    }); */
+    });
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 

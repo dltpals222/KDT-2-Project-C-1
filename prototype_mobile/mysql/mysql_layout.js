@@ -10,6 +10,6 @@ const {
 
 const root = document.getElementById("root");
 const header = multiAndSingleTagMaker(root, "div", "header");
-header.innerHTML = "${dbData.title}";
+header.innerHTML = `${na}`;
 const main = multiAndSingleTagMaker(root, "div", "main");
 const footer = multiAndSingleTagMaker(root, "div", "footer");
