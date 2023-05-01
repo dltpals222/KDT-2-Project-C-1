@@ -87,14 +87,14 @@ const boardList = multiAndSingleTagMaker(
   ids.mainList[1],
   ids.mainList[2]
 );
-//게시글 임시 div 추가
-multiAndSingleTagMaker(
-  boardList,
-  ids.mainListChild[1],
-  ids.mainListChild[2],
-  ids.mainListChild[3],
-  ids.mainListChild[4]
-);
+// //게시글 임시 div 추가
+// multiAndSingleTagMaker(
+//   boardList,
+//   ids.mainListChild[1],
+//   ids.mainListChild[2],
+//   ids.mainListChild[3],
+//   ids.mainListChild[4]
+// );
 
 //페이지네이션 최상위 div
 const numberListWrap = multiAndSingleTagMaker(
@@ -158,10 +158,9 @@ const endNumber = multiAndSingleTagMaker(
 );
 
 //css구간
-kingGodFlexEditor(root, "row", "center", "center");
-for (let i = 0; i < root.children.length; i++) {
-  kingGodFlexEditor(root.children[i], "", "center", "center");
-}
+kingGodFlexEditor(root, "column", "center", "center");
+kingGodFlexEditor(boardList, "column", "center", "center");
+kingGodFlexEditor(numberListWrap, "row", "center", "center");
 for (let i = 0; i < numberListWrap.children.length; i++) {
   kingGodFlexEditor(numberListWrap.children[i], "", "center", "space-evenly");
   fontAndLayoutEditor(
@@ -179,14 +178,12 @@ for (let i = 0; i < numberListWrap.children.length; i++) {
 
 fontAndLayoutEditor(numberListWrap, "100%", "3%", "1");
 fontAndLayoutEditor(currentPage, "40%", "", "1");
-fontAndLayoutEditor(pageUp, "28%", "", "1");
-fontAndLayoutEditor(pageDown, "28%", "", "1");
 kingGodFlexEditor(currentPage, "", "center", "space-evenly");
 
 let pagination = {
   totalDoc: 156, //게시물 전체 갯수
   onePageData: 4, //한페이지에 나타낼 데이터 수 (게시글 수)
-  currentPage:11, //현재 페이지
+  currentPage: 1, //현재 페이지
   onePageNumber: 5, //한 화면에 나타낼 페이지 수 (밑에 12345 숫자 누르는 버튼)
 };
 
@@ -217,8 +214,8 @@ if (aPageGroup * pagination.onePageNumber > totalPage) {
 
 //맨앞, 이전 버튼 디스플레이
 if (aPageGroup === 1) {
-  startNumber.style.display = "none";
-  beforeNumber.style.display = "none";
+  startNumber.style.visibility = "hidden";
+  beforeNumber.style.visibility = "hidden";
 } else {
   startNumber.style.display = "block";
   beforeNumber.style.display = "block";
@@ -232,46 +229,93 @@ startNumber.addEventListener('click',() => {
 
 
 //현재 페이지 버튼
-for (let i = pagination.currentPage; i <= pagination.currentPage + pagination.onePageNumber - 1; i++) {
-  multiAndSingleTagMaker(
-    currentPage,
-    ids.mainPageGrandChild.second[1],
-    ids.mainPageGrandChild.second[2],
-    ids.mainPageGrandChild.second[3],
-    (element) => {
-      element.setAttribute("data-num", i);
-      element.setAttribute("href",`#`);
-      element.innerText = i;
-      element.style.width = '20%'
-      allMightyStyleEditor(element, aTagObject);
-
-      const currentChildA = Array.from(currentPage.querySelectorAll("a"));
-      currentChildA.map((childElement) => {
-        childElement.addEventListener("click", (event) => {
-          //페이지 클릭할 시 타켓 설정
-          const index = currentChildA.indexOf(event.target);
-
-          //페이지 숫자 클릭시 스타일 지정
-          currentChildA.forEach((page, k) => {
-            page.style.fontWeight = k === index ? 'bold' : "normal";
-            page.style.backgroundColor = k === index ? "#9A6E44" : "";
-            page.style.color = k === index ? "white" : "black";
-
-          });
-        }); // addEventListener 끝
-      }); // map 끝
-    } // 콜백 끝
-  ); // 싱멀태그메이커 끝
-} // for문 끝
+function currPageBtn(page) {
+  for (let i = page; i <= page + pagination.onePageNumber - 1; i++) {
+    multiAndSingleTagMaker(
+      currentPage,
+      ids.mainPageGrandChild.second[1],
+      ids.mainPageGrandChild.second[2],
+      ids.mainPageGrandChild.second[3],
+      (element) => {
+        element.setAttribute("data-num", i);
+        element.setAttribute("href",`#`);
+        element.innerText = i;
+        element.style.width = '20%'
+        allMightyStyleEditor(element, aTagObject);
+        
+        const currentChildA = Array.from(currentPage.querySelectorAll("a"));
+        currentChildA.map((childElement) => {
+          childElement.addEventListener("click", (event) => {
+            //페이지 클릭할 시 타켓 설정
+            const index = currentChildA.indexOf(event.target);
+            
+            //페이지 숫자 클릭시 스타일 지정
+            currentChildA.forEach((page, k) => {
+              page.style.fontWeight = k === index ? 'bold' : "normal";
+              page.style.backgroundColor = k === index ? "#9A6E44" : "";
+              page.style.color = k === index ? "white" : "black";
+              
+            });
+          }); // addEventListener 끝
+        }); // map 끝
+        //초기 첫번째 페이지 선택
+        if(i === page){
+          element.style.fontWeight = 'bold' ;
+          element.style.backgroundColor = "#9A6E44" ;
+          element.style.color = "white" ;
+        }
+      } // 콜백 끝
+      
+      ); // 싱멀태그메이커 끝
+  } // for문 끝
+}
+// console.dir(currentPage.children)
 
 
 //맨뒤, 다음 버튼 디스플레이
 if (aPageGroup === EndPageGroup) {
-  nextNumber.style.display = "none";
-  endNumber.style.display = "none";
+  nextNumber.style.visibility = "hidden";
+  endNumber.style.visibility = "hidden";
 } else {
   nextNumber.style.display = "block";
   endNumber.style.display = "block";
 }
 
 //맨뒤 버튼 addEventListener
+
+
+
+
+
+//board-list 추가
+const makeContent = (i) => {
+  const content = document.createElement("div");
+  content.innerHTML = `
+    <span>${i}</span>
+    <span>게시물 제목</span>
+    <span>작성자</span>
+    <span>2022.01.01</span>
+  `;
+  return content;
+};
+
+const renderContent = (page) => {
+  while (boardList.hasChildNodes()) {
+    boardList.removeChild(contents.lastChild);
+  }
+
+  for (let i=(page -1)*pagination.onePageData+1; i <= page * pagination.onePageData && pagination.totalDoc;i++){
+    boardList.appendChild(makeContent(i))
+  }
+}
+
+async function allPaging(page){
+  await currPageBtn(page)
+  renderContent(page)
+}
+
+allPaging(pagination.currentPage)
+
+// currPageBtn(pagination.currentPage)
+
+// console.log(currentPage.children[0].dataset.num)
