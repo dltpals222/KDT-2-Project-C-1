@@ -163,7 +163,7 @@ for (let i = 0; i < root.children.length; i++) {
   kingGodFlexEditor(root.children[i], "", "center", "center");
 }
 for (let i = 0; i < numberListWrap.children.length; i++) {
-  kingGodFlexEditor(numberListWrap.children[i], "", "center", "center");
+  kingGodFlexEditor(numberListWrap.children[i], "", "center", "space-evenly");
   fontAndLayoutEditor(
     numberListWrap.children[i],
     "",
@@ -177,10 +177,10 @@ for (let i = 0; i < numberListWrap.children.length; i++) {
   );
 }
 
-fontAndLayoutEditor(numberListWrap, "80%", "3%", "1");
-fontAndLayoutEditor(currentPage, "35%", "", "1");
-fontAndLayoutEditor(pageUp, "30%", "", "1");
-fontAndLayoutEditor(pageDown, "30%", "", "1");
+fontAndLayoutEditor(numberListWrap, "100%", "3%", "1");
+fontAndLayoutEditor(currentPage, "40%", "", "1");
+fontAndLayoutEditor(pageUp, "28%", "", "1");
+fontAndLayoutEditor(pageDown, "28%", "", "1");
 kingGodFlexEditor(currentPage, "", "center", "space-evenly");
 
 let pagination = {
@@ -231,42 +231,42 @@ startNumber.addEventListener('click',() => {
 })
 
 
-  //현재 페이지 버튼
-  for (
-    let i = pagination.currentPage;
-    i <= pagination.currentPage + pagination.onePageNumber - 1;
-    i++
-  ) {
-    multiAndSingleTagMaker(
-      currentPage,
-      ids.mainPageGrandChild.second[1],
-      ids.mainPageGrandChild.second[2],
-      ids.mainPageGrandChild.second[3],
-      (element) => {
-        element.setAttribute("data-num", i);
-        element.setAttribute("href",`#`);
-        element.innerText = i;
-        element.style.width = '20%'
-        allMightyStyleEditor(element, aTagObject);
-  
-        const currentChildA = Array.from(currentPage.querySelectorAll("a"));
-        currentChildA.map((childElement) => {
-          childElement.addEventListener("click", (event) => {
-            //페이지 클릭할 시 타켓 설정
-            const index = currentChildA.indexOf(event.target);
-  
-            //페이지 숫자 클릭시 스타일 지정
-            currentChildA.forEach((page, k) => {
-              page.style.fontWeight = k === index ? 'bold' : "normal";
-              page.style.backgroundColor = k === index ? "#9A6E44" : "";
-              page.style.color = k === index ? "white" : "black";
-  
-            });
-          }); // addEventListener 끝
-        }); // map 끝
-      } // 콜백 끝
-    ); // 싱멀태그메이커 끝
-  } // for문 끝
+//현재 페이지 버튼
+for (
+  let i = pagination.currentPage;
+  i <= pagination.currentPage + pagination.onePageNumber - 1;
+  i++
+) {
+  multiAndSingleTagMaker(
+    currentPage,
+    ids.mainPageGrandChild.second[1],
+    ids.mainPageGrandChild.second[2],
+    ids.mainPageGrandChild.second[3],
+    (element) => {
+      element.setAttribute("data-num", i);
+      element.setAttribute("href",`#`);
+      element.innerText = i;
+      element.style.width = '20%'
+      allMightyStyleEditor(element, aTagObject);
+
+      const currentChildA = Array.from(currentPage.querySelectorAll("a"));
+      currentChildA.map((childElement) => {
+        childElement.addEventListener("click", (event) => {
+          //페이지 클릭할 시 타켓 설정
+          const index = currentChildA.indexOf(event.target);
+
+          //페이지 숫자 클릭시 스타일 지정
+          currentChildA.forEach((page, k) => {
+            page.style.fontWeight = k === index ? 'bold' : "normal";
+            page.style.backgroundColor = k === index ? "#9A6E44" : "";
+            page.style.color = k === index ? "white" : "black";
+
+          });
+        }); // addEventListener 끝
+      }); // map 끝
+    } // 콜백 끝
+  ); // 싱멀태그메이커 끝
+} // for문 끝
 
 
 //맨뒤, 다음 버튼 디스플레이
