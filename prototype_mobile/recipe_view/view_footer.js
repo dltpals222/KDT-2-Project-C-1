@@ -1,3 +1,4 @@
+/*
 const footer = document.getElementById('footer');
 //footer.style.backgroundColor = 'lightgray';
 footer.style.width = '30vw';
@@ -14,3 +15,18 @@ const button = document.createElement('button');
 button.textContent = '목록';
 button.style.textAlign = 'center';
 footer.appendChild(button);
+*/
+
+const divFooter = document.getElementById('root');
+divFooter.setAttribute('id','footer');
+divFooter.style.width = '30vw';
+divFooter.style.height = '10vh';
+footer.style.display = 'flex';
+divFooter.style.flexDirection = 'center';
+divFooter.style.justifyContent = 'center';
+divFooter.style.alignItems = 'center';
+
+const button = document.createElement('button');
+button.textContent = '목록';
+button.style.textAlign = 'center';
+divFooter.appendChild(button);

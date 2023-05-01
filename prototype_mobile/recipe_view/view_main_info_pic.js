@@ -3,6 +3,7 @@
 */
 
 
+/*
 //메인부분의 전체바디
 const mainBody = document.getElementById('main');
 //mainBody.style.backgroundColor = 'purple';
@@ -63,6 +64,72 @@ cooker.style.textAlign = 'center';
 cooker.style.margin = '0';
 cooker.style.padding = '0';
 mainBody.appendChild(cooker);
+for(let i = 0; i < 5; i++){
+  const cookerList = document.createElement('li');
+  cookerList.textContent = '후라이팬';
+  cooker.appendChild(cookerList);
+}
+*/
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const divMain = document.getElementById('root');
+divMain.setAttribute('id','main');
+divMain.style.width = '430vw';
+divMain.style.height = '920vh';
+divMain.style.borderRadius = '10px';
+divMain.style.display = 'flex';
+divMain.style.flexDirection = 'column';
+divMain.style.justifyContent = 'center';
+divMain.style.alignItems = 'center';
+
+//레시피뷰의 사진 부분
+const mainPic = document.createElement('img');
+mainPic.setAttribute('id', 'mainPicture');
+mainPic.style.width = '20%';
+mainPic.style.height = '40%';
+mainPic.style.backgroundColor = 'skyblue';
+mainPic.style.borderRadius = '10px';
+divMain.appendChild(mainPic);
+
+//레시피의 이름 제목 부분
+const title = document.createElement('h1');
+title.setAttribute('id', 'title');
+title.textContent = '레시피의 이름';
+//title.style.border = '2px solid black';
+title.style.margin = '3px';
+title.style.padding = '0';
+divMain.appendChild(title);
+
+//재료 설명부분
+const ingreInfo = document.createElement('div');
+ingreInfo.setAttribute('id','ingredient');
+ingreInfo.style.width = '30%';
+ingreInfo.style.height = '40%';
+const ingreList = document.createElement('ul');
+ingreList.style.listStyleType = 'square';
+ingreList.textContent = '-재료-';
+ingreList.style.textAlign = 'center';
+ingreList.style.margin = '20px';
+ingreList.style.padding = '0';
+divMain.appendChild(ingreList);
+for(let i = 0; i < 5; i++){
+  const list = document.createElement('li');
+  list.textContent = '용의 꼬리';
+  ingreList.appendChild(list);
+}
+
+//조리기구 설명부분
+const cooker = document.createElement('ul');
+cooker.setAttribute('id', 'cooker');
+cooker.style.listStyleType = 'square';
+cooker.textContent = '-조리기구-';
+cooker.style.textAlign = 'center';
+cooker.style.margin = '0';
+cooker.style.padding = '0';
+divMain.appendChild(cooker);
 for(let i = 0; i < 5; i++){
   const cookerList = document.createElement('li');
   cookerList.textContent = '후라이팬';

@@ -14,13 +14,13 @@ listContainer.style.display = 'flex';
 listContainer.style.flexDirection = 'column';
 listContainer.style.justifyContent = 'center';
 listContainer.style.alignItems = 'center';
-mainBody.appendChild(listContainer);
-
+//mainBody.appendChild(listContainer);
+divMain.appendChild(listContainer);
 
 //컨테이너 안에서 요리설명부분
 const orderBox = document.createElement('div');
-orderBox.style.width = '80%';
-orderBox.style.height = '70%';
+orderBox.style.width = '20%';
+orderBox.style.height = '50%';
 orderBox.style.border = '1px solid black';
 orderBox.style.padding = '10px';
 orderBox.style.display = 'flex';
@@ -30,8 +30,8 @@ listContainer.appendChild(orderBox);
 
 //요리부분안에서 다시 ol을 만들어 디스플레이 플렉스를 사용하여 세로로 정렬
 const orderedList = document.createElement('ol');
-orderedList.style.width = '40%';
-orderedList.style.height = '60%';
+orderedList.style.width = '20%';
+orderedList.style.height = '50%';
 orderedList.style.display = 'flex';
 orderedList.style.flexDirection = 'column';
 orderBox.appendChild(orderedList);
@@ -46,8 +46,8 @@ for(let i = 0; i < 3; i++){
 
 //컨테이너 안에서 요리슌서를 나타낼 사진부분
 const orderPic = document.createElement('img');
-orderPic.style.width = '45%';
-orderPic.style.height = '85%';
+orderPic.style.width = '25%';
+orderPic.style.height = '55%';
 orderPic.style.backgroundColor = 'skyblue';
 orderPic.style.borderRadius = '10px';
 orderBox.appendChild(orderPic);
