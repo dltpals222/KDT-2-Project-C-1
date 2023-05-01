@@ -78,12 +78,16 @@ const server = http.createServer((req, res) => {
       body += chunk.toString();
     });
     req.on("end", () => {
+      const newArray = [];
       const qsParse = qs.parse(body);
       const title = qsParse.title;
       const ingredients = qsParse.ingredients;
       const content = qsParse.content;
-      const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?, ?, ?)`;
-      db.query(sql, [title, ingredients, content], (error, result) => {
+      newArray.push(title, ingredients, parseInt(content));
+      console.log(newArray);
+      console.log(title);
+      const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?,?,?)`;
+      db.query(sql, newArray, (error, result) => {
         if (error) {
           console.error(error);
           res.writeHead(500, { "Content-Type": "text/plain" });
