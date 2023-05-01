@@ -232,11 +232,7 @@ startNumber.addEventListener('click',() => {
 
 
 //현재 페이지 버튼
-for (
-  let i = pagination.currentPage;
-  i <= pagination.currentPage + pagination.onePageNumber - 1;
-  i++
-) {
+for (let i = pagination.currentPage; i <= pagination.currentPage + pagination.onePageNumber - 1; i++) {
   multiAndSingleTagMaker(
     currentPage,
     ids.mainPageGrandChild.second[1],
