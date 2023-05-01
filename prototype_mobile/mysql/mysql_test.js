@@ -17,11 +17,8 @@ const db = mysql.createConnection({
 db.connect();
 const newDbArray = [];
 db.query("SELECT * FROM  add_recipe", function (err, results, fields) {
-  const dbJson = JSON.stringify(results, null, 2);
-  newDbArray.push(dbJson);
+  fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
   // console.log(newDbArray);
-  const qsParse = qs.parse(dbJson);
-  console.log(qsParse);
 });
 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
@@ -47,6 +44,9 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
         break;
 
+      case "/mysql_layout.js":
+        serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
+        break;
       /*       //메인 페이지
       case '/':
         serverReadFileModule(res, 'main/main.html', 'text/html',200)
