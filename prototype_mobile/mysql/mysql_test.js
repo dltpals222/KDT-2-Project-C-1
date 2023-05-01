@@ -15,6 +15,15 @@ const db = mysql.createConnection({
 });
 
 db.connect();
+const newDbArray = [];
+db.query("SELECT * FROM  add_recipe", function (err, results, fields) {
+  const dbJson = JSON.stringify(results, null, 2);
+  newDbArray.push(dbJson);
+  // console.log(newDbArray);
+  const qsParse = qs.parse(dbJson);
+  console.log(qsParse);
+});
+
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
 const server = http.createServer((req, res) => {
@@ -31,7 +40,11 @@ const server = http.createServer((req, res) => {
   if (urlMethod === "GET") {
     switch (urlPathName) {
       case "/":
-        serverReadFileModule(res, "mysql.html", "text/html", 200);
+        serverReadFileModule(res, "mysql_h.html", "text/html", 200);
+        break;
+
+      case "/mysql_layout.js":
+        serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
         break;
 
       /*       //메인 페이지
@@ -54,26 +67,34 @@ const server = http.createServer((req, res) => {
       case '/common/common_header.js':
         serverReadFileModule(res, 'common/common_header.js','text/javascript',200)
         break
-
+*/
       //favicon에러처리
-      case '/favicon.ico':
-        err => {if (err) {throw err}}
-        break
+      case "/favicon.ico":
+        (err) => {
+          if (err) {
+            throw err;
+          }
+        };
+        break;
 
       //all_mighty_editor
-      case '/module/all_mighty_editor.js':
-        serverReadFileModule(res, 'module/all_mighty_editor.js','text/javascript',200)
-        break
+      case "/module/all_mighty_editor.js":
+        serverReadFileModule(
+          res,
+          "../module/all_mighty_editor.js",
+          "text/javascript",
+          200
+        );
+        break;
 
       //404 페이지 처리
       default:
-        serverReadFileModule(res, '404.html','text/html',404)
-        console.log(urlPathName)
-        break 
-*/
+        serverReadFileModule(res, "404.html", "text/html", 404);
+        console.log(urlPathName);
+        break;
     } //if 문 내 switch 끝
   } else if (urlMethod === "POST") {
-    let body = "";
+    /*     let body = "";
     req.on("data", (chunk) => {
       body += chunk.toString();
     });
@@ -98,7 +119,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(302, { Location: "/" });
         res.end();
       });
-    });
+    }); */
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 
