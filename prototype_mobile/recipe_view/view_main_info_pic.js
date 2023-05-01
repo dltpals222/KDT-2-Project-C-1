@@ -77,8 +77,8 @@ for(let i = 0; i < 5; i++){
 
 const divMain = document.getElementById('root');
 divMain.setAttribute('id','main');
-divMain.style.width = '430vw';
-divMain.style.height = '920vh';
+divMain.style.width = '330vw';
+divMain.style.height = '820vh';
 divMain.style.borderRadius = '10px';
 divMain.style.display = 'flex';
 divMain.style.flexDirection = 'column';
@@ -88,8 +88,8 @@ divMain.style.alignItems = 'center';
 //레시피뷰의 사진 부분
 const mainPic = document.createElement('img');
 mainPic.setAttribute('id', 'mainPicture');
-mainPic.style.width = '20%';
-mainPic.style.height = '40%';
+mainPic.style.width = '10%';
+mainPic.style.height = '2%';
 mainPic.style.backgroundColor = 'skyblue';
 mainPic.style.borderRadius = '10px';
 divMain.appendChild(mainPic);
@@ -106,8 +106,8 @@ divMain.appendChild(title);
 //재료 설명부분
 const ingreInfo = document.createElement('div');
 ingreInfo.setAttribute('id','ingredient');
-ingreInfo.style.width = '30%';
-ingreInfo.style.height = '40%';
+ingreInfo.style.width = '10%';
+ingreInfo.style.height = '25%';
 const ingreList = document.createElement('ul');
 ingreList.style.listStyleType = 'square';
 ingreList.textContent = '-재료-';

@@ -6,8 +6,8 @@
 
 //요리순서의 컨테이너를 만들어 요리 상세설명과 사진부분을 디스플레이 플렉스를 사용하여 두 파트로 나눔
 const listContainer = document.createElement('div');
-listContainer.style.width = '100%';
-listContainer.style.height = '90%';
+listContainer.style.width = '30%';
+listContainer.style.height = '20%';
 //listContainer.style.border = '2px solid black';
 listContainer.style.borderRadius = '10px';
 listContainer.style.display = 'flex';
@@ -19,8 +19,8 @@ divMain.appendChild(listContainer);
 
 //컨테이너 안에서 요리설명부분
 const orderBox = document.createElement('div');
-orderBox.style.width = '20%';
-orderBox.style.height = '50%';
+orderBox.style.width = '60%';
+orderBox.style.height = '15%';
 orderBox.style.border = '1px solid black';
 orderBox.style.padding = '10px';
 orderBox.style.display = 'flex';
@@ -30,8 +30,8 @@ listContainer.appendChild(orderBox);
 
 //요리부분안에서 다시 ol을 만들어 디스플레이 플렉스를 사용하여 세로로 정렬
 const orderedList = document.createElement('ol');
-orderedList.style.width = '20%';
-orderedList.style.height = '50%';
+orderedList.style.width = '50%';
+orderedList.style.height = '20%';
 orderedList.style.display = 'flex';
 orderedList.style.flexDirection = 'column';
 orderBox.appendChild(orderedList);
@@ -46,8 +46,8 @@ for(let i = 0; i < 3; i++){
 
 //컨테이너 안에서 요리슌서를 나타낼 사진부분
 const orderPic = document.createElement('img');
-orderPic.style.width = '25%';
-orderPic.style.height = '55%';
+orderPic.style.width = '15%';
+orderPic.style.height = '20%';
 orderPic.style.backgroundColor = 'skyblue';
 orderPic.style.borderRadius = '10px';
 orderBox.appendChild(orderPic);
