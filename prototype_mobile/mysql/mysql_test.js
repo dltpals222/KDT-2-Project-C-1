@@ -18,10 +18,12 @@ db.connect();
 
 const na = [];
 db.query(`SELECT * FROM  add_recipe`, function (err, results, fields) {
-  const html = results.map((result) => [result.title,result.ingredients,result.content]).join("");
-  console.log(html)
-  na.push(html)
-console.log(na)
+  const html = results
+    .map((result) => [result.title, result.ingredients, result.content])
+    .join("");
+  console.log(html);
+  na.push(html);
+  console.log(na);
 });
 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
@@ -30,8 +32,6 @@ const server = http.createServer((req, res) => {
   const urlParse = Url.parse(req.url);
   const urlPathName = urlParse.pathname;
   const urlMethod = req.method;
-
-
 
   // console.log(urlPathName)
   // console.log(urlMethod)
@@ -96,15 +96,21 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
   } else if (urlMethod === "POST") {
+    let body = "";
     req.on("data", (chunk) => {
-      chunk.toString() += body;
+      body += chunk.toString();
     });
     req.on("end", () => {
-
-
-
-      const sql = `SELECT * FROM  add_recipe`;
-      db.query(sql, newDbArray, (error, result) => {
+      // const newArray = [];
+      const qsParse = qs.parse(body);
+      // const title = qsParse.title;
+      // const ingredients = qsParse.ingredients;
+      // const content = qsParse.content;
+      // newArray.push(title, ingredients, parseInt(content));
+      // newArray.push(qsParse);
+      const newArrayValues = Object.values(qsParse);
+      const sqlQuery = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?, ?, ?)`;
+      db.query(sqlQuery, newArrayValues, (error, result) => {
         if (error) {
           console.error(error);
           res.writeHead(500, { "Content-Type": "text/plain" });
@@ -112,6 +118,7 @@ const server = http.createServer((req, res) => {
           res.end();
           return;
         }
+        //location은 등록 완료후 원하는 페이지로
         res.writeHead(302, { Location: "/" });
         res.end();
       });
