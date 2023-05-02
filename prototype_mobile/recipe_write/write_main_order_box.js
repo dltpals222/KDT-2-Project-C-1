@@ -8,7 +8,7 @@ recipeOrder.style.backgroundColor = '#d9d9d9';
 //recipeOrder.style.border = '2px solid black';
 recipeOrder.style.borderRadius = '10px';
 recipeOrder.style.padding = '7px';
-mainBody.appendChild(recipeOrder);
+main.appendChild(recipeOrder);
 recipeOrder.style.display = 'flex';
 recipeOrder.style.flexDirection = 'row';
 recipeOrder.style.justifyContent = 'space-evenly';

@@ -4,6 +4,8 @@ import all_mighty_editor from "../module/all_mighty_editor.js";
 const middleBody = multiAndSingleTagMaker('body','div','main',length,callback);
 */
 
+
+/*
 const mainBody = document.getElementById('main');
 //mainBody.style.backgroundColor = 'purple';
 mainBody.style.width = '30vw';
@@ -21,7 +23,23 @@ title.textContent = '레시피 이름';
 title.style.textAlign = 'center';
 mainBody.appendChild(title);
 //console.dir(mainBody);
+*/
 
+
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+
+const main = document.getElementById('root');
+main.setAttribute('id','main');
+main.style.width = '30vw';
+main.style.height = '65vh';
+main.style.borderRadius = '10px';
+//main.style.display = 'grid';
+//main.style.gridTemplateRows = '80px';
+main.style.display = 'flex';
+main.style.flexDirection = 'column';
 
 //console.dir(mainBody.children[1]);
 //mainBody.children[1].style.backgroundColor = 'red';
@@ -37,7 +55,7 @@ container.style.padding = '10px';
 container.style.display = 'flex';
 container.style.flexDirection = 'row';
 container.style.justifyContent = 'space-around';
-mainBody.appendChild(container);
+main.appendChild(container);
 
 //재료 설명 부분
 const ingredient = document.createElement('div');
