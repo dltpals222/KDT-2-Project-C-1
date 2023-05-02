@@ -181,7 +181,7 @@ kingGodFlexEditor(currentPage, "", "center", "space-evenly");
 let pagination = {
   totalDoc: 151, //게시물 전체 갯수
   onePageData: 4, //한페이지에 나타낼 데이터 수 (게시글 수)
-  currentPage: 11, //현재 페이지
+  currentPage: 21, //현재 페이지
   onePageNumber: 5, //한 화면에 나타낼 페이지 수 (밑에 12345 숫자 누르는 버튼)
 };
 
@@ -202,13 +202,13 @@ const EndPageGroup = Math.ceil(totalPage / pagination.onePageNumber);
 //   displayOnePage = totalPage - (pagination.onePageNumber - 1);
 // }
 
-//화면에 그려질 마지막 페이지
-let displayEndPage = 0;
-if (aPageGroup * pagination.onePageNumber > totalPage) {
-  displayEndPage = totalPage; //계산된 값이 총페이지보다 많으면 마지막 페이지
-} else {
-  displayEndPage = aPageGroup * pagination.onePageNumber;
-}
+// //화면에 그려질 마지막 페이지
+// let displayUpOnePage = 0;
+// if (aPageGroup * pagination.onePageNumber > totalPage) {
+//   displayUpOnePage = totalPage; //계산된 값이 총페이지보다 많으면 마지막 페이지
+// } else {
+//   displayUpOnePage = aPageGroup * pagination.onePageNumber;
+// }
 
 function prevStartPageGroupDisplay(page) {
   //맨앞, 이전 버튼 디스플레이
@@ -231,7 +231,7 @@ function prevStartPageGroupDisplay(page) {
 }
 
 //맨앞 버튼 addEventListener
-function prevPage(page) {
+function fourPageBtn(page) {
   const pageDownChild = Array.from(pageDown.querySelectorAll("a"));
   let displayDownOnePage = page;
   //이전 버튼
@@ -239,7 +239,7 @@ function prevPage(page) {
     //a태그의 기본 동작을 막는다.
     event.preventDefault();
     //화면에 그려질 첫번째 페이지
-    if (displayDownOnePage - (pagination.onePageNumber - 1) < 0) {
+    if (page - (pagination.onePageNumber - 1) < 0) {
       displayDownOnePage = 1; //계산된 값이 0 이하면 첫번째 페이지
 
       currPageBtn(displayDownOnePage);
@@ -248,15 +248,36 @@ function prevPage(page) {
       currPageBtn(displayDownOnePage);
     }
   });
+
   //맨앞 버튼
   pageDownChild[0].addEventListener("click", (event) => {
     //a태그의 기본 동작을 막는다.
     event.preventDefault();
     currPageBtn(1);
   });
-  const pageUpChild = Array.from(pageDown.querySelectorAll("a"));
+
+  //다음 버튼
+  const pageUpChild = Array.from(pageUp.querySelectorAll("a"));
   let displayUpOnePage = page;
-  pageUpChild[0].addEventListener("click", (event) => {});
+  pageUpChild[0].addEventListener("click", (event) => {
+    //a태그의 기본 동작을 막는다.
+    event.preventDefault();
+
+    //화면에 그려질 마지막 페이지
+    if (page + pagination.onePageNumber > totalPage) {
+      displayUpOnePage = totalPage; //계산된 값이 총페이지보다 많으면 마지막 페이지
+      currPageBtn(displayUpOnePage);
+    } else {
+      displayUpOnePage = page + pagination.onePageNumber;
+      currPageBtn(displayUpOnePage);
+    }
+  });
+
+  pageUpChild[1].addEventListener("click", (event) => {
+    //a태그의 기본 동작을 막는다.
+    event.preventDefault();
+    currPageBtn(totalPage);
+  });
 }
 
 //현재 페이지 버튼
@@ -304,7 +325,7 @@ function currPageBtn(page) {
         console.log(elementNum);
       } // 콜백 끝
     ); // 싱멀태그메이커 끝
-    prevPage(page);
+    fourPageBtn(page);
     prevStartPageGroupDisplay(page);
   } // for문 끝
 }
@@ -328,17 +349,18 @@ const renderContent = (page) => {
   }
 
   for (
-    let i = page * pagination.onePageData;
-    i >= (page - 1) * pagination.onePageData + 1 && 1;
-    i--
+    let i = (page - 1) * pagination.onePageData + 1;
+    i <= page * pagination.onePageData && pagination.totalDoc;
+    i++
   ) {
     boardList.appendChild(makeContent(i));
   }
 };
 
 // async function allPaging(page) {
-//   await currPageBtn(page);
-//   renderContent(page);
+//   currPageBtn(page);
+//   prevStartPageGroupDisplay(page);
+//   fourPageBtn(page);
 // }
 
 // allPaging(pagination.currentPage);
