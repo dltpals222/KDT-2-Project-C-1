@@ -13,16 +13,16 @@ const db = mysql.createConnection({
   password: "admin123",
   database: "test1",
 });
-
+/* 
+  mysql database 이름 
+  id int NOT NULL AUTO_INCREMENT;
+  title varchar(255) NOT NULL;
+  ingredients varchar(255) NOT NULL;
+  content varchar(255) NOT NULL;
+  primary key(id);
+*/
 db.connect();
 const newDbArray = [];
-db.query("SELECT * FROM  add_recipe", function (err, results, fields) {
-  fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
-  // fs.readFile("db.json", function (err, data) {
-  //   const jsonData = JSON.stringify(results);
-  //   console.log(jsonData);
-  // });
-});
 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
@@ -40,7 +40,7 @@ const server = http.createServer((req, res) => {
   if (urlMethod === "GET") {
     switch (urlPathName) {
       case "/":
-        serverReadFileModule(res, "mysql_h.html", "text/html", 200);
+        serverReadFileModule(res, "mysql.html", "text/html", 200);
         break;
 
       case "/mysql_layout.js":
@@ -50,27 +50,31 @@ const server = http.createServer((req, res) => {
       case "/db.json":
         serverReadFileModule(res, "db.json", "application/json", 200);
         break;
+
+      case "/print":
+        serverReadFileModule(res, "mysql_h.html", "text/html", 200);
+        break;
       /*       //메인 페이지
-      case '/':
-        serverReadFileModule(res, 'main/main.html', 'text/html',200)
+            case '/':
+              serverReadFileModule(res, 'main/main.html', 'text/html',200)
         break 
       case '/main.js':
         serverReadFileModule(res,'main/main.js','text/javascript',200)
         break
-
-      //레시피 리스트
-      case '/recipe_list':
-        serverReadFileModule(res, 'recipe_list/recipe_list.html','text/html',200)
-        break
-      case '/recipe_list.js':
-        serverReadFileModule(res, 'recipe_list/recipe_list.js','text/javascript',200)
-        break
         
-      //common 파일
-      case '/common/common_header.js':
+        //레시피 리스트
+        case '/recipe_list':
+          serverReadFileModule(res, 'recipe_list/recipe_list.html','text/html',200)
+          break
+          case '/recipe_list.js':
+            serverReadFileModule(res, 'recipe_list/recipe_list.js','text/javascript',200)
+            break
+            
+            //common 파일
+            case '/common/common_header.js':
         serverReadFileModule(res, 'common/common_header.js','text/javascript',200)
         break
-*/
+        */
       //favicon에러처리
       case "/favicon.ico":
         (err) => {
@@ -97,7 +101,7 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
   } else if (urlMethod === "POST") {
-    /*     let body = "";
+    let body = "";
     req.on("data", (chunk) => {
       body += chunk.toString();
     });
@@ -110,6 +114,7 @@ const server = http.createServer((req, res) => {
       newArray.push(title, ingredients, parseInt(content));
       console.log(newArray);
       console.log(title);
+      // const sql = `delete from add_recipe where id<100000`;
       const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?,?,?)`;
       db.query(sql, newArray, (error, result) => {
         if (error) {
@@ -119,10 +124,17 @@ const server = http.createServer((req, res) => {
           res.end();
           return;
         }
-        res.writeHead(302, { Location: "/" });
+        db.query("SELECT * FROM  add_recipe", function (err, results, fields) {
+          fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
+          // fs.readFile("db.json", function (err, data) {
+          //   const jsonData = JSON.stringify(results);
+          //   console.log(jsonData);
+          // });
+        });
+        res.writeHead(302, { Location: "/print" });
         res.end();
       });
-    }); */
+    });
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 

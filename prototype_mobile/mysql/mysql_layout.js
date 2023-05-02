@@ -18,11 +18,11 @@ http.onreadystatechange = function () {
     const jsonDataContent = data.map((value) => [value.content]);
     const root = document.getElementById("root");
     const header = multiAndSingleTagMaker(root, "div", "header");
-    header.textContent = jsonDataTitle[0];
+    header.textContent = jsonDataTitle[jsonDataTitle.length - 1];
     const main = multiAndSingleTagMaker(root, "div", "main");
-    main.textContent = jsonDataIngredients[0];
+    main.textContent = jsonDataIngredients[jsonDataIngredients.length - 1];
     const footer = multiAndSingleTagMaker(root, "div", "footer");
-    footer.textContent = jsonDataContent[0];
+    footer.textContent = jsonDataContent[jsonDataContent.length - 1];
   }
 };
 http.open("GET", "db.json");
