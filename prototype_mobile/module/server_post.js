@@ -79,9 +79,6 @@ function serverPostModule(req, res) {
   });
 
   req.on('end', function () {
-
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write("포스트 방식 성공");
-    res.end();
+    serverReadFileModule(res,'../mysql/test.html', 'text/html', 200)
   })
 }
