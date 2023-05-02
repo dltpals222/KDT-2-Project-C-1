@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log_In</title>
+    <style>
+      /* body{justify-content:;} */
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="login_header.js"></script>
+    <!-- 본인 넣을 폴더 이밑으로 -->
+
+    <div id="container">
+      <div id="firstBox">
+        <div id="idBox">
+          ID : <input type="text" placeholder="ID를 입력하세요" id="userid" />
+        </div>
+        <br />
+        <div id="pwBox">
+          PW :
+          <input
+            type="password"
+            placeholder="비밀번호를 입력하세요"
+            id="userpw"
+          />
+        </div>
+        <br />
+        <div id="findIDPW">
+          <a href="">ID찾기</a>
+          <span>/</span>
+          <a href="">PW찾기</a>
+        </div>
+      </div>
+      <div id="secondBox">
+        <button id="loginButton">로그인</button>
+      </div>
+    </div>
+
+    <script>
+      const container = document.getElementById("container");
+      //container.style.display = "grid";
+      //container.style.rowGap = "5px";
+      container.style.display = "flex";
+      container.style.flexDirection = "row";
+      container.style.justifyContent = "center";
+
+      const button = document.getElementById("loginButton");
+      button.style.textAlign = "center";
+      button.style.width = "80px";
+      button.style.height = "60px";
+      button.style.position = "relative";
+      button.style.top = "30px";
+      button.style.left = "20px";
+
+      const idpwBox = document.getElementById("inputBox");
+      firstBox.style.display = "flex";
+      firstBox.style.flexDirection = "column";
+
+      const searchBox = document.getElementById("findIDPW");
+      //searchBox.style.display = "flex";
+      searchBox.style.border = "2px solid skyblue";
+      searchBox.style.justifyContent = "center";
+
+      const firstBox = document.getElementById("firstBox");
+      firstBox.style.display = "flex";
+      firstBox.style.flexDirection = "column";
+    </script>
+
+    <script>
+      /*
+      <div id="container">
+        <div>
+          <input type="text" id="idBox" />
+          </div>
+          <div>
+            <input type="text" id="pwBox" />
+            </div>
+            <button>로그인</button>
+            <span>ID찾기/PW찾기</span>
+            </div>
+        */
+    </script>
+
+    <script src="login_main.js"></script>
+
+    <script src="login_footer.js"></script>
+    <script src="common_login_css.js"></script>
+  </body>
+</html>
