@@ -233,19 +233,19 @@ function prevStartPageGroupDisplay(page) {
 //맨앞 버튼 addEventListener
 function prevPage(page) {
   const pageDownChild = Array.from(pageDown.querySelectorAll("a"));
-  let displayOnePage = page;
+  let displayDownOnePage = page;
   //이전 버튼
   pageDownChild[1].addEventListener("click", (event) => {
     //a태그의 기본 동작을 막는다.
     event.preventDefault();
     //화면에 그려질 첫번째 페이지
-    if (displayOnePage - (pagination.onePageNumber - 1) < 0) {
-      displayOnePage = 1; //계산된 값이 0 이하면 첫번째 페이지
+    if (displayDownOnePage - (pagination.onePageNumber - 1) < 0) {
+      displayDownOnePage = 1; //계산된 값이 0 이하면 첫번째 페이지
 
-      currPageBtn(displayOnePage);
+      currPageBtn(displayDownOnePage);
     } else {
-      displayOnePage = page - pagination.onePageNumber;
-      currPageBtn(displayOnePage);
+      displayDownOnePage = page - pagination.onePageNumber;
+      currPageBtn(displayDownOnePage);
     }
   });
   //맨앞 버튼
@@ -254,6 +254,9 @@ function prevPage(page) {
     event.preventDefault();
     currPageBtn(1);
   });
+  const pageUpChild = Array.from(pageDown.querySelectorAll("a"));
+  let displayUpOnePage = page;
+  pageUpChild[0].addEventListener("click", (event) => {});
 }
 
 //현재 페이지 버튼
@@ -306,8 +309,6 @@ function currPageBtn(page) {
   } // for문 끝
 }
 // console.dir(currentPage.children)
-
-//맨뒤 버튼 addEventListener
 
 //board-list 추가
 const makeContent = (i) => {
