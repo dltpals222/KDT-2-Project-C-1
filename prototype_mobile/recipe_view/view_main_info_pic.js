@@ -77,8 +77,10 @@ for(let i = 0; i < 5; i++){
 
 const divMain = document.getElementById('root');
 divMain.setAttribute('id','main');
-divMain.style.width = '330vw';
-divMain.style.height = '820vh';
+//divMain.style.width = '330vw';
+//divMain.style.height = '820vh';
+divMain.style.width = '100vw';
+divMain.style.height = '100vh';
 divMain.style.borderRadius = '10px';
 divMain.style.display = 'flex';
 divMain.style.flexDirection = 'column';
@@ -88,8 +90,8 @@ divMain.style.alignItems = 'center';
 //레시피뷰의 사진 부분
 const mainPic = document.createElement('img');
 mainPic.setAttribute('id', 'mainPicture');
-mainPic.style.width = '10%';
-mainPic.style.height = '2%';
+mainPic.style.width = '80%';
+mainPic.style.height = '50%';
 mainPic.style.backgroundColor = 'skyblue';
 mainPic.style.borderRadius = '10px';
 divMain.appendChild(mainPic);
@@ -103,35 +105,45 @@ title.style.margin = '3px';
 title.style.padding = '0';
 divMain.appendChild(title);
 
-//재료 설명부분
+//시용된 재료정보 컨테이너 부분
 const ingreInfo = document.createElement('div');
 ingreInfo.setAttribute('id','ingredient');
-ingreInfo.style.width = '10%';
-ingreInfo.style.height = '25%';
+ingreInfo.style.width = '30%';
+ingreInfo.style.height = '20%';
+divMain.appendChild(ingreInfo);
+//재료 리스트 컨테이너부분
 const ingreList = document.createElement('ul');
 ingreList.style.listStyleType = 'square';
 ingreList.textContent = '-재료-';
 ingreList.style.textAlign = 'center';
 ingreList.style.margin = '20px';
 ingreList.style.padding = '0';
-divMain.appendChild(ingreList);
+//재료 사용 리스트부분
+ingreInfo.appendChild(ingreList);
 for(let i = 0; i < 5; i++){
   const list = document.createElement('li');
   list.textContent = '용의 꼬리';
   ingreList.appendChild(list);
 }
 
-//조리기구 설명부분
-const cooker = document.createElement('ul');
-cooker.setAttribute('id', 'cooker');
-cooker.style.listStyleType = 'square';
-cooker.textContent = '-조리기구-';
-cooker.style.textAlign = 'center';
-cooker.style.margin = '0';
-cooker.style.padding = '0';
-divMain.appendChild(cooker);
+//시용된 조리기구정보 컨테이너 부분
+const cookerInfo = document.createElement('div');
+cookerInfo.setAttribute('id','cooker');
+cookerInfo.style.width = '30%';
+cookerInfo.style.height = '20%';
+divMain.appendChild(cookerInfo);
+//조리기구 리스트 컨테이너부분
+const cookerList = document.createElement('ul');
+cookerList.setAttribute('id', 'cooker');
+cookerList.style.listStyleType = 'square';
+cookerList.textContent = '-조리기구-';
+cookerList.style.textAlign = 'center';
+cookerList.style.margin = '20px';
+cookerList.style.padding = '0';
+//조리기구 사용 리스트부분
+cookerInfo.appendChild(cookerList);
 for(let i = 0; i < 5; i++){
-  const cookerList = document.createElement('li');
-  cookerList.textContent = '후라이팬';
-  cooker.appendChild(cookerList);
+  const cList = document.createElement('li');
+  cList.textContent = '후라이팬';
+  cookerList.appendChild(cList);
 }

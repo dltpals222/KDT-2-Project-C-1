@@ -29,44 +29,60 @@ mainBody.appendChild(title);
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-
-
 const main = document.getElementById('root');
 main.setAttribute('id','main');
-main.style.width = '30vw';
-main.style.height = '65vh';
+//main.style.width = '30vw';
+//main.style.height = '65vh';
+//main.style.width = '330vw';
+//main.style.height = '820vh';
+main.style.width = '100vw';
+main.style.height = '100vh';
 main.style.borderRadius = '10px';
 //main.style.display = 'grid';
 //main.style.gridTemplateRows = '80px';
-main.style.display = 'flex';
-main.style.flexDirection = 'column';
+//main.style.display = 'flex';
+//main.style.flexDirection = 'column';
 
 //console.dir(mainBody.children[1]);
 //mainBody.children[1].style.backgroundColor = 'red';
 //mainBody.children[1].style.flexDirection = 'row';
 
+
+//제목부분
+const title = document.createElement('h2');
+title.setAttribute('id','title');
+title.textContent = '레시피 이름';
+title.style.textAlign = 'center';
+main.appendChild(title);
+
+
 //재료상세부분과 사진첨부부분 컨테이너
 const container = document.createElement('div');
-container.style.width = '90%';
-container.style.height = '70%';
+container.setAttribute('id','container');
+container.style.width = '85%';
+container.style.height = '30%';
 //container.style.border = '2px solid black';
 container.style.borderRadius = '10px';
 container.style.padding = '10px';
 container.style.display = 'flex';
 container.style.flexDirection = 'row';
 container.style.justifyContent = 'space-around';
+container.style.alignItems = 'center';
 main.appendChild(container);
+
 
 //재료 설명 부분
 const ingredient = document.createElement('div');
-ingredient.style.width = '40%';
-ingredient.style.height = '95%';
+ingredient.setAttribute('id','ingredient');
+ingredient.style.width = '80%';
+ingredient.style.height = '80%';
 ingredient.style.margin = '0';
 ingredient.style.backgroundColor = '#d9d9d9';
 //ingredient.style.border = '2px solid black';
 ingredient.style.borderRadius = '10px';
 ingredient.style.display = 'flex';
 ingredient.style.flexDirection = 'column';
+ingredient.style.justifyContent = 'center';
 ingredient.style.alignItems = 'center';
 container.appendChild(ingredient);
 //재료안의 제목부분
@@ -101,8 +117,9 @@ for(let i = 0; i < 5; i++){
 
 //사진부분
 const pic = document.createElement('img');
-pic.style.width = '50%';
-pic.style.height = '95%';
+pic.setAttribute('id','mainPic');
+pic.style.width = '80%';
+pic.style.height = '80%';
 pic.style.margin = '0';
 pic.style.backgroundColor = '#fffeee';
 //pic.style.border = '2px solid black';
