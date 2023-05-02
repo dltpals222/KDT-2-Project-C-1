@@ -181,7 +181,7 @@ kingGodFlexEditor(currentPage, "", "center", "space-evenly");
 let pagination = {
   totalDoc: 156, //게시물 전체 갯수
   onePageData: 4, //한페이지에 나타낼 데이터 수 (게시글 수)
-  currentPage: 6, //현재 페이지
+  currentPage: 11, //현재 페이지
   onePageNumber: 5, //한 화면에 나타낼 페이지 수 (밑에 12345 숫자 누르는 버튼)
 };
 
@@ -269,12 +269,17 @@ function currPageBtn(page) {
             //페이지 클릭할 시 타켓 설정
             const index = currentChildA.indexOf(event.target);
             //페이지 숫자 클릭시 스타일 지정
-            currentChildA.forEach((page, k) => {
-              page.style.fontWeight = k === index ? "bold" : "normal";
-              page.style.backgroundColor = k === index ? "#9A6E44" : "";
-              page.style.color = k === index ? "white" : "black";
-              elementNum = k === index ? parseInt(page.dataset) : 0;
+            currentChildA.forEach((paging, k) => {
+              paging.style.fontWeight = k === index ? "bold" : "normal";
+              paging.style.backgroundColor = k === index ? "#9A6E44" : "";
+              paging.style.color = k === index ? "white" : "black";
+              elementNum =
+                k === index ? parseInt(paging.dataset.num) : elementNum;
+              console.log("forEach k", k);
+              console.log("index", index);
+              console.log("element", elementNum);
             });
+            renderContent(elementNum);
           }); // addEventListener 끝
         }); // map 끝
         //초기 첫번째 페이지 선택
@@ -315,7 +320,7 @@ const makeContent = (i) => {
 
 const renderContent = (page) => {
   while (boardList.hasChildNodes()) {
-    boardList.removeChild(contents.lastChild);
+    boardList.removeChild(boardList.lastChild);
   }
 
   for (
@@ -333,7 +338,7 @@ const renderContent = (page) => {
 // }
 
 // allPaging(pagination.currentPage);
-prevPage(pagination.currentPage);
+// prevPage(pagination.currentPage);
 currPageBtn(pagination.currentPage);
 
 // console.log(currentPage.children[0].dataset.num)
