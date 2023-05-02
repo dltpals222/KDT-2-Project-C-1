@@ -38,10 +38,10 @@ main.setAttribute('id','main');
 main.style.width = '100vw';
 main.style.height = '100vh';
 main.style.borderRadius = '10px';
-//main.style.display = 'grid';
-//main.style.gridTemplateRows = '80px';
-//main.style.display = 'flex';
-//main.style.flexDirection = 'column';
+main.style.display = 'grid';
+main.style.gridTemplateRows = '80px';
+main.style.display = 'flex';
+main.style.flexDirection = 'column';
 
 //console.dir(mainBody.children[1]);
 //mainBody.children[1].style.backgroundColor = 'red';

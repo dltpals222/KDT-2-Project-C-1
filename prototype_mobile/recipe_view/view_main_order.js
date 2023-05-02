@@ -61,18 +61,23 @@ orderBox.appendChild(orderPic);
 
 
 
-const footer = document.getElementById('root');
-footer.setAttribute('id','footer');
-footer.style.width = '100%';
-footer.style.height = '50%';
-footer.style.border = '2px solid black';
-footer.style.display = 'flex';
-footer.style.flexDirection = 'center';
-footer.style.justifyContent = 'center';
-footer.style.alignItems = 'center';
-main.appendChild(footer);
+//버튼을 감싸는 컨테이너
+const buttonContainer = document.createElement('div');
+buttonContainer.setAttribute('id','buttonContainer');
+buttonContainer.style.width = '85%';
+buttonContainer.style.height = '10%';
+//buttonContainer.style.border = '2px solid black';
+buttonContainer.style.padding = '10px';
+buttonContainer.style.display = 'flex';
+buttonContainer.style.flexDirection = 'row';
+buttonContainer.style.justifyContent = 'center';
+main.appendChild(buttonContainer);
 
+//레시피등록 버튼부분
 const button = document.createElement('button');
+button.setAttribute('id','button');
+button.style.width = '25%';
+button.style.height = '75%';
 button.textContent = '목록';
 button.style.textAlign = 'center';
-footer.appendChild(button);
+buttonContainer.appendChild(button);
