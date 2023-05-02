@@ -14,6 +14,7 @@ const db = mysql.createConnection({
   database: "test1",
 });
 /* 
+
   mysql database 이름 
   id int NOT NULL AUTO_INCREMENT;
   title varchar(255) NOT NULL;
