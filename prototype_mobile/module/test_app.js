@@ -15,9 +15,8 @@ const server = http.createServer((req, res) => {
     serverReadFileModule(res, '../mysql/mysql_input.html', 'text/html', 200);
   } else if (Method === 'POST' && pathName === '/set') {
     req.on('data', function(chunk) {
-      a(chunk);
+      a(chunk, 'insert into b (name, type, taek) values (?,?,?)');
     });
-  
     req.on('end', function () {
       serverReadFileModule(res, '../mysql/test.html', 'text/html', 200)
     })

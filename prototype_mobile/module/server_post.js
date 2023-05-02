@@ -1,32 +1,26 @@
 import qs from 'querystring'
 import serverReadFileModule from './server_readfile.js'
-import dbConfig from '../mysql/mysql_connect.js'
+import dbSet from '../mysql/mysql_connect.js'
 
-function a (chunk) {
+function a(chunk, query) {
   let body = '';
   body += chunk;
-
+  let postArray = [];
   let post = qs.parse(body);
-  let name = post.name;
-  let type = post.type;
-  let taek = post.taek;
-
-  let array = [];
-  array.push(name, type, parseInt(taek, 10));
-  console.log(array);
-
-  const query = 'insert into a (name, type, taek) values (?,?,?)';
-  dbConfig.connect();
-  dbConfig.query(query, array, (err) => {
+  console.log(post);
+  for (let i in post){
+    postArray.push(post[i]);
+  }
+  console.log(postArray);
+  dbSet.connect();
+  dbSet.query(query, postArray, (err) => {
     if (err) {
       console.error('쿼리실행 실패', err);
     } else {
       console.log("쿼리실행성공");
     }
   })
-  dbConfig.end();
-
-
+  dbSet.end();
 }
 
 export default a;
