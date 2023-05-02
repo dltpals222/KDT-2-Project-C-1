@@ -16,13 +16,13 @@ listContainer.style.flexDirection = 'column';
 listContainer.style.justifyContent = 'center';
 listContainer.style.alignItems = 'center';
 //mainBody.appendChild(listContainer);
-divMain.appendChild(listContainer);
+main.appendChild(listContainer);
 
 //컨테이너 안에서 요리설명부분
 const orderBox = document.createElement('div');
 orderBox.setAttribute('id', 'orderBox');
 orderBox.style.width = '100%';
-orderBox.style.height = '80%';
+orderBox.style.height = '70%';
 orderBox.style.border = '1px solid black';
 orderBox.style.padding = '10px';
 orderBox.style.display = 'flex';
@@ -32,6 +32,7 @@ listContainer.appendChild(orderBox);
 
 //요리부분안에서 다시 ol을 만들어 디스플레이 플렉스를 사용하여 세로로 정렬
 const orderedList = document.createElement('ol');
+orderedList.setAttribute('id','orderInfo');
 orderedList.style.width = '100%';
 //orderedList.style.height = '50%';
 orderedList.style.display = 'flex';
@@ -50,8 +51,28 @@ for(let i = 0; i < 3; i++){
 const orderPic = document.createElement('img');
 orderPic.setAttribute('id','orderPic');
 orderPic.style.width = '130%';
-orderPic.style.height = '70%';
+orderPic.style.height = '50%';
 orderPic.style.margin = '0';
 orderPic.style.backgroundColor = 'skyblue';
 orderPic.style.borderRadius = '10px';
 orderBox.appendChild(orderPic);
+
+
+
+
+
+const footer = document.getElementById('root');
+footer.setAttribute('id','footer');
+footer.style.width = '100%';
+footer.style.height = '50%';
+footer.style.border = '2px solid black';
+footer.style.display = 'flex';
+footer.style.flexDirection = 'center';
+footer.style.justifyContent = 'center';
+footer.style.alignItems = 'center';
+main.appendChild(footer);
+
+const button = document.createElement('button');
+button.textContent = '목록';
+button.style.textAlign = 'center';
+footer.appendChild(button);

@@ -33,9 +33,29 @@ const orderBox2 = createOrderBox('div', '90%', '80%', '#d9d9d9', '10px', '7px');
 mainBody.appendChild(orderBox2);
 */
 
+
 //레시피 순서안의 설명
+/*
 const info = document.createTextNode('1)요리를 시작한다');
 recipeOrder.appendChild(info);
+*/
+
+const cookOrder = document.createElement('ol');
+cookOrder.setAttribute('id','cookOrder');
+cookOrder.style.width = '60%';
+//orderedList.style.height = '50%';
+cookOrder.style.display = 'flex';
+cookOrder.style.flexDirection = 'column';
+recipeOrder.appendChild(cookOrder);
+
+
+for(let i = 0; i < 3; i++){
+  const introList = document.createElement('li');
+  introList.style.listStyleType = 'square';
+  introList.textContent = '1)요리를 시작한다.';
+  cookOrder.appendChild(introList);
+}
+
 /*
 const info = document.createElement('ol');
 for(let i = 0; i < 5; i++){
@@ -54,3 +74,23 @@ innerPic.style.backgroundColor = '#fffeee';
 //innerPic.style.border = '2px solid black';
 innerPic.style.borderRadius = '10px';
 recipeOrder.appendChild(innerPic);
+
+
+
+
+const footer = document.getElementById('root');
+footer.setAttribute('id','footer');
+footer.style.width = '30%';
+footer.style.height = '50%';
+footer.style.display = 'flex';
+footer.style.flexDirection = 'center';
+footer.style.justifyContent = 'center';
+footer.style.alignItems = 'center';
+main.appendChild(footer);
+
+const button = document.createElement('button');
+button.style.width = '20%';
+button.style.height = '50%';
+button.textContent = '레시피 등록';
+button.style.textAlign = 'center';
+footer.appendChild(button);

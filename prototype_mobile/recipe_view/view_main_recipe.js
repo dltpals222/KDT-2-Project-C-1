@@ -75,26 +75,27 @@ for(let i = 0; i < 5; i++){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-const divMain = document.getElementById('root');
-divMain.setAttribute('id','main');
-//divMain.style.width = '330vw';
-//divMain.style.height = '820vh';
-divMain.style.width = '100vw';
-divMain.style.height = '100vh';
-divMain.style.borderRadius = '10px';
-divMain.style.display = 'flex';
-divMain.style.flexDirection = 'column';
-divMain.style.justifyContent = 'center';
-divMain.style.alignItems = 'center';
+const main = document.getElementById('root');
+main.setAttribute('id','main');
+//main.style.width = '330vw';
+//main.style.height = '820vh';
+main.style.width = '100vw';
+main.style.height = '100vh';
+main.style.borderRadius = '10px';
+main.style.display = 'flex';
+main.style.flexDirection = 'column';
+main.style.justifyContent = 'center';
+main.style.alignItems = 'center';
 
 //레시피뷰의 사진 부분
 const mainPic = document.createElement('img');
 mainPic.setAttribute('id', 'mainPicture');
-mainPic.style.width = '80%';
-mainPic.style.height = '50%';
+mainPic.style.width = '65%';
+mainPic.style.height = '40%';
+mainPic.style.margin = '25px';
 mainPic.style.backgroundColor = 'skyblue';
 mainPic.style.borderRadius = '10px';
-divMain.appendChild(mainPic);
+main.appendChild(mainPic);
 
 //레시피의 이름 제목 부분
 const title = document.createElement('h1');
@@ -103,14 +104,14 @@ title.textContent = '레시피의 이름';
 //title.style.border = '2px solid black';
 title.style.margin = '3px';
 title.style.padding = '0';
-divMain.appendChild(title);
+main.appendChild(title);
 
 //시용된 재료정보 컨테이너 부분
 const ingreInfo = document.createElement('div');
 ingreInfo.setAttribute('id','ingredient');
 ingreInfo.style.width = '30%';
 ingreInfo.style.height = '20%';
-divMain.appendChild(ingreInfo);
+main.appendChild(ingreInfo);
 //재료 리스트 컨테이너부분
 const ingreList = document.createElement('ul');
 ingreList.style.listStyleType = 'square';
@@ -131,7 +132,7 @@ const cookerInfo = document.createElement('div');
 cookerInfo.setAttribute('id','cooker');
 cookerInfo.style.width = '30%';
 cookerInfo.style.height = '20%';
-divMain.appendChild(cookerInfo);
+main.appendChild(cookerInfo);
 //조리기구 리스트 컨테이너부분
 const cookerList = document.createElement('ul');
 cookerList.setAttribute('id', 'cooker');

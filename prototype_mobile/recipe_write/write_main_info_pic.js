@@ -87,6 +87,7 @@ ingredient.style.alignItems = 'center';
 container.appendChild(ingredient);
 //재료안의 제목부분
 const ingredientTitle = document.createElement('h2');
+ingredientTitle.setAttribute('id','ingredientTitle');
 ingredientTitle.textContent = '재료';
 ingredient.appendChild(ingredientTitle);
 //재료안의 설명줄부분
