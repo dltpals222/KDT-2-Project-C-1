@@ -44,13 +44,7 @@ const server = http.createServer((req, res) => {
         break;
 
       case "/mysql_layout.js":
-        fs.readFile("db.json", function (err, data) {
-          const jsonData = JSON.parse(data);
-          serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
-          const d = Object.values(jsonData);
-          console.log(jsonData);
-          console.log(d);
-        });
+        serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
         break;
 
       case "/db.json":
