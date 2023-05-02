@@ -18,7 +18,10 @@ db.connect();
 const newDbArray = [];
 db.query("SELECT * FROM  add_recipe", function (err, results, fields) {
   fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
-  // console.log(newDbArray);
+  // fs.readFile("db.json", function (err, data) {
+  //   const jsonData = JSON.stringify(results);
+  //   console.log(jsonData);
+  // });
 });
 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
@@ -41,11 +44,17 @@ const server = http.createServer((req, res) => {
         break;
 
       case "/mysql_layout.js":
-        serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
+        fs.readFile("db.json", function (err, data) {
+          const jsonData = JSON.parse(data);
+          serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
+          const d = Object.values(jsonData);
+          console.log(jsonData);
+          console.log(d);
+        });
         break;
 
-      case "/mysql_layout.js":
-        serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
+      case "/db.json":
+        serverReadFileModule(res, "db.json", "application/json", 200);
         break;
       /*       //메인 페이지
       case '/':
@@ -123,7 +132,7 @@ const server = http.createServer((req, res) => {
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 
-server.listen(2080, (err) => {
+server.listen(2090, (err) => {
   if (err) {
     console.error(err);
   } else {
