@@ -15,6 +15,818 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      /* 3번 레시피 리스트 */
+
+      position: relative;
+      width: 430px;
+      height: 932px;
+
+      background: #ffffff;
+
+      /* 레시피리스트 내용 */
+
+      position: absolute;
+      width: 409px;
+      height: 877px;
+      left: 11px;
+      top: 15px;
+
+      /* Group 32 */
+
+      position: absolute;
+      width: 95px;
+      height: 28px;
+      left: 166px;
+      top: 191px;
+
+      /* Rectangle 219 */
+
+      position: absolute;
+      width: 95px;
+      height: 28px;
+      left: 166px;
+      top: 191px;
+
+      background: #dab988;
+
+      /* 상세검색 */
+
+      position: absolute;
+      width: 45px;
+      height: 15px;
+      left: 191px;
+      top: 198px;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      /* identical to box height */
+
+      color: #000000;
+
+      /* Group 8 */
+
+      position: absolute;
+      left: 45.12%;
+      right: 40.93%;
+      top: 93.35%;
+      bottom: 4.29%;
+
+      /* Rectangle 173 */
+
+      position: absolute;
+      left: 45.12%;
+      right: 40.93%;
+      top: 93.35%;
+      bottom: 4.29%;
+
+      background: #d9d9d9;
+
+      /* 레시피등록 */
+
+      position: absolute;
+      left: 45.58%;
+      right: 41.4%;
+      top: 93.78%;
+      bottom: 4.61%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+      /* identical to box height */
+
+      color: #000000;
+
+      /* Rectangle 6 */
+
+      position: absolute;
+      left: 20.93%;
+      right: 21.63%;
+      top: 6.87%;
+      bottom: 89.13%;
+
+      background: #d9d9d9;
+
+      /* Rectangle 8 */
+
+      box-sizing: border-box;
+
+      position: absolute;
+      left: 33.84%;
+      right: 31.72%;
+      top: 7.13%;
+      bottom: 89.31%;
+
+      background: #ffffff;
+      border: 1px solid #000000;
+
+      /* Rectangle 9 */
+
+      box-sizing: border-box;
+
+      position: absolute;
+      left: 69.22%;
+      right: 22.43%;
+      top: 7.13%;
+      bottom: 89.31%;
+
+      background: #d9d9d9;
+      border: 1px solid #000000;
+
+      /* 검색 */
+
+      position: absolute;
+      left: 70.93%;
+      right: 23.26%;
+      top: 8.15%;
+      bottom: 90.34%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* Rectangle 10 */
+
+      box-sizing: border-box;
+
+      position: absolute;
+      left: 25.23%;
+      right: 66.83%;
+      top: 7.13%;
+      bottom: 89.31%;
+
+      background: #ffffff;
+      border: 1px solid #000000;
+
+      /* Rectangle 11 */
+
+      box-sizing: border-box;
+
+      position: absolute;
+      left: 21.6%;
+      right: 74.63%;
+      top: 7.13%;
+      bottom: 89.31%;
+
+      background: #ffffff;
+      border: 1px solid #000000;
+
+      /* ▼ */
+
+      position: absolute;
+      left: 22.09%;
+      right: 76.16%;
+      top: 8.15%;
+      bottom: 90.51%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 제목 */
+
+      position: absolute;
+      left: 26.74%;
+      right: 66.98%;
+      top: 8.15%;
+      bottom: 90.45%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 요너두 */
+
+      position: absolute;
+      left: 40.93%;
+      right: 39.53%;
+      top: 2.36%;
+      bottom: 93.13%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 36px;
+
+      color: #000000;
+
+      /* 고객센터 메뉴버튼 */
+
+      position: absolute;
+      left: 57.67%;
+      right: 30.7%;
+      top: 12.02%;
+      bottom: 82.62%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 레시피등록 메뉴버튼 */
+
+      position: absolute;
+      left: 29.77%;
+      right: 58.6%;
+      top: 12.02%;
+      bottom: 82.62%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 레시피리스트 메뉴버튼 */
+
+      position: absolute;
+      left: 15.81%;
+      right: 72.56%;
+      top: 12.02%;
+      bottom: 82.62%;
+
+      background: #454545;
+      border-radius: 10px;
+
+      /* 더보기 메뉴버튼 */
+
+      position: absolute;
+      left: 71.63%;
+      right: 16.74%;
+      top: 12.02%;
+      bottom: 82.62%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 커뮤니티 메뉴버튼 */
+
+      position: absolute;
+      left: 43.72%;
+      right: 44.65%;
+      top: 12.02%;
+      bottom: 82.62%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 레시피 */
+
+      position: absolute;
+      left: 16.51%;
+      right: 73.72%;
+      top: 18.56%;
+      bottom: 79.51%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 18px;
+
+      color: #000000;
+
+      /* div#recipeList */
+
+      position: absolute;
+      width: 359px;
+      height: 141.04px;
+      left: 38px;
+      top: 241px;
+
+      /* 카드전체 */
+
+      position: absolute;
+      left: 8.84%;
+      right: 7.67%;
+      top: 25.86%;
+      bottom: 59.01%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 이미지위치 */
+
+      position: absolute;
+      left: 11.46%;
+      right: 67.31%;
+      top: 28.44%;
+      bottom: 61.76%;
+
+      background: #ffffff;
+      border-radius: 10px;
+
+      /* 레시피 이름 : 꼬리곰탕 */
+
+      position: absolute;
+      left: 40.09%;
+      right: 27.59%;
+      top: 27.95%;
+      bottom: 70.4%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요재료 : 꼬리, 곰, 물 */
+
+      position: absolute;
+      left: 40%;
+      right: 30.47%;
+      top: 30.47%;
+      bottom: 68.13%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요 도구 : 칼 냄비 도마 */
+
+      position: absolute;
+      left: 40%;
+      right: 31.4%;
+      top: 32.94%;
+      bottom: 65.34%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 작성자 : 김첨지 */
+
+      position: absolute;
+      left: 40%;
+      right: 40.93%;
+      top: 35.52%;
+      bottom: 63.09%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 추천수 : 108 */
+
+      position: absolute;
+      left: 40%;
+      right: 43.95%;
+      top: 37.77%;
+      bottom: 60.94%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* div#recipeList */
+
+      position: absolute;
+      width: 359px;
+      height: 141.04px;
+      left: 38px;
+      top: 391px;
+
+      /* 카드전체 */
+
+      position: absolute;
+      left: 8.84%;
+      right: 7.67%;
+      top: 41.95%;
+      bottom: 42.91%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 이미지위치 */
+
+      position: absolute;
+      left: 11.46%;
+      right: 67.31%;
+      top: 44.54%;
+      bottom: 45.67%;
+
+      background: #ffffff;
+      border-radius: 10px;
+
+      /* 레시피 이름 : 꼬리곰탕 */
+
+      position: absolute;
+      left: 40.09%;
+      right: 27.59%;
+      top: 44.04%;
+      bottom: 54.31%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요재료 : 꼬리, 곰, 물 */
+
+      position: absolute;
+      left: 40%;
+      right: 30.47%;
+      top: 46.57%;
+      bottom: 52.04%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요 도구 : 칼 냄비 도마 */
+
+      position: absolute;
+      left: 40%;
+      right: 31.4%;
+      top: 49.03%;
+      bottom: 49.25%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 작성자 : 김첨지 */
+
+      position: absolute;
+      left: 40%;
+      right: 40.93%;
+      top: 51.61%;
+      bottom: 47%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 추천수 : 108 */
+
+      position: absolute;
+      left: 40%;
+      right: 43.95%;
+      top: 53.86%;
+      bottom: 44.85%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 카드전체 */
+
+      position: absolute;
+      left: 8.84%;
+      right: 7.67%;
+      top: 58.58%;
+      bottom: 26.28%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 이미지 위치 */
+
+      position: absolute;
+      left: 11.46%;
+      right: 67.31%;
+      top: 61.17%;
+      bottom: 29.04%;
+
+      background: #ffffff;
+      border-radius: 10px;
+
+      /* 레시피 이름 : 꼬리곰탕 */
+
+      position: absolute;
+      left: 40.09%;
+      right: 27.59%;
+      top: 60.67%;
+      bottom: 37.67%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요재료 : 꼬리, 곰, 물 */
+
+      position: absolute;
+      left: 40%;
+      right: 30.47%;
+      top: 63.2%;
+      bottom: 35.41%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요 도구 : 칼 냄비 도마 */
+
+      position: absolute;
+      left: 40%;
+      right: 31.4%;
+      top: 65.67%;
+      bottom: 32.62%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 작성자 : 김첨지 */
+
+      position: absolute;
+      left: 40%;
+      right: 40.93%;
+      top: 68.24%;
+      bottom: 30.36%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 추천수 : 108 */
+
+      position: absolute;
+      left: 40%;
+      right: 43.95%;
+      top: 70.49%;
+      bottom: 28.22%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 카드전체 */
+
+      position: absolute;
+      left: 8.84%;
+      right: 7.67%;
+      top: 75.21%;
+      bottom: 9.65%;
+
+      background: #d9d9d9;
+      border-radius: 10px;
+
+      /* 사진 위치 */
+
+      position: absolute;
+      left: 11.46%;
+      right: 67.31%;
+      top: 77.8%;
+      bottom: 12.4%;
+
+      background: #ffffff;
+      border-radius: 10px;
+
+      /* 레시피 이름 : 꼬리곰탕 */
+
+      position: absolute;
+      left: 40.09%;
+      right: 27.59%;
+      top: 77.31%;
+      bottom: 21.04%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요재료 : 꼬리, 곰, 물 */
+
+      position: absolute;
+      left: 40%;
+      right: 30.47%;
+      top: 79.83%;
+      bottom: 18.78%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 필요 도구 : 칼 냄비 도마 */
+
+      position: absolute;
+      left: 40%;
+      right: 31.4%;
+      top: 82.3%;
+      bottom: 15.99%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 작성자 : 김첨지 */
+
+      position: absolute;
+      left: 40%;
+      right: 40.93%;
+      top: 84.87%;
+      bottom: 13.73%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 추천수 : 108 */
+
+      position: absolute;
+      left: 40%;
+      right: 43.95%;
+      top: 87.12%;
+      bottom: 11.59%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 15px;
+
+      color: #000000;
+
+      /* 메뉴 하단 가로줄 */
+
+      position: absolute;
+      left: 2.56%;
+      right: 2.33%;
+      top: 20.49%;
+      bottom: 79.4%;
+
+      background: #d9d9d9;
+
+      /* 리모콘 */
+
+      position: absolute;
+      left: 84.42%;
+      right: 6.28%;
+      top: 90.56%;
+      bottom: 5.15%;
+
+      background: #c1c1c1;
+      border-radius: 25px;
+
+      /* + */
+
+      position: absolute;
+      left: 74.19%;
+      right: 19.53%;
+      top: 11.8%;
+      bottom: 83.05%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 48px;
+
+      color: #ffffff;
+
+      /* + */
+
+      position: absolute;
+      left: 85.81%;
+      right: 7.91%;
+      top: 89.7%;
+      bottom: 5.15%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 48px;
+
+      color: #ffffff;
+
+      /* 로그인 아이콘 */
+
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      left: 370px;
+      top: 15px;
+
+      /* Ellipse 1 */
+
+      position: absolute;
+      left: 86.05%;
+      right: 3.72%;
+      top: 1.61%;
+      bottom: 93.67%;
+
+      background: #d9d9d9;
+
+      /* 김 */
+
+      position: absolute;
+      left: 88.84%;
+      right: 6.74%;
+      top: 2.79%;
+      bottom: 94.64%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+
+      color: #000000;
+
+      /* <<맨 앞 < 이전 1 2 3 4 5 7 8 9 10 다음> 맨 뒤>> */
+
+      position: absolute;
+      left: 27.21%;
+      right: 23.02%;
+      top: 91.42%;
+      bottom: 7.3%;
+
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 12px;
+
+      color: #000000;
+    </style>
   </head>
   <body></body>
 </html>
