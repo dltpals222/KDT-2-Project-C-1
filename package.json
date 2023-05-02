@@ -1,8 +1,22 @@
 {
   "name": "kdt-2-project-c-1",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Team-Prac 폴더 내의 각자 이니셜 폴더에서 개인 작업 진행\r Public 폴더는 정식으로 진행된 사항만 push할 것.",
+  "main": "app.js",
+  "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "core-util-is": "^1.0.3",
+    "isarray": "^1.0.0",
+    "safe-buffer": "^5.1.2",
+    "inherits": "^2.0.4",
+    "process-nextick-args": "^2.0.1",
+    "mysql": "^2.18.1",
+    "sqlstring": "^2.3.1",
+    "string_decoder": "^1.1.1",
+    "util-deprecate": "^1.0.2",
+    "readable-stream": "^2.3.7"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +25,10 @@
     "url": "git+https://github.com/kongukjae/KDT-2-Project-C-1.git"
   },
   "author": "",
+  "type": "module",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kongukjae/KDT-2-Project-C-1/issues"
   },
-  "homepage": "https://github.com/kongukjae/KDT-2-Project-C-1#readme",
-  "dependencies": {
-    "mysql": "^2.18.1"
-  }
+  "homepage": "https://github.com/kongukjae/KDT-2-Project-C-1#readme"
 }
