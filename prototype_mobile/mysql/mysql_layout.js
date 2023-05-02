@@ -11,12 +11,11 @@ const {
 const http = new XMLHttpRequest();
 http.onreadystatechange = function () {
   if (http.readyState === 4 && http.status === 200) {
-    const data = JSON.parse(http.responseText);
     // const datajson = JSON.stringify(data, null, 2);
+    const data = JSON.parse(http.responseText);
     const jsonDataTitle = data.map((value) => [value.title]);
     const jsonDataIngredients = data.map((value) => [value.ingredients]);
     const jsonDataContent = data.map((value) => [value.content]);
-
     const root = document.getElementById("root");
     const header = multiAndSingleTagMaker(root, "div", "header");
     header.textContent = jsonDataTitle[0];
