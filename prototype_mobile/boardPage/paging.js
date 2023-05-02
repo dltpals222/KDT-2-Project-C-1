@@ -28,6 +28,7 @@ const ids = {
         (element) => {
           element.innerText = "<<맨앞";
           allMightyStyleEditor(element, aTagObject);
+          element.addEventListener("click", () => {});
         },
       ],
       [
@@ -180,7 +181,7 @@ kingGodFlexEditor(currentPage, "", "center", "space-evenly");
 let pagination = {
   totalDoc: 156, //게시물 전체 갯수
   onePageData: 4, //한페이지에 나타낼 데이터 수 (게시글 수)
-  currentPage: 1, //현재 페이지
+  currentPage: 6, //현재 페이지
   onePageNumber: 5, //한 화면에 나타낼 페이지 수 (밑에 12345 숫자 누르는 버튼)
 };
 
@@ -219,12 +220,35 @@ if (aPageGroup === 1) {
 }
 
 //맨앞 버튼 addEventListener
-startNumber.addEventListener("click", () => {
-  pagination.currentPage = 1;
-});
+function prevPage(page) {
+  const pageDownChild = Array.from(pageDown.querySelectorAll("a"));
+  let PageDownPages = page;
+  //이전 버튼
+  pageDownChild[1].addEventListener("click", (event) => {
+    //a태그의 기본 동작을 막는다.
+    event.preventDefault();
+    //페이지 클릭할 시 타켓 설정
+    const index = pageDownChild.indexOf(event.target);
+
+    pageDownChild.forEach((element, k) => {
+      PageDownPages =
+        k === index ? PageDownPages - pagination.onePageNumber : page;
+      console.log(PageDownPages);
+    });
+  });
+  //맨앞 버튼
+  pageDownChild[0].addEventListener("click", (event) => {
+    //a태그의 기본 동작을 막는다.
+    event.preventDefault();
+    //페이지 클릭할 시 타켓 설정
+    const index = pageDownChild.indexOf(event.target);
+  });
+  currPageBtn(PageDownPages);
+}
 
 //현재 페이지 버튼
 function currPageBtn(page) {
+  renderContent(page);
   for (let i = page; i <= page + pagination.onePageNumber - 1; i++) {
     multiAndSingleTagMaker(
       currentPage,
@@ -237,18 +261,19 @@ function currPageBtn(page) {
         element.innerText = i;
         element.style.width = "20%";
         allMightyStyleEditor(element, aTagObject);
+        let elementNum = 0;
 
         const currentChildA = Array.from(currentPage.querySelectorAll("a"));
         currentChildA.map((childElement) => {
           childElement.addEventListener("click", (event) => {
             //페이지 클릭할 시 타켓 설정
             const index = currentChildA.indexOf(event.target);
-
             //페이지 숫자 클릭시 스타일 지정
             currentChildA.forEach((page, k) => {
               page.style.fontWeight = k === index ? "bold" : "normal";
               page.style.backgroundColor = k === index ? "#9A6E44" : "";
               page.style.color = k === index ? "white" : "black";
+              elementNum = k === index ? parseInt(page.dataset) : 0;
             });
           }); // addEventListener 끝
         }); // map 끝
@@ -258,6 +283,7 @@ function currPageBtn(page) {
           element.style.backgroundColor = "#9A6E44";
           element.style.color = "white";
         }
+        console.log(elementNum);
       } // 콜백 끝
     ); // 싱멀태그메이커 끝
   } // for문 끝
@@ -301,13 +327,13 @@ const renderContent = (page) => {
   }
 };
 
-async function allPaging(page) {
-  await currPageBtn(page);
-  renderContent(page);
-}
+// async function allPaging(page) {
+//   await currPageBtn(page);
+//   renderContent(page);
+// }
 
-allPaging(pagination.currentPage);
-
-// currPageBtn(pagination.currentPage)
+// allPaging(pagination.currentPage);
+prevPage(pagination.currentPage);
+currPageBtn(pagination.currentPage);
 
 // console.log(currentPage.children[0].dataset.num)
