@@ -1,12 +1,8 @@
 /*
-import all_mighty_editor from "../module/all_mighty_editor.js";
+import writeRecipeInfoDesign from "../module/all_mighty_editor.js";
 
-const middleBody = multiAndSingleTagMaker('body','div','main',length,callback);
+const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = writeRecipeInfoDesign;
 */
-
-
-//issue27에서 마저 이어서 만드는 issue45
-
 
 /*
 const mainBody = document.getElementById('main');
@@ -27,8 +23,6 @@ title.style.textAlign = 'center';
 mainBody.appendChild(title);
 //console.dir(mainBody);
 */
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////
 

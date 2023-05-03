@@ -1,3 +1,13 @@
+
+
+/*
+import viewRecipeInfoDesign from "../module/all_mighty_editor.js";
+
+const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = viewRecipeInfoDesign;
+*/
+
+
+
 /*
 해당페이지의 메인부분에서 사진과 재료 및 조리기구 설명 부분을 따로 떼놓아 만든부분임을 감안할 것
 */

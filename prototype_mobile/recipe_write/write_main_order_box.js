@@ -1,4 +1,14 @@
 
+
+/*
+import writeOrderDesign from "../module/all_mighty_editor.js";
+
+const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = writeOrderDesign;
+*/
+
+
+
+
 //레시피 순서
 const recipeOrder = document.createElement('div');
 recipeOrder.setAttribute('id','recipeOrder');
@@ -34,7 +44,7 @@ mainBody.appendChild(orderBox2);
 */
 
 
-//레시피 순서안의 설명
+//레시피 순서안의 설명첨부부분
 /*
 const info = document.createTextNode('1)요리를 시작한다');
 recipeOrder.appendChild(info);
@@ -55,6 +65,16 @@ for(let i = 0; i < 3; i++){
   introList.textContent = '1)요리를 시작한다.';
   cookOrder.appendChild(introList);
 }
+
+/////////////////////////////////////////////////////////////////
+//이부분부터 이어서 다시 작업 및 수정
+
+
+const cookeInput = document.createElement('input');
+cookeInput.setAttribute('id','text');
+
+
+
 
 /*
 const info = document.createElement('ol');

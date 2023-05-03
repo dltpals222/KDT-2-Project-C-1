@@ -1,5 +1,12 @@
 
 /*
+import viewOrderDesign from "../module/all_mighty_editor.js";
+
+const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = viewOrderDesign;
+*/
+
+
+/*
 해당페이지의 메인부분에서 요리순서부분을 따로 떼놓아 만든부분임을 감안할 것
 */
 
