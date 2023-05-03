@@ -8,318 +8,161 @@ const {
   allMightyStyleEditor,
 } = all_mighty_editor;
 
-const root = document.getElementById("root");
-const ids = {
-  mainList: ["", "div", "board-list"],
-  mainPage: ["", "div", "number-list-wrap"],
-  mainListChild: ["", "div", "", 5],
-  mainPageChild: {
-    first: ["", "div", "page-down"],
-    second: ["", "div", "current-page"],
-    third: ["", "div", "page-up"],
-  },
-  mainPageGrandChild: {
-    first: [
-      [
-        "",
-        "a",
-        { href: "#", id: "start-number" },
-        1,
-        (element) => {
-          element.innerText = "<<맨앞";
-          allMightyStyleEditor(element, aTagObject);
-          element.addEventListener("click", () => {});
-        },
-      ],
-      [
-        "",
-        "a",
-        { href: "#", id: "before-number" },
-        1,
-        (element) => {
-          element.innerText = "<이전";
-          allMightyStyleEditor(element, aTagObject);
-        },
-      ],
-    ],
-    second: ["", "a", "", 1],
-    third: [
-      [
-        "",
-        "a",
-        { href: "#", id: "next-number" },
-        1,
-        (element) => {
-          element.innerText = "다음>";
-          allMightyStyleEditor(element, aTagObject);
-        },
-      ],
-      [
-        "",
-        "a",
-        { href: "#", id: "end-number" },
-        1,
-        (element) => {
-          element.innerText = "맨뒤>>";
-          allMightyStyleEditor(element, aTagObject);
-        },
-      ],
-    ],
-  },
-};
-
-const aTagObject = {
-  "text-decoration": "none",
-  color: "black",
-  display: "flex",
-  justifyContent: "center",
-};
-// allMightyStyleEditor(element,aTagObject)
-
-const numberStyle = ["15px", "10px", "1"];
-const tagASet = { href: "#" };
-
-//게시글이 나타날 div
-const boardList = multiAndSingleTagMaker(
-  root,
-  ids.mainList[1],
-  ids.mainList[2]
-);
-// //게시글 임시 div 추가
-// multiAndSingleTagMaker(
-//   boardList,
-//   ids.mainListChild[1],
-//   ids.mainListChild[2],
-//   ids.mainListChild[3],
-//   ids.mainListChild[4]
-// );
-
-//페이지네이션 최상위 div
-const numberListWrap = multiAndSingleTagMaker(
-  root,
-  ids.mainPage[1],
-  ids.mainPage[2]
-);
-//이전 페이지 상위 div
-const pageDown = multiAndSingleTagMaker(
-  numberListWrap,
-  ids.mainPageChild.first[1],
-  ids.mainPageChild.first[2]
-);
-//현재 페이지 나타내는 구간
-const currentPage = multiAndSingleTagMaker(
-  numberListWrap,
-  ids.mainPageChild.second[1],
-  ids.mainPageChild.second[2]
-);
-//다음 페이지 상위 div
-const pageUp = multiAndSingleTagMaker(
-  numberListWrap,
-  ids.mainPageChild.third[1],
-  ids.mainPageChild.third[2]
-);
-
-//맨앞 버튼
-const startNumber = multiAndSingleTagMaker(
-  pageDown,
-  ids.mainPageGrandChild.first[0][1],
-  ids.mainPageGrandChild.first[0][2],
-  ids.mainPageGrandChild.first[0][3],
-  ids.mainPageGrandChild.first[0][4]
-);
-
-//이전 버튼
-const beforeNumber = multiAndSingleTagMaker(
-  pageDown,
-  ids.mainPageGrandChild.first[1][1],
-  ids.mainPageGrandChild.first[1][2],
-  ids.mainPageGrandChild.first[1][3],
-  ids.mainPageGrandChild.first[1][4]
-);
-
-//다음 버튼
-const nextNumber = multiAndSingleTagMaker(
-  pageUp,
-  ids.mainPageGrandChild.third[0][1],
-  ids.mainPageGrandChild.third[0][2],
-  ids.mainPageGrandChild.third[0][3],
-  ids.mainPageGrandChild.third[0][4]
-);
-
-//맨뒤 버튼
-const endNumber = multiAndSingleTagMaker(
-  pageUp,
-  ids.mainPageGrandChild.third[1][1],
-  ids.mainPageGrandChild.third[1][2],
-  ids.mainPageGrandChild.third[1][3],
-  ids.mainPageGrandChild.third[1][4]
-);
-
-//css구간
-kingGodFlexEditor(root, "column", "center", "center");
-kingGodFlexEditor(boardList, "column", "center", "center");
-kingGodFlexEditor(numberListWrap, "row", "center", "center");
-for (let i = 0; i < numberListWrap.children.length; i++) {
-  kingGodFlexEditor(numberListWrap.children[i], "", "center", "space-evenly");
-  fontAndLayoutEditor(
-    numberListWrap.children[i],
-    "",
-    "",
-    "1",
-    "",
-    "",
-    (element) => {
-      element.margin = "2px";
-    }
-  );
+function paging() {
+  let pagination = {
+    total: 98,
+    pageContentCount: 4,
+    currPage: 1,
+    pageNumCount: 5,
+  };
+  return pagination;
 }
 
-fontAndLayoutEditor(numberListWrap, "100%", "3%", "1");
-fontAndLayoutEditor(currentPage, "40%", "", "1");
-kingGodFlexEditor(currentPage, "", "center", "space-evenly");
-
-let pagination = {
-  totalDoc: 151, //게시물 전체 갯수
-  onePageData: 4, //한페이지에 나타낼 데이터 수 (게시글 수)
-  currentPage: 1, //현재 페이지
-  onePageNumber: 5, //한 화면에 나타낼 페이지 수 (밑에 12345 숫자 누르는 버튼)
-};
-
-//총 페이지 수
-const totalPage = Math.ceil(pagination.totalDoc / pagination.onePageData);
-
-//화면에 보여질 페이지 그룹
-const aPageGroup = Math.ceil(pagination.currentPage / pagination.onePageNumber);
-console.log(aPageGroup);
+//전체 페이지 갯수
+const total = Math.ceil(paging().total / paging().pageContentCount);
 //화면에 보여질 페이지 그룹 함수
-function currPageGroup(currPage, onePageNum = 5) {
-  return Math.ceil(currPage / onePageNum);
+function currPageGroup(currPage, pageNumCount = 5) {
+  return Math.ceil(currPage / pageNumCount);
 }
 
-//화면에 보여질 페이지 그룹 끝부분
-const EndPageGroup = Math.ceil(totalPage / pagination.onePageNumber);
-console.log(EndPageGroup);
+const root = document.getElementById("root");
 
-// //화면에 그려질 첫번째 페이지
-// let displayOnePage = 0;
-// if (totalPage - (pagination.onePageNumber - 1) < 0) {
-//   displayOnePage = 1; //계산된 값이 0 이하면 첫번째 페이지
-// } else {
-//   displayOnePage = totalPage - (pagination.onePageNumber - 1);
-// }
+//root 자식
+const boardList = multiAndSingleTagMaker(root, "div", "board-list");
+const paginationCtn = multiAndSingleTagMaker(root, "div", "pagination-ctn");
 
-// //화면에 그려질 마지막 페이지
-// let displayUpOnePage = 0;
-// if (aPageGroup * pagination.onePageNumber > totalPage) {
-//   displayUpOnePage = totalPage; //계산된 값이 총페이지보다 많으면 마지막 페이지
-// } else {
-//   displayUpOnePage = aPageGroup * pagination.onePageNumber;
-// }
-
-function prevStartPageGroupDisplay(page) {
-  //맨앞, 이전 버튼 디스플레이
-  if (page === 1) {
-    startNumber.style.visibility = "hidden";
-    beforeNumber.style.visibility = "hidden";
-  } else {
-    startNumber.style.display = "block";
-    beforeNumber.style.display = "block";
-  }
-
-  //맨뒤, 다음 버튼 디스플레이
-  if (page === EndPageGroup) {
-    nextNumber.style.visibility = "hidden";
-    endNumber.style.visibility = "hidden";
-  } else {
-    nextNumber.style.display = "block";
-    endNumber.style.display = "block";
-  }
-}
-
-//맨앞 버튼 addEventListener
-function fourPageBtn(page) {
-  const pageDownChild = Array.from(pageDown.querySelectorAll("a"));
-  let displayDownOnePage = page;
-  //이전 버튼
-  pageDownChild[1].addEventListener("click", (event) => {
-    //a태그의 기본 동작을 막는다.
-    event.preventDefault();
-    //화면에 그려질 첫번째 페이지
-    if (page - (pagination.onePageNumber - 1) < 0) {
-      displayDownOnePage = 1; //계산된 값이 0 이하면 첫번째 페이지
-
-      currPageBtn(displayDownOnePage);
-    } else {
-      displayDownOnePage = page - pagination.onePageNumber;
-      currPageBtn(displayDownOnePage);
-    }
-  });
-
-  //맨앞 버튼
-  pageDownChild[0].addEventListener("click", (event) => {
-    //a태그의 기본 동작을 막는다.
-    event.preventDefault();
-    currPageBtn(1);
-  });
-
-  //다음 버튼
-  const pageUpChild = Array.from(pageUp.querySelectorAll("a"));
-  let displayUpOnePage = page;
-  pageUpChild[0].addEventListener("click", (event) => {
-    //a태그의 기본 동작을 막는다.
-    event.preventDefault();
-
-    //화면에 그려질 마지막 페이지
-    if (page + pagination.onePageNumber > totalPage) {
-      displayUpOnePage = totalPage; //계산된 값이 총페이지보다 많으면 마지막 페이지
-      currPageBtn(displayUpOnePage);
-    } else {
-      displayUpOnePage = page + pagination.onePageNumber;
-      currPageBtn(displayUpOnePage);
-    }
-  });
-
-  //맨뒤 버튼
-  pageUpChild[1].addEventListener("click", (event) => {
-    //a태그의 기본 동작을 막는다.
-    event.preventDefault();
-    currPageBtn(totalPage);
-  });
-}
-
-//board-list 추가
+//게시글 예제
 const makeContent = (i) => {
   const content = document.createElement("div");
   content.innerHTML = `
-    <span>${i}</span>
-    <span>게시물 제목</span>
-    <span>작성자</span>
-    <span>2022.01.01</span>
-  `;
+      <span>${i}</span>
+      <span>게시물 제목</span>
+      <span>작성자</span>
+      <span>2022.01.01</span>
+    `;
   return content;
 };
 
+//게시글을 포함시킨 renderContent
 const renderContent = (page, parent) => {
+  const { total, pageContentCount, currPage, pageNumCount } = paging();
   while (parent.hasChildNodes()) {
     parent.removeChild(parent.lastChild);
   }
 
   for (
-    let i = (page - 1) * pagination.onePageData + 1;
-    i <= page * pagination.onePageData && pagination.totalDoc;
+    let i = (page - 1) * pageContentCount + 1;
+    i <= page * pageContentCount && i <= total;
     i++
   ) {
     parent.appendChild(makeContent(i));
   }
 };
+function pagingFourBtn(currpage) {
+  if (currPageGroup(currPage) === 1) {
+    beforeNumber.style.visibility = "hidden";
+  } else {
+    beforeNumber.style.display = "block";
+    currPage = 1;
+  }
+}
 
-// async function allPaging(page) {
-//   currPageBtn(page);
-//   prevStartPageGroupDisplay(page);
-//   fourPageBtn(page);
-// }
+const renderButtons = () => {
+  const buttonList = multiAndSingleTagMaker(paginationCtn, "ul", "button-list");
+  // buttonList.classList.add("pagination");
 
-// allPaging(pagination.currentPage);
-currPageBtn(pagination.currentPage);
+  let { total, pageContentCount, currPage, pageNumCount } = paging();
 
-// console.log(currentPage.children[0].dataset.num)
+  const startNumber = multiAndSingleTagMaker(buttonList, "li", "start-number");
+  startNumber.innerHTML = "<<맨앞";
+  startNumber.addEventListener("click", () => {
+    if (currPageGroup(currPage) === 1) {
+      beforeNumber.style.visibility = "hidden";
+    } else {
+      beforeNumber.style.display = "block";
+      currPage = 1;
+    }
+    renderContent(currPage, boardList);
+    renderButtons();
+  });
+
+  const beforeNumber = multiAndSingleTagMaker(
+    buttonList,
+    "li",
+    "before-number"
+  );
+  beforeNumber.innerHTML = "<이전";
+  beforeNumber.addEventListener("click", () => {
+    if (currPageGroup(currPage) === 1) {
+      beforeNumber.style.visibility = "hidden";
+    } else {
+      beforeNumber.style.display = "block";
+      currPage = currPageGroup(currPage) * pageNumCount - (pageNumCount - 1);
+    }
+    renderContent(currPage, boardList);
+    renderButtons();
+  });
+
+  const nextButton = multiAndSingleTagMaker(buttonList, "li", "start-number");
+  nextButton.innerHTML = "다음>";
+  nextButton.addEventListener("click", () => {
+    currPage++;
+    if (currPage > total) {
+      currPage = total;
+    }
+    renderContent(currPage, boardList);
+    renderButtons();
+  });
+
+  const lastButton = multiAndSingleTagMaker(buttonList, "li", "start-number");
+  lastButton.innerHTML = "끝";
+  lastButton.addEventListener("click", () => {
+    currPage = total;
+    renderContent(currPage, boardList);
+    renderButtons();
+  });
+
+  buttonList.appendChild(startNumber);
+  buttonList.appendChild(beforeNumber);
+
+  // 중간 페이지 버튼 처리
+  const halfDisplayPage = Math.floor(pageNumCount / 2);
+  let startPage = currPage - halfDisplayPage;
+  let endPage = currPage + halfDisplayPage;
+
+  if (startPage < 1) {
+    startPage = 1;
+    endPage = startPage + pageNumCount - 1;
+  }
+  if (endPage > total) {
+    endPage = total;
+    startPage = endPage - pageNumCount + 1;
+    if (startPage < 1) {
+      startPage = 1;
+    }
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    const pageButton = multiAndSingleTagMaker(buttonList, "li", "start-number");
+    pageButton.innerHTML = i;
+    if (i === currPage) {
+      pageButton.classList.add("active");
+    } else {
+      pageButton.addEventListener("click", () => {
+        currPage = i;
+        renderContent(currPage, boardList);
+        renderButtons();
+      });
+    }
+    buttonList.appendChild(pageButton);
+  }
+
+  buttonList.appendChild(nextButton);
+  buttonList.appendChild(lastButton);
+
+  const buttonWrapper = document.getElementById("button-wrapper");
+  while (buttonWrapper.hasChildNodes()) {
+    buttonWrapper.removeChild(buttonWrapper.lastChild);
+  }
+  buttonWrapper.appendChild(buttonList);
+};

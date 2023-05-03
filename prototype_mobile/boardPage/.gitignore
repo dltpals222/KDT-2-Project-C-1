@@ -1,3 +1,7 @@
 index.js
 mysql.js
 test.js
+.gitignore
+pagination.js
+pagination1.js
+index.html
