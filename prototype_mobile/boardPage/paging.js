@@ -19,7 +19,7 @@ function paging() {
 }
 
 //전체 페이지 갯수
-const total = Math.ceil(paging().total / paging().pageContentCount);
+const totalPageCount = Math.ceil(paging().total / paging().pageContentCount);
 //화면에 보여질 페이지 그룹 함수
 function currPageGroup(currPage, pageNumCount = 5) {
   return Math.ceil(currPage / pageNumCount);
@@ -58,14 +58,6 @@ const renderContent = (page, parent) => {
     parent.appendChild(makeContent(i));
   }
 };
-function pagingFourBtn(currpage) {
-  if (currPageGroup(currPage) === 1) {
-    beforeNumber.style.visibility = "hidden";
-  } else {
-    beforeNumber.style.display = "block";
-    currPage = 1;
-  }
-}
 
 const renderButtons = () => {
   const buttonList = multiAndSingleTagMaker(paginationCtn, "ul", "button-list");
@@ -77,9 +69,9 @@ const renderButtons = () => {
   startNumber.innerHTML = "<<맨앞";
   startNumber.addEventListener("click", () => {
     if (currPageGroup(currPage) === 1) {
-      beforeNumber.style.visibility = "hidden";
+      startNumber.style.visibility = "hidden";
     } else {
-      beforeNumber.style.display = "block";
+      startNumber.style.visibility = "visible";
       currPage = 1;
     }
     renderContent(currPage, boardList);
@@ -96,34 +88,38 @@ const renderButtons = () => {
     if (currPageGroup(currPage) === 1) {
       beforeNumber.style.visibility = "hidden";
     } else {
-      beforeNumber.style.display = "block";
+      beforeNumber.style.visibility = "visible";
       currPage = currPageGroup(currPage) * pageNumCount - (pageNumCount - 1);
     }
     renderContent(currPage, boardList);
     renderButtons();
   });
 
-  const nextButton = multiAndSingleTagMaker(buttonList, "li", "start-number");
-  nextButton.innerHTML = "다음>";
-  nextButton.addEventListener("click", () => {
-    currPage++;
-    if (currPage > total) {
-      currPage = total;
+  const nextNumber = multiAndSingleTagMaker(buttonList, "li", "next-number");
+  nextNumber.innerHTML = "다음>";
+  nextNumber.addEventListener("click", () => {
+    if (currPageGroup(currPage) === currPageGroup(totalPageCount)) {
+      nextNumber.style.visibility = "hidden";
+    } else {
+      nextNumber.style.visibility = "visible";
+      currPage = currPageGroup(currPage) * pageNumCount + 1;
     }
     renderContent(currPage, boardList);
     renderButtons();
   });
 
-  const lastButton = multiAndSingleTagMaker(buttonList, "li", "start-number");
-  lastButton.innerHTML = "끝";
-  lastButton.addEventListener("click", () => {
-    currPage = total;
+  const endNumber = multiAndSingleTagMaker(buttonList, "li", "end-number");
+  endNumber.innerHTML = "맨뒤>>";
+  endNumber.addEventListener("click", () => {
+    if (currPageGroup(currPage) === currPageGroup(totalPageCount)) {
+      endNumber.style.visibility = "hidden";
+    } else {
+      endNumber.style.visibility = "visible";
+      currPage = total;
+    }
     renderContent(currPage, boardList);
     renderButtons();
   });
-
-  buttonList.appendChild(startNumber);
-  buttonList.appendChild(beforeNumber);
 
   // 중간 페이지 버튼 처리
   const halfDisplayPage = Math.floor(pageNumCount / 2);
@@ -166,3 +162,5 @@ const renderButtons = () => {
   }
   buttonWrapper.appendChild(buttonList);
 };
+
+renderButtons();
