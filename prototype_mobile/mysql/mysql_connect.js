@@ -1,6 +1,6 @@
 import mysql from 'mysql'
 
-const dbConfig = mysql.createConnection({
+const dbSet = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'kids0302',
@@ -10,4 +10,4 @@ const dbConfig = mysql.createConnection({
   waitForConnections: true //클라이언트가 연결을 요청할 때 대기 여부
 })
 
-export default dbConfig
+export default dbSet

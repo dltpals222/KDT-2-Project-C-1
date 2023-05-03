@@ -1,8 +1,7 @@
 import qs from 'querystring'
-import serverReadFileModule from './server_readfile.js'
 import dbSet from '../mysql/mysql_connect.js'
 
-function a(chunk, query) {
+function reqOnData(chunk, query) {
   let body = '';
   body += chunk;
   let postArray = [];
@@ -23,4 +22,4 @@ function a(chunk, query) {
   dbSet.end();
 }
 
-export default a;
+export default reqOnData;
