@@ -5,6 +5,9 @@ const middleBody = multiAndSingleTagMaker('body','div','main',length,callback);
 */
 
 
+//issue27에서 마저 이어서 만드는 issue45
+
+
 /*
 const mainBody = document.getElementById('main');
 //mainBody.style.backgroundColor = 'purple';
