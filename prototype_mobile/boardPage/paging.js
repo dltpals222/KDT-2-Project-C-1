@@ -181,7 +181,7 @@ kingGodFlexEditor(currentPage, "", "center", "space-evenly");
 let pagination = {
   totalDoc: 151, //게시물 전체 갯수
   onePageData: 4, //한페이지에 나타낼 데이터 수 (게시글 수)
-  currentPage: 21, //현재 페이지
+  currentPage: 1, //현재 페이지
   onePageNumber: 5, //한 화면에 나타낼 페이지 수 (밑에 12345 숫자 누르는 버튼)
 };
 
@@ -190,9 +190,15 @@ const totalPage = Math.ceil(pagination.totalDoc / pagination.onePageData);
 
 //화면에 보여질 페이지 그룹
 const aPageGroup = Math.ceil(pagination.currentPage / pagination.onePageNumber);
+console.log(aPageGroup);
+//화면에 보여질 페이지 그룹 함수
+function currPageGroup(currPage, onePageNum = 5) {
+  return Math.ceil(currPage / onePageNum);
+}
 
 //화면에 보여질 페이지 그룹 끝부분
 const EndPageGroup = Math.ceil(totalPage / pagination.onePageNumber);
+console.log(EndPageGroup);
 
 // //화면에 그려질 첫번째 페이지
 // let displayOnePage = 0;
@@ -273,6 +279,7 @@ function fourPageBtn(page) {
     }
   });
 
+  //맨뒤 버튼
   pageUpChild[1].addEventListener("click", (event) => {
     //a태그의 기본 동작을 막는다.
     event.preventDefault();
@@ -286,7 +293,11 @@ function currPageBtn(page) {
     currentPage.removeChild(currentPage.firstChild);
   }
   renderContent(page);
-  for (let i = page; i <= page + pagination.onePageNumber - 1; i++) {
+  for (
+    let i = currPageGroup(page) * 5 - 4;
+    i <= currPageGroup(page) * 5 && EndPageGroup;
+    i++
+  ) {
     multiAndSingleTagMaker(
       currentPage,
       ids.mainPageGrandChild.second[1],
