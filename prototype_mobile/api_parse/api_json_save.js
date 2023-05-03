@@ -4,8 +4,8 @@ import { fileURLToPath } from "url";
 import path from "path";
 
 const apiUrl =
-  "http://openapi.foodsafetykorea.go.kr/api/ea64844179af470daeb3/COOKRCP01/json/1/5";
-const fileName = "data.json";
+  "http://openapi.foodsafetykorea.go.kr/api/ea64844179af470daeb3/COOKRCP01/json/1/2";
+const fileName = "data_2.json";
 const filePath = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   fileName
