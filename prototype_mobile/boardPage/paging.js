@@ -287,61 +287,6 @@ function fourPageBtn(page) {
   });
 }
 
-//현재 페이지 버튼
-function currPageBtn(page) {
-  while (currentPage.hasChildNodes()) {
-    currentPage.removeChild(currentPage.firstChild);
-  }
-  renderContent(page);
-  for (
-    let i = currPageGroup(page) * 5 - 4;
-    i <= currPageGroup(page) * 5 && EndPageGroup;
-    i++
-  ) {
-    multiAndSingleTagMaker(
-      currentPage,
-      ids.mainPageGrandChild.second[1],
-      ids.mainPageGrandChild.second[2],
-      ids.mainPageGrandChild.second[3],
-      (element) => {
-        element.setAttribute("data-num", i);
-        element.setAttribute("href", `#`);
-        element.innerText = i;
-        element.style.width = "20%";
-        allMightyStyleEditor(element, aTagObject);
-        let elementNum = 0;
-
-        const currentChildA = Array.from(currentPage.querySelectorAll("a"));
-        currentChildA.map((childElement) => {
-          childElement.addEventListener("click", (event) => {
-            //페이지 클릭할 시 타켓 설정
-            const index = currentChildA.indexOf(event.target);
-            //페이지 숫자 클릭시 스타일 지정
-            currentChildA.forEach((paging, k) => {
-              paging.style.fontWeight = k === index ? "bold" : "normal";
-              paging.style.backgroundColor = k === index ? "#9A6E44" : "";
-              paging.style.color = k === index ? "white" : "black";
-              elementNum =
-                k === index ? parseInt(paging.dataset.num) : elementNum;
-            });
-            renderContent(elementNum);
-          }); // addEventListener 끝
-        }); // map 끝
-        //초기 첫번째 페이지 선택
-        if (i === page) {
-          element.style.fontWeight = "bold";
-          element.style.backgroundColor = "#9A6E44";
-          element.style.color = "white";
-        }
-        console.log(elementNum);
-      } // 콜백 끝
-    ); // 싱멀태그메이커 끝
-    fourPageBtn(page);
-    prevStartPageGroupDisplay(page);
-  } // for문 끝
-}
-// console.dir(currentPage.children)
-
 //board-list 추가
 const makeContent = (i) => {
   const content = document.createElement("div");
@@ -354,9 +299,9 @@ const makeContent = (i) => {
   return content;
 };
 
-const renderContent = (page) => {
-  while (boardList.hasChildNodes()) {
-    boardList.removeChild(boardList.lastChild);
+const renderContent = (page, parent) => {
+  while (parent.hasChildNodes()) {
+    parent.removeChild(parent.lastChild);
   }
 
   for (
@@ -364,7 +309,7 @@ const renderContent = (page) => {
     i <= page * pagination.onePageData && pagination.totalDoc;
     i++
   ) {
-    boardList.appendChild(makeContent(i));
+    parent.appendChild(makeContent(i));
   }
 };
 
