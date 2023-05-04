@@ -2,7 +2,7 @@ import http from "http";
 import Url from "url";
 import fs from "fs";
 import serverReadFileModule from "./module/server_readfile.js";
-import serverPostModule from "../module/server_post.js";
+import serverPostModule from "./module/server_post.js";
 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
