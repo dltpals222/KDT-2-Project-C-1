@@ -6,3 +6,4 @@ const recipeCount = recipes.length;
 
 // console.log(`총 ${recipeCount}개의 레시피가 있습니다.`);
 console.log(recipes);
+console.log();
