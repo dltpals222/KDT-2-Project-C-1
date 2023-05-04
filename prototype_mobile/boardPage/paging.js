@@ -34,18 +34,19 @@ const makeContent = (i) => {
 };
 
 //게시글을 포함시킨 renderContent
-const renderContent = (page, parent) => {
+const renderContent =  (page, parent) => {
   while (parent.hasChildNodes()) {
     parent.removeChild(parent.lastChild);
   }
 
-  for (
-    let i = total;
-    i >= 1 && i >= total - (page - 1) * pageContentCount + 1;
-    i--
-  ) {
-    parent.appendChild(makeContent(i));
-  }
+    for (
+      let i = total - (page-1)*pageContentCount;
+      i >= 1 && i > total - page*pageContentCount;
+      i --
+    ) {
+      parent.appendChild(makeContent(i));
+    }
+    
 };
 
 //맨앞 버튼
