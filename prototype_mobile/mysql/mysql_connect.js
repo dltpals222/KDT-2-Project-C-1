@@ -10,4 +10,4 @@ const dbSet = mysql.createConnection({
   waitForConnections: true //클라이언트가 연결을 요청할 때 대기 여부
 })
 
-export default dbSet
+export default dbSet;
