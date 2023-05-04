@@ -140,7 +140,7 @@ const server = http.createServer((req, res) => {
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 
-server.listen(2090, (err) => {
+server.listen(2080, (err) => {
   if (err) {
     console.error(err);
   } else {
