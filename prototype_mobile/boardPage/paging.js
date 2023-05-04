@@ -73,7 +73,7 @@ const renderButtons = () => {
       startNumber.style.visibility = "hidden";
     } else {
       startNumber.style.visibility = "visible";
-      currPage = 1;
+      let currPage = 1;
     }
     renderContent(currPage, boardList);
     renderButtons();
@@ -98,11 +98,9 @@ const renderButtons = () => {
   });
 
   // 중간 페이지 버튼 처리
-  const halfDisplayPage = Math.floor(pageNumCount / 2);
-  console.log(halfDisplayPage, "하프디스플레이페이지");
-  let startPage = currPage - halfDisplayPage;
+  let startPage = currPageGroup(currPage) * pageNumCount - (pageNumCount - 1);
   console.log(startPage, "스타트 페이지");
-  let endPage = currPage + halfDisplayPage;
+  let endPage = currPageGroup(currPage) * pageNumCount;
   console.log(endPage, "엔드 페이지");
 
   if (startPage < 1) {
