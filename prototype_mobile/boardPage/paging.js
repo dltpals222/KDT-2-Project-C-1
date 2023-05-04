@@ -107,6 +107,7 @@ const renderButtons = () => {
 
   //중간 페이지 버튼 반복문
   for (let i = startPage; i <= endPage && i <= totalPageCount; i++) {
+    //페이지 숫자 버튼 CSS포함시킴
     const pageButton = multiAndSingleTagMaker(buttonList, "li", i,1,element => {
       fontAndLayoutEditor(element,'8%','')
       kingGodFlexEditor(element,'','center','center')
