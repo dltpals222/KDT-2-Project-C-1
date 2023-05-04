@@ -99,16 +99,19 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
   } else if (urlMethod === "POST") {
+    //post 방식 데이터 mysql로 보내기
     req.on("data", function (chunk) {
       reqOnData(
         chunk,
         "insert into add_recipe(title,ingredients,content) values (?, ?, ?)"
       );
-    });
-    req.on("end", function () {
+      //mysql에서 저장된 데이터를 json 파일로 저장하기
       dbSet.query("SELECT * FROM  add_recipe", function (err, results, fields) {
         fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
       });
+    });
+    req.on("end", function () {
+      //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
       res.writeHead(302, { Location: "/print" });
       res.end();
     });

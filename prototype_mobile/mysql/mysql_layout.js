@@ -17,7 +17,7 @@ http.onreadystatechange = function () {
     const jsonDataTitle = data.map((value) => [value.title]);
     const jsonDataIngredients = data.map((value) => [value.ingredients]);
     const jsonDataContent = data.map((value) => [value.content]);
-
+    //레이아웃 부분.
     const root = document.getElementById("root");
     const header = multiAndSingleTagMaker(root, "div", "header");
     header.textContent = jsonDataTitle[jsonDataTitle.length - 1];
@@ -27,5 +27,6 @@ http.onreadystatechange = function () {
     footer.textContent = jsonDataContent[jsonDataContent.length - 1];
   }
 };
+//db.json 파일 GET방식으로 오픈
 http.open("GET", "db.json");
 http.send();
