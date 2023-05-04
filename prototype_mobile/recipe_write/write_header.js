@@ -5,7 +5,8 @@ body.style.display = 'flex';
 body.style.flexDirection = 'column';
 body.style.justifyContent = 'center';
 
-const header  = document.getElementById('header');
+const header  = document.getElementById('root');
+header.setAttribute('id','header');
 //header.style.backgroundColor = 'blue';
 header.style.width = '30vw';
 header.style.height = '25vh';

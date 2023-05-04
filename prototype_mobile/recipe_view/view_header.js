@@ -1,15 +1,17 @@
 
-const body = document.body;
+const body = document.querySelector('body');
 body.style.margin = "0%";
 body.style.display = 'flex';
 body.style.flexDirection = 'column';
 body.style.justifyContent = 'center';
+body.style.alignItems = 'center';
 
-const header  = document.getElementById('header');
+const header  = document.getElementById('root');
+header.setAttribute('id', 'header');
 //header.style.backgroundColor = 'blue';
 header.style.width = '30vw';
 header.style.height = '25vh';
-header.style.borderBottom = '2px solid #d9d9d9';
+header.style.borderBottom = '5px solid #d9d9d9';
 
 
 /*
