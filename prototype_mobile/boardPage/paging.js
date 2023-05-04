@@ -99,12 +99,15 @@ const renderButtons = () => {
 
   // 중간 페이지 버튼 처리
   const halfDisplayPage = Math.floor(pageNumCount / 2);
+  console.log(halfDisplayPage, "하프디스플레이페이지");
   let startPage = currPage - halfDisplayPage;
+  console.log(startPage, "스타트 페이지");
   let endPage = currPage + halfDisplayPage;
+  console.log(endPage, "엔드 페이지");
 
   if (startPage < 1) {
     startPage = 1;
-    endPage = startPage + pageNumCount - 1;
+    endPage = currPageGroup(currPage) * pageNumCount - 1;
   }
   if (endPage > total) {
     endPage = total;
@@ -115,12 +118,8 @@ const renderButtons = () => {
   }
 
   //중간 페이지 버튼 반복문
-  for (
-    let i = currPageGroup * pageNumCount - (pageNumCount - 1);
-    i <= currPageGroup * pageNumCount;
-    i++
-  ) {
-    const pageButton = multiAndSingleTagMaker(buttonList, "li", "start-number");
+  for (let i = startPage; i <= endPage; i++) {
+    const pageButton = multiAndSingleTagMaker(buttonList, "li", i);
     pageButton.innerHTML = i;
     if (i === currPage) {
       pageButton.classList.add("active");
@@ -162,11 +161,11 @@ const renderButtons = () => {
     renderButtons();
   });
 
-  const buttonWrapper = document.getElementById("button-wrapper");
-  while (buttonWrapper.hasChildNodes()) {
-    buttonWrapper.removeChild(buttonWrapper.lastChild);
+  while (paginationCtn.hasChildNodes()) {
+    paginationCtn.removeChild(paginationCtn.lastChild);
   }
-  buttonWrapper.appendChild(buttonList);
+  paginationCtn.appendChild(buttonList);
 };
 
+renderContent(paging().currPage, boardList);
 renderButtons();
