@@ -4,6 +4,11 @@ import writeRecipeInfoDesign from "../module/all_mighty_editor.js";
 const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = writeRecipeInfoDesign;
 */
 
+
+
+///////////////////////
+
+
 /*
 const mainBody = document.getElementById('main');
 //mainBody.style.backgroundColor = 'purple';
