@@ -6,6 +6,8 @@ import qs from "querystring";
 import serverReadFileModule from "../module/server_readfile.js";
 import serverPost from "../module/server_post.js";
 import dbSet from "./mysql_connect.js";
+import reqOnData from "../module/server_post.js";
+
 /* 
 
   mysql database 이름 
@@ -97,16 +99,19 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
   } else if (urlMethod === "POST") {
-    if (urlPathName === "/") {
-      serverPost(req, res);
-      /*       dbset.query("SELECT * FROM  add_recipe", function (err, results, fields) {
+    req.on("data", function (chunk) {
+      reqOnData(
+        chunk,
+        "insert into add_recipe(title,ingredients,content) values (?, ?, ?)"
+      );
+    });
+    req.on("end", function () {
+      dbSet.query("SELECT * FROM  add_recipe", function (err, results, fields) {
         fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
-        // fs.readFile("db.json", function (err, data) {
-        //   const jsonData = JSON.stringify(results);
-        //   console.log(jsonData);
-        // });
-      }); */
-    }
+      });
+      res.writeHead(302, { Location: "/print" });
+      res.end();
+    });
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 

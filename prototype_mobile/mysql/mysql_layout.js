@@ -8,14 +8,16 @@ const {
   allMightyStyleEditor,
 } = all_mighty_editor;
 
+//ajax 를 사용해서 xml을 이용한 정보 교환
 const http = new XMLHttpRequest();
 http.onreadystatechange = function () {
   if (http.readyState === 4 && http.status === 200) {
-    // const datajson = JSON.stringify(data, null, 2);
+    //json 파일에 있는 데이터의 값을 출력
     const data = JSON.parse(http.responseText);
     const jsonDataTitle = data.map((value) => [value.title]);
     const jsonDataIngredients = data.map((value) => [value.ingredients]);
     const jsonDataContent = data.map((value) => [value.content]);
+
     const root = document.getElementById("root");
     const header = multiAndSingleTagMaker(root, "div", "header");
     header.textContent = jsonDataTitle[jsonDataTitle.length - 1];
