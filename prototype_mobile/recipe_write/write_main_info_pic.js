@@ -1,8 +1,8 @@
-/*
+
 import writeRecipeInfoDesign from "../module/all_mighty_editor.js";
 
 const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = writeRecipeInfoDesign;
-*/
+
 
 /*
 const mainBody = document.getElementById('main');
@@ -26,7 +26,9 @@ mainBody.appendChild(title);
 
 ////////////////////////////////////////////////////////////////////////////////////
 
-const main = document.getElementById('root');
+
+
+
 main.setAttribute('id','main');
 //main.style.width = '30vw';
 //main.style.height = '65vh';
@@ -53,6 +55,7 @@ title.style.textAlign = 'center';
 main.appendChild(title);
 
 
+/*
 //재료상세부분과 사진첨부부분 컨테이너
 const container = document.createElement('div');
 container.setAttribute('id','container');
@@ -66,7 +69,7 @@ container.style.flexDirection = 'row';
 container.style.justifyContent = 'space-around';
 container.style.alignItems = 'center';
 main.appendChild(container);
-
+*/
 
 //재료 설명 부분
 const ingredient = document.createElement('div');
