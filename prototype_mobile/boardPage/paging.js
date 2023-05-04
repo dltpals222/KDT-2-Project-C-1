@@ -1,6 +1,6 @@
 import all_mighty_editor from "../module/all_mighty_editor.js";
 
-const { multiAndSingleTagMaker } = all_mighty_editor;
+const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } = all_mighty_editor;
 
 let total = 1151; //전체 게시글 갯수
 let pageContentCount = 4; //한페이지에 보여질 게시글 갯수
@@ -51,14 +51,17 @@ const renderContent =  (page, parent) => {
 
 //맨앞 버튼
 const renderButtons = () => {
-  const buttonList = multiAndSingleTagMaker(paginationCtn, "ul", "button-list");
+  const buttonList = multiAndSingleTagMaker(paginationCtn, "ul", "button-list",1,element => {
+    element.style.listStyleType = 'none'
+    kingGodFlexEditor(element, "","center","space-evenly")
+  });
 
   const startNumber = multiAndSingleTagMaker(buttonList, "li", "start-number");
   startNumber.innerHTML = "<<맨앞";
   startNumber.addEventListener("click", () => {
     currPage = 1;
     if (currPageGroup(currPage) === 1) {
-      startNumber.style.visibility = "hidden";
+      startNumber.visibility = "hidden";
     } else {
       startNumber.style.visibility = "visible";
       currPage = 1;
@@ -88,9 +91,7 @@ const renderButtons = () => {
 
   // 중간 페이지 버튼 처리
   let startPage = currPageGroup(currPage) * pageNumCount - (pageNumCount - 1);
-  console.log(startPage, "스타트 페이지");
   let endPage = currPageGroup(currPage) * pageNumCount;
-  console.log(endPage, "엔드 페이지");
 
   if (startPage < 1) {
     startPage = 1;
@@ -106,16 +107,24 @@ const renderButtons = () => {
 
   //중간 페이지 버튼 반복문
   for (let i = startPage; i <= endPage && i <= totalPageCount; i++) {
-    const pageButton = multiAndSingleTagMaker(buttonList, "li", i);
+    const pageButton = multiAndSingleTagMaker(buttonList, "li", i,1,element => {
+      fontAndLayoutEditor(element,'8%','')
+      kingGodFlexEditor(element,'','center','center')
+    });
     pageButton.innerHTML = i;
     if (i === currPage) {
-      pageButton.classList.add("active");
+      pageButton.style.fontWeight = "bold" ;
+      pageButton.style.backgroundColor = "#9A6E44";
+      pageButton.style.color = "white";
     } else {
       pageButton.addEventListener("click", () => {
         currPage = i;
         renderContent(currPage, boardList);
         renderButtons();
       });
+      pageButton.style.fontWeight = "normal";
+      pageButton.style.backgroundColor = "";
+      pageButton.style.color = "black";
     }
     buttonList.appendChild(pageButton);
   }
