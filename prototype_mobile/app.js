@@ -2,6 +2,7 @@ import http from 'http'
 import Url from 'url'
 import fs from 'fs'
 import serverReadFileModule from './module/server_readfile.js'
+import serverPostModule from '../module/server_post.js'
 
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
@@ -18,7 +19,7 @@ const server = http.createServer((req, res) => {
   //나머지 페이지는 레시피리스트처럼 action에 적을 것 예상하고 추가하면 됩니다.
   if(urlMethod === 'GET'){
     switch(urlPathName){
-      //메인 페이지
+      //mysql 저장 연습
       case '/':
         serverReadFileModule(res, 'main/main.html', 'text/html',200)
         break 
@@ -26,6 +27,7 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res,'main/main.js','text/javascript',200)
         break
 
+<<<<<<< HEAD
       //레시피 리스트
       case '/recipe_list':
         serverReadFileModule(res, 'recipe_list/recipe_list.html','text/html',200)
@@ -49,6 +51,8 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, 'module/all_mighty_editor.js','text/javascript',200)
         break
 
+=======
+>>>>>>> 692eee14d609a38627b65f4e18f3ff71a62ce259
       //404 페이지 처리
       default:
         serverReadFileModule(res, '404.html','text/html',404)
@@ -57,7 +61,9 @@ const server = http.createServer((req, res) => {
     } //if 문 내 switch 끝
 
   } else if (urlMethod === 'POST') {
-
+    if(urlPathName === './set'){
+      serverPostModule(req,res);
+    }
   }//createServer 내 if 문 끝
 }) //server 함수 끝
 
@@ -67,4 +73,8 @@ server.listen(2080,err => {
   } else {
     console.log('2080포트가 정상작동합니다.')
   }
+<<<<<<< HEAD
 })// listen 끝
+=======
+})// listen 끝
+>>>>>>> 692eee14d609a38627b65f4e18f3ff71a62ce259
