@@ -9,14 +9,15 @@ import dbSet from "./mysql_connect.js";
 import reqOnData from "../module/server_post.js";
 
 /* 
+  mysql_connect.js 로가서 정보를 바꾸고
+  테이블 생성
 
-  mysql database 이름 
-  create table add_recipe{
-  id int NOT NULL AUTO_INCREMENT;
-  title varchar(255) NOT NULL;
-  ingredients varchar(255) NOT NULL;
-  content varchar(255) NOT NULL;
-  primary key(id)}
+  create table add_recipe(
+  id int NOT NULL AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  ingredients varchar(255) NOT NULL,
+  content varchar(255) NOT NULL,
+  primary key(id));
 */
 dbSet.connect();
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
