@@ -4,15 +4,8 @@ import fs from "fs";
 import mysql from "mysql";
 import qs from "querystring";
 import serverReadFileModule from "../module/server_readfile.js";
-
-//mysql 연동
-const db = mysql.createConnection({
-  //본인 아이디 패스워드 db이름 사용할 것
-  host: "localhost",
-  user: "root",
-  password: "admin123",
-  database: "test1",
-});
+import serverPost from "../module/server_post.js";
+import dbSet from "./mysql_connect.js";
 /* 
 
   mysql database 이름 
@@ -23,9 +16,7 @@ const db = mysql.createConnection({
   content varchar(255) NOT NULL;
   primary key(id)}
 */
-db.connect();
-const newDbArray = [];
-
+dbSet.connect();
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
 const server = http.createServer((req, res) => {
@@ -47,6 +38,8 @@ const server = http.createServer((req, res) => {
 
       case "/mysql_layout.js":
         serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
+        // res.writeHead(302, { Location: "/print" });
+        // res.end();
         break;
 
       case "/db.json":
@@ -56,6 +49,7 @@ const server = http.createServer((req, res) => {
       case "/print":
         serverReadFileModule(res, "mysql_h.html", "text/html", 200);
         break;
+
       /*       //메인 페이지
             case '/':
               serverReadFileModule(res, 'main/main.html', 'text/html',200)
@@ -103,40 +97,16 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
   } else if (urlMethod === "POST") {
-    let body = "";
-    req.on("data", (chunk) => {
-      body += chunk.toString();
-    });
-    req.on("end", () => {
-      const newArray = [];
-      const qsParse = qs.parse(body);
-      const title = qsParse.title;
-      const ingredients = qsParse.ingredients;
-      const content = qsParse.content;
-      newArray.push(title, ingredients, parseInt(content));
-      console.log(newArray);
-      console.log(title);
-      // const sql = `delete from add_recipe where id<100000`;
-      const sql = `INSERT INTO add_recipe (title, ingredients, content) VALUES (?,?,?)`;
-      db.query(sql, newArray, (error, result) => {
-        if (error) {
-          console.error(error);
-          res.writeHead(500, { "Content-Type": "text/plain" });
-          res.write("Internal Server Error");
-          res.end();
-          return;
-        }
-        db.query("SELECT * FROM  add_recipe", function (err, results, fields) {
-          fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
-          // fs.readFile("db.json", function (err, data) {
-          //   const jsonData = JSON.stringify(results);
-          //   console.log(jsonData);
-          // });
-        });
-        res.writeHead(302, { Location: "/print" });
-        res.end();
-      });
-    });
+    if (urlPathName === "/") {
+      serverPost(req, res);
+      /*       dbset.query("SELECT * FROM  add_recipe", function (err, results, fields) {
+        fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
+        // fs.readFile("db.json", function (err, data) {
+        //   const jsonData = JSON.stringify(results);
+        //   console.log(jsonData);
+        // });
+      }); */
+    }
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 
