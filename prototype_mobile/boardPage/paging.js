@@ -1,25 +1,14 @@
 import all_mighty_editor from "../module/all_mighty_editor.js";
 
-const {
-  multiAndSingleTagMaker,
-  positionEditor,
-  fontAndLayoutEditor,
-  kingGodFlexEditor,
-  allMightyStyleEditor,
-} = all_mighty_editor;
+const { multiAndSingleTagMaker } = all_mighty_editor;
 
-function paging() {
-  let pagination = {
-    total: 98, //전체 게시글 갯수
-    pageContentCount: 4, //한페이지에 보여질 게시글 갯수
-    currPage: 1, //현재페이지
-    pageNumCount: 5, //중간 페이징 버튼 갯수
-  };
-  return pagination;
-}
+let total = 1151; //전체 게시글 갯수
+let pageContentCount = 4; //한페이지에 보여질 게시글 갯수
+let currPage = 1; //현재페이지
+let pageNumCount = 5; //중간 페이징 버튼 갯수
 
-//전체 페이지 갯수
-const totalPageCount = Math.ceil(paging().total / paging().pageContentCount);
+//전체 페이지 갯수(밑에 숫자 부분)
+const totalPageCount = Math.ceil(total / pageContentCount);
 //화면에 보여질 페이지 그룹 함수
 function currPageGroup(currPage, pageNumCount = 5) {
   return Math.ceil(currPage / pageNumCount);
@@ -45,7 +34,6 @@ const makeContent = (i) => {
 
 //게시글을 포함시킨 renderContent
 const renderContent = (page, parent) => {
-  const { total, pageContentCount, currPage, pageNumCount } = paging();
   while (parent.hasChildNodes()) {
     parent.removeChild(parent.lastChild);
   }
@@ -62,18 +50,16 @@ const renderContent = (page, parent) => {
 //맨앞 버튼
 const renderButtons = () => {
   const buttonList = multiAndSingleTagMaker(paginationCtn, "ul", "button-list");
-  // buttonList.classList.add("pagination");
-
-  let { total, pageContentCount, currPage, pageNumCount } = paging();
 
   const startNumber = multiAndSingleTagMaker(buttonList, "li", "start-number");
   startNumber.innerHTML = "<<맨앞";
   startNumber.addEventListener("click", () => {
+    currPage = 1;
     if (currPageGroup(currPage) === 1) {
       startNumber.style.visibility = "hidden";
     } else {
       startNumber.style.visibility = "visible";
-      let currPage = 1;
+      currPage = 1;
     }
     renderContent(currPage, boardList);
     renderButtons();
@@ -87,6 +73,7 @@ const renderButtons = () => {
   );
   beforeNumber.innerHTML = "<이전";
   beforeNumber.addEventListener("click", () => {
+    currPage = currPage - pageNumCount < 1 ? 1 : currPage - pageNumCount;
     if (currPageGroup(currPage) === 1) {
       beforeNumber.style.visibility = "hidden";
     } else {
@@ -116,7 +103,7 @@ const renderButtons = () => {
   }
 
   //중간 페이지 버튼 반복문
-  for (let i = startPage; i <= endPage; i++) {
+  for (let i = startPage; i <= endPage && i <= totalPageCount; i++) {
     const pageButton = multiAndSingleTagMaker(buttonList, "li", i);
     pageButton.innerHTML = i;
     if (i === currPage) {
@@ -135,6 +122,7 @@ const renderButtons = () => {
   const nextNumber = multiAndSingleTagMaker(buttonList, "li", "next-number");
   nextNumber.innerHTML = "다음>";
   nextNumber.addEventListener("click", () => {
+    currPage = currPage + pageNumCount > total ? total : currPage;
     if (currPageGroup(currPage) === currPageGroup(totalPageCount)) {
       nextNumber.style.visibility = "hidden";
     } else {
@@ -149,21 +137,25 @@ const renderButtons = () => {
   const endNumber = multiAndSingleTagMaker(buttonList, "li", "end-number");
   endNumber.innerHTML = "맨뒤>>";
   endNumber.addEventListener("click", () => {
+    currPage = total;
     if (currPageGroup(currPage) === currPageGroup(totalPageCount)) {
       endNumber.style.visibility = "hidden";
     } else {
       endNumber.style.visibility = "visible";
-      currPage = total;
+      currPage = totalPageCount;
     }
+    console.log(currPageGroup(currPage));
+    console.log(currPageGroup(totalPageCount));
     renderContent(currPage, boardList);
     renderButtons();
   });
 
+  //기존 버튼 삭제 로직
   while (paginationCtn.hasChildNodes()) {
     paginationCtn.removeChild(paginationCtn.lastChild);
   }
   paginationCtn.appendChild(buttonList);
 };
 
-renderContent(paging().currPage, boardList);
+renderContent(currPage, boardList);
 renderButtons();
