@@ -9,6 +9,7 @@ let pageNumCount = 5; //중간 페이징 버튼 갯수
 
 //전체 페이지 갯수(밑에 숫자 부분)
 const totalPageCount = Math.ceil(total / pageContentCount);
+
 //화면에 보여질 페이지 그룹 함수
 function currPageGroup(currPage, pageNumCount = 5) {
   return Math.ceil(currPage / pageNumCount);
@@ -39,9 +40,9 @@ const renderContent = (page, parent) => {
   }
 
   for (
-    let i = (page - 1) * pageContentCount + 1;
-    i <= page * pageContentCount && i <= total;
-    i++
+    let i = total;
+    i >= 1 && i >= total - (page - 1) * pageContentCount + 1;
+    i--
   ) {
     parent.appendChild(makeContent(i));
   }
@@ -144,8 +145,6 @@ const renderButtons = () => {
       endNumber.style.visibility = "visible";
       currPage = totalPageCount;
     }
-    console.log(currPageGroup(currPage));
-    console.log(currPageGroup(totalPageCount));
     renderContent(currPage, boardList);
     renderButtons();
   });
