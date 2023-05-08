@@ -24,20 +24,6 @@ const boardList = multiAndSingleTagMaker(root, "div", "board-list");
 const numberListWrap = document.getElementById('number-list-wrap')
 const recipeListWrap = document.getElementById('recipe-list-wrap')
 
-// //게시글 예제
-// const makeContent = (innerText,i) => {
-//   const content = multiAndSingleTagMaker(
-//   recipeListWrap.children[0],
-//   "div",
-//   `recipe-list-text-${i}`,
-//   1,
-//   (element) => {
-//     element.innerText =
-//       innerText
-//   })
-//   return content;
-// };
-
 //게시글을 포함시킨 renderContent
 const renderContent =  (page, parent, innerText) => {
   while (parent.hasChildNodes()) {
