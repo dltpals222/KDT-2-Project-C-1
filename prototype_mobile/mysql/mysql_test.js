@@ -99,17 +99,14 @@ const server = http.createServer((req, res) => {
   } else if (urlMethod === "POST" && urlPathName === '/print') {
     req.on("data", (chunk) => {
       reqOnData(chunk, 'insert into b (name, type, taek) values (?,?,?)', (dbSet) => {
-        dbSet.query("SELECT * FROM  b", function (err, results, fields) {
+        dbSet.query("SELECT * FROM  b", function (results) {
           fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
         });
       });
     });
-
     req.on("end", function () {
-      // setTimeout(2000ms);
       res.writeHead(302, { location: "/main.html" })
       res.end();
-      // serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
     });
   } //createServer 내 if 문 끝
 }); //server 함수 끝
