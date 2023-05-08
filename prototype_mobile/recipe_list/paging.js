@@ -1,6 +1,7 @@
 import all_mighty_editor from "../module/all_mighty_editor.js";
 
-const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } = all_mighty_editor;
+const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor, allMightyStyleEditor } = all_mighty_editor;
+
 
 let total = 1151; //전체 게시글 갯수
 let pageContentCount = 4; //한페이지에 보여질 게시글 갯수
@@ -19,22 +20,12 @@ const root = document.getElementById("root");
 
 //root 자식
 const boardList = multiAndSingleTagMaker(root, "div", "board-list");
-const paginationCtn = multiAndSingleTagMaker(root, "div", "pagination-ctn");
-
-//게시글 예제
-const makeContent = (i) => {
-  const content = document.createElement("div");
-  content.innerHTML = `
-      <span>${i}</span>
-      <span>게시물 제목</span>
-      <span>작성자</span>
-      <span>2022.01.01</span>
-    `;
-  return content;
-};
+// const paginationCtn = multiAndSingleTagMaker(root, "div", "pagination-ctn");
+const numberListWrap = document.getElementById('number-list-wrap')
+const recipeListWrap = document.getElementById('recipe-list-wrap')
 
 //게시글을 포함시킨 renderContent
-const renderContent =  (page, parent) => {
+const renderContent =  (page, parent, innerText) => {
   while (parent.hasChildNodes()) {
     parent.removeChild(parent.lastChild);
   }
@@ -44,16 +35,52 @@ const renderContent =  (page, parent) => {
       i >= 1 && i > total - page*pageContentCount;
       i --
     ) {
-      parent.appendChild(makeContent(i));
+      const recipeListBox = multiAndSingleTagMaker(recipeListWrap,'div',`recipe-list-box-${i}`,1,element => {
+        allMightyStyleEditor(element, recipeListBoxStyle)
+      })
+      multiAndSingleTagMaker(recipeListBox,'img',{id : `recipe-list-image-${i}`,src :"https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png" },1,element => {
+        allMightyStyleEditor(element, recipeListImage)
+      })
+      multiAndSingleTagMaker(
+          recipeListBox,
+          "div",
+          `recipe-list-text-${i}`,
+          1,
+          (element) => {
+            element.innerText = i + '\n' + innerText ;
+            
+          })
     }
     
 };
 
+//박스 안쪽 텍스트
+const boxInnerText =  `레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n`
+
+//레시피 리스트 이미지 스타일
+const recipeListImage = {
+  width: "30%",
+  height: "100%",
+  margin: "2%",
+};
+
+//레시피 리스트 박스 스타일
+const recipeListBoxStyle = {
+  display: "flex",
+  flexDirection: "row",
+  width: "70%",
+  height: "25%",
+  padding: "2%",
+  backgroundColor: "#DAB988",
+};
+
+
 //맨앞 버튼
 const renderButtons = () => {
-  const buttonList = multiAndSingleTagMaker(paginationCtn, "ul", "button-list",1,element => {
+  const buttonList = multiAndSingleTagMaker(numberListWrap, "ul", "button-list",1,element => {
     element.style.listStyleType = 'none'
     kingGodFlexEditor(element, "","center","space-evenly")
+    fontAndLayoutEditor(element, "100%",'100%')
   });
 
   const startNumber = multiAndSingleTagMaker(buttonList, "li", "start-number");
@@ -66,7 +93,7 @@ const renderButtons = () => {
       startNumber.style.visibility = "visible";
       currPage = 1;
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
@@ -85,7 +112,7 @@ const renderButtons = () => {
       beforeNumber.style.visibility = "visible";
       currPage = currPageGroup(currPage) * pageNumCount - (pageNumCount - 1);
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
@@ -120,7 +147,7 @@ const renderButtons = () => {
     } else {
       pageButton.addEventListener("click", () => {
         currPage = i;
-        renderContent(currPage, boardList);
+        renderContent(currPage, recipeListWrap, boxInnerText);
         renderButtons();
       });
       pageButton.style.fontWeight = "normal";
@@ -141,7 +168,7 @@ const renderButtons = () => {
       nextNumber.style.visibility = "visible";
       currPage = currPageGroup(currPage) * pageNumCount + 1;
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
@@ -156,16 +183,17 @@ const renderButtons = () => {
       endNumber.style.visibility = "visible";
       currPage = totalPageCount;
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
   //기존 버튼 삭제 로직
-  while (paginationCtn.hasChildNodes()) {
-    paginationCtn.removeChild(paginationCtn.lastChild);
+  while (numberListWrap.hasChildNodes()) {
+    numberListWrap.removeChild(numberListWrap.lastChild);
   }
-  paginationCtn.appendChild(buttonList);
+  numberListWrap.appendChild(buttonList);
 };
 
-renderContent(currPage, boardList);
+
+renderContent(currPage, recipeListWrap, boxInnerText);
 renderButtons();
