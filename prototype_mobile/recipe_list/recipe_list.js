@@ -70,137 +70,137 @@ const recipeListImage4 = recipeListWrap.children[3].children[0].setAttribute(
   "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
 );
 
-//레시피 설명 텍스트 넣기
-const recipeListTextWrap1 = multiAndSingleTagMaker(
-  recipeListWrap.children[0],
-  "div",
-  `recipe-list-text-1`,
-  1,
-  (element) => {
-    element.innerText =
-      "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
-  }
-);
-const recipeListTextWrap2 = multiAndSingleTagMaker(
-  recipeListWrap.children[1],
-  "div",
-  `recipe-list-text-2`,
-  1,
-  (element) => {
-    element.innerText =
-      "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
-  }
-);
-const recipeListTextWrap3 = multiAndSingleTagMaker(
-  recipeListWrap.children[2],
-  "div",
-  `recipe-list-text-3`,
-  1,
-  (element) => {
-    element.innerText =
-      "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
-  }
-);
-const recipeListTextWrap4 = multiAndSingleTagMaker(
-  recipeListWrap.children[3],
-  "div",
-  `recipe-list-text-4`,
-  1,
-  (element) => {
-    element.innerText =
-      "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
-  }
-);
+// //레시피 설명 텍스트 넣기
+// const recipeListTextWrap1 = multiAndSingleTagMaker(
+//   recipeListWrap.children[0],
+//   "div",
+//   `recipe-list-text-1`,
+//   1,
+//   (element) => {
+//     element.innerText =
+//       "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
+//   }
+// );
+// const recipeListTextWrap2 = multiAndSingleTagMaker(
+//   recipeListWrap.children[1],
+//   "div",
+//   `recipe-list-text-2`,
+//   1,
+//   (element) => {
+//     element.innerText =
+//       "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
+//   }
+// );
+// const recipeListTextWrap3 = multiAndSingleTagMaker(
+//   recipeListWrap.children[2],
+//   "div",
+//   `recipe-list-text-3`,
+//   1,
+//   (element) => {
+//     element.innerText =
+//       "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
+//   }
+// );
+// const recipeListTextWrap4 = multiAndSingleTagMaker(
+//   recipeListWrap.children[3],
+//   "div",
+//   `recipe-list-text-4`,
+//   1,
+//   (element) => {
+//     element.innerText =
+//       "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
+//   }
+// );
 
 //레시피 <<맨앞 <이전 1, 2, 3, 4, 5 다음> 맨뒤>>
 const numberListWrap = multiAndSingleTagMaker(main, "div", "number-list-wrap");
-// 맨앞
-const startNumber = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "start-number",
-  1,
-  (element) => {
-    element.innerHTML = "<<맨앞";
-  }
-);
-// 이전
-const beforeNumber = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "before-number",
-  1,
-  (element) => {
-    element.innerHTML = "<이전";
-  }
-);
-//1~5번
-const number1 = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "number-1",
-  1,
-  (element) => {
-    element.innerHTML = "1";
-  }
-);
-const number2 = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "number-2",
-  1,
-  (element) => {
-    element.innerHTML = "2";
-  }
-);
-const number3 = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "number-3",
-  1,
-  (element) => {
-    element.innerHTML = "3";
-  }
-);
-const number4 = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "number-4",
-  1,
-  (element) => {
-    element.innerHTML = "4";
-  }
-);
-const number5 = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "number-5",
-  1,
-  (element) => {
-    element.innerHTML = "5";
-  }
-);
+// // 맨앞
+// const startNumber = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "start-number",
+//   1,
+//   (element) => {
+//     element.innerHTML = "<<맨앞";
+//   }
+// );
+// // 이전
+// const beforeNumber = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "before-number",
+//   1,
+//   (element) => {
+//     element.innerHTML = "<이전";
+//   }
+// );
+// //1~5번
+// const number1 = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "number-1",
+//   1,
+//   (element) => {
+//     element.innerHTML = "1";
+//   }
+// );
+// const number2 = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "number-2",
+//   1,
+//   (element) => {
+//     element.innerHTML = "2";
+//   }
+// );
+// const number3 = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "number-3",
+//   1,
+//   (element) => {
+//     element.innerHTML = "3";
+//   }
+// );
+// const number4 = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "number-4",
+//   1,
+//   (element) => {
+//     element.innerHTML = "4";
+//   }
+// );
+// const number5 = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "number-5",
+//   1,
+//   (element) => {
+//     element.innerHTML = "5";
+//   }
+// );
 
-//다음
-const nextNumber = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "next-number",
-  1,
-  (element) => {
-    element.innerHTML = "다음>";
-  }
-);
-//맨뒤
-const endNumber = multiAndSingleTagMaker(
-  numberListWrap,
-  "div",
-  "end-number",
-  1,
-  (element) => {
-    element.innerHTML = "맨뒤>>";
-  }
-);
+// //다음
+// const nextNumber = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "next-number",
+//   1,
+//   (element) => {
+//     element.innerHTML = "다음>";
+//   }
+// );
+// //맨뒤
+// const endNumber = multiAndSingleTagMaker(
+//   numberListWrap,
+//   "div",
+//   "end-number",
+//   1,
+//   (element) => {
+//     element.innerHTML = "맨뒤>>";
+//   }
+// );
 
 //레시피 등록 버튼
 const recipeBtnWrap = multiAndSingleTagMaker(main, "form", "recipe-btn-wrap");

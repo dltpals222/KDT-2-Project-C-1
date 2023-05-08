@@ -2,6 +2,7 @@ import all_mighty_editor from "../module/all_mighty_editor.js";
 
 const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } = all_mighty_editor;
 
+
 let total = 1151; //전체 게시글 갯수
 let pageContentCount = 4; //한페이지에 보여질 게시글 갯수
 let currPage = 1; //현재페이지
@@ -23,22 +24,22 @@ const boardList = multiAndSingleTagMaker(root, "div", "board-list");
 const numberListWrap = document.getElementById('number-list-wrap')
 const recipeListWrap = document.getElementById('recipe-list-wrap')
 
-//게시글 예제
-const makeContent = (i) => {
-  multiAndSingleTagMaker(
-  recipeListWrap.children[0],
-  "div",
-  `recipe-list-text-1`,
-  1,
-  (element) => {
-    element.innerText =
-      "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n";
-  })
-  return content;
-};
+// //게시글 예제
+// const makeContent = (innerText,i) => {
+//   const content = multiAndSingleTagMaker(
+//   recipeListWrap.children[0],
+//   "div",
+//   `recipe-list-text-${i}`,
+//   1,
+//   (element) => {
+//     element.innerText =
+//       innerText
+//   })
+//   return content;
+// };
 
 //게시글을 포함시킨 renderContent
-const renderContent =  (page, parent) => {
+const renderContent =  (page, parent, innerText) => {
   while (parent.hasChildNodes()) {
     parent.removeChild(parent.lastChild);
   }
@@ -48,10 +49,21 @@ const renderContent =  (page, parent) => {
       i >= 1 && i > total - page*pageContentCount;
       i --
     ) {
-      parent.appendChild(makeContent(i));
+      multiAndSingleTagMaker(
+          recipeListWrap,
+          "div",
+          `recipe-list-text-${i}`,
+          1,
+          (element) => {
+            element.innerText = innerText;
+          })
     }
     
 };
+
+const boxInnerText = "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n"
+
+
 
 //맨앞 버튼
 const renderButtons = () => {
@@ -70,7 +82,7 @@ const renderButtons = () => {
       startNumber.style.visibility = "visible";
       currPage = 1;
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, boardList, boxInnerText);
     renderButtons();
   });
 
@@ -89,7 +101,7 @@ const renderButtons = () => {
       beforeNumber.style.visibility = "visible";
       currPage = currPageGroup(currPage) * pageNumCount - (pageNumCount - 1);
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
@@ -124,7 +136,7 @@ const renderButtons = () => {
     } else {
       pageButton.addEventListener("click", () => {
         currPage = i;
-        renderContent(currPage, boardList);
+        renderContent(currPage, recipeListWrap, boxInnerText);
         renderButtons();
       });
       pageButton.style.fontWeight = "normal";
@@ -145,7 +157,7 @@ const renderButtons = () => {
       nextNumber.style.visibility = "visible";
       currPage = currPageGroup(currPage) * pageNumCount + 1;
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
@@ -160,7 +172,7 @@ const renderButtons = () => {
       endNumber.style.visibility = "visible";
       currPage = totalPageCount;
     }
-    renderContent(currPage, boardList);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
@@ -171,5 +183,6 @@ const renderButtons = () => {
   numberListWrap.appendChild(buttonList);
 };
 
-renderContent(currPage, boardList);
+
+renderContent(currPage, recipeListWrap, boxInnerText);
 renderButtons();
