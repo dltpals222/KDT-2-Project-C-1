@@ -16,14 +16,6 @@ function currPageGroup(currPage, pageNumCount = 5) {
   return Math.ceil(currPage / pageNumCount);
 }
 
-const root = document.getElementById("root");
-
-//root 자식
-const boardList = multiAndSingleTagMaker(root, "div", "board-list");
-// const paginationCtn = multiAndSingleTagMaker(root, "div", "pagination-ctn");
-const numberListWrap = document.getElementById('number-list-wrap')
-const recipeListWrap = document.getElementById('recipe-list-wrap')
-
 //게시글을 포함시킨 renderContent
 const renderContent =  (page, parent, innerText) => {
   while (parent.hasChildNodes()) {
