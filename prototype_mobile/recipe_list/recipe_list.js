@@ -35,40 +35,40 @@ const advancedSearch = multiAndSingleTagMaker(
 );
 //레시피 리스트 박스
 const recipeListWrap = multiAndSingleTagMaker(main, "div", `recipe-list-wrap`);
-function recipeListadd(num) {
-  for (let j = 1; j < num; j++) {
-    const recipeListBox = multiAndSingleTagMaker(
-      recipeListWrap,
-      "div",
-      `recipe-list-box-${j}`
-    );
-    const recipeListImage = multiAndSingleTagMaker(
-      recipeListBox,
-      "img",
-      `recipe-list-image-${j}`
-    );
-    //레시피 리스트 텍스트 부분
-  }
-}
-recipeListadd(5);
+// function recipeListadd(num) {
+//   for (let j = 1; j < num; j++) {
+//     const recipeListBox = multiAndSingleTagMaker(
+//       recipeListWrap,
+//       "div",
+//       `recipe-list-box-${j}`
+//     );
+//     const recipeListImage = multiAndSingleTagMaker(
+//       recipeListBox,
+//       "img",
+//       `recipe-list-image-${j}`
+//     );
+//     //레시피 리스트 텍스트 부분
+//   }
+// }
+// recipeListadd(5);
 
-//선택한 이미지 넣기
-const recipeListImage1 = recipeListWrap.children[0].children[0].setAttribute(
-  "src",
-  "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
-);
-const recipeListImage2 = recipeListWrap.children[1].children[0].setAttribute(
-  "src",
-  "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
-);
-const recipeListImage3 = recipeListWrap.children[2].children[0].setAttribute(
-  "src",
-  "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
-);
-const recipeListImage4 = recipeListWrap.children[3].children[0].setAttribute(
-  "src",
-  "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
-);
+// //선택한 이미지 넣기
+// const recipeListImage1 = recipeListWrap.children[0].children[0].setAttribute(
+//   "src",
+//   "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
+// );
+// const recipeListImage2 = recipeListWrap.children[1].children[0].setAttribute(
+//   "src",
+//   "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
+// );
+// const recipeListImage3 = recipeListWrap.children[2].children[0].setAttribute(
+//   "src",
+//   "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
+// );
+// const recipeListImage4 = recipeListWrap.children[3].children[0].setAttribute(
+//   "src",
+//   "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png"
+// );
 
 // //레시피 설명 텍스트 넣기
 // const recipeListTextWrap1 = multiAndSingleTagMaker(
@@ -113,7 +113,9 @@ const recipeListImage4 = recipeListWrap.children[3].children[0].setAttribute(
 // );
 
 //레시피 <<맨앞 <이전 1, 2, 3, 4, 5 다음> 맨뒤>>
-const numberListWrap = multiAndSingleTagMaker(main, "div", "number-list-wrap");
+const numberListWrap = multiAndSingleTagMaker(main, "div", "number-list-wrap", 1, element => {
+  fontAndLayoutEditor(element, "100%",'100%')
+});
 // // 맨앞
 // const startNumber = multiAndSingleTagMaker(
 //   numberListWrap,
@@ -253,35 +255,36 @@ const recipeListWrapStyle = {
 };
 allMightyStyleEditor(recipeListWrap, recipeListWrapStyle);
 
-const recipeListBoxStyle = {
-  display: "flex",
-  flexDirection: "row",
-  width: "70%",
-  height: "25%",
-  padding: "2%",
-  backgroundColor: "#DAB988",
-};
+// const recipeListBoxStyle = {
+//   display: "flex",
+//   flexDirection: "row",
+//   width: "70%",
+//   height: "25%",
+//   padding: "2%",
+//   backgroundColor: "#DAB988",
+// };
 
-//레시피 리스트 이미지 스타일
-const recipeListImage = {
-  width: "30%",
-  height: "100%",
-  margin: "2%",
-};
+// //레시피 리스트 이미지 스타일
+// const recipeListImage = {
+//   width: "30%",
+//   height: "100%",
+//   margin: "2%",
+// };
 
-for (let a = 0; a < recipeListWrap.children.length; a++) {
-  allMightyStyleEditor(recipeListWrap.children[a], recipeListBoxStyle);
-  allMightyStyleEditor(recipeListWrap.children[a].children[0], recipeListImage);
-}
-// (맨처음 이전 1,2,3,4,5 다음 맨끝) 스타일
-const numberListWrapStyle = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  fontSize: "80%",
-};
-allMightyStyleEditor(numberListWrap, numberListWrapStyle);
+// for (let a = 0; a < recipeListWrap.children.length; a++) {
+//   allMightyStyleEditor(recipeListWrap.children[a], recipeListBoxStyle);
+//   allMightyStyleEditor(recipeListWrap.children[a].children[0], recipeListImage);
+// }
+
+// // (맨처음 이전 1,2,3,4,5 다음 맨끝) 스타일
+// const numberListWrapStyle = {
+//   display: "flex",
+//   flexDirection: "row",
+//   justifyContent: "center",
+//   alignItems: "center",
+//   fontSize: "80%",
+// };
+// allMightyStyleEditor(numberListWrap, numberListWrapStyle);
 
 // 레시피 등록 버튼 스타일
 const recipeBtnStyle = {

@@ -1,6 +1,6 @@
 import all_mighty_editor from "../module/all_mighty_editor.js";
 
-const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } = all_mighty_editor;
+const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor, allMightyStyleEditor } = all_mighty_editor;
 
 
 let total = 1151; //전체 게시글 갯수
@@ -49,20 +49,44 @@ const renderContent =  (page, parent, innerText) => {
       i >= 1 && i > total - page*pageContentCount;
       i --
     ) {
+      const recipeListBox = multiAndSingleTagMaker(recipeListWrap,'div',`recipe-list-box-${i}`,1,element => {
+        allMightyStyleEditor(element, recipeListBoxStyle)
+      })
+      multiAndSingleTagMaker(recipeListBox,'img',{id : `recipe-list-image-${i}`,src :"https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png" },1,element => {
+        allMightyStyleEditor(element, recipeListImage)
+      })
       multiAndSingleTagMaker(
-          recipeListWrap,
+          recipeListBox,
           "div",
           `recipe-list-text-${i}`,
           1,
           (element) => {
-            element.innerText = innerText;
+            element.innerText = i + '\n' + innerText ;
+            
           })
     }
     
 };
 
-const boxInnerText = "레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n"
+//박스 안쪽 텍스트
+const boxInnerText =  `레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n`
 
+//레시피 리스트 이미지 스타일
+const recipeListImage = {
+  width: "30%",
+  height: "100%",
+  margin: "2%",
+};
+
+//레시피 리스트 박스 스타일
+const recipeListBoxStyle = {
+  display: "flex",
+  flexDirection: "row",
+  width: "70%",
+  height: "25%",
+  padding: "2%",
+  backgroundColor: "#DAB988",
+};
 
 
 //맨앞 버튼
@@ -70,6 +94,7 @@ const renderButtons = () => {
   const buttonList = multiAndSingleTagMaker(numberListWrap, "ul", "button-list",1,element => {
     element.style.listStyleType = 'none'
     kingGodFlexEditor(element, "","center","space-evenly")
+    fontAndLayoutEditor(element, "100%",'100%')
   });
 
   const startNumber = multiAndSingleTagMaker(buttonList, "li", "start-number");
@@ -82,7 +107,7 @@ const renderButtons = () => {
       startNumber.style.visibility = "visible";
       currPage = 1;
     }
-    renderContent(currPage, boardList, boxInnerText);
+    renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
   });
 
