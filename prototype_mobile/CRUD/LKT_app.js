@@ -1,11 +1,15 @@
 import http from 'http'
 import url from 'url'
 import serverReadFileModule from '../module/server_readfile.js'
-import reqOnData from '../module/server_post.js'
+import reqOnData from '../module/server_post_copy.js'
 import fs from 'fs';
 import mysql from 'mysql'
 
 const server = http.createServer((req, res) => {
+
+  const parseUrl = url.parse(req.url);
+  const pathName = parseUrl.pathname;
+  const Method = req.method;
 
   const dbSet = mysql.createConnection({
     host: 'localhost',
@@ -16,11 +20,7 @@ const server = http.createServer((req, res) => {
     connectionLimit: 5, //동시에 db에 접속가능한 클라이언트 수
     waitForConnections: true //클라이언트가 연결을 요청할 때 대기 여부
   })
-
-  const parseUrl = url.parse(req.url);
-  const pathName = parseUrl.pathname;
-  const Method = req.method;
-
+  
   if (Method === 'GET') {
     switch (pathName) {
       // json 데이터들과 c,r,u,d 버튼이 있는 페이지
@@ -44,6 +44,9 @@ const server = http.createServer((req, res) => {
       case "/c":
         serverReadFileModule(res, 'LKT_R.html', 'text/html', 200);
         break;
+      case '/r':
+        serverReadFileModule(res, 'LKT_main.html','text/html', 200);
+        break
       // 필요한 파일들을 받아오기 위한 기능
       default:
         console.log(pathName);
@@ -78,7 +81,6 @@ const server = http.createServer((req, res) => {
           res.end();
         })
         break;
-
 
     }
   }
