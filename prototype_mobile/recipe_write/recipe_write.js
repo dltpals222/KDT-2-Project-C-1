@@ -24,6 +24,7 @@ mainForm.action = "result";
 
 //? 레시피 제목 라벨 + 인풋 래핑
 const mainTitleLabelInputWrap = multiAndSingleTagMaker(mainForm, "div");
+kingGodFlexEditor(mainTitleLabelInputWrap, "", "", "center");
 
 //* 레시피 제목 라벨
 const mainTitleLabel = multiAndSingleTagMaker(
@@ -42,23 +43,31 @@ const mainTitleInput = multiAndSingleTagMaker(
   "input",
   "main-title-input",
   1,
-  (ele) => {}
+  (ele) => {
+    ele.placeholder = "요리 제목";
+  }
 );
-mainTitleInput.placeholder = "요리 제목";
 
 //? 레시피 재료래핑 + 레시피 사진래핑 컨테이너
-const ingredientsImageContainer = multiAndSingleTagMaker(mainForm, "div");
-ingredientsImageContainer.textContent = "";
-kingGodFlexEditor(ingredientsImageContainer, "row", "", "space-around");
+const ingredientsImageContainer = multiAndSingleTagMaker(
+  mainForm,
+  "div",
+  "",
+  1,
+  (ele) => {
+    kingGodFlexEditor(ele, "row", "", "space-around");
+    ele.textContent = "";
+  }
+);
 
-//* 레시피 재료 래핑
+//todo 레시피 재료 래핑
 const registIngredientsWrap = multiAndSingleTagMaker(
   ingredientsImageContainer,
   "div"
 );
 
-//* 레시피 재료
-const registIngredients = multiAndSingleTagMaker(
+//* 레시피 재료 label
+const registIngredientsLabel = multiAndSingleTagMaker(
   registIngredientsWrap,
   "label",
   "main-ingredients-label",
@@ -67,8 +76,30 @@ const registIngredients = multiAndSingleTagMaker(
     ele.textContent = "레시피 재료";
   }
 );
+//* 레시피 재료 Input
+const registIngredientsInput = multiAndSingleTagMaker(
+  registIngredientsWrap,
+  "input",
+  "main-ingredients-Input",
+  1,
+  (ele) => {
+    ele.placeholder = "레시피 재료";
+  }
+);
 
-//* 레시피 사진 래핑
+//* 레시피 재료 Submit
+const registIngredientsSubmit = multiAndSingleTagMaker(
+  registIngredientsWrap,
+  "input",
+  "main-ingredients-Submit",
+  1,
+  (ele) => {
+    ele.value = "추가";
+    ele.type = "submit";
+  }
+);
+
+//todo 레시피 사진 래핑
 const registImageWrap = multiAndSingleTagMaker(
   ingredientsImageContainer,
   "div"
@@ -93,9 +124,11 @@ const registStepContainer = multiAndSingleTagMaker(
   1,
   (ele) => {
     ele.textContent = "조리 순서";
+    kingGodFlexEditor(ele, "column", "center", "center");
   }
 );
-//* 조리 순서 wrap
+
+//todo 조리 순서 wrap
 const registStepWrap = multiAndSingleTagMaker(
   registStepContainer,
   "div",
@@ -103,9 +136,10 @@ const registStepWrap = multiAndSingleTagMaker(
   1,
   (ele) => {
     ele.textContent = "";
+    kingGodFlexEditor(ele, "row", "", "space-between");
+    fontAndLayoutEditor(ele, "100%");
   }
 );
-kingGodFlexEditor(registStepWrap, "row", "", "space-between");
 
 //* 조리순서div-num
 const registStepNum = multiAndSingleTagMaker(
@@ -127,9 +161,9 @@ const registStepContent = multiAndSingleTagMaker(
   (ele) => {
     ele.value =
       "요리내용 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 ";
+    fontAndLayoutEditor(ele, "70%");
   }
 );
-fontAndLayoutEditor(registStepContent, "70%");
 
 //* 조리순서div-img
 const registStepImg = multiAndSingleTagMaker(
@@ -137,11 +171,11 @@ const registStepImg = multiAndSingleTagMaker(
   "img",
   "",
   1,
-  (ele) => {}
+  (ele) => {
+    fontAndLayoutEditor(ele, "30vw", "25vw");
+    ele.src = "http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png";
+  }
 );
-fontAndLayoutEditor(registStepImg, "30vw", "25vw");
-registStepImg.src =
-  "http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png";
 console.dir(registStepImg);
 //? 조리순서 container 끝
 
