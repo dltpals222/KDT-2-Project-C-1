@@ -61,15 +61,10 @@ const ingredientsImageContainer = multiAndSingleTagMaker(
   }
 );
 
-//todo 레시피 재료 form
+//todo 레시피 재료 래핑
 const registIngredientsWrap = multiAndSingleTagMaker(
   ingredientsImageContainer,
-  "form",
-  "",
-  1,
-  (ele) => {
-    kingGodFlexEditor(ele, "column");
-  }
+  "div"
 );
 
 //* 레시피 재료 label
@@ -93,25 +88,15 @@ const registIngredientsInput = multiAndSingleTagMaker(
   }
 );
 
-//* 레시피 재료 Button
+//* 레시피 재료 Submit
 const registIngredientsSubmit = multiAndSingleTagMaker(
   registIngredientsWrap,
-  "button",
+  "input",
   "main-ingredients-Submit",
   1,
   (ele) => {
-    ele.textContent = "추가";
-  }
-);
-//* 레시피 재료 List Div
-const registIngredientsList = multiAndSingleTagMaker(
-  registIngredientsWrap,
-  "div",
-  "main-ingredients-div",
-  1,
-  (ele) => {
-    fontAndLayoutEditor(ele, "auto", "100px", "1px solid black");
-    ele.textContent = "추가";
+    ele.value = "추가";
+    ele.type = "submit";
   }
 );
 
@@ -132,80 +117,68 @@ const registImage = multiAndSingleTagMaker(
   }
 );
 
-//? 조리순서 container 시작
+//? 조리순서 container
 const registStepContainer = multiAndSingleTagMaker(
   mainForm,
   "div",
   "regist-step-container",
   1,
   (ele) => {
-    ele.textContent = "조리 순서";
+    // ele.textContent = "조리 순서";
     kingGodFlexEditor(ele, "column", "center", "center");
   }
 );
-//* 조리순서 step 자동 생성용 div부분
-const registStepInnerContainer = multiAndSingleTagMaker(
+
+//todo 조리 순서 wrap
+const registStepWrap = multiAndSingleTagMaker(
   registStepContainer,
   "div",
-  "regist-step-inner-container",
+  "main-step-wrap",
   1,
   (ele) => {
-    // ele.textContent = "조리 순서 이너 컨테이너";
-    kingGodFlexEditor(ele, "column", "center", "center");
+    ele.textContent = "";
+    kingGodFlexEditor(ele, "row", "", "space-between");
+    fontAndLayoutEditor(ele, "100%");
   }
 );
-let stepNum = 1; // 콘솔 테스트용
 
-//todo 조리 순서 자동생성 wrap 시작
-recipeStepMaker(registStepInnerContainer); // 기본 1개 생성
-
-const stepSubmitWrap = multiAndSingleTagMaker(registStepContainer, "div", "");
-
-//* step 생성 버튼
-const plusBtn = multiAndSingleTagMaker(
-  stepSubmitWrap,
-  "input",
-  "plus-btn",
+//* 조리순서div-num
+const registStepNum = multiAndSingleTagMaker(
+  registStepWrap,
+  "p",
+  "",
   1,
   (ele) => {
-    ele.type = "submit";
-    ele.value = "추가";
+    ele.textContent = "1"; // 자동생성되어야 함
   }
 );
-plusBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (stepNum !== 0) {
-    recipeStepMaker(registStepInnerContainer); //* recipeStepMaker 모듈 호출
-    stepNum++; //콘솔 테스트용
-    console.log(stepNum); //콘솔 테스트용
-  } else if (stepNum === 1) {
-    console.log("div는 1보다 작을 수 없습니다.");
-  }
-});
 
-//* step 제거 버튼
-const minusBtn = multiAndSingleTagMaker(
-  stepSubmitWrap,
-  "input",
-  "minus-btn",
+//* 조리순서div-content
+const registStepContent = multiAndSingleTagMaker(
+  registStepWrap,
+  "textarea",
+  "",
   1,
   (ele) => {
-    ele.type = "submit";
-    ele.value = "제거";
+    ele.value =
+      "요리내용 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 로렘로렘 ";
+    fontAndLayoutEditor(ele, "70%");
   }
 );
-minusBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  if (stepNum > 1) {
-    let tmpDiv = registStepInnerContainer.lastElementChild;
-    registStepInnerContainer.removeChild(tmpDiv);
-    stepNum--; // 콘솔 테스트용
-    console.log(stepNum); // 콘솔 테스트용
-  } else if (stepNum === 1) {
-    console.log(`stepNum은 ${stepNum}보다 작을 수 없습니다`);
+
+//* 조리순서div-img
+const registStepImg = multiAndSingleTagMaker(
+  registStepWrap,
+  "img",
+  "",
+  1,
+  (ele) => {
+    fontAndLayoutEditor(ele, "30vw", "25vw");
+    ele.src = "http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png";
   }
-});
-//todo 조리 순서 자동생성 wrap 끝
+);
+console.dir(registStepImg);
+//todo 조리 순서 wrap 끝
 //? 조리순서 container 끝
 
 //* 레시피 등록 버튼
