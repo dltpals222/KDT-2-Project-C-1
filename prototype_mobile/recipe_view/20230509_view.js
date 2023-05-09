@@ -2,6 +2,7 @@
 ///나머지 파일들을 볼 필요가 없음
 
 import all_mighty_editor from "../module/all_mighty_editor.js";
+import recipe_step_table from "../recipe_view/dummy_data.js";
 
 const {
   multiAndSingleTagMaker,
@@ -11,6 +12,12 @@ const {
   allMightyStyleEditor,
 } = all_mighty_editor;
 
+const {
+  ingredients_table,
+  recipe_ingredients_table,
+  recipe_regist_table,
+  recipe_step_table
+} = recipe_step_table;
 
 ///전체 메인부분
 const main = multiAndSingleTagMaker(root,'div','main',1,(ele)=>{
@@ -27,6 +34,7 @@ const mainPic = multiAndSingleTagMaker(main,'img','mainPic',1,(ele)=>{
 fontAndLayoutEditor(mainPic, '65%', '20%', 1 , 'aqua');
 main.appendChild(mainPic);
 mainPic.style.cursor = 'pointer';
+/////////////////////////////////////////
 /*
 mainPic.addEventListener('click',function browseImgMainFile(){
   const formData = new FormData();
@@ -45,6 +53,8 @@ mainPic.addEventListener('click',function browseImgMainFile(){
     });
 });
 */
+/////////////////////////////////////////
+///메인사진을 클릭하면 파일업로드
 mainPic.onclick = () => {
   const input = document.createElement('input');
   input.type = 'file';
@@ -76,7 +86,7 @@ kingGodFlexEditor(recipeInfo, 'column', 'center', 'space-evenly');
 main.appendChild(recipeInfo);
 ///레시피 제목(이름)
 const recipeTitle = multiAndSingleTagMaker(recipeInfo, 'div', 'recipeTitle', 1, (ele)=>{
-  ele.textContent = '레시피의 이름';
+  ele.textContent = `레시피의 이름`;
 });
 fontAndLayoutEditor(recipeTitle, '80%', '15%', 1, 'skyblue');
 kingGodFlexEditor(recipeTitle, 'row', 'center', 'center');
@@ -105,7 +115,16 @@ const orderPic = multiAndSingleTagMaker(orderList , 'img', 'orderPic', 1);
 fontAndLayoutEditor(orderPic, '40%','90%',1, 'skyblue');
 orderList.appendChild(orderPic);
 orderPic.style.cursor = 'pointer';
+
+recipe_step_table.forEach((step) => {
+  const img = document.createElement("img");
+  img.src = step.recipe_step_img;
+  orderList.appendChild(img);
+});
+
+/////////////////////////////////////////
 /*
+///더미코드(볼 필요없음)
 orderPic.addEventListener('click',function browseImgMainFile(){
   const formData = new FormData();
   formData.append('image', imageInput.files[0]);
@@ -141,8 +160,30 @@ orderPic.onclick = () => {
     });
 }
 */
+/////////////////////////////////////////
+/*
+///더미코드(볼 필요없음)
+const picArray = ["https://ibb.co/qWTNtzj","https://ibb.co/R6thCBB","https://ibb.co/jg918Hb"]
 
+var imgs = [];
+for(i = 0; i < picArray.length; i++){
+  imgs[i] = new Image(); // 이미지 객체 생성
+  imgs[i].src = picArray[i]; // 페이지 로딩 될때 이미지가 미리 로딩
+}
 
+var next = 1;
+function change(obj){
+  obj.src = imgs[next].src;
+  next++;
+  next %= imgs.length;
+}
+orderPic.onclick = function change(this){
+  
+};
+*/
+/////////////////////////////////////////
+/*
+///조리순서사진을 클릭하면 파일업로드
 orderPic.onclick = () => {
   const input = document.createElement('input');
   input.type = 'file';
@@ -162,7 +203,7 @@ function uploadInnerOrderPicFile(file){
     output.innerText = reader.result;
   }
 }
-
+*/
 
 ///조리순서안의 조리방법 또는 내용
 const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1, (ele)=>{
@@ -176,7 +217,7 @@ const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1, (ele)
   */
   ele.textContent = '1)ssssssssssssssss';
 });
-fontAndLayoutEditor(orderInfo, '50%','90%',1, 'skyblue');
+fontAndLayoutEditor(orderInfo, '50%','90%', 1, 'skyblue');
 kingGodFlexEditor(orderInfo, 'column', 'center', 'center');
 orderList.appendChild(orderInfo);
 
