@@ -56,7 +56,7 @@ fs.readFile("./data_1000.json", "utf-8", (err, data) => {
     }
     fs.writeFile("./process_api_data.json", result, (err) => {
       if (err) throw err;
-      console.log("The file has been saved!");
+      console.log("저장완료");
     });
   }
 });
