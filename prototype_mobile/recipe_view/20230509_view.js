@@ -1,3 +1,6 @@
+///20230509기준으로 recipe_view폴더안의 파일들은 20230509_view.js만을 기준으로 볼 것
+///나머지 파일들을 볼 필요가 없음
+
 import all_mighty_editor from "../module/all_mighty_editor.js";
 
 const {
