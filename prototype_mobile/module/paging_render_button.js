@@ -1,5 +1,5 @@
 import all_mighty_editor from './all_mighty_editor.js';
-import { whileRemoveChild } from './paging_while_removeChild.js';
+import remover from './paging_while_removeChild.js';
 import renderContent from './paging_render_content.js';
 
 
@@ -12,7 +12,7 @@ let currPage = 1; //현재페이지
 let pageNumCount = 5; //중간 페이징 버튼 갯수
 */
 
-
+const {whileRemoveChild, MathCeil} = remover
 const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } = all_mighty_editor
 
 function renderButtons (parent, page,renderContentParent) {
@@ -23,10 +23,10 @@ function renderButtons (parent, page,renderContentParent) {
     fontAndLayoutEditor(element, "100%",'100%')
   });
 
-  //소수점을 올림처리해주는 함수
-  function MathCeil(currPage, pageNumCount = 5) {
-    return Math.ceil(currPage / pageNumCount);
-  }
+  // //소수점을 올림처리해주는 함수
+  // function MathCeil(currPage, pageNumCount = 5) {
+  //   return Math.ceil(currPage / pageNumCount);
+  // }
 
   
   //전체 페이지 갯수(밑에 숫자 부분)
@@ -39,13 +39,13 @@ function renderButtons (parent, page,renderContentParent) {
   startNumber.addEventListener("click", () => {
     page.currPage = 1;
     if (MathCeil(page.currPage) === 1) {
-      startNumber.style.visibility = "hidden";
+      // startNumber.style.visibility = "hidden";
     } else {
-      startNumber.style.visibility = "visible";
+      // startNumber.style.visibility = "visible";
       page.currPage = 1;
     }
-    renderContent(page.currPage, renderContentParent, page.boxInnerText);
-    renderButtons(parent,page);
+    renderContent(renderContentParent,page.currPage,  page.renderContentCallback);
+    renderButtons(parent,page,renderContentParent);
   });
 
   //이전 버튼
@@ -58,13 +58,13 @@ function renderButtons (parent, page,renderContentParent) {
   beforeNumber.addEventListener("click", () => {
     page.currPage = page.currPage - page.pageNumCount < 1 ? 1 : page.currPage - page.pageNumCount;
     if (MathCeil(page.currPage) === 1) {
-      beforeNumber.style.visibility = "hidden";
+      // beforeNumber.style.visibility = "hidden";
     } else {
-      beforeNumber.style.visibility = "visible";
+      // beforeNumber.style.visibility = "visible";
       page.currPage = MathCeil(page.currPage) * page.pageNumCount - (page.pageNumCount - 1);
     }
-    renderContent(page.currPage, renderContentParent, page.boxInnerText);
-    renderButtons(parent,page);
+    renderContent(renderContentParent,page.currPage,  page.renderContentCallback);
+    renderButtons(parent,page,renderContentParent);
   });
 
   // 중간 페이지 버튼 처리
@@ -98,8 +98,8 @@ function renderButtons (parent, page,renderContentParent) {
     } else {
       pageButton.addEventListener("click", () => {
         page.currPage = i;
-        renderContent(page.currPage, renderContentParent, page.boxInnerText);
-        renderButtons(parent,page);
+        renderContent(renderContentParent,page.currPage,  page.renderContentCallback);
+        renderButtons(parent,page,renderContentParent);
       });
       pageButton.style.fontWeight = "normal";
       pageButton.style.backgroundColor = "";
@@ -114,13 +114,13 @@ function renderButtons (parent, page,renderContentParent) {
   nextNumber.addEventListener("click", () => {
     page.currPage = page.currPage + page.pageNumCount > page.total ? page.total : page.currPage;
     if (MathCeil(page.currPage) === MathCeil(totalPageCount)) {
-      nextNumber.style.visibility = "hidden";
+      // nextNumber.style.visibility = "hidden";
     } else {
-      nextNumber.style.visibility = "visible";
+      // nextNumber.style.visibility = "visible";
       page.currPage = MathCeil(page.currPage) * page.pageNumCount + 1;
     }
-    renderContent(page.currPage, renderContentParent, page.boxInnerText);
-    renderButtons(parent,page);
+    renderContent(renderContentParent,page.currPage,  page.renderContentCallback);
+    renderButtons(parent,page,renderContentParent);
   });
 
   //맨뒤 버튼
@@ -129,13 +129,13 @@ function renderButtons (parent, page,renderContentParent) {
   endNumber.addEventListener("click", () => {
     page.currPage = page.total;
     if (MathCeil(page.currPage) === MathCeil(totalPageCount)) {
-      endNumber.style.visibility = "hidden";
+      // endNumber.style.visibility = "hidden";
     } else {
-      endNumber.style.visibility = "visible";
+      // endNumber.style.visibility = "visible";
       page.currPage = totalPageCount;
     }
-    renderContent(page.currPage, renderContentParent, page.boxInnerText);
-    renderButtons(parent,page);
+    renderContent(renderContentParent,page.currPage,  page.renderContentCallback);
+    renderButtons(parent,page,renderContentParent);
   });
 
   //기존 버튼 삭제 로직

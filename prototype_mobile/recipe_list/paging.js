@@ -25,6 +25,23 @@ let page = {
   padding: "2%",
   backgroundColor: "#DAB988",
 },
+  renderContentCallback : i => {
+    const recipeListBox = multiAndSingleTagMaker(recipeListWrap,'div',`recipe-list-box-${i}`,1,element => {
+      allMightyStyleEditor(element, page.recipeListBoxStyle)
+    })
+    multiAndSingleTagMaker(recipeListBox,'img',{id : `recipe-list-image-${i}`,src :"https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png" },1,element => {
+  allMightyStyleEditor(element, page.recipeListImgPage)
+  })
+  multiAndSingleTagMaker(
+    recipeListBox,
+    "div",
+    `recipe-list-text-${i}`,
+    1,
+    (element) => {
+      element.innerText = i + '\n' + page.boxInnerText ;
+      
+    })
+  },
 }
 
 // //전체 페이지 갯수(밑에 숫자 부분)
@@ -79,23 +96,7 @@ const recipeListWrap = document.getElementById('recipe-list-wrap')
 // };
 
 
-pagingRenderContent(recipeListWrap,page,i => {
-  const recipeListBox = multiAndSingleTagMaker(recipeListWrap,'div',`recipe-list-box-${i}`,1,element => {
-    allMightyStyleEditor(element, page.recipeListBoxStyle)
-  })
-  multiAndSingleTagMaker(recipeListBox,'img',{id : `recipe-list-image-${i}`,src :"https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png" },1,element => {
-allMightyStyleEditor(element, page.recipeListImgPage)
-})
-multiAndSingleTagMaker(
-  recipeListBox,
-  "div",
-  `recipe-list-text-${i}`,
-  1,
-  (element) => {
-    element.innerText = i + '\n' + page.boxInnerText ;
-    
-  })
-})
+pagingRenderContent(recipeListWrap,page,page.renderContentCallback)
 pagingButton(numberListWrap,page,recipeListWrap)
 // const renderButtons = () => {
 //   const buttonList = multiAndSingleTagMaker(numberListWrap, "ul", "button-list",1,element => {
