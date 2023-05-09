@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from "fs";
 
 //server에서 switch에 파일 입력하려고 만든 모듈
 //res자리에는 res그대로 적어주면 됩니다.
@@ -6,18 +6,18 @@ import fs from 'fs'
 //contentTypeValue에는 html파일이면 text/html 자바스크립트 파일이면 text/javascript 등등 적어주시면 됩니다.
 //statusCode는 정상작동시 200 그 이외에는 찾아서 작성하시면 됩니다.
 
-function serverReadFileModule (res, path, contentTypeValue, statusCode){
-  fs.readFile(path, (err, data)  => {
-    if(err){
-      res.writeHead(500,{'content-type':'text/html'});
-      res.write('500 internet error');
+function serverReadFileModule(res, path, contentTypeValue, statusCode) {
+  fs.readFile(path, (err, data) => {
+    if (err) {
+      res.writeHead(500, { "content-type": "text/html" });
+      res.write("500 internet error");
       res.end();
     } else {
-      res.writeHead(statusCode, {'content-type':contentTypeValue});
+      res.writeHead(statusCode, { "content-type": contentTypeValue });
       res.write(data);
       res.end();
-    } 
-  }) //readFile 끝
+    }
+  }); //readFile 끝
 }
 
-export default serverReadFileModule
+export default serverReadFileModule;
