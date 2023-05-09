@@ -1,6 +1,5 @@
-import whileRemoveChild from './paging_while_removeChild.js'
-import { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } from './all_mighty_editor.js';
-
+import {whileRemoveChild} from './paging_while_removeChild.js'
+import all_mighty_editor from './all_mighty_editor.js';
 
 //* 버튼을 만들 부모 태그를 넣으면 된다.
 //* 전역변수로 4가지를 지정해줘야된다.
@@ -9,9 +8,17 @@ let total = 1151; //전체 게시글 갯수
 let pageContentCount = 4; //한페이지에 보여질 게시글 갯수
 let currPage = 1; //현재페이지
 let pageNumCount = 5; //중간 페이징 버튼 갯수
- */
+*/
 
-function renderButtons (parent) {
+
+const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } = all_mighty_editor
+
+function renderButtons (parent, page) {
+  let total = page.total
+  let pageContentCount = page.pageContentCount
+  let currPage = page.currPage
+  let pageNumCount = page.pageNumCount
+
   const buttonList = multiAndSingleTagMaker(parent, "ul", "button-list",1,element => {
     element.style.listStyleType = 'none'
     kingGodFlexEditor(element, "","center","space-evenly")
