@@ -20,7 +20,7 @@ const server = http.createServer((req, res) => {
     connectionLimit: 5, //동시에 db에 접속가능한 클라이언트 수
     waitForConnections: true //클라이언트가 연결을 요청할 때 대기 여부
   })
-  
+
   if (Method === 'GET') {
     switch (pathName) {
       // json 데이터들과 c,r,u,d 버튼이 있는 페이지
@@ -45,8 +45,11 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, 'LKT_R.html', 'text/html', 200);
         break;
       case '/r':
-        serverReadFileModule(res, 'LKT_main.html','text/html', 200);
-        break
+        serverReadFileModule(res, 'LKT_main.html', 'text/html', 200);
+        break;
+      case '/u':
+        serverReadFileModule(res, 'LKT_U.html', 'text/html', 200);
+        break;
       // 필요한 파일들을 받아오기 위한 기능
       default:
         console.log(pathName);
@@ -56,7 +59,7 @@ const server = http.createServer((req, res) => {
   else if (Method === 'POST') {
     switch (pathName) {
       // 버튼의 C로직
-      case "/set":
+      case "/c_action":
         req.on('data', function (chunk) {
           const a = reqOnData(chunk);
           dbSet.connect();
@@ -71,6 +74,27 @@ const server = http.createServer((req, res) => {
             if (err) {
               console.error(err)
             } else {
+              fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
+            }
+          });
+          dbSet.end();
+        })
+        req.on('end', function () {
+          res.writeHead(302, { Location: '/' });
+          res.end();
+        })
+        break;
+
+      case "/u_action":
+        req.on('data', function (chunk) {
+          const b = reqOnData(chunk);
+
+          dbSet.connect();
+          dbSet.query('update b set name = "hi", type = "hh", taek = "ee" where id = 1', b, (err,results) => {
+            if (err) {
+              console.error("쿼리실행 실패", err);
+            } else {
+              console.log("쿼리실행성공");
               fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
             }
           });
