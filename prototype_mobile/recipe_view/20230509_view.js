@@ -12,12 +12,14 @@ const {
   allMightyStyleEditor,
 } = all_mighty_editor;
 
+/*
 const {
-  ingredients_table,
-  recipe_ingredients_table,
-  recipe_regist_table,
-  recipe_step_table
+  ingredientsTable,
+  recipeIngredientsTable,
+  recipRegistTable,
+  recipeStepTable
 } = recipe_step_table;
+*/
 
 ///전체 메인부분
 const main = multiAndSingleTagMaker(root,'div','main',1,(ele)=>{
@@ -112,14 +114,40 @@ kingGodFlexEditor(orderList, 'row-reverse', 'center', 'space-evenly');
 main.appendChild(orderList);
 //조리순서안의 사진부분
 const orderPic = multiAndSingleTagMaker(orderList , 'img', 'orderPic', 1);
-fontAndLayoutEditor(orderPic, '40%','90%',1, 'skyblue');
+fontAndLayoutEditor(orderPic, '40%','90%', 1, 'skyblue');
 orderList.appendChild(orderPic);
 orderPic.style.cursor = 'pointer';
+
+/*
+const recipe_step_table = [
+  {
+    step_id: 1,
+    recipe_id: 1,
+    recipe_step_content: "example_1",
+    recipe_step_img: "https://recipe1.ezmember.co.kr/img/pic_none4.gif",
+    recipe_step_number: 3,
+  },
+  {
+    step_id: 2,
+    recipe_id: 1,
+    recipe_step_content: "example_2",
+    recipe_step_img: "https://recipe1.ezmember.co.kr/img/pic_none2.gif",
+    recipe_step_number: 1,
+  },
+  {
+    step_id: 3,
+    recipe_id: 1,
+    recipe_step_content: "example_3",
+    recipe_step_img: "https://recipe1.ezmember.co.kr/img/pic_none3.gif",
+    recipe_step_number: 2,
+  },
+];
+*/
 
 recipe_step_table.forEach((step) => {
   const img = document.createElement("img");
   img.src = step.recipe_step_img;
-  orderList.appendChild(img);
+  orderPic.appendChild(img);
 });
 
 /////////////////////////////////////////
@@ -182,7 +210,7 @@ orderPic.onclick = function change(this){
 };
 */
 /////////////////////////////////////////
-/*
+
 ///조리순서사진을 클릭하면 파일업로드
 orderPic.onclick = () => {
   const input = document.createElement('input');
@@ -203,7 +231,6 @@ function uploadInnerOrderPicFile(file){
     output.innerText = reader.result;
   }
 }
-*/
 
 ///조리순서안의 조리방법 또는 내용
 const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1, (ele)=>{
