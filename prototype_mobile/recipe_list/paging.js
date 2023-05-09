@@ -84,7 +84,7 @@ const renderButtons = () => {
   startNumber.addEventListener("click", () => {
     currPage = 1;
     if (currPageGroup(currPage) === 1) {
-      startNumber.visibility = "hidden";
+      startNumber.style.visibility = "hidden";
     } else {
       startNumber.style.visibility = "visible";
       currPage = 1;
