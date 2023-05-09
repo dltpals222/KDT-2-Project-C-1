@@ -27,6 +27,7 @@ const mainPic = multiAndSingleTagMaker(main,'img','mainPic',1,(ele)=>{
 fontAndLayoutEditor(mainPic, '65%', '20%', 1 , 'aqua');
 main.appendChild(mainPic);
 mainPic.style.cursor = 'pointer';
+/*
 mainPic.addEventListener('click',function browseImgMainFile(){
   const formData = new FormData();
   formData.append('image', imageInput.files[0]);
@@ -43,6 +44,26 @@ mainPic.addEventListener('click',function browseImgMainFile(){
       console.error(error);
     });
 });
+*/
+mainPic.onclick = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'text/plain,text/html, .jsp';
+
+  input.click();
+  input.onchange = function(event){
+    uploadMainPicFile(event.target.files[0]);
+  };
+}
+
+function uploadMainPicFile(file){
+  const reader = new FileReader();
+  reader.readAsText(file,'UTF-8');
+
+  reader.onload = function(){
+    output.innerText = reader.result;
+  }
+}
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -83,8 +104,9 @@ main.appendChild(orderList);
 const orderPic = multiAndSingleTagMaker(orderList , 'img', 'orderPic', 1);
 fontAndLayoutEditor(orderPic, '40%','90%',1, 'skyblue');
 orderList.appendChild(orderPic);
-orderList.style.cursor = 'pointer';
-orderList.addEventListener('click',function browseImgMainFile(){
+orderPic.style.cursor = 'pointer';
+/*
+orderPic.addEventListener('click',function browseImgMainFile(){
   const formData = new FormData();
   formData.append('image', imageInput.files[0]);
 
@@ -100,6 +122,48 @@ orderList.addEventListener('click',function browseImgMainFile(){
       console.error(error);
     });
 });
+
+orderPic.onclick = () => {
+  //alert('hello!');
+  const formData = new FormData();
+  formData.append('image', imageInput.files[0]);
+
+  fetch('/upload', {
+    method: 'POST',
+    body: formData,
+  })
+    .then((response) => response.text())
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+*/
+
+
+orderPic.onclick = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'text/plain,text/html, .jsp';
+
+  input.click();
+  input.onchange = function(event){
+    uploadInnerOrderPicFile(event.target.files[0]);
+  };
+}
+
+function uploadInnerOrderPicFile(file){
+  const reader = new FileReader();
+  reader.readAsText(file,'UTF-8');
+
+  reader.onload = function(){
+    output.innerText = reader.result;
+  }
+}
+
+
 ///조리순서안의 조리방법 또는 내용
 const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1, (ele)=>{
   /*
