@@ -1,10 +1,10 @@
 
 
-/*
+
 import viewRecipeInfoDesign from "../module/all_mighty_editor.js";
 
 const { multiAndSingleTagMaker, PositionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } = viewRecipeInfoDesign;
-*/
+
 
 
 
