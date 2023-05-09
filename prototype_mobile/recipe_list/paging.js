@@ -1,6 +1,6 @@
 import all_mighty_editor from "../module/all_mighty_editor.js";
 import pagingRenderContent from '../module/paging_render_content.js'
-import pagingButton from '../module/paging_button.js'
+import pagingButton from '../module/paging_render_button.js'
 
 const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor, allMightyStyleEditor } = all_mighty_editor;
 
@@ -9,6 +9,22 @@ let page = {
   pageContentCount : 4, //한페이지에 보여질 게시글 갯수
   currPage : 1, //현재페이지
   pageNumCount : 5, //중간 페이징 버튼 갯수
+  boxInnerText :  `레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n`, //박스 안쪽 텍스트
+  //레시피 리스트 이미지 스타일
+  recipeListImgPage : {
+  width: "30%",
+  height: "100%",
+  margin: "2%",
+},
+  //레시피 리스트 박스 스타일
+  recipeListBoxStyle : {
+  display: "flex",
+  flexDirection: "row",
+  width: "70%",
+  height: "25%",
+  padding: "2%",
+  backgroundColor: "#DAB988",
+},
 }
 
 // //전체 페이지 갯수(밑에 숫자 부분)
@@ -23,24 +39,7 @@ let page = {
 const numberListWrap = document.getElementById('number-list-wrap')
 const recipeListWrap = document.getElementById('recipe-list-wrap')
 
-pagingRenderContent(page,recipeListWrap,i => {
-    const recipeListBox = multiAndSingleTagMaker(recipeListWrap,'div',`recipe-list-box-${i}`,1,element => {
-      allMightyStyleEditor(element, recipeListBoxStyle)
-    })
-    multiAndSingleTagMaker(recipeListBox,'img',{id : `recipe-list-image-${i}`,src :"https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png" },1,element => {
-  allMightyStyleEditor(element, recipeListImage)
-  })
-  multiAndSingleTagMaker(
-    recipeListBox,
-    "div",
-    `recipe-list-text-${i}`,
-    1,
-    (element) => {
-      element.innerText = i + '\n' + boxInnerText ;
-      
-    })
-  })
-  pagingButton(numberListWrap)
+
 
 
 //게시글을 포함시킨 renderContent
@@ -59,28 +58,45 @@ pagingRenderContent(page,recipeListWrap,i => {
     
 // };
 
-//박스 안쪽 텍스트
-const boxInnerText =  `레시피 이름 : 꼬리곰탕 \n 필요 재료 : 꼬리, 곰, 물\n 필요 도구 :칼, 냄비, 도마\n 작성자 : 김첨지\n 추천수 : 108\n`
+// //박스 안쪽 텍스트
+// const 
 
-//레시피 리스트 이미지 스타일
-const recipeListImage = {
-  width: "30%",
-  height: "100%",
-  margin: "2%",
-};
+// //레시피 리스트 이미지 스타일
+// const recipeListImapage.ge = {
+//   width: "30%",
+//   height: "100%",
+//   margin: "2%",
+// };
 
-//레시피 리스트 박스 스타일
-const recipeListBoxStyle = {
-  display: "flex",
-  flexDirection: "row",
-  width: "70%",
-  height: "25%",
-  padding: "2%",
-  backgroundColor: "#DAB988",
-};
+// //레시피 리스트 박스 스타일
+// const recipeListBoxStyle = {
+//   display: "flex",
+//   flexDirection: "row",
+//   width: "70%",
+//   height: "25%",
+//   padding: "2%",
+//   backgroundColor: "#DAB988",
+// };
 
 
-
+pagingRenderContent(recipeListWrap,page,i => {
+  const recipeListBox = multiAndSingleTagMaker(recipeListWrap,'div',`recipe-list-box-${i}`,1,element => {
+    allMightyStyleEditor(element, page.recipeListBoxStyle)
+  })
+  multiAndSingleTagMaker(recipeListBox,'img',{id : `recipe-list-image-${i}`,src :"https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png" },1,element => {
+allMightyStyleEditor(element, page.recipeListImgPage)
+})
+multiAndSingleTagMaker(
+  recipeListBox,
+  "div",
+  `recipe-list-text-${i}`,
+  1,
+  (element) => {
+    element.innerText = i + '\n' + page.boxInnerText ;
+    
+  })
+})
+pagingButton(numberListWrap,page,recipeListWrap)
 // const renderButtons = () => {
 //   const buttonList = multiAndSingleTagMaker(numberListWrap, "ul", "button-list",1,element => {
 //     element.style.listStyleType = 'none'

@@ -1,5 +1,7 @@
-import {whileRemoveChild} from './paging_while_removeChild.js'
 import all_mighty_editor from './all_mighty_editor.js';
+import { whileRemoveChild } from './paging_while_removeChild.js';
+import renderContent from './paging_render_content.js';
+
 
 //* 버튼을 만들 부모 태그를 넣으면 된다.
 //* 전역변수로 4가지를 지정해줘야된다.
@@ -13,11 +15,7 @@ let pageNumCount = 5; //중간 페이징 버튼 갯수
 
 const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } = all_mighty_editor
 
-function renderButtons (parent, page) {
-  let total = page.total
-  let pageContentCount = page.pageContentCount
-  let currPage = page.currPage
-  let pageNumCount = page.pageNumCount
+function renderButtons (parent, page,renderContentParent) {
 
   const buttonList = multiAndSingleTagMaker(parent, "ul", "button-list",1,element => {
     element.style.listStyleType = 'none'
@@ -32,22 +30,22 @@ function renderButtons (parent, page) {
 
   
   //전체 페이지 갯수(밑에 숫자 부분)
-  const totalPageCount = MathCeil(total , pageContentCount);
+  const totalPageCount = MathCeil(page.total , page.pageContentCount);
 
   
   //맨앞 버튼
   const startNumber = multiAndSingleTagMaker(buttonList, "li", "start-number");
   startNumber.innerHTML = "<<맨앞";
   startNumber.addEventListener("click", () => {
-    currPage = 1;
-    if (MathCeil(currPage) === 1) {
+    page.currPage = 1;
+    if (MathCeil(page.currPage) === 1) {
       startNumber.style.visibility = "hidden";
     } else {
       startNumber.style.visibility = "visible";
-      currPage = 1;
+      page.currPage = 1;
     }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
+    renderContent(page.currPage, renderContentParent, page.boxInnerText);
+    renderButtons(parent,page);
   });
 
   //이전 버튼
@@ -58,28 +56,28 @@ function renderButtons (parent, page) {
   );
   beforeNumber.innerHTML = "<이전";
   beforeNumber.addEventListener("click", () => {
-    currPage = currPage - pageNumCount < 1 ? 1 : currPage - pageNumCount;
-    if (MathCeil(currPage) === 1) {
+    page.currPage = page.currPage - page.pageNumCount < 1 ? 1 : page.currPage - page.pageNumCount;
+    if (MathCeil(page.currPage) === 1) {
       beforeNumber.style.visibility = "hidden";
     } else {
       beforeNumber.style.visibility = "visible";
-      currPage = MathCeil(currPage) * pageNumCount - (pageNumCount - 1);
+      page.currPage = MathCeil(page.currPage) * page.pageNumCount - (page.pageNumCount - 1);
     }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
+    renderContent(page.currPage, renderContentParent, page.boxInnerText);
+    renderButtons(parent,page);
   });
 
   // 중간 페이지 버튼 처리
-  let startPage = MathCeil(currPage) * pageNumCount - (pageNumCount - 1);
-  let endPage = MathCeil(currPage) * pageNumCount;
+  let startPage = MathCeil(page.currPage) * page.pageNumCount - (page.pageNumCount - 1);
+  let endPage = MathCeil(page.currPage) * page.pageNumCount;
 
   if (startPage < 1) {
     startPage = 1;
-    endPage = MathCeil(currPage) * pageNumCount - 1;
+    endPage = MathCeil(page.currPage) * page.pageNumCount - 1;
   }
-  if (endPage > total) {
-    endPage = total;
-    startPage = endPage - pageNumCount + 1;
+  if (endPage > page.total) {
+    endPage = page.total;
+    startPage = endPage - page.pageNumCount + 1;
     if (startPage < 1) {
       startPage = 1;
     }
@@ -93,15 +91,15 @@ function renderButtons (parent, page) {
       kingGodFlexEditor(element,'','center','center')
     });
     pageButton.innerHTML = i;
-    if (i === currPage) {
+    if (i === page.currPage) {
       pageButton.style.fontWeight = "bold" ;
       pageButton.style.backgroundColor = "#9A6E44";
       pageButton.style.color = "white";
     } else {
       pageButton.addEventListener("click", () => {
-        currPage = i;
-        renderContent(currPage, recipeListWrap, boxInnerText);
-        renderButtons();
+        page.currPage = i;
+        renderContent(page.currPage, renderContentParent, page.boxInnerText);
+        renderButtons(parent,page);
       });
       pageButton.style.fontWeight = "normal";
       pageButton.style.backgroundColor = "";
@@ -114,30 +112,30 @@ function renderButtons (parent, page) {
   const nextNumber = multiAndSingleTagMaker(buttonList, "li", "next-number");
   nextNumber.innerHTML = "다음>";
   nextNumber.addEventListener("click", () => {
-    currPage = currPage + pageNumCount > total ? total : currPage;
-    if (MathCeil(currPage) === MathCeil(totalPageCount)) {
+    page.currPage = page.currPage + page.pageNumCount > page.total ? page.total : page.currPage;
+    if (MathCeil(page.currPage) === MathCeil(totalPageCount)) {
       nextNumber.style.visibility = "hidden";
     } else {
       nextNumber.style.visibility = "visible";
-      currPage = MathCeil(currPage) * pageNumCount + 1;
+      page.currPage = MathCeil(page.currPage) * page.pageNumCount + 1;
     }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
+    renderContent(page.currPage, renderContentParent, page.boxInnerText);
+    renderButtons(parent,page);
   });
 
   //맨뒤 버튼
   const endNumber = multiAndSingleTagMaker(buttonList, "li", "end-number");
   endNumber.innerHTML = "맨뒤>>";
   endNumber.addEventListener("click", () => {
-    currPage = total;
-    if (MathCeil(currPage) === MathCeil(totalPageCount)) {
+    page.currPage = page.total;
+    if (MathCeil(page.currPage) === MathCeil(totalPageCount)) {
       endNumber.style.visibility = "hidden";
     } else {
       endNumber.style.visibility = "visible";
-      currPage = totalPageCount;
+      page.currPage = totalPageCount;
     }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
+    renderContent(page.currPage, renderContentParent, page.boxInnerText);
+    renderButtons(parent,page);
   });
 
   //기존 버튼 삭제 로직
