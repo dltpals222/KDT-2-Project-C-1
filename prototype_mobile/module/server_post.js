@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 import qs from "querystring";
 import dbSet from "../mysql/mysql_connect.js";
 
 function reqOnData(chunk, query, callback) {
   let body = "";
+=======
+import qs from 'querystring'
+import dbSet from '../mysql/mysql_connect.js'
+import fs from 'fs';
+
+function reqOnData(chunk, query, callback) {
+  let body = '';
+>>>>>>> 43-2
   body += chunk;
   let postArray = [];
   let post = qs.parse(body);
@@ -18,8 +27,12 @@ function reqOnData(chunk, query, callback) {
     } else {
       console.log("쿼리실행성공");
     }
+<<<<<<< HEAD
   });
   dbSet.end();
+=======
+  })
+>>>>>>> 43-2
   if(callback){
     callback(dbSet);
   }
