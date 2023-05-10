@@ -56,10 +56,10 @@ const server = http.createServer((req, res) => {
         );
         break;
 
-      case "/recipe_regist_table.json":
+      case "/recipe_regist_table_two.json":
         serverReadFileModule(
           res,
-          "recipe_regist_table.json",
+          "recipe_regist_table_two.json",
           "application/json",
           200
         );
@@ -120,19 +120,10 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
     dbSet.query(
-      "SELECT * FROM  recipe_regist_table;",
+      "select * from recipe_regist_table inner join recipe_ingredients_table on recipe_regist_table.recipe_id = recipe_ingredients_table.recipe_id;",
       function (err, results, fields) {
         fs.writeFileSync(
-          "recipe_regist_table.json",
-          JSON.stringify(results, null, 2)
-        );
-      }
-    );
-    dbSet.query(
-      "SELECT * FROM  recipe_ingredients_table;",
-      function (err, results, fields) {
-        fs.writeFileSync(
-          "recipe_ingredients_table.json",
+          "recipe_regist_table_two.json",
           JSON.stringify(results, null, 2)
         );
       }

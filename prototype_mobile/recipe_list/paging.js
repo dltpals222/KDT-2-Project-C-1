@@ -102,7 +102,7 @@ http.onreadystatechange = function () {
           `recipe-list-text-${i}`,
           1,
           (element) => {
-            element.innerText = i + "\n" + innerText;
+            element.innerText = innerText;
           }
         );
       }
@@ -271,13 +271,9 @@ http.onreadystatechange = function () {
     };
     renderContent(currPage, recipeListWrap, boxInnerText);
     renderButtons();
-
-    //db.json 파일 GET방식으로 오픈
-    http.open("GET", "recipe_regist_table.json");
-    http.send();
   }
 };
 
 //db.json 파일 GET방식으로 오픈
-http.open("GET", "recipe_ingredients_table.json");
+http.open("GET", "recipe_regist_table_two.json");
 http.send();
