@@ -82,7 +82,7 @@ http.onreadystatechange = function () {
           1,
           (element) => {
             element.method = "GET";
-            element.action = "/";
+            element.action = `/`;
             multiAndSingleTagMaker(
               element,
               "input",
