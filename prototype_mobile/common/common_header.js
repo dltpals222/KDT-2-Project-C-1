@@ -24,8 +24,18 @@ const headerWrapLeft = multiAndSingleTagMaker(
 const headerWrapTitle = multiAndSingleTagMaker(
   headerWrap,
   "div",
-  "headerwrap-title"
+  "headerwrap-title",
+  1,
+  (ele) => {
+    // ele.onClick = function () {
+    //   console.log("hi");
+    // };
+  }
 );
+headerWrapTitle.addEventListener("click", () => {
+  console.log("하이");
+  window.location.href = "/";
+});
 const headerWrapLogin = multiAndSingleTagMaker(
   headerWrap,
   "form",
@@ -55,11 +65,16 @@ console.log(root);
 // menu
 function moduleMaker(Num) {
   const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"];
+  const getUrl = ["recipe_list", "recipe_write", "recipe_list", "recipe_list"];
   for (let i = 1; i <= Num; i++) {
     const headerMenuModule = multiAndSingleTagMaker(
       headerMenu,
       "form",
-      "headerMenu-module" + i
+      "headerMenu-module" + i,
+      1,
+      (ele) => {
+        (ele.method = "GET"), (ele.action = getUrl[i - 1]);
+      }
     );
     const headerMenuModuleTop = multiAndSingleTagMaker(
       headerMenuModule,
@@ -190,6 +205,7 @@ allMightyStyleEditor(headerWrapLeft, headerWrapLeftCss);
 allMightyStyleEditor(headerWrapTitle, headerWrapTitleCss, function (element) {
   element.innerHTML = "요너두";
 });
+
 allMightyStyleEditor(headerWrapLogin, headerWrapLoginCss);
 allMightyStyleEditor(headerWrapLoginButton, headerWrapLoginButtonCss);
 allMightyStyleEditor(headerSearchSelect, headerSearchSelectCss);
