@@ -70,6 +70,24 @@ const server = http.createServer((req, res) => {
         );
         break;
 
+      //* 레시피 작성
+      case "/recipe_write":
+        serverReadFileModule(
+          res,
+          "recipe_write/recipe_write.html",
+          "text/html",
+          200
+        );
+        break;
+      case "/recipe_write.js":
+        serverReadFileModule(
+          res,
+          "recipe_write/recipe_write.js",
+          "text/javascript",
+          200
+        );
+        break;
+
       //* JSON 파일
       case "/JSON/recipe_list_data.json":
         serverReadFileModule(
@@ -99,11 +117,19 @@ const server = http.createServer((req, res) => {
         };
         break;
 
-      //* all_mighty_editor
+      //* 모듈들
       case "/module/all_mighty_editor.js":
         serverReadFileModule(
           res,
           "module/all_mighty_editor.js",
+          "text/javascript",
+          200
+        );
+        break;
+      case "/module/recipe_step_maker.js":
+        serverReadFileModule(
+          res,
+          "module/recipe_step_maker.js",
           "text/javascript",
           200
         );
@@ -135,7 +161,7 @@ const server = http.createServer((req, res) => {
     //mysql에서 저장된 데이터를 json 파일로 저장하기
     req.on("end", function () {
       //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
-      res.writeHead(302, { Location: "/print" });
+      res.writeHead(302, { Location: "/" });
       res.end();
     });
   } //createServer 내 if 문 끝
