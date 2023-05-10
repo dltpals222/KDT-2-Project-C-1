@@ -50,6 +50,9 @@ const server = http.createServer((req, res) => {
       case '/u':
         serverReadFileModule(res, 'LKT_U.html', 'text/html', 200);
         break;
+      case '/d':
+        serverReadFileModule(res, 'LKT_D.html', 'text/html', 200);
+        break;
       // 필요한 파일들을 받아오기 위한 기능
       default:
         console.log(pathName);
@@ -61,9 +64,9 @@ const server = http.createServer((req, res) => {
       // 버튼의 C로직
       case "/c_action":
         req.on('data', function (chunk) {
-          const a = reqOnData(chunk);
+          const insert = reqOnData(chunk);
           dbSet.connect();
-          dbSet.query('insert into b (name, type, taek) values (?,?,?)', a, (err) => {
+          dbSet.query('insert into b (name, type, taek) values (?,?,?)', insert, (err) => {
             if (err) {
               console.error("쿼리실행 실패", err);
             } else {
@@ -87,14 +90,19 @@ const server = http.createServer((req, res) => {
 
       case "/u_action":
         req.on('data', function (chunk) {
-          const b = reqOnData(chunk);
-
+          const update = reqOnData(chunk);
           dbSet.connect();
-          dbSet.query('update b set name = "hi", type = "hh", taek = "ee" where id = 1', b, (err,results) => {
+          dbSet.query('update b set name = ?, type = ?, taek = ? where b_id = ?', update, (err, results) => {
             if (err) {
               console.error("쿼리실행 실패", err);
             } else {
               console.log("쿼리실행성공");
+            }
+          });
+          dbSet.query("SELECT * FROM  b", function (err, results) {
+            if (err) {
+              console.error(err)
+            } else {
               fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
             }
           });
@@ -106,6 +114,31 @@ const server = http.createServer((req, res) => {
         })
         break;
 
+      case "/d_action":
+        req.on('data', function (chunk) {
+          const deleteSet = reqOnData(chunk);
+          dbSet.connect();
+          dbSet.query('delete from b where b_id = ?', deleteSet, (err, results) => {
+            if (err) {
+              console.error("쿼리실행 실패", err);
+            } else {
+              console.log("쿼리실행성공");
+            }
+          });
+          dbSet.query("SELECT * FROM  b", function (err, results) {
+            if (err) {
+              console.error(err)
+            } else {
+              fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
+            }
+          });
+          dbSet.end();
+        })
+        req.on('end', function () {
+          res.writeHead(302, { Location: '/' });
+          res.end();
+        })
+        break;
     }
   }
 })
