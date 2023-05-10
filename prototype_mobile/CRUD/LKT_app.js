@@ -1,7 +1,7 @@
 import http from 'http'
 import url from 'url'
 import serverReadFileModule from '../module/server_readfile.js'
-import reqOnData from '../module/server_post_copy.js'
+import reqOnData from './post.js'
 import fs from 'fs';
 import mysql from 'mysql'
 import db_module from './db_module.js';
@@ -45,15 +45,19 @@ const server = http.createServer((req, res) => {
       case "/c":
         serverReadFileModule(res, 'LKT_C.html', 'text/html', 200);
         break;
+      // r버튼을 눌렀을 때 LKT_main.html을 get방식으로 받아오는 방식
       case '/r':
         serverReadFileModule(res, 'LKT_main.html', 'text/html', 200);
         break;
+      // u버튼을 눌렀을 때 LKT_U.html을 get방식으로 받아오는 방식
       case '/u':
         serverReadFileModule(res, 'LKT_U.html', 'text/html', 200);
         break;
+      //u버튼을 눌렀을 때 LKT_U.js을 get방식으로 받아오는 방식
       case '/LKT_U.js':
         serverReadFileModule(res, 'LKT_U.js', 'text/javascript', 200);
         break;
+        // d버튼을 눌렀을 때 삭제하는 기능
       case '/d':
         serverReadFileModule(res, 'LKT_D.html', 'text/html', 200);
         break;
