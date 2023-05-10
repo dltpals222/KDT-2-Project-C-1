@@ -77,10 +77,24 @@ http.onreadystatechange = function () {
       ) {
         const recipeListBox = multiAndSingleTagMaker(
           recipeListWrap,
-          "div",
+          "form",
           `recipe-list-box-${i}`,
           1,
           (element) => {
+            element.method = "GET";
+            element.action = "/";
+            multiAndSingleTagMaker(
+              element,
+              "input",
+              { type: "submit" },
+              1,
+              (ele1) => {
+                element.addEventListener("click", () => {
+                  ele1.click();
+                });
+                ele1.style.display = "none";
+              }
+            );
             //박스 안쪽 텍스트
             //       const boxInnerText = `레시피 이름 : ${jsonDataTitle[i]} \n
             // 필요 재료 : ${jsonDataIngredients[i]} \n
@@ -109,11 +123,11 @@ http.onreadystatechange = function () {
           `recipe-list-HTML-${i}`,
           1,
           (element) => {
-            element.innerHTML = `레시피 이름 : ${jsonDataTitle[i - 1]} \n 
-            필요 재료 : ${jsonDataIngredients[i - 1]} \n 
-            작성자 : ${jsonDataRegister[i - 1]}\n 
-            추천수 : ${jsonDataRecommend[i - 1]}\n 
-            조회수 : ${jsonDataViews[i - 1]}\n`;
+            element.innerHTML = `레시피 이름 : ${jsonDataTitle[i - 1]} <br> 
+            필요 재료 : ${jsonDataIngredients[i - 1]} <br> 
+            작성자 : ${jsonDataRegister[i - 1]}<br> 
+            추천수 : ${jsonDataRecommend[i - 1]}<br> 
+            조회수 : ${jsonDataViews[i - 1]}<br>`;
           }
         );
       }

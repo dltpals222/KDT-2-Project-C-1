@@ -116,7 +116,7 @@ const server = http.createServer((req, res) => {
         break;
     } //if 문 내 switch 끝
     dbSet.query(
-      "select * from recipe_regist_table inner join recipe_ingredients_table on recipe_regist_table.recipe_id = recipe_ingredients_table.recipe_id;",
+      "select * from recipe_regist_table as t1 inner join ( select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id;",
       function (err, results, fields) {
         fs.writeFileSync(
           "JSON/recipe_list_data.json",
