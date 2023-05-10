@@ -1,9 +1,9 @@
 ///사용재료 데이터
-const ingredients = {
+const originalIngredients = {
   ingredients_id : 1,
   ingredients : 'beef broth'
 };
-console.log(ingredients);
+console.log(originalIngredients);
 /////////////////////////////////////////////////////////////////
 
 ///레시피 조리재료 데이터
@@ -66,7 +66,7 @@ console.log(recipeViewStep);
 console.dir(recipeViewStep[0].recipe_step_img);
 
 export default {
-  ingredients,
+  originalIngredients,
   recipeViewIngredient,
   recipeViewRegisterInfo,
   recipeViewCooker,

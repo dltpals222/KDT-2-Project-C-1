@@ -14,13 +14,12 @@ const {
 
 
 const {
-  ingredients,
+  originalIngredients,
   recipeViewIngredient,
   recipeViewRegisterInfo,
   recipeViewCooker,
   recipeViewStep
 } = recipe_view_table;
-
 
 ///전체 메인부분
 const main = multiAndSingleTagMaker(root,'div','main',1,(ele)=>{
@@ -38,9 +37,7 @@ fontAndLayoutEditor(mainPic, '65%', '20%', 1 , 'aqua');
 main.appendChild(mainPic);
 mainPic.style.cursor = 'pointer';
 mainPic.setAttribute('src', recipeViewRegisterInfo.thumbnail_img);
-//mainPic.setAttribute('src', 'http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png');
-//mainPic.setAttribute('src', recipe_step_table.recipe_step_table[0]);
-/////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 
 ///사용자(등록자)의 이름 및 조회수 추천수 컨테이너
 const container = multiAndSingleTagMaker(main, 'div', 'container', 1);
@@ -48,7 +45,7 @@ fontAndLayoutEditor(container, '70%', '5%', 1, 'aqua');
 kingGodFlexEditor(container, 'row', 'center', 'space-around');
 
 ///등록자의 이름
-const name = multiAndSingleTagMaker(main,'div','name',1,(ele)=>{
+const name = multiAndSingleTagMaker(main,'h3','name',1,(ele)=>{
   ele.textContent = recipeViewRegisterInfo.recipe_register;
 });
 fontAndLayoutEditor(name, '50%', '50%', 1, 'skyblue');
@@ -76,8 +73,8 @@ fontAndLayoutEditor(recommend, '40%', '80%', 1 , 'lightgreen');
 kingGodFlexEditor(recommend, 'row', 'center', 'center');
 viewNrecommend.appendChild(recommend);
 
-
 /*
+///더미코드(볼 필요없음)
 mainPic.addEventListener('click',function browseImgMainFile(){
   const formData = new FormData();
   formData.append('image', imageInput.files[0]);
@@ -95,7 +92,7 @@ mainPic.addEventListener('click',function browseImgMainFile(){
     });
 });
 */
-/////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 ///메인사진을 클릭하면 파일업로드
 mainPic.onclick = () => {
   const input = document.createElement('input');
@@ -116,61 +113,93 @@ function uploadMainPicFile(file){
     output.innerText = reader.result;
   }
 }
-
 ////////////////////////////////////////////////////////////////////////
 
 ///레시피 정보(레시피 이름, 재료, 조리기구 등등)
 const recipeInfo = multiAndSingleTagMaker(main, 'div', 'recipeInfo', 1,(ele)=>{
   ele.textContent = '';
 });
-fontAndLayoutEditor(recipeInfo, '70%', '40%', 1 , 'aqua');
+fontAndLayoutEditor(recipeInfo, '70%', '50%', 1 , 'aqua');
 kingGodFlexEditor(recipeInfo, 'column', 'center', 'space-evenly');
 main.appendChild(recipeInfo);
 
-
-///레시피 제목(이름)
-const recipeTitle = multiAndSingleTagMaker(recipeInfo, 'div', 'recipeTitle', 1, (ele)=>{
+///레시피 제목(이름) 부분
+const recipeTitle = multiAndSingleTagMaker(recipeInfo, 'h1', 'recipeTitle', 1, (ele)=>{
   ele.textContent = recipeViewRegisterInfo.recipe_title;
 });
 fontAndLayoutEditor(recipeTitle, '80%', '15%', 1, 'skyblue');
 kingGodFlexEditor(recipeTitle, 'row', 'center', 'center');
-///레시피 사용 재료
+///레시피 재료 부분
 const ingredient = multiAndSingleTagMaker(recipeInfo, 'div', 'ingredient', 1, (ele)=>{
-  ele.textContent = ingredients.ingredients;
+  ele.textContent = '재료 : ';
 });
-fontAndLayoutEditor(ingredient, '80%', '60%', 1, 'skyblue');
-kingGodFlexEditor(ingredient, 'row', 'center', 'center');
-///레시피 사용 조리기구
+ingredient.style.padding = '10px'
+fontAndLayoutEditor(ingredient, '80%', '50%', 1, 'skyblue');
+kingGodFlexEditor(ingredient, 'row', 'top', 'space-evenly');
+
+///레시피에 사용된 재료들 리스트의 컨테이너
+const firstContainer = multiAndSingleTagMaker(ingredient, 'ul', 'firstContainer', 1);
+fontAndLayoutEditor(firstContainer, '75%', '100%', 1, 'blue');
+kingGodFlexEditor(firstContainer, 'column', 'center')
+firstContainer.style.padding = '0';
+
+///레시피에 사용된 재료들 리스트로 나열한 부분
+const ingredientsList = multiAndSingleTagMaker(ingredient, 'li', 'ingredientsList', 1, (ele)=>{
+  ele.textContent = originalIngredients.ingredients;
+});
+fontAndLayoutEditor(ingredientsList, '100%', '15%', 1, 'lightgreen');
+kingGodFlexEditor(ingredientsList, 'row','center', 'center');
+firstContainer.appendChild(ingredientsList);
+
+
+///레시피 조리기구 부분
 const cooker = multiAndSingleTagMaker(recipeInfo, 'div', 'cooker', 1, (ele)=>{
+  ele.textContent = '조리기구 : ';
+});
+cooker.style.padding = '10px'
+fontAndLayoutEditor(cooker, '80%', '20%', 1, 'skyblue');
+kingGodFlexEditor(cooker, 'row', 'space-evenly', 'space-evenly');
+
+///레시피에 사용된 조리기구들 리스트의 컨테이너
+const secondContainer = multiAndSingleTagMaker(cooker, 'ul', 'firstContainer', 1);
+fontAndLayoutEditor(secondContainer, '65%', '100%', 1, 'blue');
+kingGodFlexEditor(secondContainer, 'column', 'center')
+secondContainer.style.padding = '0';
+
+///레시피에 사용된 조리기구들 리스트로 나열한 부분
+const cookerList = multiAndSingleTagMaker(cooker, 'li', 'cookerList', 1, (ele)=>{
   ele.textContent = recipeViewCooker.cooker;
 });
-fontAndLayoutEditor(cooker, '80%', '15%', 1, 'skyblue');
-kingGodFlexEditor(cooker, 'row', 'center', 'center');
+fontAndLayoutEditor(cookerList, '100%', '40%', 1, 'lightgreen');
+kingGodFlexEditor(cookerList, 'row', 'center', 'center');
+secondContainer.appendChild(cookerList);
 
 ////////////////////////////////////////////////////////////////////////
 
-///레시피 조리순서 컨테이너부분
-const orderList = multiAndSingleTagMaker(main, 'div', 'orderList', 1);
-fontAndLayoutEditor(orderList, '80%','15%', 1, 'aqua');
-kingGodFlexEditor(orderList, 'row-reverse', 'center', 'space-evenly');
-main.appendChild(orderList);
+//for(let i = 0; i < 2; i++){
+  ///레시피 조리순서 컨테이너부분
+  const orderList = multiAndSingleTagMaker(main, 'div', 'orderList', 1);
+  fontAndLayoutEditor(orderList, '80%','15%', 1, 'aqua');
+  kingGodFlexEditor(orderList, 'row-reverse', 'center', 'space-evenly');
+  main.appendChild(orderList);
+//}
 //조리순서안의 사진부분
 const orderPic = multiAndSingleTagMaker(orderList , 'img', 'orderPic', 1);
 fontAndLayoutEditor(orderPic, '40%','90%', 1, 'skyblue');
 orderList.appendChild(orderPic);
 orderPic.style.cursor = 'pointer';
 orderPic.setAttribute('src', recipeViewStep[0].recipe_step_img);
-//fontAndLayoutEditor(picDisplay,'40%','90%');
-//orderPic.appendChild(picDisplay);
+
 /////////////////////////////////////////
 /*
+///더미코드(볼 필요없음)
 recipe_step_table.forEach((step) => {
   const img = document.createElement("img");
   img.src = step.recipe_step_img;
   orderPic.appendChild(img);
 });
 */
-/////////////////////////////////////////
+
 /*
 ///더미코드(볼 필요없음)
 orderPic.addEventListener('click',function browseImgMainFile(){
@@ -208,28 +237,7 @@ orderPic.onclick = () => {
     });
 }
 */
-/////////////////////////////////////////
-/*
-///더미코드(볼 필요없음)
-const picArray = ["https://ibb.co/qWTNtzj","https://ibb.co/R6thCBB","https://ibb.co/jg918Hb"]
-
-var imgs = [];
-for(i = 0; i < picArray.length; i++){
-  imgs[i] = new Image(); // 이미지 객체 생성
-  imgs[i].src = picArray[i]; // 페이지 로딩 될때 이미지가 미리 로딩
-}
-
-var next = 1;
-function change(obj){
-  obj.src = imgs[next].src;
-  next++;
-  next %= imgs.length;
-}
-orderPic.onclick = function change(this){
-  
-};
-*/
-/////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 
 ///조리순서사진을 클릭하면 파일업로드
 orderPic.onclick = () => {
@@ -253,21 +261,25 @@ function uploadInnerOrderPicFile(file){
 }
 
 ///조리순서안의 조리방법 또는 내용
-const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1, (ele)=>{
-  /*
-  for(let i = 0; i < 3; i++){
-    ele = document.createElement('li');
-    ele.style.listStyleType = 'square';
-    ele.textContent = '1)요리를 합시다.';
-    orderedList.appendChild(ele);
-  }
-  */
-  //ele.textContent = '1)ssssssssssssssss';
-  ele.textContent = recipeViewStep[0].recipe_step_content;
-});
+const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1);
 fontAndLayoutEditor(orderInfo, '50%','90%', 1, 'skyblue');
-kingGodFlexEditor(orderInfo, 'column', 'center', 'center');
+kingGodFlexEditor(orderInfo, 'row', 'center', 'space-evenly');
 orderList.appendChild(orderInfo);
+
+///조리순서안의 순서번호 부여한 부분
+const sequence = multiAndSingleTagMaker(orderInfo, 'span', 'sequence', 1, (ele)=>{
+  ele.textContent = recipeViewStep[1].recipe_step_number;
+});
+fontAndLayoutEditor(sequence, '15%', '20%', 1 , 'lightgreen');
+kingGodFlexEditor(sequence, 'row', 'center', 'center');
+
+///조리순서안의 순서내용 부여한 부분
+const syno = multiAndSingleTagMaker(orderInfo, 'span', 'sequence', 1, (ele)=>{
+  ele.textContent = recipeViewStep[1].recipe_step_content;
+});
+fontAndLayoutEditor(syno, '75%', '30%', 1 , 'lightgreen');
+kingGodFlexEditor(syno, 'row', 'center', 'center');
+
 
 ////////////////////////////////////////////////////////////////////////
 
