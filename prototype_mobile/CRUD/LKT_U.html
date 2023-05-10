@@ -7,13 +7,62 @@
 </head>
 
 <body>
-  <form action="/u_action" method="POST">
-    <p><input type="text" name="name" placeholder="title"></p>
-    <p><textarea name="type" placeholder="description"></textarea></p>
-    <p><input type="text" name="taek" placeholder="taek"></p>
-    <p><input type="text" name="b_id" placeholder="id"></p>
-    <p><input type="submit"></p>
-  </form>
+  <div id="root">
+    <div id="dog"></div>
+    <form action="/u_action" method="POST">
+      <p><input id="a" type="text" name="name" placeholder="title"></p>
+      <p><textarea id="b" name="type" placeholder="description"></textarea></p>
+      <p><input id="c" type="text" name="taek" placeholder="taek"></p>
+      <p><input id="d" type="text" name="b_id" placeholder="id"></p>
+      <p><input type="submit" value="수정하기"></p>
+    </form>
+    <form action="/u_id_action" method="POST">
+      <p><input type="text" id="b_id" name="b_id" placeholder="id"></p>
+      <p><input type="submit" id="b_id_submit" value="불러오기"></p>
+    </form>
+  </div>
 </body>
+<script>
+  const b_id_submit = document.getElementById('b_id_submit');
+  const b_id = document.getElementById('b_id');
+  const a = document.getElementById('a');
+  const b = document.getElementById('b');
+  const c = document.getElementById('c');
+  // const d = document.getElementById('d');
+  // let b_id_value = b_id.value;
+  // let a_value = a.value;
+  // console.log(a.value);
+  // let b_value = b.value;
+  // let c_value = c.value;
 
-</html> 
+  b_id_submit.addEventListener('click', function () {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "db.json");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+        const name = data.map((value) => [value.b_id, value.name, value.type, value.taek]);
+        const root = document.getElementById('dog');
+
+        for (let i = 0; i < name.length; i++) {
+          if (Number(b_id.value) === name[i][0]) {
+            a.value = name[i][1];
+            b.value = name[i][2];
+            c.value = name[i][3];
+            d.value = name[i][0];
+          }
+        }
+        // console.log(a.value);
+        console.log(Number(b_id.value));
+        console.log(typeof (name[0][0]))
+        console.log(name.length)
+        // console.log(name[1][2])
+        // console.log(name[1][3])
+        root.innerHTML = JSON.stringify(name);
+      }
+    };
+    xhr.send();
+  })
+</script>
+
+</html>

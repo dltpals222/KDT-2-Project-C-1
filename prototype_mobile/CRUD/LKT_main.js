@@ -15,6 +15,7 @@ xhr.onreadystatechange = function () {
     const data = JSON.parse(xhr.responseText);
     const name = data.map((value)=> [value.b_id,value.name, value.type,value.taek]);
     const root = document.getElementById('root');
+    console.log(name)
     root.innerText = JSON.stringify(name);
   }
 };

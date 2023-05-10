@@ -4,6 +4,7 @@ import serverReadFileModule from '../module/server_readfile.js'
 import reqOnData from '../module/server_post_copy.js'
 import fs from 'fs';
 import mysql from 'mysql'
+import db_module from './db_module.js';
 
 const server = http.createServer((req, res) => {
 
@@ -42,7 +43,7 @@ const server = http.createServer((req, res) => {
         break;
       // c버튼을 눌렀을 때 LKT_R.html을 get방식으로 받아오는 case
       case "/c":
-        serverReadFileModule(res, 'LKT_R.html', 'text/html', 200);
+        serverReadFileModule(res, 'LKT_C.html', 'text/html', 200);
         break;
       case '/r':
         serverReadFileModule(res, 'LKT_main.html', 'text/html', 200);
@@ -65,22 +66,8 @@ const server = http.createServer((req, res) => {
       case "/c_action":
         req.on('data', function (chunk) {
           const insert = reqOnData(chunk);
-          dbSet.connect();
-          dbSet.query('insert into b (name, type, taek) values (?,?,?)', insert, (err) => {
-            if (err) {
-              console.error("쿼리실행 실패", err);
-            } else {
-              console.log("쿼리실행성공");
-            }
-          });
-          dbSet.query("SELECT * FROM  b", function (err, results) {
-            if (err) {
-              console.error(err)
-            } else {
-              fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
-            }
-          });
-          dbSet.end();
+
+          db_module('insert into b (name, type, taek) values (?,?,?)', insert)
         })
         req.on('end', function () {
           res.writeHead(302, { Location: '/' });
@@ -91,6 +78,7 @@ const server = http.createServer((req, res) => {
       case "/u_action":
         req.on('data', function (chunk) {
           const update = reqOnData(chunk);
+          // db_module('update b set name = ?, type = ?, taek = ? where b_id = ?', update)
           dbSet.connect();
           dbSet.query('update b set name = ?, type = ?, taek = ? where b_id = ?', update, (err, results) => {
             if (err) {
@@ -114,25 +102,13 @@ const server = http.createServer((req, res) => {
         })
         break;
 
+      // case "/u_id_action":
+
+
       case "/d_action":
         req.on('data', function (chunk) {
           const deleteSet = reqOnData(chunk);
-          dbSet.connect();
-          dbSet.query('delete from b where b_id = ?', deleteSet, (err, results) => {
-            if (err) {
-              console.error("쿼리실행 실패", err);
-            } else {
-              console.log("쿼리실행성공");
-            }
-          });
-          dbSet.query("SELECT * FROM  b", function (err, results) {
-            if (err) {
-              console.error(err)
-            } else {
-              fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
-            }
-          });
-          dbSet.end();
+          db_module('delete from b where b_id = ?', deleteSet)
         })
         req.on('end', function () {
           res.writeHead(302, { Location: '/' });
