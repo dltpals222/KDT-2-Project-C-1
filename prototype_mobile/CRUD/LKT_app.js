@@ -51,6 +51,9 @@ const server = http.createServer((req, res) => {
       case '/u':
         serverReadFileModule(res, 'LKT_U.html', 'text/html', 200);
         break;
+      case '/LKT_U.js':
+        serverReadFileModule(res, 'LKT_U.js', 'text/javascript', 200);
+        break;
       case '/d':
         serverReadFileModule(res, 'LKT_D.html', 'text/html', 200);
         break;
