@@ -1,5 +1,11 @@
 import all_mighty_editor from "../module/all_mighty_editor.js";
 import recipeStepMaker from "../module/recipe_step_maker.js";
+// import { fileURLToPath } from "url";
+// import { dirname } from "path";
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
+// console.log(__dirname);
 
 const {
   multiAndSingleTagMaker,
@@ -8,7 +14,6 @@ const {
   kingGodFlexEditor,
   allMightyStyleEditor,
 } = all_mighty_editor;
-
 //* div#main
 const main = multiAndSingleTagMaker(root, "div", "main", 1, (ele) => {
   ele.textContent = "";
@@ -56,7 +61,7 @@ const ingredientsImageContainer = multiAndSingleTagMaker(
   "",
   1,
   (ele) => {
-    kingGodFlexEditor(ele, "row", "", "space-around");
+    kingGodFlexEditor(ele, "row", "center", "center");
     ele.textContent = "";
   }
 );
@@ -118,20 +123,39 @@ const registIngredientsList = multiAndSingleTagMaker(
 //todo 레시피 사진 래핑
 const registImageWrap = multiAndSingleTagMaker(
   ingredientsImageContainer,
-  "div"
+  "div",
+  "",
+  1,
+  (ele) => {
+    kingGodFlexEditor(ele, "column", "", "center");
+  }
 );
 
-//* 레시피 사진
-const registImage = multiAndSingleTagMaker(
+//* 레시피 사진 라벨
+const registImageLabel = multiAndSingleTagMaker(
   registImageWrap,
   "label",
   "main-image-label",
   1,
   (ele) => {
     ele.textContent = "레시피 사진";
+    kingGodFlexEditor(ele, "row", "", "center");
   }
 );
-
+//* 레시피 사진 img태그
+const registImageTag = multiAndSingleTagMaker(
+  registImageWrap,
+  "img",
+  "main-image-tag",
+  1,
+  (ele) => {
+    ele.textContent = "레시피 사진";
+    ele.src = "http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png";
+  }
+);
+registImageTag.addEventListener("click", () => {
+  console.log("하이");
+});
 //? 조리순서 container 시작
 const registStepContainer = multiAndSingleTagMaker(
   mainForm,
@@ -208,9 +232,13 @@ minusBtn.addEventListener("click", function (event) {
 //todo 조리 순서 자동생성 wrap 끝
 //? 조리순서 container 끝
 
+//todo 하단 버튼 wrap 시작
+const bottomWrap = multiAndSingleTagMaker(mainForm, "div", "", 1, (ele) => {
+  kingGodFlexEditor(ele, "row", "center");
+});
 //* 레시피 등록 버튼
 const submitBtn = multiAndSingleTagMaker(
-  mainForm,
+  bottomWrap,
   "input",
   "input-submit",
   1,
@@ -219,6 +247,28 @@ const submitBtn = multiAndSingleTagMaker(
     ele.value = "레시피 등록";
   }
 );
+//* 이전 페이지 버튼 폼
+const backForm = multiAndSingleTagMaker(bottomWrap, "form", "", 1, (ele) => {
+  ele.action = "recipe_list";
+  ele.method = "GET";
+});
+//이전 페이지 버튼
+const backBtn = multiAndSingleTagMaker(
+  backForm,
+  "input",
+  "back-submit",
+  1,
+  (ele) => {
+    ele.type = "submit";
+    ele.value = "뒤로가기";
+  }
+);
+backBtn.addEventListener("click", function () {
+  // console.log("하이");
+  // history.back();
+});
+
+//todo 하단 버튼 wrap 끝
 
 //*
 //*
