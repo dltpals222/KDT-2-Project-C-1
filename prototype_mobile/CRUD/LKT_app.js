@@ -81,37 +81,18 @@ const server = http.createServer((req, res) => {
           res.end();
         })
         break;
-
+        // u 버튼 로직
       case "/u_action":
         req.on('data', function (chunk) {
           const update = reqOnData(chunk);
-          // db_module('update b set name = ?, type = ?, taek = ? where b_id = ?', update)
-          dbSet.connect();
-          dbSet.query('update b set name = ?, type = ?, taek = ? where b_id = ?', update, (err, results) => {
-            if (err) {
-              console.error("쿼리실행 실패", err);
-            } else {
-              console.log("쿼리실행성공");
-            }
-          });
-          dbSet.query("SELECT * FROM  b", function (err, results) {
-            if (err) {
-              console.error(err)
-            } else {
-              fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
-            }
-          });
-          dbSet.end();
+          db_module('update b set name = ?, type = ?, taek = ? where b_id = ?', update)
         })
         req.on('end', function () {
           res.writeHead(302, { Location: '/' });
           res.end();
         })
         break;
-
-      // case "/u_id_action":
-
-
+        // d 버튼 로직
       case "/d_action":
         req.on('data', function (chunk) {
           const deleteSet = reqOnData(chunk);

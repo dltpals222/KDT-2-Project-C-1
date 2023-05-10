@@ -7,7 +7,7 @@ const {
   kingGodFlexEditor,
   allMightyStyleEditor,
 } = all_mighty_editor;
-
+// json 파일을 브라우저에 출력하기 위한 로직
 const xhr = new XMLHttpRequest();
 xhr.open("GET", "db.json");
 xhr.onreadystatechange = function () {

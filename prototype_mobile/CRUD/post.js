@@ -1,5 +1,6 @@
 import qs from "querystring";
 
+// chunk 데이터 가공하여 postArray배열을 반환하는 로직
 function reqOnData(chunk) {
   let body = "";
   body += chunk;
