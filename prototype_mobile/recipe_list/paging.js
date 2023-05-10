@@ -43,7 +43,7 @@ http.onreadystatechange = function () {
     const jsonDataViews = data.map((value) => [value.recipe_views]);
     const jsonDataImg = data.map((value) => [value.thumbnail_img]);
 
-    let total = 20; //전체 게시글 갯수
+    let total = data.length; //전체 게시글 갯수
     let pageContentCount = 4; //한페이지에 보여질 게시글 갯수
     let currPage = 1; //현재페이지
     let pageNumCount = 5; //중간 페이징 버튼 갯수
@@ -65,7 +65,7 @@ http.onreadystatechange = function () {
     const recipeListWrap = document.getElementById("recipe-list-wrap");
 
     //게시글을 포함시킨 renderContent
-    const renderContent = (page, parent, innerText) => {
+    const renderContent = (page, parent) => {
       while (parent.hasChildNodes()) {
         parent.removeChild(parent.lastChild);
       }
@@ -81,6 +81,13 @@ http.onreadystatechange = function () {
           `recipe-list-box-${i}`,
           1,
           (element) => {
+            //박스 안쪽 텍스트
+            //       const boxInnerText = `레시피 이름 : ${jsonDataTitle[i]} \n
+            // 필요 재료 : ${jsonDataIngredients[i]} \n
+            // 작성자 : ${jsonDataRegister[i]}\n
+            // 추천수 : ${jsonDataRecommend[i]}\n
+            // 조회수 : ${jsonDataViews[i]}\n`;
+
             allMightyStyleEditor(element, recipeListBoxStyle);
           }
         );
@@ -99,17 +106,18 @@ http.onreadystatechange = function () {
         multiAndSingleTagMaker(
           recipeListBox,
           "div",
-          `recipe-list-text-${i}`,
+          `recipe-list-HTML-${i}`,
           1,
           (element) => {
-            element.innerText = innerText;
+            element.innerHTML = `레시피 이름 : ${jsonDataTitle[i - 1]} \n 
+            필요 재료 : ${jsonDataIngredients[i - 1]} \n 
+            작성자 : ${jsonDataRegister[i - 1]}\n 
+            추천수 : ${jsonDataRecommend[i - 1]}\n 
+            조회수 : ${jsonDataViews[i - 1]}\n`;
           }
         );
       }
     };
-
-    //박스 안쪽 텍스트
-    const boxInnerText = `레시피 이름 : ${jsonDataTitle[0]} \n 필요 재료 : ${jsonDataIngredients[0]} \n 필요 도구 :칼, 냄비, 도마\n 작성자 : ${jsonDataRegister[0]}\n 추천수 : ${jsonDataRecommend[0]}\n 조회수 : ${jsonDataViews[0]}\n`;
 
     //레시피 리스트 이미지 스타일
     const recipeListImage = {
@@ -157,7 +165,7 @@ http.onreadystatechange = function () {
           startNumber.style.visibility = "visible";
           currPage = 1;
         }
-        renderContent(currPage, recipeListWrap, boxInnerText);
+        renderContent(currPage, recipeListWrap);
         renderButtons();
       });
 
@@ -177,7 +185,7 @@ http.onreadystatechange = function () {
           currPage =
             currPageGroup(currPage) * pageNumCount - (pageNumCount - 1);
         }
-        renderContent(currPage, recipeListWrap, boxInnerText);
+        renderContent(currPage, recipeListWrap);
         renderButtons();
       });
 
@@ -219,7 +227,7 @@ http.onreadystatechange = function () {
         } else {
           pageButton.addEventListener("click", () => {
             currPage = i;
-            renderContent(currPage, recipeListWrap, boxInnerText);
+            renderContent(currPage, recipeListWrap);
             renderButtons();
           });
           pageButton.style.fontWeight = "normal";
@@ -244,7 +252,7 @@ http.onreadystatechange = function () {
           nextNumber.style.visibility = "visible";
           currPage = currPageGroup(currPage) * pageNumCount + 1;
         }
-        renderContent(currPage, recipeListWrap, boxInnerText);
+        renderContent(currPage, recipeListWrap);
         renderButtons();
       });
 
@@ -259,7 +267,7 @@ http.onreadystatechange = function () {
           endNumber.style.visibility = "visible";
           currPage = totalPageCount;
         }
-        renderContent(currPage, recipeListWrap, boxInnerText);
+        renderContent(currPage, recipeListWrap);
         renderButtons();
       });
 
@@ -269,7 +277,7 @@ http.onreadystatechange = function () {
       }
       numberListWrap.appendChild(buttonList);
     };
-    renderContent(currPage, recipeListWrap, boxInnerText);
+    renderContent(currPage, recipeListWrap);
     renderButtons();
   }
 };
