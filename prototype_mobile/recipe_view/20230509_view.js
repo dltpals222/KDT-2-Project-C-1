@@ -2,7 +2,7 @@
 ///나머지 파일들을 볼 필요가 없음
 
 import all_mighty_editor from "../module/all_mighty_editor.js";
-import recipe_step_table from "../recipe_view/dummy_data.js";
+import recipe_view_table from "../recipe_view/dummy_data.js";
 
 const {
   multiAndSingleTagMaker,
@@ -14,11 +14,12 @@ const {
 
 
 const {
-  ingredientsTable,
-  recipeIngredientsTable,
-  recipRegistTable,
-  recipeStepTable
-} = recipe_step_table;
+  ingredients,
+  recipeViewIngredient,
+  recipeViewRegisterInfo,
+  recipeViewCooker,
+  recipeViewStep
+} = recipe_view_table;
 
 
 ///전체 메인부분
@@ -36,7 +37,7 @@ const mainPic = multiAndSingleTagMaker(main,'img','mainPic',1,(ele)=>{
 fontAndLayoutEditor(mainPic, '65%', '20%', 1 , 'aqua');
 main.appendChild(mainPic);
 mainPic.style.cursor = 'pointer';
-mainPic.setAttribute('src', `recipe_step_table[0].recipe_step_img`);
+mainPic.setAttribute('src', recipeViewRegisterInfo.thumbnail_img);
 //mainPic.setAttribute('src', 'http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png');
 //mainPic.setAttribute('src', recipe_step_table.recipe_step_table[0]);
 /////////////////////////////////////////
@@ -48,7 +49,7 @@ kingGodFlexEditor(container, 'row', 'center', 'space-around');
 
 ///등록자의 이름
 const name = multiAndSingleTagMaker(main,'div','name',1,(ele)=>{
-  ele.textContent = '';
+  ele.textContent = recipeViewRegisterInfo.recipe_register;
 });
 fontAndLayoutEditor(name, '50%', '50%', 1, 'skyblue');
 kingGodFlexEditor(name, 'row', 'center', 'center');
@@ -61,7 +62,7 @@ kingGodFlexEditor(viewNrecommend, 'row', 'center', 'space-evenly');
 
 ///조회수 부분
 const view = multiAndSingleTagMaker(viewNrecommend, 'span','view',1,(ele)=>{
-  ele.textContent = '조회수';
+  ele.textContent = recipeViewRegisterInfo.recipe_views;
 });
 fontAndLayoutEditor(view, '40%', '80%', 1 , 'lightgreen');
 kingGodFlexEditor(view, 'row', 'center', 'center');
@@ -69,7 +70,7 @@ viewNrecommend.appendChild(view);
 
 ///추천수 부분
 const recommend = multiAndSingleTagMaker(viewNrecommend, 'span','view',1,(ele)=>{
-  ele.textContent = '추천수';
+  ele.textContent = recipeViewRegisterInfo.recipe_recommend;
 });
 fontAndLayoutEditor(recommend, '40%', '80%', 1 , 'lightgreen');
 kingGodFlexEditor(recommend, 'row', 'center', 'center');
@@ -129,19 +130,19 @@ main.appendChild(recipeInfo);
 
 ///레시피 제목(이름)
 const recipeTitle = multiAndSingleTagMaker(recipeInfo, 'div', 'recipeTitle', 1, (ele)=>{
-  ele.textContent = `레시피의 이름`;
+  ele.textContent = recipeViewRegisterInfo.recipe_title;
 });
 fontAndLayoutEditor(recipeTitle, '80%', '15%', 1, 'skyblue');
 kingGodFlexEditor(recipeTitle, 'row', 'center', 'center');
 ///레시피 사용 재료
 const ingredient = multiAndSingleTagMaker(recipeInfo, 'div', 'ingredient', 1, (ele)=>{
-  ele.textContent = '재료 : ............';
+  ele.textContent = ingredients.ingredients;
 });
 fontAndLayoutEditor(ingredient, '80%', '60%', 1, 'skyblue');
 kingGodFlexEditor(ingredient, 'row', 'center', 'center');
 ///레시피 사용 조리기구
 const cooker = multiAndSingleTagMaker(recipeInfo, 'div', 'cooker', 1, (ele)=>{
-  ele.textContent = '조리기구 : ..........';
+  ele.textContent = recipeViewCooker.cooker;
 });
 fontAndLayoutEditor(cooker, '80%', '15%', 1, 'skyblue');
 kingGodFlexEditor(cooker, 'row', 'center', 'center');
@@ -158,7 +159,7 @@ const orderPic = multiAndSingleTagMaker(orderList , 'img', 'orderPic', 1);
 fontAndLayoutEditor(orderPic, '40%','90%', 1, 'skyblue');
 orderList.appendChild(orderPic);
 orderPic.style.cursor = 'pointer';
-const picDisplay = orderPic.setAttribute('src', recipe_step_table.recipe_step_table[1]);
+orderPic.setAttribute('src', recipeViewStep[0].recipe_step_img);
 //fontAndLayoutEditor(picDisplay,'40%','90%');
 //orderPic.appendChild(picDisplay);
 /////////////////////////////////////////
@@ -261,7 +262,8 @@ const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1, (ele)
     orderedList.appendChild(ele);
   }
   */
-  ele.textContent = '1)ssssssssssssssss';
+  //ele.textContent = '1)ssssssssssssssss';
+  ele.textContent = recipeViewStep[0].recipe_step_content;
 });
 fontAndLayoutEditor(orderInfo, '50%','90%', 1, 'skyblue');
 kingGodFlexEditor(orderInfo, 'column', 'center', 'center');
