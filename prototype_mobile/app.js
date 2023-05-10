@@ -1,9 +1,26 @@
 import http from "http";
 import Url from "url";
 import fs from "fs";
+import mysql from "mysql";
+import qs from "querystring";
 import serverReadFileModule from "./module/server_readfile.js";
 import serverPostModule from "./module/server_post.js";
+import dbSet from "./mysql/mysql_connect.js";
+import reqOnData from "./module/server_post.js";
 
+/* 
+  mysql_connect.js 로가서 정보를 바꾸고
+  테이블 생성
+
+  create table add_recipe(
+  id int NOT NULL AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  ingredients varchar(255) NOT NULL,
+  content varchar(255) NOT NULL,
+  primary key(id));
+*/
+dbSet.connect();
+//GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
 const server = http.createServer((req, res) => {
@@ -19,14 +36,15 @@ const server = http.createServer((req, res) => {
   //나머지 페이지는 레시피리스트처럼 action에 적을 것 예상하고 추가하면 됩니다.
   if (urlMethod === "GET") {
     switch (urlPathName) {
-      //mysql 저장 연습
+      //* mysql 저장 연습
       case "/":
         serverReadFileModule(res, "main/main.html", "text/html", 200);
         break;
       case "/main.js":
         serverReadFileModule(res, "main/main.js", "text/javascript", 200);
         break;
-      //레시피 리스트
+
+      //* 레시피 리스트
       case "/recipe_list":
         serverReadFileModule(
           res,
@@ -43,8 +61,26 @@ const server = http.createServer((req, res) => {
           200
         );
         break;
+      case "/recipe_list_paging.js":
+        serverReadFileModule(
+          res,
+          "recipe_list/recipe_list_paging.js",
+          "text/javascript",
+          200
+        );
+        break;
 
-      //common 파일
+      //* JSON 파일
+      case "/JSON/recipe_list_data.json":
+        serverReadFileModule(
+          res,
+          "JSON/recipe_list_data.json",
+          "application/json",
+          200
+        );
+        break;
+
+      //* common 파일
       case "/common/common_header.js":
         serverReadFileModule(
           res,
@@ -54,7 +90,7 @@ const server = http.createServer((req, res) => {
         );
         break;
 
-      //favicon에러처리
+      //* favicon에러처리
       case "/favicon.ico":
         (err) => {
           if (err) {
@@ -63,7 +99,7 @@ const server = http.createServer((req, res) => {
         };
         break;
 
-      //all_mighty_editor
+      //* all_mighty_editor
       case "/module/all_mighty_editor.js":
         serverReadFileModule(
           res,
@@ -73,16 +109,35 @@ const server = http.createServer((req, res) => {
         );
         break;
 
-      //404 페이지 처리
+      //* 404 페이지 처리
       default:
         serverReadFileModule(res, "404.html", "text/html", 404);
         console.log(urlPathName);
         break;
     } //if 문 내 switch 끝
+    dbSet.query(
+      "select * from recipe_regist_table inner join recipe_ingredients_table on recipe_regist_table.recipe_id = recipe_ingredients_table.recipe_id;",
+      function (err, results, fields) {
+        fs.writeFileSync(
+          "JSON/recipe_list_data.json",
+          JSON.stringify(results, null, 2)
+        );
+      }
+    );
   } else if (urlMethod === "POST") {
-    if (urlPathName === "./set") {
-      serverPostModule(req, res);
-    }
+    //post 방식 데이터 mysql로 보내기
+    req.on("data", function (chunk) {
+      reqOnData(
+        chunk,
+        "insert into add_recipe(title,ingredients,content) values (?, ?, ?)"
+      );
+    });
+    //mysql에서 저장된 데이터를 json 파일로 저장하기
+    req.on("end", function () {
+      //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
+      res.writeHead(302, { Location: "/print" });
+      res.end();
+    });
   } //createServer 내 if 문 끝
 }); //server 함수 끝
 

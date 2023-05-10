@@ -96,7 +96,7 @@ http.onreadystatechange = function () {
           "img",
           {
             id: `recipe-list-image-${i}`,
-            src: "https://pelicana.co.kr/resources/images/menu/original_menu01_200529.png",
+            src: `${jsonDataImg[i - 1]}`,
           },
           1,
           (element) => {
@@ -283,5 +283,5 @@ http.onreadystatechange = function () {
 };
 
 //db.json 파일 GET방식으로 오픈
-http.open("GET", "recipe_regist_table_two.json");
+http.open("GET", "../JSON/recipe_list_data.json");
 http.send();

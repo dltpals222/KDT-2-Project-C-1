@@ -8,7 +8,6 @@ const {
   allMightyStyleEditor,
 } = all_mighty_editor;
 
-
 const main = multiAndSingleTagMaker(root, "div", "main");
 
 //상세 검색 박스
@@ -25,12 +24,21 @@ const advancedSearch = multiAndSingleTagMaker(
 const recipeListWrap = multiAndSingleTagMaker(main, "div", `recipe-list-wrap`);
 
 //레시피 <<맨앞 <이전 1, 2, 3, 4, 5 다음> 맨뒤>>
-const numberListWrap = multiAndSingleTagMaker(main, "div", "number-list-wrap", 1, element => {
-  fontAndLayoutEditor(element, "100%",'100%')
-});
+const numberListWrap = multiAndSingleTagMaker(
+  main,
+  "div",
+  "number-list-wrap",
+  1,
+  (element) => {
+    fontAndLayoutEditor(element, "100%", "100%");
+  }
+);
 
 //레시피 등록 버튼
 const recipeBtnWrap = multiAndSingleTagMaker(main, "form", "recipe-btn-wrap");
+recipeBtnWrap.method = "GET";
+recipeBtnWrap.action = "recipe_write";
+
 const recipeBtn = multiAndSingleTagMaker(
   recipeBtnWrap,
   "button",
