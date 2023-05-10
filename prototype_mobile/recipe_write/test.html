@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="parentDiv">
+      <div>Generated div 1</div>
+      <div>Generated div 2</div>
+      <div>Generated div 3</div>
+    </div>
+    <div id="root"></div>
+
+    <script>
+      var parentDiv = document.getElementById("parentDiv");
+      var root = document.getElementById("root");
+
+      var removeBtn = document.createElement("input");
+      removeBtn.type = "submit";
+      removeBtn.value = "Remove last div";
+      removeBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        var lastDiv = parentDiv.lastElementChild;
+        if (lastDiv) {
+          parentDiv.removeChild(lastDiv);
+        } else {
+          alert("No div element to remove");
+        }
+      });
+      root.appendChild(removeBtn);
+      var addBtn = document.createElement("input");
+      addBtn.type = "submit";
+      addBtn.value = "Add last div";
+      addBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        var lastDiv = parentDiv.lastElementChild;
+        if (lastDiv) {
+          let a = document.createElement("div");
+          a.textContent = "추가된 div";
+          parentDiv.appendChild(a);
+        } else {
+          alert("추가하는데 오류가 발생했습니다.");
+        }
+      });
+      root.appendChild(addBtn);
+    </script>
+  </body>
+</html>
