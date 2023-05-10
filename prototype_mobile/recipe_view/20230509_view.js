@@ -12,14 +12,14 @@ const {
   allMightyStyleEditor,
 } = all_mighty_editor;
 
-/*
+
 const {
   ingredientsTable,
   recipeIngredientsTable,
   recipRegistTable,
   recipeStepTable
 } = recipe_step_table;
-*/
+
 
 ///전체 메인부분
 const main = multiAndSingleTagMaker(root,'div','main',1,(ele)=>{
@@ -36,12 +36,51 @@ const mainPic = multiAndSingleTagMaker(main,'img','mainPic',1,(ele)=>{
 fontAndLayoutEditor(mainPic, '65%', '20%', 1 , 'aqua');
 main.appendChild(mainPic);
 mainPic.style.cursor = 'pointer';
+mainPic.setAttribute('src', `recipe_step_table[0].recipe_step_img`);
+//mainPic.setAttribute('src', 'http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png');
+//mainPic.setAttribute('src', recipe_step_table.recipe_step_table[0]);
 /////////////////////////////////////////
+
+///사용자(등록자)의 이름 및 조회수 추천수 컨테이너
+const container = multiAndSingleTagMaker(main, 'div', 'container', 1);
+fontAndLayoutEditor(container, '70%', '5%', 1, 'aqua');
+kingGodFlexEditor(container, 'row', 'center', 'space-around');
+
+///등록자의 이름
+const name = multiAndSingleTagMaker(main,'div','name',1,(ele)=>{
+  ele.textContent = '';
+});
+fontAndLayoutEditor(name, '50%', '50%', 1, 'skyblue');
+kingGodFlexEditor(name, 'row', 'center', 'center');
+container.appendChild(name);
+
+///조회수와 추천수 컨테이너
+const viewNrecommend = multiAndSingleTagMaker(container, 'div', 'view', 1);
+fontAndLayoutEditor(viewNrecommend, '30%', '50%', 1, 'skyblue');
+kingGodFlexEditor(viewNrecommend, 'row', 'center', 'space-evenly');
+
+///조회수 부분
+const view = multiAndSingleTagMaker(viewNrecommend, 'span','view',1,(ele)=>{
+  ele.textContent = '조회수';
+});
+fontAndLayoutEditor(view, '40%', '80%', 1 , 'lightgreen');
+kingGodFlexEditor(view, 'row', 'center', 'center');
+viewNrecommend.appendChild(view);
+
+///추천수 부분
+const recommend = multiAndSingleTagMaker(viewNrecommend, 'span','view',1,(ele)=>{
+  ele.textContent = '추천수';
+});
+fontAndLayoutEditor(recommend, '40%', '80%', 1 , 'lightgreen');
+kingGodFlexEditor(recommend, 'row', 'center', 'center');
+viewNrecommend.appendChild(recommend);
+
+
 /*
 mainPic.addEventListener('click',function browseImgMainFile(){
   const formData = new FormData();
   formData.append('image', imageInput.files[0]);
-
+  
   fetch('/upload', {
     method: 'POST',
     body: formData,
@@ -86,6 +125,8 @@ const recipeInfo = multiAndSingleTagMaker(main, 'div', 'recipeInfo', 1,(ele)=>{
 fontAndLayoutEditor(recipeInfo, '70%', '40%', 1 , 'aqua');
 kingGodFlexEditor(recipeInfo, 'column', 'center', 'space-evenly');
 main.appendChild(recipeInfo);
+
+
 ///레시피 제목(이름)
 const recipeTitle = multiAndSingleTagMaker(recipeInfo, 'div', 'recipeTitle', 1, (ele)=>{
   ele.textContent = `레시피의 이름`;
@@ -117,39 +158,17 @@ const orderPic = multiAndSingleTagMaker(orderList , 'img', 'orderPic', 1);
 fontAndLayoutEditor(orderPic, '40%','90%', 1, 'skyblue');
 orderList.appendChild(orderPic);
 orderPic.style.cursor = 'pointer';
-
+const picDisplay = orderPic.setAttribute('src', recipe_step_table.recipe_step_table[1]);
+//fontAndLayoutEditor(picDisplay,'40%','90%');
+//orderPic.appendChild(picDisplay);
+/////////////////////////////////////////
 /*
-const recipe_step_table = [
-  {
-    step_id: 1,
-    recipe_id: 1,
-    recipe_step_content: "example_1",
-    recipe_step_img: "https://recipe1.ezmember.co.kr/img/pic_none4.gif",
-    recipe_step_number: 3,
-  },
-  {
-    step_id: 2,
-    recipe_id: 1,
-    recipe_step_content: "example_2",
-    recipe_step_img: "https://recipe1.ezmember.co.kr/img/pic_none2.gif",
-    recipe_step_number: 1,
-  },
-  {
-    step_id: 3,
-    recipe_id: 1,
-    recipe_step_content: "example_3",
-    recipe_step_img: "https://recipe1.ezmember.co.kr/img/pic_none3.gif",
-    recipe_step_number: 2,
-  },
-];
-*/
-
 recipe_step_table.forEach((step) => {
   const img = document.createElement("img");
   img.src = step.recipe_step_img;
   orderPic.appendChild(img);
 });
-
+*/
 /////////////////////////////////////////
 /*
 ///더미코드(볼 필요없음)
@@ -250,7 +269,7 @@ orderList.appendChild(orderInfo);
 
 ////////////////////////////////////////////////////////////////////////
 
-///버튼 부분
+///목록버튼 부분
 const button = multiAndSingleTagMaker(main, 'div', 'button', 1, (ele)=>{
   ele.textContent = '목록';
 });
