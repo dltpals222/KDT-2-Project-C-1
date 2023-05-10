@@ -1,0 +1,34 @@
+[
+  {
+    "recipe_id": 1,
+    "recipe_register": "정성철",
+    "recipe_title": "크림파스타",
+    "thumbnail_img": "https://recipe1.ezmember.co.kr/cache/recipe/2017/06/26/b96fd7dfa05a0614bffe4f3dca4266101_m.jpg",
+    "recipe_views": 10000,
+    "recipe_recommend": 5000
+  },
+  {
+    "recipe_id": 2,
+    "recipe_register": "이세민",
+    "recipe_title": "달걀말이",
+    "thumbnail_img": "https://recipe1.ezmember.co.kr/cache/recipe/2018/11/02/982b1cccf770406a0984b63253bc71341_m.jpg",
+    "recipe_views": 9817,
+    "recipe_recommend": 3004
+  },
+  {
+    "recipe_id": 3,
+    "recipe_register": "이경택",
+    "recipe_title": "치즈돈까스",
+    "thumbnail_img": "https://recipe1.ezmember.co.kr/cache/recipe/2020/07/02/829a099909067506e32d4f956e91cb861_m.jpg",
+    "recipe_views": 200000,
+    "recipe_recommend": 10000
+  },
+  {
+    "recipe_id": 4,
+    "recipe_register": "허진",
+    "recipe_title": "바지락 비빔밥",
+    "thumbnail_img": "https://recipe1.ezmember.co.kr/cache/recipe/2015/06/05/c542c4bbbf21f491731fbde0fd824947_m.jpg",
+    "recipe_views": 60000,
+    "recipe_recommend": 8888
+  }
+]

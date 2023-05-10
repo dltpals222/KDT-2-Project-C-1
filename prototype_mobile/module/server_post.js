@@ -11,7 +11,6 @@ function reqOnData(chunk, query) {
     postArray.push(post[i]);
   }
   console.log(postArray);
-  dbSet.connect();
   dbSet.query(query, postArray, (err) => {
     if (err) {
       console.error("쿼리실행 실패", err);
