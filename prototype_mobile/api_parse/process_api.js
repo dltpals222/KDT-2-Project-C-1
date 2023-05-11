@@ -27,14 +27,15 @@ fs.readFile("./data_1000.json", "utf-8", (err, data) => {
             /●주재료\s+|저나트륨|반죽재료\)|\[|\]|재료|인분|설탕시럽설탕과물을동량으로하여중불에서서서히녹인다.기호에맞게만든다.|\[소스소개\]|\[소스소개|●주재료|●재료|주재료|재료\s+|•필수|\s+주\s|새우두부계란찜|•필수 재료|\[1인분\]|●|\[\s2인분\s\]/g,
             ","
           );
-        const sp2 = sp1.match(
-          /([가-힣\s가-힣]+[\(가-힣0-9\d\/\da-z가-힣\s가-힣0-9\d\.\/\da-z0-9¼½⅓⅔ⅹ×㎖a-zA-Z\da-z\da-z0-9x0-9a-z\)]*[가-힣0-9\d\.가-힣]*)/gm
-        );
+        const sp2 =
+          sp1.match(
+            /([가-힣\s가-힣]+[\(가-힣0-9\d\/\da-z가-힣\s가-힣0-9\d\.\/\da-z0-9¼½⅓⅔ⅹ×㎖a-zA-Z\da-z\da-z0-9x0-9a-z\)]*[가-힣0-9\d\.가-힣]*)/gm
+          ) || [];
 
+        const sp3 = sp2.join(", ");
         const recipe = {
-          ingredients: sp2,
+          ingredients: sp3,
         };
-
         result.row.push(recipe);
       }
     }
