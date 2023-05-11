@@ -31,7 +31,7 @@ fs.readFile(filePath, "utf-8", (err, data) => {
   const sql = "INSERT INTO parse_data (ingredients) VALUES ?";
   //update 시도
   // const sqlUpdate = 'UPDATE text SET (id, name, email) WHERE id>10 ?';
-  const values = rows.map((value) => value.ingredients);
+  const values = rows.map((value) => [value.ingredients]);
   // console.log(values);
 
   db.query(sql, [values], (err, result) => {
