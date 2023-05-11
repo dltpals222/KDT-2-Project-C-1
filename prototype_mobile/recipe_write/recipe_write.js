@@ -14,6 +14,7 @@ const {
   kingGodFlexEditor,
   allMightyStyleEditor,
 } = all_mighty_editor;
+
 //* div#main
 const main = multiAndSingleTagMaker(root, "div", "main", 1, (ele) => {
   ele.textContent = "";
@@ -69,7 +70,7 @@ const ingredientsImageContainer = multiAndSingleTagMaker(
 //todo 레시피 재료 form
 const registIngredientsWrap = multiAndSingleTagMaker(
   ingredientsImageContainer,
-  "form",
+  "fieldset",
   "",
   1,
   (ele) => {
