@@ -99,6 +99,7 @@ const server = http.createServer((req, res) => {
         break;
 
       //* common 파일
+      //common 파일
       case "/common/common_header.js":
         serverReadFileModule(
           res,
@@ -136,6 +137,54 @@ const server = http.createServer((req, res) => {
         break;
 
       //* 404 페이지 처리
+      //레시피 리스트
+      case "/recipe_list":
+        serverReadFileModule(
+          res,
+          "recipe_list/recipe_list.html",
+          "text/html",
+          200
+        );
+        break;
+      case "/recipe_list.js":
+        serverReadFileModule(
+          res,
+          "recipe_list/recipe_list.js",
+          "text/javascript",
+          200
+        );
+        break;
+
+      //common 파일
+      case "/common/common_header.js":
+        serverReadFileModule(
+          res,
+          "common/common_header.js",
+          "text/javascript",
+          200
+        );
+        break;
+
+      //favicon에러처리
+      case "/favicon.ico":
+        (err) => {
+          if (err) {
+            throw err;
+          }
+        };
+        break;
+
+      //all_mighty_editor
+      case "/module/all_mighty_editor.js":
+        serverReadFileModule(
+          res,
+          "module/all_mighty_editor.js",
+          "text/javascript",
+          200
+        );
+        break;
+
+      //404 페이지 처리
       default:
         serverReadFileModule(res, "404.html", "text/html", 404);
         console.log(urlPathName);

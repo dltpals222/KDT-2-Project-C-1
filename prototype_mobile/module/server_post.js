@@ -1,7 +1,8 @@
 import qs from "querystring";
 import dbSet from "../mysql/mysql_connect.js";
+import fs from "fs";
 
-function reqOnData(chunk, query) {
+function reqOnData(chunk, query, callback) {
   let body = "";
   body += chunk;
   let postArray = [];
@@ -18,7 +19,9 @@ function reqOnData(chunk, query) {
       console.log("쿼리실행성공");
     }
   });
-  dbSet.end();
+  if (callback) {
+    callback(dbSet);
+  }
 }
 
 export default reqOnData;

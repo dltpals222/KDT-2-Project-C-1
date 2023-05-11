@@ -8,6 +8,11 @@ import serverPost from "../module/server_post.js";
 import dbSet from "./mysql_connect.js";
 import reqOnData from "../module/server_post.js";
 
+import reqOnData from "../module/server_post.js";
+import dbSet from "./mysql_connect.js";
+
+//mysql 연동
+
 /* 
   mysql_connect.js 로가서 정보를 바꾸고
   테이블 생성
@@ -20,6 +25,7 @@ import reqOnData from "../module/server_post.js";
   primary key(id));
 */
 dbSet.connect();
+
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
 const server = http.createServer((req, res) => {
@@ -44,10 +50,13 @@ const server = http.createServer((req, res) => {
         // res.writeHead(302, { Location: "/print" });
         // res.end();
         break;
+      // case "/mysql_layout.js":
+      //   serverReadFileModule(res, "mysql_layout.js", "text/javascript", 200);
+      //   break;
 
-      case "/db.json":
-        serverReadFileModule(res, "db.json", "application/json", 200);
-        break;
+      // case "/db.json":
+      //   serverReadFileModule(res, "db.json", "application/json", 200);
+      //   break;
 
       case "/print":
         serverReadFileModule(res, "mysql_h.html", "text/html", 200);
@@ -57,23 +66,27 @@ const server = http.createServer((req, res) => {
             case '/':
               serverReadFileModule(res, 'main/main.html', 'text/html',200)
         break 
+      //메인 페이지
+      case '/main.html':
+        serverReadFileModule(res, '../main/main.html', 'text/html', 200)
+        break
       case '/main.js':
-        serverReadFileModule(res,'main/main.js','text/javascript',200)
+        serverReadFileModule(res, '../main/main.js', 'text/javascript', 200)
         break
-        
-        //레시피 리스트
-        case '/recipe_list':
-          serverReadFileModule(res, 'recipe_list/recipe_list.html','text/html',200)
-          break
-          case '/recipe_list.js':
-            serverReadFileModule(res, 'recipe_list/recipe_list.js','text/javascript',200)
-            break
-            
-            //common 파일
-            case '/common/common_header.js':
-        serverReadFileModule(res, 'common/common_header.js','text/javascript',200)
+
+      //레시피 리스트
+      case '/recipe_list':
+        serverReadFileModule(res, 'recipe_list/recipe_list.html', 'text/html', 200)
         break
-        */
+      case '/recipe_list.js':
+        serverReadFileModule(res, 'recipe_list/recipe_list.js', 'text/javascript', 200)
+        break
+
+      //common 파일
+      case '/common/common_header.js':
+        serverReadFileModule(res, 'common/common_header.js', 'text/javascript', 200)
+        break
+
       //favicon에러처리
       case "/favicon.ico":
         (err) => {
@@ -114,6 +127,16 @@ const server = http.createServer((req, res) => {
     req.on("end", function () {
       //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
       res.writeHead(302, { Location: "/print" });
+  } else if (urlMethod === "POST" && urlPathName === '/print') {
+    req.on("data", (chunk) => {
+      reqOnData(chunk, 'insert into b (name, type, taek) values (?,?,?)', (dbSet) => {
+        dbSet.query("SELECT * FROM  b", function (results) {
+          fs.writeFileSync("db.json", JSON.stringify(results, null, 2));
+        });
+      });
+    });
+    req.on("end", function () {
+      res.writeHead(302, { location: "/main.html" })
       res.end();
     });
   } //createServer 내 if 문 끝
