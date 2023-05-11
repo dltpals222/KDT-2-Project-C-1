@@ -1,16 +1,5 @@
 import fs from "fs";
 
-const removed_Ingredients = [
-  "g",
-  "ml",
-  "약간",
-  "개",
-  "알",
-  "적당량",
-  "a-z",
-  "0-9",
-];
-
 fs.readFile("./data_1000.json", "utf-8", (err, data) => {
   if (err) {
     console.error(err);
