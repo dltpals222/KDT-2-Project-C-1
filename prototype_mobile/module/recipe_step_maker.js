@@ -26,6 +26,7 @@ function recipeStepMaker(parent) {
         elem.placeholder = `ex) 재료를 손질하세요`;
         fontAndLayoutEditor(elem, "250px", "100px", "", "", "", (eleme) => {
           eleme.resize = "none";
+          eleme.required = "true";
         });
       });
       multiAndSingleTagMaker(ele, "img", "", 1, (elem) => {

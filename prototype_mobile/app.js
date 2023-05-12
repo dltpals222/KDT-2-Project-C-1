@@ -210,7 +210,7 @@ const server = http.createServer((req, res) => {
     //mysql에서 저장된 데이터를 json 파일로 저장하기
     req.on("end", function () {
       //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
-      res.writeHead(302, { Location: "/" });
+      res.writeHead(302, { Location: "/recipe_list" });
       res.end();
     });
   } //createServer 내 if 문 끝

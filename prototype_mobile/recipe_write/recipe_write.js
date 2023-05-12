@@ -52,6 +52,7 @@ const mainTitleInput = multiAndSingleTagMaker(
   1,
   (ele) => {
     ele.placeholder = "요리 제목";
+    ele.required = "true";
   }
 );
 
@@ -96,8 +97,10 @@ const registIngredientsInput = multiAndSingleTagMaker(
   1,
   (ele) => {
     ele.placeholder = "레시피 재료";
+    // ele.required = "true";
   }
 );
+console.dir(registIngredientsInput);
 
 //* 레시피 재료 Button
 const registIngredientsSubmit = multiAndSingleTagMaker(
