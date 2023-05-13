@@ -118,15 +118,25 @@ function moduleMaker(Num) {
   }
 }
 moduleMaker(4);
-
+kingGodFlexEditor(document.body, "", "", "center");
 const rootCss = {
-  width: "100vw",
-  height: "100vh",
+  // width: "100vw",
+  // height: "100vh",
+  width: "430px",
+  height: "932px",
 };
 
 const headerCss = {
-  width: "100%",
+  // width: "100%",
+  width: "inherit",
   height: "25%",
+  backgroundColor: "#fff",
+};
+const fakeheaderCss = {
+  // width: "100%",
+  width: "inherit",
+  height: "28%",
+  backgroundColor: "#fff",
 };
 
 const mainCss = {
@@ -195,7 +205,7 @@ const headerSearchEnterCss = {
 
 allMightyStyleEditor(root, rootCss);
 allMightyStyleEditor(header, headerCss);
-allMightyStyleEditor(fakeHeader, headerCss);
+allMightyStyleEditor(fakeHeader, fakeheaderCss);
 // allMightyStyleEditor(main, mainCss);
 // allMightyStyleEditor(footer, footerCss);
 allMightyStyleEditor(headerWrap, headerWrapCss);

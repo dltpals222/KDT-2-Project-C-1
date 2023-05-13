@@ -99,10 +99,12 @@ function moduleMaker(Num) {
 }
 // 모듈 함수 호출하기
 moduleMaker(4);
-
+kingGodFlexEditor(document.body, "", "", "center");
 const rootCss = {
-  width: "100vw",
-  height: "100vh",
+  width: "430px",
+  height: "932px",
+  // width: "100vw",
+  // height: "100vh",
 };
 
 const headerCss = {
