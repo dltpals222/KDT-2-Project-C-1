@@ -8,7 +8,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "admin123",
-  database: "test1",
+  database: "msmg",
 });
 
 db.connect();
@@ -28,7 +28,7 @@ fs.readFile(filePath, "utf-8", (err, data) => {
   // db.query("DELETE FROM parse_data WHERE id<10000");
 
   //데이터 추가
-  const sql = "INSERT INTO parse_data (ingredients) VALUES ?";
+  const sql = "INSERT INTO ingredients_table (ingredients) VALUES ?";
   //update 시도
   // const sqlUpdate = 'UPDATE text SET (id, name, email) WHERE id>10 ?';
   const values = rows.map((value) => [value.ingredients]);
