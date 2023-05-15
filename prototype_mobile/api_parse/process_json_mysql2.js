@@ -10,13 +10,12 @@ const db = mysql.createConnection({
   password: "admin123",
   database: "msmg",
 });
-
 db.connect();
 
-const filePath = "./processed_data.json";
+const filePath2 = "./processed_data2.json";
 
 // fs 모듈을 사용하여 JSON 파일 읽기
-fs.readFile(filePath, "utf-8", (err, data) => {
+fs.readFile(filePath2, "utf-8", (err, data) => {
   if (err) throw err;
 
   // 데이터 파싱
@@ -24,17 +23,24 @@ fs.readFile(filePath, "utf-8", (err, data) => {
   const rows = jsonData.row;
   console.log(rows);
 
-  // 테이블 데이터 전체 삭제
-  // db.query("DELETE FROM parse_data WHERE id<10000");
+  //테이블 데이터 전체 삭제
+  /*   db.query("DELETE FROM parse_data WHERE id<10000", (err, result) => {
+    if (err) {
+      console.error(err);
+      db.end();
+      return;
+    } 
+  });*/
 
-  // 데이터 추가
+  //데이터 추가
   const sql =
-    "INSERT INTO recipe_ingredients_table (recipe_id, recipe_weight, regist_ingredients, ingredients_id) VALUES ?";
+    "INSERT INTO recipe_regist_table (recipe_register, recipe_title, thumbnail_img,recipe_views,recipe_recommend) VALUES ?";
   const values = rows.map((value) => [
-    value.recipe_id, // recipe_id 값 추가
-    value.recipe_weight,
-    value.regist_ingredients,
-    value.ingredients_id,
+    value.recipe_register,
+    value.recipe_title,
+    value.thumbnail_img,
+    value.recipe_views,
+    value.recipe_recommend,
   ]);
 
   db.query(sql, [values], (err, result) => {

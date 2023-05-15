@@ -8,6 +8,8 @@ try {
     row: [],
   };
 
+  let recipeId = 1; // 시작 recipe_id 값
+
   for (const key in jsonData.COOKRCP01.row) {
     if (jsonData.COOKRCP01.row.hasOwnProperty(key)) {
       const ele = jsonData.COOKRCP01.row[key];
@@ -32,9 +34,14 @@ try {
 
       const sp3 = sp2.join(", ");
       const recipe = {
-        ingredients: sp3,
+        recipe_id: recipeId,
+        recipe_weight: null,
+        regist_ingredients: sp3,
+        ingredients_id: null,
       };
       result.row.push(recipe);
+
+      recipeId++; // recipe_id 값 증가
     }
   }
 
