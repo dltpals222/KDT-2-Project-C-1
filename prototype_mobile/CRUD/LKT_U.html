@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>POST</title>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <div id="root">
+    <div id="dog"></div>
+    <form action="/u_action" method="POST">
+      <p><input id="a" type="text" name="name" placeholder="title"></p>
+      <p><textarea id="b" name="type" placeholder="description"></textarea></p>
+      <p><input id="c" type="text" name="taek" placeholder="taek"></p>
+      <p><input id="d" type="text" name="b_id" placeholder="id"></p>
+      <p><input type="submit" value="수정하기"></p>
+    </form>
+    <form action="/u_id_action" method="POST">
+      <p><input type="text" id="b_id" name="b_id" placeholder="id"></p>
+      <p><input type="submit" id="b_id_submit" value="불러오기"></p>
+    </form>
+  </div>
+</body>
+<script src="LKT_U.js" type="module">
+</script>
+
+</html>
