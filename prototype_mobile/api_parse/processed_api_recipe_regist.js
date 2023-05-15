@@ -47,7 +47,7 @@ try {
 
   const jsonResult = JSON.stringify(result, null, 2);
 
-  fs.writeFileSync("./processed_data.json", jsonResult);
+  fs.writeFileSync("./processed_data2.json", jsonResult);
   console.log("저장완료");
 } catch (err) {
   console.error(err);

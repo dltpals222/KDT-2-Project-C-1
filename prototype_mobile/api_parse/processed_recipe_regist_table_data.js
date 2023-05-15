@@ -12,7 +12,7 @@ const db = mysql.createConnection({
 });
 db.connect();
 
-const filePath2 = "./processed_data2.json";
+const filePath2 = "./processed_data.json";
 
 // fs 모듈을 사용하여 JSON 파일 읽기
 fs.readFile(filePath2, "utf-8", (err, data) => {
