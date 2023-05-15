@@ -24,12 +24,7 @@ fs.readFile(filePath2, "utf-8", (err, data) => {
   console.log(rows);
 
   //테이블 데이터 전체 삭제
-  /*   db.query("DELETE FROM parse_data WHERE id<10000", (err, result) => {
-    if (err) {
-      console.error(err);
-      db.end();
-      return;
-    } 
+  /*   db.query("DELETE FROM parse_data WHERE id<10000");
   });*/
 
   //데이터 추가

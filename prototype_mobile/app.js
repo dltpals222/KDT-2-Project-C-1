@@ -10,14 +10,8 @@ import reqOnData from "./module/server_post.js";
 
 /* 
   mysql_connect.js 로가서 정보를 바꾸고
+  mysql 에 있는 readme.md 들어가서 테이블 정보 
   테이블 생성
-
-  create table add_recipe(
-  id int NOT NULL AUTO_INCREMENT,
-  title varchar(255) NOT NULL,
-  ingredients varchar(255) NOT NULL,
-  content varchar(255) NOT NULL,
-  primary key(id));
 */
 dbSet.connect();
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
