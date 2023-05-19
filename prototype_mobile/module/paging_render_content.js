@@ -1,4 +1,4 @@
-import all_mighty_editor from "./module/all_mighty_editor.js";
+import all_mighty_editor from "./all_mighty_editor.js";
 import {
   makeContent,
   recipeListBoxStyle,
