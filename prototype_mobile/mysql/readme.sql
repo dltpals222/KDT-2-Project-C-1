@@ -36,5 +36,3 @@ PRIMARY KEY(recipe_ingredients_id),
 FOREIGN KEY (recipe_id) REFERENCES recipe_regist_table(recipe_id),
 FOREIGN KEY (ingredients_id) REFERENCES ingredients_table(ingredients_id)
 );
-
-# Mysql 서버 접속 -> use 데이터베이스이름 -> source "sql 쿼리문이 적혀진 파일의 절대경로" -> 엔터

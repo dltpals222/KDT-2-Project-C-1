@@ -3,7 +3,7 @@ import mysql from "mysql";
 const dbSet = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "admin123",
+  password: "admin1234",
   database: "msmg",
   port: 3306, //Mysql 포트
   connectionLimit: 5, //동시에 db에 접속가능한 클라이언트 수
