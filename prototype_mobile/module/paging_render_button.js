@@ -1,141 +1,188 @@
-import whileRemoveChild from './paging_while_removeChild.js'
-import { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } from './all_mighty_editor.js';
+import all_mighty_editor from "./all_mighty_editor.js";
+import { mathCeil, objCreate, whileRemoveChild } from "./paging_etc_module.js";
+import renderContent from "./paging_render_content.js";
 
-
-//* 버튼을 만들 부모 태그를 넣으면 된다.
-//* 전역변수로 4가지를 지정해줘야된다.
-/* 안의 숫자들은 임시로 작성한 숫자이다.
-let total = 1151; //전체 게시글 갯수
-let pageContentCount = 4; //한페이지에 보여질 게시글 갯수
-let currPage = 1; //현재페이지
-let pageNumCount = 5; //중간 페이징 버튼 갯수
+//* 첫번째 매개변수는 생성하고자 하는 위치를 적으시면 됩니다.
+//* 두번째 매개변수는 renderContent를 생성하고자 하는 위치를 적으시면 됩니다.
+//* 세번째 매개변수는 객체를 넣으시면 됩니다.
+//* total만 필수입니다. 나머지는 기본값이 설정되어있습니다.
+/*
+ *   {
+ *      total : total,
+ *      pageContentCount : pageContentCount,
+ *      currPage : currPage,
+ *      pageNumCount : pageNumCount,
+ *      img : img,
+ *   }
  */
+//? 이런 객체를 선언한 변수를 넣어도 됩니다.
 
-function renderButtons (parent) {
-  const buttonList = multiAndSingleTagMaker(parent, "ul", "button-list",1,element => {
-    element.style.listStyleType = 'none'
-    kingGodFlexEditor(element, "","center","space-evenly")
-    fontAndLayoutEditor(element, "100%",'100%')
-  });
+const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } =
+  all_mighty_editor;
 
-  //소수점을 올림처리해주는 함수
-  function MathCeil(currPage, pageNumCount = 5) {
-    return Math.ceil(currPage / pageNumCount);
-  }
+function renderButtonContainer(
+  parent,
+  boardListParent,
+  { total, pageContentCount = 4, currPage = 1, pageNumCount = 5, img = void 0 }
+) {
+  const totalPageCount = mathCeil(total, pageContentCount);
 
-  
-  //전체 페이지 갯수(밑에 숫자 부분)
-  const totalPageCount = MathCeil(total , pageContentCount);
+  const renderButtons = () => {
+    const buttonList = multiAndSingleTagMaker(
+      parent,
+      "ul",
+      "button-list",
+      1,
+      (element) => {
+        element.style.listStyleType = "none";
+        kingGodFlexEditor(element, "", "center", "space-evenly");
 
-  
-  //맨앞 버튼
-  const startNumber = multiAndSingleTagMaker(buttonList, "li", "start-number");
-  startNumber.innerHTML = "<<맨앞";
-  startNumber.addEventListener("click", () => {
-    currPage = 1;
-    if (MathCeil(currPage) === 1) {
-      startNumber.style.visibility = "hidden";
-    } else {
-      startNumber.style.visibility = "visible";
-      currPage = 1;
-    }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
-  });
+        //맨앞 버튼
+        multiAndSingleTagMaker(element, "li", "start-number", 1, (eleHome) => {
+          eleHome.innerHTML = "<<맨앞";
+          eleHome.addEventListener("click", () => {
+            currPage = 1;
+            if (mathCeil(currPage) !== 1) {
+              currPage = 1;
+            }
+            const pageWrap = objCreate(
+              total,
+              currPage,
+              pageNumCount,
+              pageContentCount,
+              img
+            );
+            renderContent(boardListParent, pageWrap);
+            renderButtons();
+          });
+        }); //맨앞 버튼 끝
 
-  //이전 버튼
-  const beforeNumber = multiAndSingleTagMaker(
-    buttonList,
-    "li",
-    "before-number"
+        //이전 버튼
+        multiAndSingleTagMaker(element, "li", "before-number", 1, (elePrev) => {
+          elePrev.innerHTML = "<이전";
+          elePrev.addEventListener("click", () => {
+            currPage =
+              currPage - pageNumCount < 1 ? 1 : currPage - pageNumCount;
+            if (mathCeil(currPage) !== 1) {
+              currPage = mathCeil(currPage) * pageNumCount - (pageNumCount - 1);
+            }
+            const pageWrap = objCreate(
+              total,
+              currPage,
+              pageNumCount,
+              pageContentCount,
+              img
+            );
+            renderContent(boardListParent, pageWrap);
+            renderButtons();
+          });
+        }); //이전 버튼 끝
+
+        // 중간 페이지 버튼 처리
+        let startPage = mathCeil(currPage) * pageNumCount - (pageNumCount - 1);
+        let endPage = mathCeil(currPage) * pageNumCount;
+
+        if (startPage < 1) {
+          startPage = 1;
+          endPage = mathCeil(currPage) * pageNumCount - 1;
+        }
+        if (endPage > total) {
+          endPage = total;
+          startPage = endPage - pageNumCount + 1;
+          if (startPage < 1) {
+            startPage = 1;
+          }
+        }
+
+        //중간 페이지 버튼 반복문
+        for (let i = startPage; i <= endPage && i <= totalPageCount; i++) {
+          //페이지 숫자 버튼 CSS포함시킴
+          multiAndSingleTagMaker(element, "li", i, 1, (eleNum) => {
+            fontAndLayoutEditor(eleNum, "8%", "");
+            kingGodFlexEditor(eleNum, "", "center", "center");
+            eleNum.innerHTML = i;
+            if (i === currPage) {
+              eleNum.style.fontWeight = "bold";
+              eleNum.style.backgroundColor = "#9A6E44";
+              eleNum.style.color = "white";
+            } else {
+              eleNum.addEventListener("click", () => {
+                currPage = i;
+                const pageWrap = objCreate(
+                  total,
+                  currPage,
+                  pageNumCount,
+                  pageContentCount,
+                  img
+                );
+                renderContent(boardListParent, pageWrap);
+                renderButtons();
+              });
+              eleNum.style.fontWeight = "normal";
+              eleNum.style.backgroundColor = "";
+              eleNum.style.color = "black";
+            }
+            element.appendChild(eleNum);
+          });
+        } //중간 페이지 버튼 반복문 끝
+
+        //다음 버튼
+        multiAndSingleTagMaker(element, "li", "next-number", 1, (eleNext) => {
+          eleNext.innerHTML = "다음>";
+          eleNext.addEventListener("click", () => {
+            currPage = currPage + pageNumCount > total ? total : currPage;
+            if (mathCeil(currPage) !== mathCeil(totalPageCount)) {
+              currPage = mathCeil(currPage) * pageNumCount + 1;
+            }
+            const pageWrap = objCreate(
+              total,
+              currPage,
+              pageNumCount,
+              pageContentCount,
+              img
+            );
+            renderContent(boardListParent, pageWrap);
+            renderButtons();
+          });
+        }); //다음 버튼 끝
+
+        //맨뒤 버튼
+        multiAndSingleTagMaker(element, "li", "end-number", 1, (eleEnd) => {
+          eleEnd.innerHTML = "맨뒤>>";
+          eleEnd.addEventListener("click", () => {
+            currPage = total;
+            if (mathCeil(currPage) !== mathCeil(totalPageCount)) {
+              currPage = totalPageCount;
+            }
+            const pageWrap = objCreate(
+              total,
+              currPage,
+              pageNumCount,
+              pageContentCount,
+              img
+            );
+            renderContent(boardListParent, pageWrap);
+            renderButtons();
+          });
+        });
+      } //buttonList의 콜백 끝
+    ); //*buttonList 끝
+
+    //*기존 버튼 삭제 로직
+    whileRemoveChild(parent);
+    parent.appendChild(buttonList);
+  };
+
+  //마지막부분 다시 객체로 싸주고 전달할 준비 후 renderContent와 renderButtons을 실행시켜준다.
+  const pageWrap = objCreate(
+    total,
+    currPage,
+    pageNumCount,
+    pageContentCount,
+    img
   );
-  beforeNumber.innerHTML = "<이전";
-  beforeNumber.addEventListener("click", () => {
-    currPage = currPage - pageNumCount < 1 ? 1 : currPage - pageNumCount;
-    if (MathCeil(currPage) === 1) {
-      beforeNumber.style.visibility = "hidden";
-    } else {
-      beforeNumber.style.visibility = "visible";
-      currPage = MathCeil(currPage) * pageNumCount - (pageNumCount - 1);
-    }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
-  });
+  renderContent(boardListParent, pageWrap);
+  renderButtons();
+} //? renderButtonContainer 끝
 
-  // 중간 페이지 버튼 처리
-  let startPage = MathCeil(currPage) * pageNumCount - (pageNumCount - 1);
-  let endPage = MathCeil(currPage) * pageNumCount;
-
-  if (startPage < 1) {
-    startPage = 1;
-    endPage = MathCeil(currPage) * pageNumCount - 1;
-  }
-  if (endPage > total) {
-    endPage = total;
-    startPage = endPage - pageNumCount + 1;
-    if (startPage < 1) {
-      startPage = 1;
-    }
-  }
-
-  //중간 페이지 버튼 반복문
-  for (let i = startPage; i <= endPage && i <= totalPageCount; i++) {
-    //페이지 숫자 버튼 CSS포함시킴
-    const pageButton = multiAndSingleTagMaker(buttonList, "li", i,1,element => {
-      fontAndLayoutEditor(element,'8%','')
-      kingGodFlexEditor(element,'','center','center')
-    });
-    pageButton.innerHTML = i;
-    if (i === currPage) {
-      pageButton.style.fontWeight = "bold" ;
-      pageButton.style.backgroundColor = "#9A6E44";
-      pageButton.style.color = "white";
-    } else {
-      pageButton.addEventListener("click", () => {
-        currPage = i;
-        renderContent(currPage, recipeListWrap, boxInnerText);
-        renderButtons();
-      });
-      pageButton.style.fontWeight = "normal";
-      pageButton.style.backgroundColor = "";
-      pageButton.style.color = "black";
-    }
-    buttonList.appendChild(pageButton);
-  }
-
-  //다음 버튼
-  const nextNumber = multiAndSingleTagMaker(buttonList, "li", "next-number");
-  nextNumber.innerHTML = "다음>";
-  nextNumber.addEventListener("click", () => {
-    currPage = currPage + pageNumCount > total ? total : currPage;
-    if (MathCeil(currPage) === MathCeil(totalPageCount)) {
-      nextNumber.style.visibility = "hidden";
-    } else {
-      nextNumber.style.visibility = "visible";
-      currPage = MathCeil(currPage) * pageNumCount + 1;
-    }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
-  });
-
-  //맨뒤 버튼
-  const endNumber = multiAndSingleTagMaker(buttonList, "li", "end-number");
-  endNumber.innerHTML = "맨뒤>>";
-  endNumber.addEventListener("click", () => {
-    currPage = total;
-    if (MathCeil(currPage) === MathCeil(totalPageCount)) {
-      endNumber.style.visibility = "hidden";
-    } else {
-      endNumber.style.visibility = "visible";
-      currPage = totalPageCount;
-    }
-    renderContent(currPage, recipeListWrap, boxInnerText);
-    renderButtons();
-  });
-
-  //기존 버튼 삭제 로직
-  whileRemoveChild(parent)
-  parent.appendChild(buttonList);
-};
-
-export default renderButtons
+export default renderButtonContainer;
