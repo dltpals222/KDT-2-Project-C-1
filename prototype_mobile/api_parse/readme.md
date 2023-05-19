@@ -1,3 +1,5 @@
+# processed_recipe_ingredients_table_data 파일 안에 DB 의 config 데이터 자기 자신 DB 정보 입력
+
 # 1.processed_api_recipe_ingredients
 
 # 1-1. recipe_regist_table 넣을 json 파일
@@ -14,11 +16,11 @@
 
 # mysql에 넣는 파일
 
-# 2. processed_recipe_ingredients_table_data
+# 2. processed_recipe_regist_table_data
 
 # 실행시 mysql 테이블에 저장
 
-# 3. processed_recipe_regist_table_data
+# 3. processed_recipe_ingredients_table_data
 
 # 실행시 mysql 테이블에 저장
 

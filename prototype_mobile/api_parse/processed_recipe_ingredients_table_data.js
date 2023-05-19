@@ -7,7 +7,7 @@ const db = mysql.createConnection({
   // 본인 아이디 패스워드 db이름 사용할 것
   host: "localhost",
   user: "root",
-  password: "admin123",
+  password: "admin1234",
   database: "msmg",
 });
 
