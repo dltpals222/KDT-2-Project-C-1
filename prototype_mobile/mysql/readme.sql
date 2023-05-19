@@ -1,4 +1,3 @@
-## 테이블 값 수정 2023_05_16
 
 CREATE TABLE ingredients_table (
 ingredients_id INT NOT NULL AUTO_INCREMENT,
