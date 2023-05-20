@@ -14,6 +14,12 @@
 
 # 실행시 processed_data2.json 생성
 
+# processed_api_ingredients
+
+# ingredients_table 에 넣을 json 파일
+
+# 실행시 processed_data_ingredients_table.json 생성
+
 # mysql에 넣는 파일
 
 # 2. processed_recipe_regist_table_data
@@ -21,6 +27,10 @@
 # 실행시 mysql 테이블에 저장
 
 # 3. processed_recipe_ingredients_table_data
+
+# 실행시 mysql 테이블에 저장
+
+# 4. processed_ingredients_table_data
 
 # 실행시 mysql 테이블에 저장
 
