@@ -31,12 +31,12 @@ const { multiAndSingleTagMaker, allMightyStyleEditor } = all_mighty_editor;
 const makeContent = (object, i) => {
   const {jsonDataId,jsonDataTitle,jsonDataIngredients,jsonDataRegister,jsonDataRecommend,jsonDataViews} = object
 
-  return  `<br> <div>${jsonDataId[i - 1]} </div> <br> 
-  <div>레시피 이름 : ${jsonDataTitle[i - 1]} </div> <br> 
-  <div>필요 재료 : ${jsonDataIngredients[i - 1]} </div> <br> 
-  <div>작성자 : ${jsonDataRegister[i - 1]}</div> <br> 
-  <div>추천수 : ${jsonDataRecommend[i - 1]}</div> <br> 
-  <div>조회수 : ${jsonDataViews[i - 1]}</div> <br>`
+  return  `<br> <div>${jsonDataId[i - 1]} </div> 
+  <div>레시피 이름 : ${jsonDataTitle[i - 1]} </div> 
+  <div>필요 재료 : ${jsonDataIngredients[i - 1]} </div> 
+  <div>작성자 : ${jsonDataRegister[i - 1]}</div> 
+  <div>추천수 : ${jsonDataRecommend[i - 1]}</div> 
+  <div>조회수 : ${jsonDataViews[i - 1]}</div>`
   
 };
 
