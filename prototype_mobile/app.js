@@ -138,10 +138,10 @@ const server = http.createServer((req, res) => {
           200
         );
         break;
-      case "/module/paging_make_content.js":
+      case "/module/paging_recipe_list_make_content.js":
         serverReadFileModule(
           res,
-          "module/paging_make_content.js",
+          "module/paging_recipe_list_make_content.js",
           "text/javascript",
           200
         );

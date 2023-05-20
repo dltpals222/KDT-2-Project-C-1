@@ -3,7 +3,7 @@ import {
   makeContent,
   recipeListBoxStyle,
   recipeListImage,
-} from "./paging_make_content.js";
+} from "./paging_recipe_list_make_content.js";
 import { whileRemoveChild } from "./paging_etc_module.js";
 
 const { multiAndSingleTagMaker, allMightyStyleEditor } = all_mighty_editor;
