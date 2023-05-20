@@ -12,7 +12,6 @@ import renderContent from "./paging_render_content.js";
  *      pageContentCount : pageContentCount,
  *      currPage : currPage,
  *      pageNumCount : pageNumCount,
- *      img : img,
  *   }
  */
 //? 이런 객체를 선언한 변수를 넣어도 됩니다.
@@ -23,7 +22,7 @@ const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } =
 function renderButtonContainer(
   parent,
   boardListParent,
-  { total, pageContentCount = 4, currPage = 1, pageNumCount = 5, img = void 0 }
+  { total, pageContentCount = 4, currPage = 1, pageNumCount = 5}
 ) {
   const totalPageCount = mathCeil(total, pageContentCount);
 
@@ -50,7 +49,7 @@ function renderButtonContainer(
               currPage,
               pageNumCount,
               pageContentCount,
-              img
+              
             );
             renderContent(boardListParent, pageWrap);
             renderButtons();
@@ -71,7 +70,7 @@ function renderButtonContainer(
               currPage,
               pageNumCount,
               pageContentCount,
-              img
+              
             );
             renderContent(boardListParent, pageWrap);
             renderButtons();
@@ -113,7 +112,7 @@ function renderButtonContainer(
                   currPage,
                   pageNumCount,
                   pageContentCount,
-                  img
+                  
                 );
                 renderContent(boardListParent, pageWrap);
                 renderButtons();
@@ -139,7 +138,7 @@ function renderButtonContainer(
               currPage,
               pageNumCount,
               pageContentCount,
-              img
+              
             );
             renderContent(boardListParent, pageWrap);
             renderButtons();
@@ -159,7 +158,7 @@ function renderButtonContainer(
               currPage,
               pageNumCount,
               pageContentCount,
-              img
+              
             );
             renderContent(boardListParent, pageWrap);
             renderButtons();
@@ -179,7 +178,7 @@ function renderButtonContainer(
     currPage,
     pageNumCount,
     pageContentCount,
-    img
+    
   );
   renderContent(boardListParent, pageWrap);
   renderButtons();

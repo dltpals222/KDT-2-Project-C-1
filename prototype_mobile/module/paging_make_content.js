@@ -1,10 +1,13 @@
 //게시글 예제
-export const makeContent = (element, i) => {
-  element.innerHTML = `레시피 이름 : ${jsonDataTitle[i - 1]} <br> 
+export const makeContent = (object, i) => {
+  const {jsonDataTitle,jsonDataIngredients,jsonDataRegister,jsonDataRecommend,jsonDataViews} = object
+
+  return  `레시피 이름 : ${jsonDataTitle[i - 1]} <br> 
   필요 재료 : ${jsonDataIngredients[i - 1]} <br> 
   작성자 : ${jsonDataRegister[i - 1]}<br> 
   추천수 : ${jsonDataRecommend[i - 1]}<br> 
-  조회수 : ${jsonDataViews[i - 1]}<br>`;
+  조회수 : ${jsonDataViews[i - 1]}<br>`
+  
 };
 // export const makeContent = (element, i) => {
 //   element.innerHTML = `레시피 이름 : ${jsonDataTitle[i - 1]} <br> 

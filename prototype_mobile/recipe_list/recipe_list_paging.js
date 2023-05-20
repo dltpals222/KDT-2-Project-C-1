@@ -125,7 +125,14 @@ http.onreadystatechange = function () {
           `recipe-list-HTML-${i}`,
           1,
           (element) => {
-            makeContent(element,i);
+            const HTMLObject = {
+              jsonDataTitle : jsonDataTitle,
+              jsonDataIngredients : jsonDataIngredients,
+              jsonDataRegister : jsonDataRegister,
+              jsonDataRecommend : jsonDataRecommend,
+              jsonDataViews : jsonDataViews
+            }
+            element.innerHTML = makeContent(HTMLObject,i);
           }
         );
       }
