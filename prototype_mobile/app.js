@@ -138,6 +138,14 @@ const server = http.createServer((req, res) => {
           200
         );
         break;
+      case "/module/paging_make_content.js":
+        serverReadFileModule(
+          res,
+          "module/paging_make_content.js",
+          "text/javascript",
+          200
+        );
+        break;
 
       //* 404 페이지 처리
       //레시피 리스트

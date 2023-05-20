@@ -1,12 +1,20 @@
 //게시글 예제
 export const makeContent = (element, i) => {
-  element.innerHTML = `
-  <div>${i}</div>
-  <div>게시물 제목</div>
-  <div>작성자</div>
-  <div>2022.01.01</div>
-`;
+  element.innerHTML = `레시피 이름 : ${jsonDataTitle[i - 1]} <br> 
+  필요 재료 : ${jsonDataIngredients[i - 1]} <br> 
+  작성자 : ${jsonDataRegister[i - 1]}<br> 
+  추천수 : ${jsonDataRecommend[i - 1]}<br> 
+  조회수 : ${jsonDataViews[i - 1]}<br>`;
 };
+// export const makeContent = (element, i) => {
+//   element.innerHTML = `레시피 이름 : ${jsonDataTitle[i - 1]} <br> 
+//   필요 재료 : ${jsonDataIngredients[i - 1]} <br> 
+//   작성자 : ${jsonDataRegister[i - 1]}<br> 
+//   추천수 : ${jsonDataRecommend[i - 1]}<br> 
+//   조회수 : ${jsonDataViews[i - 1]}<br>`;
+// };
+
+
 
 //레시피 리스트 이미지 스타일
 export const recipeListImage = {
