@@ -18,7 +18,13 @@ import renderContent from "./paging_render_content.js";
 
 const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } =
   all_mighty_editor;
-
+/**
+ * 
+ * @param {any} parent 버튼을 생성할 부모 위치
+ * @param {any} boardListParent 컨텐츠를 생성할 부모 위치
+ * @param {object} param2 버튼 페이지 생성에 관련된 내용의 객체 (total 필수)
+ * @param {object} JsonListInfo recipe_list_data.json 의 정보를 담은 객체
+ */
 function renderButtonContainer(
   parent,
   boardListParent,

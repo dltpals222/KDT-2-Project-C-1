@@ -15,7 +15,6 @@ import reqOnData from "./module/server_post.js";
 */
 dbSet.connect();
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
-//GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
 const server = http.createServer((req, res) => {
   const urlParse = Url.parse(req.url);

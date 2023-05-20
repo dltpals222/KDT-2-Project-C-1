@@ -16,8 +16,6 @@ http.onreadystatechange = function () {
       jsonDataImg : data.map((value) => [value.thumbnail_img]),
     }
     
-    console.log(dataAll.jsonDataId)
-
     const pageAll = {
       total : data.length, //전체 게시글 갯수
       pageContentCount : 4, //한페이지에 보여질 게시글 갯수

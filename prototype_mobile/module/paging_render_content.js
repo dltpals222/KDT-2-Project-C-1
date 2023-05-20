@@ -1,13 +1,13 @@
-import all_mighty_editor from "./all_mighty_editor.js";
-import {
-  makeContent,
-  recipeListBoxStyle,
-  recipeListImage,
-} from "./paging_recipe_list_make_content.js";
+import { listPageDOMApi } from "./paging_recipe_list_make_content.js";
 import { whileRemoveChild } from "./paging_etc_module.js";
 
-const { multiAndSingleTagMaker, allMightyStyleEditor } = all_mighty_editor;
 
+/**
+ * 
+ * @param {any} parent 컨텐트가 생성될 부모의 위치
+ * @param {object} param1 객체 (total 필수)
+ * @param {object} JsonListInfo json_list_data.json 데이터의 객체
+ */
 //게시글을 포함시킨 renderContent
 const renderContent = (
   parent,
@@ -21,15 +21,7 @@ const renderContent = (
     i >= 1 && i > total - currPage * pageContentCount;
     i--
   ) {
-    multiAndSingleTagMaker(parent, "form", "", 1, (element) => {
-      multiAndSingleTagMaker(element, "img", { src: JsonListInfo.jsonDataImg[i - 1] }, 1, (ele1) => {
-        allMightyStyleEditor(ele1, recipeListImage);
-      });
-      multiAndSingleTagMaker(element, "div", "", 1, (ele1) => {
-        ele1.innerHTML = makeContent(JsonListInfo, i);
-      });
-      allMightyStyleEditor(element, recipeListBoxStyle);
-    });
+    listPageDOMApi(parent,JsonListInfo,i)
   }
 };
 
