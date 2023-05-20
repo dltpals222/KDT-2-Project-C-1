@@ -56,6 +56,7 @@ const recipeListBoxStyle = {
   padding: "2%",
   backgroundColor: "#DAB988",
   borderRadius : '2%',
+  marginBottom : '2%',
 };
 
 /**
