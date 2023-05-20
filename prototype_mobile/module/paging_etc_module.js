@@ -16,13 +16,11 @@ export function objCreate(
   currPage = 1,
   pageNumCount = 5,
   pageContentCount = 4,
-  img = void 0
 ) {
   return {
     total: total,
     currPage: currPage,
     pageNumCount: pageNumCount,
     pageContentCount: pageContentCount,
-    img: img,
   };
 }

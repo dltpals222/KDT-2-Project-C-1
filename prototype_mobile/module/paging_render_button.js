@@ -22,7 +22,8 @@ const { multiAndSingleTagMaker, kingGodFlexEditor, fontAndLayoutEditor } =
 function renderButtonContainer(
   parent,
   boardListParent,
-  { total, pageContentCount = 4, currPage = 1, pageNumCount = 5}
+  { total, pageContentCount = 4, currPage = 1, pageNumCount = 5},
+  JsonListInfo,
 ) {
   const totalPageCount = mathCeil(total, pageContentCount);
 
@@ -51,7 +52,7 @@ function renderButtonContainer(
               pageContentCount,
               
             );
-            renderContent(boardListParent, pageWrap);
+            renderContent(boardListParent, pageWrap,JsonListInfo);
             renderButtons();
           });
         }); //맨앞 버튼 끝
@@ -72,7 +73,7 @@ function renderButtonContainer(
               pageContentCount,
               
             );
-            renderContent(boardListParent, pageWrap);
+            renderContent(boardListParent, pageWrap,JsonListInfo);
             renderButtons();
           });
         }); //이전 버튼 끝
@@ -114,7 +115,7 @@ function renderButtonContainer(
                   pageContentCount,
                   
                 );
-                renderContent(boardListParent, pageWrap);
+                renderContent(boardListParent, pageWrap,JsonListInfo);
                 renderButtons();
               });
               eleNum.style.fontWeight = "normal";
@@ -140,7 +141,7 @@ function renderButtonContainer(
               pageContentCount,
               
             );
-            renderContent(boardListParent, pageWrap);
+            renderContent(boardListParent, pageWrap,JsonListInfo);
             renderButtons();
           });
         }); //다음 버튼 끝
@@ -160,7 +161,7 @@ function renderButtonContainer(
               pageContentCount,
               
             );
-            renderContent(boardListParent, pageWrap);
+            renderContent(boardListParent, pageWrap,JsonListInfo);
             renderButtons();
           });
         });
@@ -180,7 +181,7 @@ function renderButtonContainer(
     pageContentCount,
     
   );
-  renderContent(boardListParent, pageWrap);
+  renderContent(boardListParent, pageWrap,JsonListInfo);
   renderButtons();
 } //? renderButtonContainer 끝
 

@@ -11,7 +11,8 @@ const { multiAndSingleTagMaker, allMightyStyleEditor } = all_mighty_editor;
 //게시글을 포함시킨 renderContent
 const renderContent = (
   parent,
-  { total, currPage = 1, pageContentCount = 4, img = void 0 }
+  { total, currPage = 1, pageContentCount = 4 },
+  JsonListInfo
 ) => {
   whileRemoveChild(parent);
 
@@ -21,11 +22,11 @@ const renderContent = (
     i--
   ) {
     multiAndSingleTagMaker(parent, "form", "", 1, (element) => {
-      multiAndSingleTagMaker(element, "img", { src: img }, 1, (ele1) => {
+      multiAndSingleTagMaker(element, "img", { src: JsonListInfo.jsonDataImg[i - 1] }, 1, (ele1) => {
         allMightyStyleEditor(ele1, recipeListImage);
       });
       multiAndSingleTagMaker(element, "div", "", 1, (ele1) => {
-        makeContent(ele1, i);
+        ele1.innerHTML = makeContent(JsonListInfo, i);
       });
       allMightyStyleEditor(element, recipeListBoxStyle);
     });
