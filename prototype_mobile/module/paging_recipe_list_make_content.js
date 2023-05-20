@@ -31,18 +31,18 @@ const { multiAndSingleTagMaker, allMightyStyleEditor } = all_mighty_editor;
 const makeContent = (object, i) => {
   const {jsonDataId,jsonDataTitle,jsonDataIngredients,jsonDataRegister,jsonDataRecommend,jsonDataViews} = object
 
-  return  `${jsonDataId[i - 1]} <br> 
-  레시피 이름 : ${jsonDataTitle[i - 1]} <br> 
-  필요 재료 : ${jsonDataIngredients[i - 1]} <br> 
-  작성자 : ${jsonDataRegister[i - 1]}<br> 
-  추천수 : ${jsonDataRecommend[i - 1]}<br> 
-  조회수 : ${jsonDataViews[i - 1]}<br>`
+  return  `<br> <div>${jsonDataId[i - 1]} </div> <br> 
+  <div>레시피 이름 : ${jsonDataTitle[i - 1]} </div> <br> 
+  <div>필요 재료 : ${jsonDataIngredients[i - 1]} </div> <br> 
+  <div>작성자 : ${jsonDataRegister[i - 1]}</div> <br> 
+  <div>추천수 : ${jsonDataRecommend[i - 1]}</div> <br> 
+  <div>조회수 : ${jsonDataViews[i - 1]}</div> <br>`
   
 };
 
 //레시피 리스트 이미지 스타일
 const recipeListImageStyle = {
-  width: "30%",
+  width: "95%",
   height: "100%",
   margin: "2%",
 };
@@ -50,7 +50,7 @@ const recipeListImageStyle = {
 //레시피 리스트 박스 스타일
 const recipeListBoxStyle = {
   display: "flex",
-  flexDirection: "row",
+  flexDirection: "column",
   width: "70%",
   height: "25%",
   padding: "2%",
@@ -71,6 +71,8 @@ export const listPageDOMApi = (parent,JsonListInfo,i) => {
     });
     multiAndSingleTagMaker(element, "div", "", 1, (ele1) => {
       ele1.innerHTML = makeContent(JsonListInfo, i);
+      ele1.style.border = 0;
+      ele1.style.padding = 0;
     });
     allMightyStyleEditor(element, recipeListBoxStyle);
   });
