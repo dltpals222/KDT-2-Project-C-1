@@ -267,12 +267,16 @@ const backBtn = multiAndSingleTagMaker(
     ele.value = "뒤로가기";
   }
 );
-backBtn.addEventListener("click", function () {
-  // console.log("하이");
-  // history.back();
-});
+// backBtn.addEventListener("click", function () {
+//   // console.log("하이");
+//   // history.back();
+// });
 
 //todo 하단 버튼 wrap 끝
 
-//*
-//*
+//*재료 검색 자동완성 로직
+registIngredientsInput.addEventListener("keyup", function (event) {
+  console.log("키 똄");
+});
+
+//*재료추가 버튼 로직
