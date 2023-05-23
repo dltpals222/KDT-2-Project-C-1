@@ -1,4 +1,5 @@
 import amEditor from "../module/all_mighty_editor.js";
+import { fetchData } from "./search.js";
 
 const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } =
   amEditor;
@@ -203,4 +204,14 @@ multiAndSingleTagMaker(headerSearchSelect, "option", { value: "title" }, 1, (ele
 });
 multiAndSingleTagMaker(headerSearchSelect, "option", { value: "ingredients" }, 1, (element) => {
   element.innerHTML = "재료";
+});
+
+// console.log();
+// DataMapArray(fetchData("../JSON/recipe_list_data.json"), "recipe_title");
+
+const urls = ["../JSON/recipe_list_data.json", "../api_parse/processed_data_ingredients_table_second.json"];
+
+Promise.all([fetchData(urls[0]), fetchData(urls[1])]).then((dataArr) => {
+  const recipeListData = dataArr[0].map((value) => value.recipe_title);
+  const recipeIngredients = dataArr[1].ingredients;
 });
