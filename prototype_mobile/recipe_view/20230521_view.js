@@ -2,7 +2,7 @@
 ///나머지 파일들을 볼 필요가 없음
 
 import all_mighty_editor from "../module/all_mighty_editor.js";
-import recipe_view_table from "../recipe_view/dummy_data.js";
+import recipe_view_table from "../recipe_view/dummy_test_data.js";
 
 const {
   multiAndSingleTagMaker,

@@ -1,7 +1,7 @@
 import http from 'http'
 import url from 'url'
 import serverReadFileModule from '../module/server_readfile.js'
-import reqOnData from '../module/server_post_copy.js'
+import reqOnData from '../module/server_post.js'
 import fs from 'fs';
 import mysql from 'mysql'
 
