@@ -50,12 +50,16 @@ const recipeListImageStyle = {
 const recipeListBoxStyle = {
   display: "flex",
   flexDirection: "column",
+};
+
+//레시피 리스트 컨테이너 스타일
+const recipeListConStyle = {
   width: "70%",
   height: "25%",
-  padding: "2%",
   backgroundColor: "#DAB988",
   borderRadius: "2%",
   marginBottom: "2%",
+  padding: "2%",
 };
 
 /**
@@ -77,5 +81,6 @@ export const listPageDOMApi = (parent, JsonListInfo, i) => {
       });
       allMightyStyleEditor(ele1, recipeListBoxStyle);
     });
+    allMightyStyleEditor(element, recipeListConStyle);
   });
 };

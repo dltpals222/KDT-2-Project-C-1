@@ -110,9 +110,9 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "recipe_list/common_search.js", "text/javascript", 200);
         break;
 
-      //common 파일
-      case "/common/common_header.js":
-        serverReadFileModule(res, "common/common_header.js", "text/javascript", 200);
+      // 페이징에서 임시로 변경
+      case "/module/paging_recipe_list_imsi.js":
+        serverReadFileModule(res, "module/paging_recipe_list_imsi.js", "text/javascript", 200);
         break;
 
       //favicon에러처리
