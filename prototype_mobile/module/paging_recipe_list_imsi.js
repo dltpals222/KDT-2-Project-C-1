@@ -28,15 +28,31 @@ const { multiAndSingleTagMaker, allMightyStyleEditor } = all_mighty_editor;
  *  }
  *
  */
-const makeContent = (object, i) => {
+const makeContent = (parent, object, i) => {
   const { jsonDataId, jsonDataTitle, jsonDataIngredients, jsonDataRegister, jsonDataRecommend, jsonDataViews } = object;
 
-  return `<br> <div style=\"margin-bottom: 1.5%;\">${jsonDataId[i - 1]} </div>  
-  <div style=\"margin-bottom: 1.5%;\">레시피 이름 : ${jsonDataTitle[i - 1]} </div>  
-  <div style=\"margin-bottom: 1.5%;\">필요 재료 : ${jsonDataIngredients[i - 1]} </div>  
-  <div style=\"margin-bottom: 1.5%;\">작성자 : ${jsonDataRegister[i - 1]}</div>  
-  <div style=\"margin-bottom: 1.5%;\">추천수 : ${jsonDataRecommend[i - 1]}</div>  
+  return `<br> <div style=\"margin-bottom: 1.5%;\">${jsonDataId[i - 1]} </div>
+  <div style=\"margin-bottom: 1.5%;\">레시피 이름 : ${jsonDataTitle[i - 1]} </div>
+  <div style=\"margin-bottom: 1.5%;\">필요 재료 : ${jsonDataIngredients[i - 1]} </div>
+  <div style=\"margin-bottom: 1.5%;\">작성자 : ${jsonDataRegister[i - 1]}</div>
+  <div style=\"margin-bottom: 1.5%;\">추천수 : ${jsonDataRecommend[i - 1]}</div>
   <div style=\"margin-bottom: 1.5%;\">조회수 : ${jsonDataViews[i - 1]}</div> `;
+};
+
+/**
+ *
+ * @param {any} parent 부모태그 설정하는 곳
+ * @param {string|number|[]|{}} formId form의 아이디를 설정하는 곳
+ * @param {string|number|[]|{}} buttonId button의 아이디를 설정하는 곳
+ * @param {string} value button에 넣을 텍스트(HTML로 입력된 것으로 HTML문법에 맞게 넣어도 가능!)
+ * @returns {void}
+ */
+const elementButton = (parent, formId, buttonId, value) => {
+  multiAndSingleTagMaker(parent, "form", formId, 1, (element) => {
+    multiAndSingleTagMaker(element, "button", buttonId, 1, (ele) => {
+      ele.innerHTML = value;
+    });
+  });
 };
 
 //레시피 리스트 이미지 스타일
@@ -69,18 +85,20 @@ const recipeListConStyle = {
  * @param {number} i i 를 그대로 적으면 된다.
  */
 export const listPageDOMApi = (parent, JsonListInfo, i) => {
-  multiAndSingleTagMaker(parent, "div", "recipe-list-container", 1, (element) => {
+  multiAndSingleTagMaker(parent, "div", `recipe-list-container${i}`, 1, (element) => {
     multiAndSingleTagMaker(element, "form", "", 1, (ele1) => {
       multiAndSingleTagMaker(ele1, "img", { src: JsonListInfo.jsonDataImg[i - 1] }, 1, (ele2) => {
         allMightyStyleEditor(ele2, recipeListImageStyle);
       });
       multiAndSingleTagMaker(ele1, "div", "", 1, (ele2) => {
-        ele2.innerHTML = makeContent(JsonListInfo, i);
+        ele2.innerHTML = makeContent(ele2, JsonListInfo, i);
         ele2.style.border = 0;
         ele2.style.padding = 0;
       });
       allMightyStyleEditor(ele1, recipeListBoxStyle);
     });
     allMightyStyleEditor(element, recipeListConStyle);
+    elementButton(element, "form-update", "button-update", "업데이트");
+    elementButton(element, "form-delete", "button-delete", "삭제");
   });
 };
