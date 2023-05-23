@@ -251,6 +251,15 @@ const server = http.createServer((req, res) => {
         );
       }
     );
+    dbSet.query(
+      "select * from ingredients_table;",
+      function (err, results, fields) {
+        fs.writeFileSync(
+          "JSON/api_processed3.json",
+          JSON.stringify(results, null, 2)
+        );
+      }
+    );
   } else if (urlMethod === "POST") {
     //post 방식 데이터 mysql로 보내기
     req.on("data", function (chunk) {
