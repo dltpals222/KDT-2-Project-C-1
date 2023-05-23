@@ -1,12 +1,7 @@
 import amEditor from "../module/all_mighty_editor.js";
 
-const {
-  multiAndSingleTagMaker,
-  positionEditor,
-  fontAndLayoutEditor,
-  kingGodFlexEditor,
-  allMightyStyleEditor,
-} = amEditor;
+const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } =
+  amEditor;
 
 const root = document.getElementById("root");
 const header = multiAndSingleTagMaker(root, "div", "header");
@@ -16,76 +11,44 @@ const fakeHeader = multiAndSingleTagMaker(root, "div", "fakeHeader");
 const headerWrap = multiAndSingleTagMaker(header, "div", "header-wrap");
 const headerSearch = multiAndSingleTagMaker(header, "form", "header-search");
 const headerMenu = multiAndSingleTagMaker(header, "div", "header-menu");
-const headerWrapLeft = multiAndSingleTagMaker(
-  headerWrap,
-  "div",
-  "headerwrap-Left"
-);
-const headerWrapTitle = multiAndSingleTagMaker(
-  headerWrap,
-  "div",
-  "headerwrap-title",
-  1,
-  (ele) => {
-    // ele.onClick = function () {
-    //   console.log("hi");
-    // };
-  }
-);
+const headerWrapLeft = multiAndSingleTagMaker(headerWrap, "div", "headerwrap-Left");
+const headerWrapTitle = multiAndSingleTagMaker(headerWrap, "div", "headerwrap-title", 1, (ele) => {
+  // ele.onClick = function () {
+  //   console.log("hi");
+  // };
+});
 headerWrapTitle.addEventListener("click", () => {
   console.log("하이");
   window.location.href = "/";
 });
-const headerWrapLogin = multiAndSingleTagMaker(
-  headerWrap,
-  "form",
-  "headerwrap-Right"
-);
+const headerWrapLogin = multiAndSingleTagMaker(headerWrap, "form", "headerwrap-Right");
 const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, "input", {
   id: "hl-btn",
   type: "submit",
   value: "Login",
 });
-const headerSearchSelect = multiAndSingleTagMaker(
-  headerSearch,
-  "select",
-  "hs-select"
-);
-const headerSearchInput = multiAndSingleTagMaker(
-  headerSearch,
-  "input",
-  "hs-input"
-);
+const headerSearchSelect = multiAndSingleTagMaker(headerSearch, "select", "hs-select");
+const headerSearchInput = multiAndSingleTagMaker(headerSearch, "input", "hs-input");
 const headerSearchEnter = multiAndSingleTagMaker(headerSearch, "input", {
   id: "hs-btn",
   type: "submit",
   value: "검색",
 });
-console.log(root);
+
 // menu
 function moduleMaker(Num) {
   const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"];
   const getUrl = ["recipe_list", "recipe_write", "recipe_list", "recipe_list"];
   for (let i = 1; i <= Num; i++) {
-    const headerMenuModule = multiAndSingleTagMaker(
-      headerMenu,
-      "form",
-      "headerMenu-module" + i,
-      1,
-      (ele) => {
-        (ele.method = "GET"), (ele.action = getUrl[i - 1]);
-      }
-    );
-    const headerMenuModuleTop = multiAndSingleTagMaker(
-      headerMenuModule,
-      "input",
-      { id: "headerMenuModule-top" + i, type: "submit", value: " " }
-    );
-    const headerMenuModuleBottom = multiAndSingleTagMaker(
-      headerMenuModule,
-      "div",
-      "headerMenuModuleBottom" + i
-    );
+    const headerMenuModule = multiAndSingleTagMaker(headerMenu, "form", "headerMenu-module" + i, 1, (ele) => {
+      (ele.method = "GET"), (ele.action = getUrl[i - 1]);
+    });
+    const headerMenuModuleTop = multiAndSingleTagMaker(headerMenuModule, "input", {
+      id: "headerMenuModule-top" + i,
+      type: "submit",
+      value: " ",
+    });
+    const headerMenuModuleBottom = multiAndSingleTagMaker(headerMenuModule, "div", "headerMenuModuleBottom" + i);
     const headerMenuModuleCss = {
       width: "60px",
       height: "80px",
@@ -106,13 +69,9 @@ function moduleMaker(Num) {
     allMightyStyleEditor(headerMenuModule, headerMenuModuleCss);
 
     allMightyStyleEditor(headerMenuModuleTop, headerMenuModuleTopCss);
-    allMightyStyleEditor(
-      headerMenuModuleBottom,
-      headerMenuModuleBottomCss,
-      function (element) {
-        element.innerHTML = menuName[i - 1];
-      }
-    );
+    allMightyStyleEditor(headerMenuModuleBottom, headerMenuModuleBottomCss, function (element) {
+      element.innerHTML = menuName[i - 1];
+    });
 
     kingGodFlexEditor(headerMenuModuleBottom, "row", "center", "center");
   }
@@ -188,7 +147,7 @@ const headerWrapLoginButtonCss = {
 };
 
 const headerSearchSelectCss = {
-  width: "30px",
+  width: "",
   height: "30px",
 };
 
@@ -229,10 +188,19 @@ kingGodFlexEditor(headerSearch, "row", "center", "center");
 kingGodFlexEditor(headerMenu, "row", "center", "center");
 
 positionEditor(header, "fixed", 1);
-console.dir(root.style);
 // positionEditor(main,'absolute','','',function(element){
 //   element.top = "25%"
 // })
 // positionEditor(footer,'absolute','','',function(element){
 //   element.top = "90%"
 // })
+
+multiAndSingleTagMaker(headerSearchSelect, "option", { value: "total" }, 1, (element) => {
+  element.innerHTML = "전체";
+});
+multiAndSingleTagMaker(headerSearchSelect, "option", { value: "title" }, 1, (element) => {
+  element.innerHTML = "레시피명";
+});
+multiAndSingleTagMaker(headerSearchSelect, "option", { value: "ingredients" }, 1, (element) => {
+  element.innerHTML = "재료";
+});

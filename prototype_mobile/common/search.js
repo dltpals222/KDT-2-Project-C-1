@@ -11,3 +11,5 @@ const recipeArr = {
   recipeTitle: recipeTitleData.map((value) => value.recipe_title),
   recipeIngredients: recipeIngredientsData.ingredients,
 };
+
+export default recipeArr;
