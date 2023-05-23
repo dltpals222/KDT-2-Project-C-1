@@ -65,15 +65,17 @@ const recipeListBoxStyle = {
  * @param {number} i i 를 그대로 적으면 된다.
  */
 export const listPageDOMApi = (parent, JsonListInfo, i) => {
-  multiAndSingleTagMaker(parent, "form", "", 1, (element) => {
-    multiAndSingleTagMaker(element, "img", { src: JsonListInfo.jsonDataImg[i - 1] }, 1, (ele1) => {
-      allMightyStyleEditor(ele1, recipeListImageStyle);
+  multiAndSingleTagMaker(parent, "div", "recipe-list-container", 1, (element) => {
+    multiAndSingleTagMaker(element, "form", "", 1, (ele1) => {
+      multiAndSingleTagMaker(ele1, "img", { src: JsonListInfo.jsonDataImg[i - 1] }, 1, (ele2) => {
+        allMightyStyleEditor(ele2, recipeListImageStyle);
+      });
+      multiAndSingleTagMaker(ele1, "div", "", 1, (ele2) => {
+        ele2.innerHTML = makeContent(JsonListInfo, i);
+        ele2.style.border = 0;
+        ele2.style.padding = 0;
+      });
+      allMightyStyleEditor(ele1, recipeListBoxStyle);
     });
-    multiAndSingleTagMaker(element, "div", "", 1, (ele1) => {
-      ele1.innerHTML = makeContent(JsonListInfo, i);
-      ele1.style.border = 0;
-      ele1.style.padding = 0;
-    });
-    allMightyStyleEditor(element, recipeListBoxStyle);
   });
 };
