@@ -260,6 +260,8 @@ function uploadInnerOrderPicFile(file){
   }
 }
 
+////////////////////////////////////////////////////////////////////////
+
 ///조리순서안의 조리방법 또는 내용
 const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1);
 fontAndLayoutEditor(orderInfo, '50%','90%', 1, 'skyblue');
