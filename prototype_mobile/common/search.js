@@ -1,10 +1,13 @@
 import fs from "fs";
-import path, { parse } from "path";
+import path from "path";
 
-const recipeListData = fs.readFileSync(path.join(path.resolve(), "../JSON/recipe_list_data.json"), "utf-8");
-const parseData = JSON.parse(recipeListData);
+const recipeTitleData = JSON.parse(
+  fs.readFileSync(path.join(path.resolve(), "../JSON/recipe_list_data.json"), "utf-8")
+);
+const recipeIngredientsData = JSON.parse(
+  fs.readFileSync(path.join(path.resolve(), "../api_parse/processed_data_ingredients_table_second.json"), "utf-8")
+);
 const recipeArr = {
-  recipe_title: parseData.map((value) => value.recipe_title),
+  recipeTitle: recipeTitleData.map((value) => value.recipe_title),
+  recipeIngredients: recipeIngredientsData.ingredients,
 };
-
-console.log(parseData[0]);
