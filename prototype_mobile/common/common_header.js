@@ -1,5 +1,5 @@
 import amEditor from "../module/all_mighty_editor.js";
-import { fetchData, filter } from "./search.js";
+import { fetchData, filter } from "../module/search.js";
 
 const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } =
   amEditor;
