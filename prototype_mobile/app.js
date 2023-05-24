@@ -39,76 +39,39 @@ const server = http.createServer((req, res) => {
 
       //* 레시피 리스트
       case "/recipe_list":
-        serverReadFileModule(
-          res,
-          "recipe_list/recipe_list.html",
-          "text/html",
-          200
-        );
+        serverReadFileModule(res, "recipe_list/recipe_list.html", "text/html", 200);
         break;
       case "/recipe_list.js":
-        serverReadFileModule(
-          res,
-          "recipe_list/recipe_list.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "recipe_list/recipe_list.js", "text/javascript", 200);
         break;
       case "/recipe_list_paging.js":
-        serverReadFileModule(
-          res,
-          "recipe_list/recipe_list_paging.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "recipe_list/recipe_list_paging.js", "text/javascript", 200);
         break;
 
       //* 레시피 작성
       case "/recipe_write":
-        serverReadFileModule(
-          res,
-          "recipe_write/recipe_write.html",
-          "text/html",
-          200
-        );
+        serverReadFileModule(res, "recipe_write/recipe_write.html", "text/html", 200);
         break;
       case "/recipe_write.js":
-        serverReadFileModule(
-          res,
-          "recipe_write/recipe_write.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "recipe_write/recipe_write.js", "text/javascript", 200);
         break;
 
       //* JSON 파일
       case "/JSON/recipe_list_data.json":
-        serverReadFileModule(
-          res,
-          "JSON/recipe_list_data.json",
-          "application/json",
-          200
-        );
+        serverReadFileModule(res, "JSON/recipe_list_data.json", "application/json", 200);
         break;
 
       case "/JSON/api_processed.json":
-        serverReadFileModule(
-          res,
-          "JSON/api_processed.json",
-          "application/json",
-          200
-        );
+        serverReadFileModule(res, "JSON/api_processed.json", "application/json", 200);
+        break;
+      case "/api_parse/processed_data_ingredients_table_second.json":
+        serverReadFileModule(res, "api_parse/processed_data_ingredients_table_second.json", "application/json", 200);
         break;
 
       //* common 파일
       //common 파일
       case "/common/common_header.js":
-        serverReadFileModule(
-          res,
-          "common/common_header.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "common/common_header.js", "text/javascript", 200);
         break;
 
       //* favicon에러처리
@@ -122,81 +85,39 @@ const server = http.createServer((req, res) => {
 
       //* 모듈들
       case "/module/all_mighty_editor.js":
-        serverReadFileModule(
-          res,
-          "module/all_mighty_editor.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "module/all_mighty_editor.js", "text/javascript", 200);
         break;
       case "/module/recipe_step_maker.js":
-        serverReadFileModule(
-          res,
-          "module/recipe_step_maker.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "module/recipe_step_maker.js", "text/javascript", 200);
         break;
       case "/module/paging_recipe_list_make_content.js":
-        serverReadFileModule(
-          res,
-          "module/paging_recipe_list_make_content.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "module/paging_recipe_list_make_content.js", "text/javascript", 200);
         break;
       case "/module/paging_render_content.js":
-        serverReadFileModule(
-          res,
-          "module/paging_render_content.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "module/paging_render_content.js", "text/javascript", 200);
         break;
       case "/module/paging_etc_module.js":
-        serverReadFileModule(
-          res,
-          "module/paging_etc_module.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "module/paging_etc_module.js", "text/javascript", 200);
         break;
       case "/module/paging_render_button.js":
-        serverReadFileModule(
-          res,
-          "module/paging_render_button.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "module/paging_render_button.js", "text/javascript", 200);
+        break;
+      case "/module/search.js":
+        serverReadFileModule(res, "module/search.js", "text/javascript", 200);
         break;
 
       //* 404 페이지 처리
       //레시피 리스트
       case "/recipe_list":
-        serverReadFileModule(
-          res,
-          "recipe_list/recipe_list.html",
-          "text/html",
-          200
-        );
+        serverReadFileModule(res, "recipe_list/recipe_list.html", "text/html", 200);
         break;
       case "/recipe_list.js":
-        serverReadFileModule(
-          res,
-          "recipe_list/recipe_list.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "recipe_list/recipe_list.js", "text/javascript", 200);
         break;
 
       //common 파일
       case "/common/common_header.js":
-        serverReadFileModule(
-          res,
-          "common/common_header.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "common/common_header.js", "text/javascript", 200);
         break;
 
       //favicon에러처리
@@ -210,12 +131,7 @@ const server = http.createServer((req, res) => {
 
       //all_mighty_editor
       case "/module/all_mighty_editor.js":
-        serverReadFileModule(
-          res,
-          "module/all_mighty_editor.js",
-          "text/javascript",
-          200
-        );
+        serverReadFileModule(res, "module/all_mighty_editor.js", "text/javascript", 200);
         break;
 
       //404 페이지 처리
@@ -227,46 +143,22 @@ const server = http.createServer((req, res) => {
     dbSet.query(
       "select * from recipe_regist_table as t1 inner join ( select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id;",
       function (err, results, fields) {
-        fs.writeFileSync(
-          "JSON/recipe_list_data.json",
-          JSON.stringify(results, null, 2)
-        );
+        fs.writeFileSync("JSON/recipe_list_data.json", JSON.stringify(results, null, 2));
       }
     );
-    dbSet.query(
-      "select * from recipe_ingredients_table;",
-      function (err, results, fields) {
-        fs.writeFileSync(
-          "JSON/api_processed1.json",
-          JSON.stringify(results, null, 2)
-        );
-      }
-    );
-    dbSet.query(
-      "select * from recipe_regist_table;",
-      function (err, results, fields) {
-        fs.writeFileSync(
-          "JSON/api_processed2.json",
-          JSON.stringify(results, null, 2)
-        );
-      }
-    );
-    dbSet.query(
-      "select * from ingredients_table;",
-      function (err, results, fields) {
-        fs.writeFileSync(
-          "JSON/api_processed3.json",
-          JSON.stringify(results, null, 2)
-        );
-      }
-    );
+    dbSet.query("select * from recipe_ingredients_table;", function (err, results, fields) {
+      fs.writeFileSync("JSON/api_processed1.json", JSON.stringify(results, null, 2));
+    });
+    dbSet.query("select * from recipe_regist_table;", function (err, results, fields) {
+      fs.writeFileSync("JSON/api_processed2.json", JSON.stringify(results, null, 2));
+    });
+    dbSet.query("select * from ingredients_table;", function (err, results, fields) {
+      fs.writeFileSync("JSON/api_processed3.json", JSON.stringify(results, null, 2));
+    });
   } else if (urlMethod === "POST") {
     //post 방식 데이터 mysql로 보내기
     req.on("data", function (chunk) {
-      reqOnData(
-        chunk,
-        "insert into add_recipe(title,ingredients,content) values (?, ?, ?)"
-      );
+      reqOnData(chunk, "insert into add_recipe(title,ingredients,content) values (?, ?, ?)");
     });
     //mysql에서 저장된 데이터를 json 파일로 저장하기
     req.on("end", function () {
