@@ -8,8 +8,9 @@
   </head>
   <body>
     <div id="root">
-      <input type="text" id="searchInput" placeholder="검색어를 입력하세요" />
-      <button onclick="search()">검색</button>
+      <input type="text" id="searchInput" onkeyup="search()" placeholder="검색어를 입력하세요" />
+      <!-- <button onclick="search()">검색</button> -->
+      <button>검색</button>
 
       <ul id="searchResults"></ul>
     </div>

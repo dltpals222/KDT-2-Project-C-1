@@ -1,5 +1,5 @@
 import amEditor from "../module/all_mighty_editor.js";
-import { fetchData, promiseFilter } from "../module/search.js";
+import { fetchData } from "../module/search.js";
 
 const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } =
   amEditor;
@@ -29,7 +29,9 @@ const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, "input", {
   value: "Login",
 });
 const headerSearchSelect = multiAndSingleTagMaker(headerSearch, "select", "hs-select");
-const headerSearchInput = multiAndSingleTagMaker(headerSearch, "input", "hs-input");
+const divHeaderSearchContainer = multiAndSingleTagMaker(headerSearch, "div", "hs-div");
+const headerSearchInput = multiAndSingleTagMaker(divHeaderSearchContainer, "input", "hs-input");
+const ulHeaderSearch = multiAndSingleTagMaker(divHeaderSearchContainer, "ul", "dhsc-ul");
 const headerSearchEnter = multiAndSingleTagMaker(headerSearch, "input", {
   id: "hs-btn",
   type: "submit",
@@ -211,22 +213,27 @@ multiAndSingleTagMaker(headerSearchSelect, "option", { value: "ingredients" }, 1
 
 const urls = ["../JSON/recipe_list_data.json", "../api_parse/processed_data_ingredients_table_second.json"];
 
+let inputValue = [];
+
 Promise.all([fetchData(urls[0]), fetchData(urls[1])]).then((dataArr) => {
-  // const recipeListData = dataArr[0].map((value) => value.recipe_title);
-  // const recipeIngredients = dataArr[1].ingredients;
-  let inputValue = promiseFilter(dataArr);
-  console.log(inputValue);
-  // for (let i in recipeListData) {
-  // for (let i = 0; i < 50; i++) {
-  //   if (recipeListData[i].includes(inputValue)) {
-  //     console.log(recipeListData[i]);
-  //     // multiAndSingleTagMaker(headerSearchInput, "div", "", 1, (element) => {
-  //     //   element.innerHTML = recipeListData[i];
-  //     // });
-  //   } else {
-  //     console.log(`해당 ${recipeListData[i]}는 포함되지 않습니다.`);
-  //   }
-  // }
+  const recipeListData = dataArr[0].map((value) => value.recipe_title);
+  const recipeIngredients = dataArr[1].ingredients;
+  inputValue = [recipeListData, recipeIngredients];
+  console.log("여기 값은 promise.all()값 입니다.", inputValue);
 });
 
-headerSearchInput.setAttribute(onkeyup, inputValue());
+function commonFilter() {
+  // for (let i in recipeListData) {
+  for (let i = 0; i < 50; i++) {
+    if (recipeListData[i].includes(inputValue)) {
+      console.log(recipeListData[i]);
+      multiAndSingleTagMaker(ulHeaderSearch, "li", "", 1, (element) => {
+        element.innerHTML = recipeListData[i];
+        element.style.listStyleType = "none";
+      });
+    } else {
+      console.log(`해당 ${recipeListData[i]}는 포함되지 않습니다.`);
+    }
+  }
+}
+headerSearchInput.setAttribute(onkeyup, "commonFilter()");
