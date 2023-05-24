@@ -47,7 +47,7 @@ fetch("recipe_step.json")
   return response.json();
 })
 .then(function(pic){
-  let placeholder = document.getElementById('orderInfo');
+  let placeholder = document.getElementById('orderPic');
   let out = "";
   for(let picture of pic){
     out += `${picture.MANUAL_IMG02}
@@ -68,14 +68,14 @@ fetch("recipe_step.json")
   let placeholder = document.getElementById('orderInfo');
   let out = "";
   for(let inforomation of info){
-    out += `${inforomation.MANUAL02}
+    out += `${inforomation.MANUAL01}
     `;
   }
   placeholder.innerHTML = out;
 });
 
 
-const button = multiAndSingleTagMaker(main, 'div', 'button', 1, (ele)=>{
+const button = multiAndSingleTagMaker(main, 'button', 'button', 1, (ele)=>{
   ele.textContent = '목록';
 });
 button.style.cursor = 'pointer';
