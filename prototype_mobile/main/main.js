@@ -37,6 +37,16 @@ http.onreadystatechange = function () {
       "select",
       "ms-select"
     );
+    const mainSearchOptionIngredients = multiAndSingleTagMaker(
+      mainSearchSelect,
+      "option",
+      "ms-option"
+    );
+    const mainSearchOptionRecipe = multiAndSingleTagMaker(
+      mainSearchSelect,
+      "option",
+      "ms-option"
+    );
     const mainSearchInput = multiAndSingleTagMaker(mainSearchWrap, "input", {
       id: "ms-input",
       type: "text",
@@ -51,7 +61,7 @@ http.onreadystatechange = function () {
       id: "mst-wrap",
     });
     const mainSearchText = multiAndSingleTagMaker(mainSearchTextWrap, "div", {
-      id: "input-text",
+      id: "main-search-text",
     });
     console.log(root);
 
@@ -132,17 +142,17 @@ http.onreadystatechange = function () {
 
     const headerCss = {
       width: "100%",
-      height: "35%",
+      height: "30%",
     };
 
     const mainCss = {
       width: "100%",
-      height: "30%",
+      height: "45%",
     };
 
     const footerCss = {
       width: "100%",
-      height: "35%",
+      height: "30%",
     };
 
     const headerUpCss = {
@@ -179,7 +189,7 @@ http.onreadystatechange = function () {
     };
 
     const mainSearchSelectCss = {
-      width: "30px",
+      width: "65px",
       height: "30px",
     };
 
@@ -193,6 +203,7 @@ http.onreadystatechange = function () {
       height: "30px",
     };
     const mainSearchTextWrapCss = {
+      marginLeft: "21px",
       overflow: "auto",
     };
     /* const mainSearchTextCss = {
@@ -215,6 +226,8 @@ http.onreadystatechange = function () {
     allMightyStyleEditor(mainSearch, mainSearchCss);
     allMightyStyleEditor(mainMenu, mainMenuCss);
     allMightyStyleEditor(mainSearchSelect, mainSearchSelectCss);
+    mainSearchOptionRecipe.textContent = "레시피";
+    mainSearchOptionIngredients.textContent = "재료";
     allMightyStyleEditor(mainSearchInput, mainSearchInputCss);
     allMightyStyleEditor(mainSearchEnter, mainSearchEnterCss);
     allMightyStyleEditor(mainSearchTextWrap, mainSearchTextWrapCss);
@@ -225,17 +238,6 @@ http.onreadystatechange = function () {
     kingGodFlexEditor(mainSearch, "column", "center", "");
     kingGodFlexEditor(mainMenu, "row", "center", "center");
 
-    const searchData = [
-      "칵테일새우",
-      "새우요리",
-      "맛새우",
-      "독도새우",
-      "새우회",
-      "다진새우",
-      "새우깡",
-      // 다른 검색어도 추가할 수 있습니다.
-      // 예: "새우튀김", "간장새우"
-    ];
     // 입력값이 변경될 때마다 자동완성 기능 실행
     mainSearchInput.addEventListener("input", () => {
       const searchText = mainSearchInput.value.toLowerCase();
@@ -245,8 +247,8 @@ http.onreadystatechange = function () {
 
       // 검색 결과 표시 업데이트
       renderAutocompleteResults(matchedResults);
+      console.log(matchedResults);
     });
-
     // 검색 결과 표시 업데이트하는 함수
     function renderAutocompleteResults(results) {
       mainSearchText.innerHTML = "";
@@ -263,7 +265,7 @@ http.onreadystatechange = function () {
           color: "black",
           width: "150px",
           height: "30px",
-          zIndex: 999,
+          zIndex: "999",
           border: "1px solid black",
           position: "relative",
         };
@@ -275,7 +277,10 @@ http.onreadystatechange = function () {
           }
         );
         mainSearchText.appendChild(listItem);
+
         listItem.addEventListener("mouseover", function () {
+          mainSearchInput.value = result;
+
           const mainSearchTextItemCss = {
             backgroundColor: "black",
             color: "white",
@@ -289,6 +294,8 @@ http.onreadystatechange = function () {
           );
         });
         listItem.addEventListener("mouseleave", function () {
+          mainSearchInput.value = result;
+
           allMightyStyleEditor(
             listItem,
             mainSearchTextItemCss,
