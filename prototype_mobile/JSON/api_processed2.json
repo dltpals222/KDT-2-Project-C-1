@@ -7982,21 +7982,5 @@
     "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/20141117/20141117053420_1416213260840.jpg",
     "recipe_views": 1000,
     "recipe_recommend": 100
-  },
-  {
-    "recipe_id": 999,
-    "recipe_register": "",
-    "recipe_title": "양배추 깻잎 피클",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/20141117/20141117053421_1416213261401.jpg",
-    "recipe_views": 1000,
-    "recipe_recommend": 100
-  },
-  {
-    "recipe_id": 1000,
-    "recipe_register": "얼갈이배추",
-    "recipe_title": "얼갈이 무침",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/20141117/20141117053422_1416213262832.jpg",
-    "recipe_views": 1000,
-    "recipe_recommend": 100
   }
 ]

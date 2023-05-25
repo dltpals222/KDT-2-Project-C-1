@@ -49,9 +49,11 @@ const makeContent = (parent, object, i) => {
  */
 const elementButton = (parent, formId, buttonId, value) => {
   multiAndSingleTagMaker(parent, "form", formId, 1, (element) => {
-    multiAndSingleTagMaker(element, "button", buttonId, 1, (ele) => {
-      ele.innerHTML = value;
-    });
+    multiAndSingleTagMaker(element,'input',{type : "text", name:"recipe_id"},1, ele3 => {
+      ele3.style.display = "none"
+      ele3.innerHTML = value
+    })
+    multiAndSingleTagMaker(element, "input", buttonId,);
   });
 };
 
@@ -85,6 +87,7 @@ const recipeListConStyle = {
  * @param {number} i i 를 그대로 적으면 된다.
  */
 export const listPageDOMApi = (parent, JsonListInfo, i) => {
+  console.log(JsonListInfo.jsonDataId[i - 1])
   multiAndSingleTagMaker(parent, "div", `recipe-list-container${i}`, 1, (element) => {
     multiAndSingleTagMaker(element, "form", "", 1, (ele1) => {
       multiAndSingleTagMaker(ele1, "img", { src: JsonListInfo.jsonDataImg[i - 1] }, 1, (ele2) => {
@@ -98,7 +101,8 @@ export const listPageDOMApi = (parent, JsonListInfo, i) => {
       allMightyStyleEditor(ele1, recipeListBoxStyle);
     });
     allMightyStyleEditor(element, recipeListConStyle);
-    elementButton(element, "form-update", "button-update", "업데이트");
-    elementButton(element, "form-delete", "button-delete", "삭제");
+    elementButton(element, {id : "form-update", action : `/liUpdate`, method : "POST"}, {id :"button-update", name : "recipe_id", value : "업데이트", type : 'submit'},JsonListInfo.jsonDataId[i - 1]);
+    elementButton(element, {id : "form-delete" , action : `/liDelete`, method : "POST"}, {id :"button-delete", name : "recipe_id", value : "삭제", type : 'submit'},JsonListInfo.jsonDataId[i - 1]);
+
   });
 };

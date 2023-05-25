@@ -8,6 +8,7 @@ import serverReadFileModule from "./module/server_readfile.js";
 import serverPostModule from "./module/server_post.js";
 import dbSet from "./mysql/mysql_connect.js";
 import reqOnData from "./module/server_post.js";
+import db_module from "./CRUD/db_module.js";
 
 /* 
   mysql_connect.js 로가서 정보를 바꾸고
@@ -147,18 +148,55 @@ const server = http.createServer((req, res) => {
     dbSet.query("select * from recipe_regist_table;", function (err, results, fields) {
       fs.writeFileSync("JSON/api_processed2.json", JSON.stringify(results, null, 2));
     });
+
+
+
   } else if (urlMethod === "POST") {
     //post 방식 데이터 mysql로 보내기
-    req.on("data", function (chunk) {
-      reqOnData(chunk, "insert into add_recipe(title,ingredients,content) values (?, ?, ?)");
-    });
-    //mysql에서 저장된 데이터를 json 파일로 저장하기
-    req.on("end", function () {
-      //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
-      res.writeHead(302, { Location: "/recipe_list" });
-      res.end();
-    });
+    // req.on("data", function (chunk) {
+    //   reqOnData(chunk, "insert into add_recipe(title,ingredients,content) values (?, ?, ?)");
+    // });
+    // //mysql에서 저장된 데이터를 json 파일로 저장하기
+    // req.on("end", function () {
+    //   //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
+    //   res.writeHead(302, { Location: "/recipe_list" });
+    //   res.end();
+    // });
+    switch (urlPathName) {
+      case "/liDelete":
+        req.on("data", function (chunk) {
+          const deleteSet = reqOnData(chunk);
+          dbSet.query("delete from recipe_ingredients_table where recipe_id = 997", deleteSet, (err) => {
+            if (err) {
+              console.error("쿼리실행 실패", err);
+            } else {
+              console.log("쿼리실행성공");
+            }
+          })
+          // dbSet.query("delete from recipe_regist_table where recipe_id = 999", deleteSet, (err) => {
+          //   if (err) {
+          //     console.error("쿼리실행 실패", err);
+          //   } else {
+          //     console.log("쿼리실행성공");
+          //   }
+          // })
+          dbSet.query("SELECT * FROM recipe_ingredients_table", function (err, results) {
+            if (err) {
+              console.error(err);
+            } else {
+              fs.writeFileSync("recipe_list_data.json", JSON.stringify(results, null, 2));
+            }
+          });
+        })
+        req.on("end", function () {
+          res.writeHead(302, { Location: "/" });
+          res.end();
+        });
+        break;
+    }
   } //createServer 내 if 문 끝
+
+
 }); //server 함수 끝
 
 server.listen(2080, (err) => {

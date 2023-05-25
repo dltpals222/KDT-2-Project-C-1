@@ -1,14 +1,5 @@
 [
   {
-    "recipe_id": 1,
-    "recipe_register": "연두부",
-    "recipe_title": "새우 두부 계란찜",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "연두부75g(3/4모), 칵테일새우20g(5마리), 달걀30g(1/2개), 생크림13g(1큰술), 설탕5g(1작은술), 무염버터5g(1작은술)고명시금치10g(3줄기)"
-  },
-  {
     "recipe_id": 2,
     "recipe_register": "날콩가루",
     "recipe_title": "부추 콩가루 찜",
@@ -8962,41 +8953,5 @@
     "recipe_views": 1000,
     "recipe_recommend": 100,
     "regist_ingredients": "당근(10g), 시금치(10g), 사과(10g), 호두(5g), 크랜베리(5g), 박력분(150g), 꿀(15g), 버터(90g), 달걀(2개), 소금(1.5g), 베이킹소다(0.6g), 베이킹파우더(2.4g), 물(50g)"
-  },
-  {
-    "recipe_id": 997,
-    "recipe_register": "",
-    "recipe_title": "수삼 냉채",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/20141117/20141117053419_1416213259232.jpg",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "수삼10g, 배20g, 오이20g, 샐러리20g, 소스소개, 내채소스, 대추1g, 유자청10g, 소금0.5g, 식초2g, 꿀2g"
-  },
-  {
-    "recipe_id": 998,
-    "recipe_register": "그린빈",
-    "recipe_title": "아시아식 채소 두부 볶음",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/20141117/20141117053420_1416213260840.jpg",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "해선장2g, 간장1.3g, 녹말5g, 참기름2.5g, 식용유5g, 마늘다진것2.5g, 두부1.2cm90g, 그린빈10g, 청경채20g, 영콘15g, 밤20g, 땅콩다진것10g, 물20g"
-  },
-  {
-    "recipe_id": 999,
-    "recipe_register": "",
-    "recipe_title": "양배추 깻잎 피클",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/20141117/20141117053421_1416213261401.jpg",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "양배추16g, 깻잎6g, 설탕2g, 청고추1g, 홍고추1g, 소스소개, 피클소스, 물35g, 식초2g.소금1g, 통후추0.5g"
-  },
-  {
-    "recipe_id": 1000,
-    "recipe_register": "얼갈이배추",
-    "recipe_title": "얼갈이 무침",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/20141117/20141117053422_1416213262832.jpg",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "얼갈이배추60g, 홍고추0.6g, 소스소개, 무침양념, 두부30g, 된장3.5g, 마늘1.5g, 깨2g, 참기름1g, 사과20g, 홍고추5g, 물15g"
   }
 ]
