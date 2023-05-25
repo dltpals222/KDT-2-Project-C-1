@@ -7,6 +7,7 @@ import serverReadFileModule from "./module/server_readfile.js";
 import serverPostModule from "./module/server_post.js";
 import dbSet from "./mysql/mysql_connect.js";
 import reqOnData from "./module/server_post.js";
+import { postQueryArray, queryString } from "./module/search.js";
 
 /* 
   mysql_connect.js 로가서 정보를 바꾸고
@@ -56,7 +57,7 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "recipe_write/recipe_write.js", "text/javascript", 200);
         break;
 
-      //* 레시피 찾기
+      // //* 레시피 찾기
       case "/recipe_search":
         serverReadFileModule(res, "recipe_search/recipe_search.html", "text/html", 200);
         break;
@@ -74,6 +75,9 @@ const server = http.createServer((req, res) => {
         break;
       case "/api_parse/processed_data_ingredients_table_second.json":
         serverReadFileModule(res, "api_parse/processed_data_ingredients_table_second.json", "application/json", 200);
+        break;
+      case "/JSON/recipe_search_data.json":
+        serverReadFileModule(res, "JSON/recipe_search_data.json", "application/json", 200);
         break;
 
       //* common 파일
@@ -165,23 +169,28 @@ const server = http.createServer((req, res) => {
     });
   } else if (urlMethod === "POST") {
     switch (urlPathName) {
+      //common 검색부분 처리
       default:
-        req.on("data", (chunk) => {
-          const searchQuery = `select * from recipe_regist_table as t1 inner join (select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table where regist_ingredients LIKE ? group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id
-          union
-          select * from recipe_regist_table as t1 inner join (select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id where recipe_title LIKE ?;`;
+        req.on("data", async (chunk) => {
           let body = "";
           body += chunk;
-          let chunkParse = qs.parse(body);
-          let chunkData = [];
-          for (let i in chunkParse) {
-            chunkData.push(chunkParse[i]);
-          }
-          console.log(chunkData);
-          console.log("search 페이지", chunkParse);
-          // dbSet.query();
+          const parseData = qs.parse(body);
+          console.log("app.js에 있는 콘솔로그입니다.", parseData.hsSelect);
+          dbSet.query(
+            queryString(parseData.hsSelect),
+            postQueryArray(parseData.inputValue, parseData.hsSelect),
+            (err, results) => {
+              fs.writeFileSync("JSON/recipe_search_data.json", JSON.stringify(results, null, 2));
+            }
+          );
         });
-    }
+        req.on("end", function () {
+          //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
+          res.writeHead(302, { Location: "/recipe_search" });
+          res.end();
+        });
+        break;
+    } // post내 switch 끝
     //post 방식 데이터 mysql로 보내기
     req.on("data", function (chunk) {
       reqOnData(chunk, "insert into add_recipe(title,ingredients,content) values (?, ?, ?)");

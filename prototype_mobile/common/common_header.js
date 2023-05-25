@@ -1,5 +1,4 @@
 import amEditor from "../module/all_mighty_editor.js";
-import { fetchData } from "../module/search.js";
 
 const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } =
   amEditor;
@@ -32,13 +31,11 @@ const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, "input", {
   type: "submit",
   value: "Login",
 });
-const headerSearchSelect = multiAndSingleTagMaker(headerSearch, "select", "hs-select");
-const divHeaderSearchContainer = multiAndSingleTagMaker(headerSearch, "div", "hs-div");
-const headerSearchInput = multiAndSingleTagMaker(divHeaderSearchContainer, "input", {
+const headerSearchSelect = multiAndSingleTagMaker(headerSearch, "select", { name: "hsSelect", id: "hs-select" });
+const headerSearchInput = multiAndSingleTagMaker(headerSearch, "input", {
   id: "hs-input",
   name: "inputValue",
 });
-const ulHeaderSearch = multiAndSingleTagMaker(divHeaderSearchContainer, "ul", "dhsc-ul");
 const headerSearchEnter = multiAndSingleTagMaker(headerSearch, "input", {
   id: "hs-btn",
   type: "submit",
@@ -213,50 +210,4 @@ multiAndSingleTagMaker(headerSearchSelect, "option", { value: "title" }, 1, (ele
 });
 multiAndSingleTagMaker(headerSearchSelect, "option", { value: "ingredients" }, 1, (element) => {
   element.innerHTML = "재료";
-});
-
-// console.log();
-// DataMapArray(fetchData("../JSON/recipe_list_data.json"), "recipe_title");
-
-const urls = ["../JSON/recipe_list_data.json", "../api_parse/processed_data_ingredients_table_second.json"];
-
-let inputValue = [];
-
-Promise.all([fetchData(urls[0]), fetchData(urls[1])]).then((dataArr) => {
-  const recipeListData = dataArr[0].map((value) => value.recipe_title);
-  const recipeIngredients = dataArr[1].ingredients;
-  inputValue = [recipeListData, recipeIngredients];
-  console.log("여기 값은 promise.all()값 입니다.", inputValue);
-});
-
-function commonFilter() {
-  // for (let i in recipeListData) {
-  for (let i = 0; i < 50; i++) {
-    if (recipeListData[i].includes(inputValue)) {
-      console.log(recipeListData[i]);
-      multiAndSingleTagMaker(ulHeaderSearch, "li", "", 1, (element) => {
-        element.innerHTML = recipeListData[i];
-        element.style.listStyleType = "none";
-      });
-    } else {
-      console.log(`해당 ${recipeListData[i]}는 포함되지 않습니다.`);
-    }
-  }
-}
-headerSearchInput.setAttribute(onkeyup, "commonFilter()");
-
-document.getElementById("header-search").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const listFormData = new FormData(this);
-
-  fetch("http://localhost:2080/recipe_list?", {
-    method: "POST",
-    body: listFormData,
-  })
-    .then((res) => {
-      console.log(res);
-      res.json();
-    })
-    .then((data) => console.log(data))
-    .catch((err) => console.error(err));
 });
