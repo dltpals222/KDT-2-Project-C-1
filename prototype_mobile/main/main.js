@@ -310,5 +310,9 @@ http.onreadystatechange = function () {
   }
 };
 //db.json 파일 GET방식으로 오픈
-http.open("GET", "../api_parse/processed_data_ingredients_table_second.json");
+http.open(
+  "GET",
+  "../api_parse/processed_data_ingredients_table_second.json",
+  api_processed2.json
+);
 http.send();
