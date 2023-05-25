@@ -13,7 +13,7 @@ const headerWrap = multiAndSingleTagMaker(header, "div", "header-wrap");
 const headerSearch = multiAndSingleTagMaker(header, "form", {
   id: "header-search",
   method: "POST",
-  // action: "/recipe_list",
+  action: "/recipe_search",
 });
 const headerMenu = multiAndSingleTagMaker(header, "div", "header-menu");
 const headerWrapLeft = multiAndSingleTagMaker(headerWrap, "div", "headerwrap-Left");
@@ -34,7 +34,10 @@ const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, "input", {
 });
 const headerSearchSelect = multiAndSingleTagMaker(headerSearch, "select", "hs-select");
 const divHeaderSearchContainer = multiAndSingleTagMaker(headerSearch, "div", "hs-div");
-const headerSearchInput = multiAndSingleTagMaker(divHeaderSearchContainer, "input", "hs-input");
+const headerSearchInput = multiAndSingleTagMaker(divHeaderSearchContainer, "input", {
+  id: "hs-input",
+  name: "inputValue",
+});
 const ulHeaderSearch = multiAndSingleTagMaker(divHeaderSearchContainer, "ul", "dhsc-ul");
 const headerSearchEnter = multiAndSingleTagMaker(headerSearch, "input", {
   id: "hs-btn",

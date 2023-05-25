@@ -56,6 +56,14 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "recipe_write/recipe_write.js", "text/javascript", 200);
         break;
 
+      //* 레시피 찾기
+      case "/recipe_search":
+        serverReadFileModule(res, "recipe_search/recipe_search.html", "text/html", 200);
+        break;
+      case "/recipe_search.js":
+        serverReadFileModule(res, "recipe_search/recipe_search.js", "text/javascript", 200);
+        break;
+
       //* JSON 파일
       case "/JSON/recipe_list_data.json":
         serverReadFileModule(res, "JSON/recipe_list_data.json", "application/json", 200);
@@ -157,7 +165,22 @@ const server = http.createServer((req, res) => {
     });
   } else if (urlMethod === "POST") {
     switch (urlPathName) {
-      case "/recipe_list":
+      default:
+        req.on("data", (chunk) => {
+          const searchQuery = `select * from recipe_regist_table as t1 inner join (select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table where regist_ingredients LIKE ? group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id
+          union
+          select * from recipe_regist_table as t1 inner join (select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id where recipe_title LIKE ?;`;
+          let body = "";
+          body += chunk;
+          let chunkParse = qs.parse(body);
+          let chunkData = [];
+          for (let i in chunkParse) {
+            chunkData.push(chunkParse[i]);
+          }
+          console.log(chunkData);
+          console.log("search 페이지", chunkParse);
+          // dbSet.query();
+        });
     }
     //post 방식 데이터 mysql로 보내기
     req.on("data", function (chunk) {
