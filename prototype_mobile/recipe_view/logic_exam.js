@@ -78,7 +78,7 @@ http.fetch("recipe_step.json")
 .then(function(response){
   return response.json();
   */
-http.onreadystatechange = function () {
+http.onprogress = function () {
   if (http.readyState === 1 && http.status === 1000) {
     //json 파일에 있는 데이터의 값을 출력
     const data = JSON.parse(recipe_step);
