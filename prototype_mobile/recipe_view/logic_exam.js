@@ -72,3 +72,22 @@ const listPageDOMApi = (parent,JsonListInfo,i) => {
   });
 }
 
+const http = new XMLHttpRequest();
+http.fetch("recipe_step.json")
+.then(function(response){
+  return response.json();
+http.onreadystatechange = function () {
+  if (http.readyState === 4 && http.status === 200) {
+    //json 파일에 있는 데이터의 값을 출력
+    const data = JSON.parse(http.responseText);
+    const dataAll = {
+      jsonDataInfo: data.map((value) => [value.])
+      jsonDataImg: data.map((value) => [value.thumbnail_img]),
+    };
+
+    const pageAll = {
+      total: data.length, //전체 게시글 갯수
+      pageContentCount: 4, //한페이지에 보여질 게시글 갯수
+      currPage: 1, //현재페이지
+      pageNumCount: 5, //중간 페이징 버튼 갯수
+    };
