@@ -1,14 +1,5 @@
 [
   {
-    "recipe_id": 1,
-    "recipe_register": "연두부",
-    "recipe_title": "새우 두부 계란찜",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "연두부75g(3/4모), 칵테일새우20g(5마리), 달걀30g(1/2개), 생크림13g(1큰술), 설탕5g(1작은술), 무염버터5g(1작은술)고명시금치10g(3줄기)"
-  },
-  {
     "recipe_id": 110,
     "recipe_register": "",
     "recipe_title": "주꾸미머리순대",
@@ -61,15 +52,6 @@
     "recipe_views": 1000,
     "recipe_recommend": 100,
     "regist_ingredients": "닭가슴살100g, 미역10g, 두부50g, 청양고추10g, 대파10g, 당근10g, 계란60g소스, 저염간장30g, 식초15g, 레몬즙10g, 고추냉이5g, 통깨1g"
-  },
-  {
-    "recipe_id": 314,
-    "recipe_register": "",
-    "recipe_title": "계란숙샐러드",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00321_2.png",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "달걀120g, 쇠고기50g, 게맛살20g, 감자1개, 천연조미료5g, 물200g브로콜리50g, 방울토마토60g, 미니파프리카25g, 영양부추5g소스, 매실청30g, 발사믹식초15g, 올리브오일15g, 후추1g, 식초15g"
   },
   {
     "recipe_id": 338,

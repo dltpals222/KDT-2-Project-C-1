@@ -1,12 +1,7 @@
 import amEditor from "../module/all_mighty_editor.js";
 
-const {
-  multiAndSingleTagMaker,
-  positionEditor,
-  fontAndLayoutEditor,
-  kingGodFlexEditor,
-  allMightyStyleEditor,
-} = amEditor;
+const { multiAndSingleTagMaker, positionEditor, fontAndLayoutEditor, kingGodFlexEditor, allMightyStyleEditor } =
+  amEditor;
 
 // 구조 작성하기
 const root = document.getElementById("root");
@@ -21,14 +16,30 @@ const headerDown = multiAndSingleTagMaker(header, "div", "header-down");
 const main = multiAndSingleTagMaker(root, "div", "main");
 const footer = multiAndSingleTagMaker(root, "div", "footer");
 const mainTitle = multiAndSingleTagMaker(main, "div", "main-title");
-const mainSearch = multiAndSingleTagMaker(main, "form", "main-search");
+const mainSearch = multiAndSingleTagMaker(main, "form", {
+  id: "main-search",
+  method: "POST",
+  action: "/recipe_search",
+});
 const mainMenu = multiAndSingleTagMaker(main, "div", "main-menu");
 const mainSearchSelect = multiAndSingleTagMaker(
   mainSearch,
   "select",
-  "ms-select"
+  { id: "ms-select", name: "hsSelect" },
+  1,
+  (selectElement) => {
+    multiAndSingleTagMaker(selectElement, "option", { value: "total" }, 1, (element) => {
+      element.innerHTML = "전체";
+    });
+    multiAndSingleTagMaker(selectElement, "option", { value: "title" }, 1, (element) => {
+      element.innerHTML = "레시피명";
+    });
+    multiAndSingleTagMaker(selectElement, "option", { value: "ingredients" }, 1, (element) => {
+      element.innerHTML = "재료";
+    });
+  }
 );
-const mainSearchInput = multiAndSingleTagMaker(mainSearch, "input", "ms-input");
+const mainSearchInput = multiAndSingleTagMaker(mainSearch, "input", { id: "ms-input", name: "inputValue" });
 const mainSearchEnter = multiAndSingleTagMaker(mainSearch, "input", {
   id: "mse-btn",
   type: "submit",
@@ -39,33 +50,18 @@ console.log(root);
 // 메인 메뉴의 버튼 하나별 모듈 함수
 function moduleMaker(Num) {
   const menuName = ["레시피 검색", "레시피 등록", "고객센터", "소개"];
-  const menuForm = [
-    "recipe_list",
-    "recipe_write",
-    "recipe_list",
-    "recipe_list",
-  ];
+  const menuForm = ["recipe_list", "recipe_write", "recipe_list", "recipe_list"];
   for (let i = 1; i <= Num; i++) {
-    const mainMenuModule = multiAndSingleTagMaker(
-      mainMenu,
-      "form",
-      "main-menu-module" + i,
-      1,
-      (ele) => {
-        ele.method = "GET";
-        ele.action = menuForm[i - 1];
-      }
-    );
+    const mainMenuModule = multiAndSingleTagMaker(mainMenu, "form", "main-menu-module" + i, 1, (ele) => {
+      ele.method = "GET";
+      ele.action = menuForm[i - 1];
+    });
     const mainMenuModuleTop = multiAndSingleTagMaker(mainMenuModule, "input", {
       id: "main-menu-module-top" + i,
       type: "submit",
       value: " ",
     });
-    const mainMenuModuleBottom = multiAndSingleTagMaker(
-      mainMenuModule,
-      "div",
-      "main-menu-module-bottom" + i
-    );
+    const mainMenuModuleBottom = multiAndSingleTagMaker(mainMenuModule, "div", "main-menu-module-bottom" + i);
     const mainMenuModuleCss = {
       width: "60px",
       height: "80px",
@@ -86,13 +82,9 @@ function moduleMaker(Num) {
 
     allMightyStyleEditor(mainMenuModule, mainMenuModuleCss);
     allMightyStyleEditor(mainMenuModuleTop, mainMenuModuleTopCss);
-    allMightyStyleEditor(
-      mainMenuModuleBottom,
-      mainMenuModuleBottomCss,
-      function (element) {
-        element.innerHTML = menuName[i - 1];
-      }
-    );
+    allMightyStyleEditor(mainMenuModuleBottom, mainMenuModuleBottomCss, function (element) {
+      element.innerHTML = menuName[i - 1];
+    });
 
     kingGodFlexEditor(mainMenuModuleBottom, "row", "center", "center");
   }
@@ -156,7 +148,7 @@ const mainMenuCss = {
 };
 
 const mainSearchSelectCss = {
-  width: "30px",
+  width: "",
   height: "30px",
 };
 
