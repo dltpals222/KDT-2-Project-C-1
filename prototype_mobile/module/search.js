@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {string} hsSelect total, title, ingredients 중 하나
+ * @returns {string} 미리 입력해 둔 쿼리문
+ */
 export function queryString(hsSelect) {
   let searchQuery = "";
   if (hsSelect === "total") {
@@ -34,6 +39,12 @@ export function queryString(hsSelect) {
   return searchQuery;
 }
 
+/**
+ *
+ * @param {string} inputValue 배열에 들어갈 값
+ * @param {string} hsSelect total은 배열에 값 2개, 나머지는 배열에 1개
+ * @returns {Array<string|number>} 배열에 값이 2개(동일한 값) 또는 1개
+ */
 export function postQueryArray(inputValue, hsSelect) {
   let Array = [];
   function likeString(qrData) {
