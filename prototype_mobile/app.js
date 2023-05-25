@@ -15,7 +15,6 @@ import reqOnData from "./module/server_post.js";
 */
 dbSet.connect();
 //GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
-//GET으로 받아올 때 작성한 것으로 POST는 뒤로 미루었습니다.
 
 const server = http.createServer((req, res) => {
   const urlParse = Url.parse(req.url);
@@ -101,6 +100,24 @@ const server = http.createServer((req, res) => {
         );
         break;
 
+      case "/JSON/api_processed2.json":
+        serverReadFileModule(
+          res,
+          "JSON/api_processed2.json",
+          "application/json",
+          200
+        );
+        break;
+
+      case "/api_parse/processed_data_ingredients_table_second.json":
+        serverReadFileModule(
+          res,
+          "api_parse/processed_data_ingredients_table_second.json",
+          "application/json",
+          200
+        );
+        break;
+
       //* common 파일
       //common 파일
       case "/common/common_header.js":
@@ -134,6 +151,38 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(
           res,
           "module/recipe_step_maker.js",
+          "text/javascript",
+          200
+        );
+        break;
+      case "/module/paging_recipe_list_make_content.js":
+        serverReadFileModule(
+          res,
+          "module/paging_recipe_list_make_content.js",
+          "text/javascript",
+          200
+        );
+        break;
+      case "/module/paging_render_content.js":
+        serverReadFileModule(
+          res,
+          "module/paging_render_content.js",
+          "text/javascript",
+          200
+        );
+        break;
+      case "/module/paging_etc_module.js":
+        serverReadFileModule(
+          res,
+          "module/paging_etc_module.js",
+          "text/javascript",
+          200
+        );
+        break;
+      case "/module/paging_render_button.js":
+        serverReadFileModule(
+          res,
+          "module/paging_render_button.js",
           "text/javascript",
           200
         );

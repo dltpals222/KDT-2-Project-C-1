@@ -46,6 +46,7 @@ const headerWrapLoginButton = multiAndSingleTagMaker(headerWrapLogin, "input", {
   type: "submit",
   value: "Login",
 });
+
 const headerSearchSelect = multiAndSingleTagMaker(
   headerSearch,
   "select",
@@ -61,6 +62,7 @@ const headerSearchEnter = multiAndSingleTagMaker(headerSearch, "input", {
   type: "submit",
   value: "검색",
 });
+
 console.log(root);
 // menu
 function moduleMaker(Num) {
@@ -236,3 +238,51 @@ console.dir(root.style);
 // positionEditor(footer,'absolute','','',function(element){
 //   element.top = "90%"
 // })
+const headerSearchText = multiAndSingleTagMaker(headerSearch, "div", {
+  id: "input-text",
+});
+const searchData = [
+  "칵테일새우",
+  "새우요리",
+  "맛새우",
+  "독도새우",
+  "새우회",
+  "다진새우",
+  "새우깡",
+  // 다른 검색어도 추가할 수 있습니다.
+  // 예: "새우튀김", "간장새우"
+];
+// 입력값이 변경될 때마다 자동완성 기능 실행
+headerSearchInput.addEventListener("input", () => {
+  const searchText = headerSearchInput.value.toLowerCase();
+  const matchedResults = searchData
+    .filter((item) => item.toLowerCase().includes(searchText))
+    .slice(0, 10); // 최대 10개의 검색 결과 표시
+
+  // 검색 결과 표시 업데이트
+  renderAutocompleteResults(matchedResults);
+});
+
+// 검색 결과 표시 업데이트하는 함수
+function renderAutocompleteResults(results) {
+  headerSearchText.innerHTML = "";
+
+  if (results.length === 0) {
+    headerSearchText.style.display = "none";
+    return;
+  }
+
+  results.forEach((result) => {
+    const listItem = document.createElement("div");
+    listItem.style.display = "block";
+    listItem.style.backgroundColor = "black";
+    listItem.style.color = "white";
+    listItem.style.width = "170px";
+    listItem.style.height = "30px";
+    listItem.style.border = "1px solid white";
+    listItem.textContent = result;
+    headerSearchText.appendChild(listItem);
+  });
+
+  headerSearchText.style.display = "block";
+}
