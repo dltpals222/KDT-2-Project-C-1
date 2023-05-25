@@ -1,7 +1,7 @@
 import fs from "fs";
 
 try {
-  const data = fs.readFileSync("../JSON/api_processed1.json", "utf-8");
+  const data = fs.readFileSync("../JSON/api_processed1.jsons", "utf-8");
   const jsonData = JSON.parse(data);
 
   let result = [];
