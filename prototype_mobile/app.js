@@ -156,7 +156,9 @@ const server = http.createServer((req, res) => {
       fs.writeFileSync("JSON/api_processed3.json", JSON.stringify(results, null, 2));
     });
   } else if (urlMethod === "POST") {
-    console.log(urlPathName);
+    switch (urlPathName) {
+      case "/recipe_list":
+    }
     //post 방식 데이터 mysql로 보내기
     req.on("data", function (chunk) {
       reqOnData(chunk, "insert into add_recipe(title,ingredients,content) values (?, ?, ?)");
