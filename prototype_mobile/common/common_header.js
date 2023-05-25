@@ -10,7 +10,11 @@ const fakeHeader = multiAndSingleTagMaker(root, "div", "fakeHeader");
 // const main = multiAndSingleTagMaker(root, 'div', 'main');
 // const footer = multiAndSingleTagMaker(root, "div", "footer");
 const headerWrap = multiAndSingleTagMaker(header, "div", "header-wrap");
-const headerSearch = multiAndSingleTagMaker(header, "form", "header-search");
+const headerSearch = multiAndSingleTagMaker(header, "form", {
+  id: "header-search",
+  method: "POST",
+  // action: "/recipe_list",
+});
 const headerMenu = multiAndSingleTagMaker(header, "div", "header-menu");
 const headerWrapLeft = multiAndSingleTagMaker(headerWrap, "div", "headerwrap-Left");
 const headerWrapTitle = multiAndSingleTagMaker(headerWrap, "div", "headerwrap-title", 1, (ele) => {
@@ -237,3 +241,19 @@ function commonFilter() {
   }
 }
 headerSearchInput.setAttribute(onkeyup, "commonFilter()");
+
+document.getElementById("header-search").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const listFormData = new FormData(this);
+
+  fetch("http://localhost:2080/recipe_list?", {
+    method: "POST",
+    body: listFormData,
+  })
+    .then((res) => {
+      console.log(res);
+      res.json();
+    })
+    .then((data) => console.log(data))
+    .catch((err) => console.error(err));
+});
