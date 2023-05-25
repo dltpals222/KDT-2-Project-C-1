@@ -1,7 +1,7 @@
 
 CREATE TABLE ingredients_table (
 ingredients_id INT NOT NULL AUTO_INCREMENT,
-ingredients VARCHAR(255) NOT NULL,
+ingredients VARCHAR(255) ,
 PRIMARY KEY(ingredients_id)
 );
 
