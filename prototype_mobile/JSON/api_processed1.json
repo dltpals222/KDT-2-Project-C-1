@@ -6998,5 +6998,33 @@
     "recipe_weight": null,
     "regist_ingredients": "얼갈이배추60g, 홍고추0.6g, 소스소개, 무침양념, 두부30g, 된장3.5g, 마늘1.5g, 깨2g, 참기름1g, 사과20g, 홍고추5g, 물15g",
     "ingredients_id": null
+  },
+  {
+    "recipe_ingredients_id": 2001,
+    "recipe_id": 1,
+    "recipe_weight": null,
+    "regist_ingredients": " 고추",
+    "ingredients_id": null
+  },
+  {
+    "recipe_ingredients_id": 2002,
+    "recipe_id": 1,
+    "recipe_weight": null,
+    "regist_ingredients": " 레재료",
+    "ingredients_id": null
+  },
+  {
+    "recipe_ingredients_id": 2003,
+    "recipe_id": 1,
+    "recipe_weight": null,
+    "regist_ingredients": " 레재요",
+    "ingredients_id": null
+  },
+  {
+    "recipe_ingredients_id": 2004,
+    "recipe_id": 1010,
+    "recipe_weight": null,
+    "regist_ingredients": " 고추 고추 고추",
+    "ingredients_id": null
   }
 ]

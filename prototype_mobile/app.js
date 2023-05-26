@@ -4,10 +4,10 @@ import fs from "fs";
 import mysql from "mysql";
 import qs from "querystring";
 import serverReadFileModule from "./module/server_readfile.js";
-import serverPostModule from "./module/server_post.js";
+import serverPostModule from "./module/server_post-origin.js";
 import dbSet from "./mysql/mysql_connect.js";
-import reqOnData from "./module/server_post.js";
-import objectA from "./module/obj_create_mod.js";
+import reqOnData from "./module/server_post-origin.js";
+import reqOnData2 from "./module/server_post.js";
 
 /* 
   mysql_connect.js 로가서 정보를 바꾸고
@@ -265,10 +265,7 @@ const server = http.createServer((req, res) => {
     if (urlPathName === "/recipe_write/regist") {
       //post 방식 데이터 mysql로 보내기
       req.on("data", function (chunk) {
-        reqOnData(
-          chunk,
-          "insert into recipe_regist_table(recipe_register,recipe_title,thumbnail_img) values (?, ?, ?)"
-        );
+        reqOnData2(chunk, 1011);
       });
       //mysql에서 저장된 데이터를 json 파일로 저장하기
       req.on("end", function () {

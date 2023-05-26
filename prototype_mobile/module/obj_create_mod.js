@@ -1,4 +1,4 @@
-function objectA(object) {
+function objectA(object, number) {
   class FirstObject {
     constructor(key, value) {
       this.key = key;
@@ -13,16 +13,17 @@ function objectA(object) {
   }
 
   let body = [];
-  for (let i in object) {
-    const objectKey = [
-      "recipe_writer",
-      "recipe_title",
-      "thumbnail_img",
-      "regist_ingredients",
-    ];
+  const objectKey = [
+    "recipe_writer",
+    "recipe_title",
+    "thumbnail_img",
+    "regist_ingredients",
+  ];
+  for (let i = 0; i < 4; i++) {
     let objResult = new FirstObject(objectKey[i], object[i]);
     body.push(objResult.result);
   }
+  body[3].recipe_id = number;
 
   return body;
 }
