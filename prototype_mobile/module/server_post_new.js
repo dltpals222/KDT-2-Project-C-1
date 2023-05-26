@@ -12,13 +12,7 @@ function reqOnData(chunk, query, callback) {
     postArray.push(post[i]);
   }
   console.log(postArray);
-  dbSet.query(query, postArray, (err) => {
-    if (err) {
-      console.error("쿼리실행 실패", err);
-    } else {
-      console.log("쿼리실행성공");
-    }
-  });
+
   if (callback) {
     callback(dbSet);
   }
@@ -26,3 +20,15 @@ function reqOnData(chunk, query, callback) {
 }
 
 export default reqOnData;
+/* *레시피 등록
+ * [{recipe_title :
+ * recipe_thumbnail :
+ * recipe_writer: unknown
+ * }]
+ * 조리 재료
+ * [{recipe_ingredients : "고추 피망 파프리카 오이"]}
+ * 조리 스텝
+ * [{recipe_step0n :
+ * recipe_img0n :
+ * }]
+ */

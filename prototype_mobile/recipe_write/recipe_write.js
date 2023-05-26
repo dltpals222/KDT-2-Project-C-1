@@ -1,4 +1,4 @@
-import http from "http";
+// import http from "http";
 import all_mighty_editor from "../module/all_mighty_editor.js";
 import recipeStepMaker from "../module/recipe_step_maker.js";
 // import { fileURLToPath } from "url";
@@ -24,7 +24,7 @@ const main = multiAndSingleTagMaker(root, "div", "main", 1, (ele) => {
 //* main#form
 const mainForm = multiAndSingleTagMaker(main, "form", "main-form");
 mainForm.method = "post";
-mainForm.action = "result";
+mainForm.action = "/recipe_write/regist";
 // const input = multiAndSingleTagMaker(main, "input", "inputAuto", 1, (ele) => {
 //   ele.typeContent = "text";
 // });
@@ -34,6 +34,17 @@ mainForm.action = "result";
 const mainTitleLabelInputWrap = multiAndSingleTagMaker(mainForm, "div");
 kingGodFlexEditor(mainTitleLabelInputWrap, "", "", "center");
 
+const mainWriterInputHidden = multiAndSingleTagMaker(
+  mainTitleLabelInputWrap,
+  "input",
+  "main-writer-input-hidden",
+  1,
+  (ele) => {
+    ele.name = "recipe_writer";
+    ele.value = "비룡";
+    ele.type = "hidden";
+  }
+);
 //* 레시피 제목 라벨
 const mainTitleLabel = multiAndSingleTagMaker(
   mainTitleLabelInputWrap,
@@ -53,6 +64,7 @@ const mainTitleInput = multiAndSingleTagMaker(
   1,
   (ele) => {
     ele.placeholder = "요리 제목";
+    ele.name = "recipe_title";
     ele.required = "true";
   }
 );
@@ -157,6 +169,17 @@ const registImageTag = multiAndSingleTagMaker(
   (ele) => {
     ele.textContent = "레시피 사진";
     ele.src = "http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png";
+  }
+);
+const registImageTagInputHidden = multiAndSingleTagMaker(
+  registImageWrap,
+  "input",
+  "main-image-tag-input-hidden",
+  1,
+  (ele) => {
+    ele.type = "hidden";
+    ele.name = "thumbnail_img";
+    ele.value = registImageTag.src;
   }
 );
 registImageTag.addEventListener("click", () => {
@@ -285,7 +308,26 @@ registIngredientsInput.addEventListener("keyup", function (event) {
 registIngredientsSubmit.addEventListener("click", function (event) {
   event.preventDefault();
   registIngredientsList.textContent += " " + registIngredientsInput.value;
+  registIngredientsListInputHidden.value = registIngredientsList.textContent;
 });
 
 //*POST 에 레시피 등록을 담아서 전송
 submitBtn.addEventListener("click", function (event) {});
+
+//* 별도의 조리재료 테이블 전송용 form (임시아웃)
+const ingreForm = multiAndSingleTagMaker(main, "form", "", 1, (ele) => {
+  ele.action = "/recipe_write/ingredients";
+  ele.method = "POST";
+});
+const registIngredientsListInputHidden = multiAndSingleTagMaker(
+  //조리 재료 저장되는 히든input
+  registImageWrap,
+  "input",
+  "main-ingredients-div-input-hidden",
+  1,
+  (ele) => {
+    ele.type = "hidden";
+    ele.name = "regist_ingredients";
+  }
+);
+//* 별도의 조리스텝 테이블 전송용 form

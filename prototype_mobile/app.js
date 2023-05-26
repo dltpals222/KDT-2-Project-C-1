@@ -261,20 +261,62 @@ const server = http.createServer((req, res) => {
       }
     );
   } else if (urlMethod === "POST") {
-    //post 방식 데이터 mysql로 보내기
-    req.on("data", function (chunk) {
-      reqOnData(
-        chunk,
-        "insert into add_recipe(title,ingredients,content) values (?, ?, ?)"
+    if (urlPathName === "/recipe_write/regist") {
+      //post 방식 데이터 mysql로 보내기
+      req.on("data", function (chunk) {
+        reqOnData(
+          chunk,
+          "insert into recipe_regist_table(recipe_register,recipe_title,thumbnail_img) values (?, ?, ?)"
+        );
+      });
+      //mysql에서 저장된 데이터를 json 파일로 저장하기
+      req.on("end", function () {
+        //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
+        res.writeHead(302, { Location: "/recipe_list" });
+        res.end();
+      });
+      dbSet.query(
+        "select * from recipe_regist_table as t1 inner join ( select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id;",
+        function (err, results, fields) {
+          fs.writeFileSync(
+            "JSON/recipe_list_data.json",
+            JSON.stringify(results, null, 2)
+          );
+        }
       );
-    });
-    //mysql에서 저장된 데이터를 json 파일로 저장하기
-    req.on("end", function () {
-      //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
-      res.writeHead(302, { Location: "/recipe_list" });
-      res.end();
-    });
-  } //createServer 내 if 문 끝
+    }
+    if (urlPathName === "/recipe_write/ingredients") {
+      //post 방식 데이터 mysql로 보내기
+      req.on("data", function (chunk) {
+        reqOnData(
+          chunk,
+          "insert into recipe_ingredients_table(regist_ingredients) values (?)"
+        );
+      });
+      //mysql에서 저장된 데이터를 json 파일로 저장하기
+      req.on("end", function () {
+        //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
+        res.writeHead(302, { Location: "/recipe_list" });
+        res.end();
+      });
+    }
+    if (urlPathName === "/recipe_write/step") {
+      //post 방식 데이터 mysql로 보내기
+      req.on("data", function (chunk) {
+        reqOnData(
+          chunk,
+          "insert into recipe_regist_table(recipe_register,recipe_title,thumbnail_img) values (?, ?, ?)"
+        );
+      });
+      //mysql에서 저장된 데이터를 json 파일로 저장하기
+      req.on("end", function () {
+        //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
+        res.writeHead(302, { Location: "/recipe_list" });
+        res.end();
+      });
+    }
+  }
+  //createServer 내 if 문 끝
 }); //server 함수 끝
 
 server.listen(2080, (err) => {

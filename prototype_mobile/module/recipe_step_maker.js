@@ -29,10 +29,15 @@ function recipeStepMaker(parent) {
           eleme.required = "true";
         });
       });
-      multiAndSingleTagMaker(ele, "img", "", 1, (elem) => {
-        elem.name = `step-image-${parent.children.length}`;
-        elem.src = `http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_2.png`;
+      let a = multiAndSingleTagMaker(ele, "img", "", 1, (elem) => {
+        // elem.name = `step-image-${parent.children.length}`;
+        elem.src = `http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00028_3.png`;
         fontAndLayoutEditor(elem, "150px", "100px");
+      });
+      multiAndSingleTagMaker(ele, "input", "", 1, (elem) => {
+        elem.name = `step-image-${parent.children.length}`;
+        elem.value = a.src;
+        elem.type = "hidden";
       });
     }
   );
