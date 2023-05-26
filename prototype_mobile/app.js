@@ -80,8 +80,15 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "JSON/recipe_search_data.json", "application/json", 200);
         break;
 
+      case "/JSON/api_processed2.json":
+        serverReadFileModule(res, "JSON/api_processed2.json", "application/json", 200);
+        break;
+
+      case "/api_parse/processed_data_ingredients_table_second.json":
+        serverReadFileModule(res, "api_parse/processed_data_ingredients_table_second.json", "application/json", 200);
+        break;
+
       //* common 파일
-      //common 파일
       case "/common/common_header.js":
         serverReadFileModule(res, "common/common_header.js", "text/javascript", 200);
         break;
@@ -118,8 +125,7 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "module/search.js", "text/javascript", 200);
         break;
 
-      //* 404 페이지 처리
-      //레시피 리스트
+      //* 레시피 리스트
       case "/recipe_list":
         serverReadFileModule(res, "recipe_list/recipe_list.html", "text/html", 200);
         break;
@@ -127,55 +133,53 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "recipe_list/recipe_list.js", "text/javascript", 200);
         break;
 
-      //common 파일
-      case "/common/common_header.js":
-        serverReadFileModule(res, "common/common_header.js", "text/javascript", 200);
-        break;
-
-      //favicon에러처리
-      case "/favicon.ico":
-        (err) => {
-          if (err) {
-            throw err;
-          }
-        };
-        break;
-
-      //all_mighty_editor
-      case "/module/all_mighty_editor.js":
-        serverReadFileModule(res, "module/all_mighty_editor.js", "text/javascript", 200);
-        break;
-
-      //404 페이지 처리
+      //* 404 페이지 처리
       default:
         serverReadFileModule(res, "404.html", "text/html", 404);
         console.log(urlPathName);
         break;
     } //if 문 내 switch 끝
-    dbSet.query(
+    /*     dbSet.query(
       "select * from recipe_regist_table as t1 inner join ( select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id;",
       function (err, results, fields) {
         fs.writeFileSync("JSON/recipe_list_data.json", JSON.stringify(results, null, 2));
       }
     );
-    dbSet.query("select * from recipe_ingredients_table;", function (err, results, fields) {
-      fs.writeFileSync("JSON/api_processed1.json", JSON.stringify(results, null, 2));
-    });
-    dbSet.query("select * from recipe_regist_table;", function (err, results, fields) {
-      fs.writeFileSync("JSON/api_processed2.json", JSON.stringify(results, null, 2));
-    });
-    dbSet.query("select * from ingredients_table;", function (err, results, fields) {
-      fs.writeFileSync("JSON/api_processed3.json", JSON.stringify(results, null, 2));
-    });
+    dbSet.query(
+      "select * from recipe_ingredients_table;",
+      function (err, results, fields) {
+        fs.writeFileSync(
+          "JSON/api_processed1.json",
+          JSON.stringify(results, null, 2)
+        );
+      }
+    );
+    dbSet.query(
+      "select * from recipe_regist_table;",
+      function (err, results, fields) {
+        fs.writeFileSync(
+          "JSON/api_processed2.json",
+          JSON.stringify(results, null, 2)
+        );
+      }
+    );
+    dbSet.query(
+      "select * from ingredients_table;",
+      function (err, results, fields) {
+        fs.writeFileSync(
+          "JSON/api_processed3.json",
+          JSON.stringify(results, null, 2)
+        );
+      }
+    ); */
   } else if (urlMethod === "POST") {
     switch (urlPathName) {
-      //common 검색부분 처리
+      //! common 검색부분 처리 다른 처리 넣지 말것
       default:
         req.on("data", async (chunk) => {
           let body = "";
           body += chunk;
           const parseData = qs.parse(body);
-          console.log("app.js에 있는 콘솔로그입니다.", parseData.hsSelect);
           dbSet.query(
             queryString(parseData.hsSelect),
             postQueryArray(parseData.inputValue, parseData.hsSelect),
