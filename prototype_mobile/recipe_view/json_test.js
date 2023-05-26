@@ -73,7 +73,7 @@ function arrayNumber(number=19){
 }
   }
     }
-//console.log(row[0]);
+//console.log(arrayNumber(5));
 
 /*
 function showModernHeroes(jsonObj) {
