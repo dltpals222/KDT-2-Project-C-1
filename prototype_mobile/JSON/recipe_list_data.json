@@ -8857,7 +8857,7 @@
   },
   {
     "recipe_id": 986,
-    "recipe_register": "",
+    "recipe_register": "이경택",
     "recipe_title": "고구마빵&과일잼",
     "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_01092_2.png",
     "recipe_views": 1000,
@@ -8874,17 +8874,8 @@
     "regist_ingredients": "감말랭이(10g), 쌀가루(7g), 보릿가루(7g), 밀가루(6g), 고구마(13g), 냉동딸기(13g), 흑임자(4g), 소금(0.5g), 식용유(100g)"
   },
   {
-    "recipe_id": 988,
-    "recipe_register": "",
-    "recipe_title": "바나나 속 달걀빵",
-    "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_01094_2.png",
-    "recipe_views": 1000,
-    "recipe_recommend": 100,
-    "regist_ingredients": "달걀(2개), 바나나(30g), 밀가루(20g), 우유(5g), 베이킹파우더(0.3g), 버터(0.5g), 소금(0.1g), 물(8g)"
-  },
-  {
     "recipe_id": 989,
-    "recipe_register": "",
+    "recipe_register": "이경택",
     "recipe_title": "두부빼빼로",
     "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_01095_2.png",
     "recipe_views": 1000,

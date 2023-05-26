@@ -99,7 +99,14 @@ export const listPageDOMApi = (parent, JsonListInfo, i) => {
       allMightyStyleEditor(ele1, recipeListBoxStyle);
     });
     allMightyStyleEditor(element, recipeListConStyle);
-    elementButton(element, {id : "form-update", action : `/liUpdate`, method : "POST"}, {id :"button-update", name : "recipe_id", value : "업데이트", type : 'submit'},JsonListInfo.jsonDataId[i - 1]);
+    elementButton(element, {id : "form-update", action : `/liUpdate`, method : "GET"}, {id :"button-update", name : "recipe_id", value : "업데이트", type : 'submit'},JsonListInfo.jsonDataId[i - 1]);
     elementButton(element, {id : "form-delete" , action : `/liDelete`, method : "POST"}, {id :"button-delete", name : "recipe_id", value : "삭제", type : 'submit'},JsonListInfo.jsonDataId[i - 1]);
   });
 };
+
+export function uAction (objValue){
+  const rootForm = document.getElementById('root-fomr')
+  multiAndSingleTagMaker(rootForm, 'input',{type:'text',id:'a',name:"recipe_register", placeholder:'title'})
+  multiAndSingleTagMaker(rootForm,'input',{type : "hidden", name:"recipe_id", value :objValue})
+  multiAndSingleTagMaker(rootForm, 'submit',{value:'수정하기'})
+}

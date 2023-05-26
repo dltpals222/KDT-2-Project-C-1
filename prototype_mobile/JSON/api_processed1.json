@@ -6902,16 +6902,9 @@
     "ingredients_id": null
   },
   {
-    "recipe_ingredients_id": 988,
-    "recipe_id": 988,
-    "recipe_weight": null,
-    "regist_ingredients": "달걀(2개), 바나나(30g), 밀가루(20g), 우유(5g), 베이킹파우더(0.3g), 버터(0.5g), 소금(0.1g), 물(8g)",
-    "ingredients_id": null
-  },
-  {
     "recipe_ingredients_id": 989,
     "recipe_id": 989,
-    "recipe_weight": null,
+    "recipe_weight": "1",
     "regist_ingredients": "두부(25g), 포도(10g), 호두(1g), 검은깨(1g), 식빵(7.5g), 밀가루(5g), 계피가루(1g), 소금(0.1g), 꿀(2g), 식용유(5g), 물(8g)",
     "ingredients_id": null
   }

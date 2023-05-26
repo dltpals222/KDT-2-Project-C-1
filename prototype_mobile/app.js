@@ -21,6 +21,11 @@ const server = http.createServer((req, res) => {
   const urlParse = Url.parse(req.url);
   const urlPathName = urlParse.pathname;
   const urlMethod = req.method;
+  const urlId = urlParse.path
+  const search = urlId.split('=').join("&").split("&")[1]
+  // const urlId2 = urlId.split('&')[0]
+  // console.log("정답",search)
+  // console.log(urlId2)
 
   // console.log(urlPathName);
   // console.log(urlMethod);
@@ -45,8 +50,11 @@ const server = http.createServer((req, res) => {
       case "/recipe_list.js":
         serverReadFileModule(res, "recipe_list/recipe_list.js", "text/javascript", 200);
         break;
-      case "/recipe_update.html":
+      case "/liUpdate":
         serverReadFileModule(res, "recipe_list/recipe_update.html", "text/html", 200);
+        break;
+      case "/recipe_update.js":
+        serverReadFileModule(res, "recipe_list/recipe_update.js", "text/javascript", 200);
         break;
       case "/recipe_list_paging.js":
         serverReadFileModule(res, "recipe_list/recipe_list_paging.js", "text/javascript", 200);
@@ -155,29 +163,12 @@ const server = http.createServer((req, res) => {
 
 
   } else if (urlMethod === "POST") {
-    //post 방식 데이터 mysql로 보내기
-    // req.on("data", function (chunk) {
-    //   reqOnData(chunk, "insert into add_recipe(title,ingredients,content) values (?, ?, ?)");
-    // });
-    // //mysql에서 저장된 데이터를 json 파일로 저장하기
-    // req.on("end", function () {
-    //   //input 데이터를 mysql로 데이터를 보내고 난뒤에 표시될 페이지
-    //   res.writeHead(302, { Location: "/recipe_list" });
-    //   res.end();
-    // });
+
     switch (urlPathName) {
       case "/liDelete":
         req.on("data", function (chunk) {
-          // let body = "";
-          // body += chunk;
-          // let postArray = [];
-          // let post = qs.parse(body);
-          // console.log("post 모듈 10번째줄", post);
-          // for (let i in post) {
-          //   postArray = (post[i]);
-          // }
-          // console.log(postArray);
           const deleteSet = reqOnData(chunk);
+
           console.log("app.js" + deleteSet)
           dbSet.query(`delete from recipe_ingredients_table where recipe_id = ?`, deleteSet, (err) => {
             if (err) {
@@ -202,25 +193,26 @@ const server = http.createServer((req, res) => {
 
       case "/u_action":
         req.on("data", function (chunk) {
-          const deleteSet = reqOnData(chunk);
-
-          dbSet.query(`update recipe_ingredients_table set recipe_weight = ? where recipe_id = 996`, deleteSet, (err) => {
+          console.log("urlId 확인용", urlId)
+          let deleteSet = reqOnData(chunk);
+          console.log('deleteSet 확인용', deleteSet)
+          dbSet.query(`update recipe_regist_table set recipe_register = ? where recipe_id = 989`, [deleteSet], (err) => {
             if (err) {
               console.error("쿼리실행 실패", err);
             } else {
               console.log("쿼리실행성공");
             }
           })
-          dbSet.query("SELECT * FROM recipe_ingredients_table", function (err, results) {
+          dbSet.query("SELECT * FROM recipe_regist_table", function (err, results) {
             if (err) {
               console.error(err);
             } else {
-              fs.writeFileSync("recipe_list_data.json", JSON.stringify(results, null, 2));
+              fs.writeFileSync("JSON/recipe_list_data.json", JSON.stringify(results, null, 2));
             }
           });
         })
         req.on("end", function () {
-          res.writeHead(302, { Location: "/" });
+          res.writeHead(302, { Location: "/recipe_list" });
           res.end();
         });
         break;
