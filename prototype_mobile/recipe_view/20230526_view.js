@@ -154,6 +154,9 @@ kingGodFlexEditor(ingredientsList, 'row','center', 'center');
 firstContainer.appendChild(ingredientsList);
 */
 
+//밑의 선을 기준으로부터 볼 필요X
+////////////////////////////////////////////////////////////////////////
+/*
 ///레시피 조리기구 부분
 const cooker = multiAndSingleTagMaker(recipeInfo, 'div', 'cooker', 1, (ele)=>{
   ele.textContent = '조리기구 : ';
@@ -170,7 +173,7 @@ fontAndLayoutEditor(secondContainer, '65%', '100%', 1, 'lightcoral');
 kingGodFlexEditor(secondContainer, 'column', 'center')
 secondContainer.style.padding = '0';
 //secondContainer.style.margin = '5px';
-
+*/
 
 /*
 ///레시피에 사용된 조리기구들 리스트로 나열한 부분
@@ -275,19 +278,51 @@ fontAndLayoutEditor(orderInfo, '50%','90%', 1, 'lightsalmon');
 kingGodFlexEditor(orderInfo, 'row', 'center', 'space-evenly');
 orderList.appendChild(orderInfo);
 
+///볼필요X
+/*
 ///조리순서안의 순서번호 부여한 부분
 const sequence = multiAndSingleTagMaker(orderInfo, 'span', 'sequence', 1, (ele)=>{
   ele.textContent = recipeViewStep[1].recipe_step_number;
 });
 fontAndLayoutEditor(sequence, '15%', '20%', 1 , 'lightcoral');
 kingGodFlexEditor(sequence, 'row', 'center', 'center');
+*/
 
-///조리순서안의 순서내용 부여한 부분
+
+///조리순서안의 내용 부여한 부분
 const syno = multiAndSingleTagMaker(orderInfo, 'span', 'sequence', 1, (ele)=>{
-  ele.textContent = recipeViewStep[1].recipe_step_content;
-});
-fontAndLayoutEditor(syno, '75%', '30%', 1 , 'lightcoral');
+  
+  fontAndLayoutEditor(syno, '75%', '30%', 1 , 'lightcoral');
 kingGodFlexEditor(syno, 'row', 'center', 'center');
+fetch("recipe_step.json")
+.then(function(response){
+  return response.json();
+})
+.then(function(info){
+  let placeholder = document.getElementById('orderInfo');
+  let out = "";
+  for(let inforomation of info){
+    {
+      /*
+      for(let i = 1; i < 1000; i++){
+        if(i < 10){
+          return `0${i}`;
+        }else{
+          return i;
+        }
+      }
+      */
+    }
+    //out += `${inforomation.MANUAL[i]}
+    out += `${inforomation.MANUAL01}
+    `;
+  }
+  placeholder.innerHTML = out;
+});
+  
+  //ele.textContent = recipeViewStep[1].recipe_step_content;
+});
+
 
 
 ////////////////////////////////////////////////////////////////////////
