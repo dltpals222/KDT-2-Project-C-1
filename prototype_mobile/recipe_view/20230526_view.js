@@ -330,14 +330,8 @@ fetch("recipe_step.json")
 
 
 ////////////////////////////////////////////////////////////////////////
-/*
+
 ///목록버튼 부분
-const button = multiAndSingleTagMaker(main, 'div', 'button', 1, (ele)=>{
-  ele.textContent = '목록';
-});
-fontAndLayoutEditor(button, '15%', '3%', 1, 'lightgray');
-kingGodFlexEditor(button, 'row', 'center', 'center');
-*/
 const button = multiAndSingleTagMaker(main, 'button', 'button', 1, (ele)=>{
   ele.textContent = '목록';
 });
