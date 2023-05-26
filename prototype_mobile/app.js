@@ -9,7 +9,6 @@ import serverPostModule from "./module/server_post.js";
 import dbSet from "./mysql/mysql_connect.js";
 import reqOnData from "./module/server_post.js";
 import db_module from "./CRUD/db_module.js";
-
 /* 
   mysql_connect.js 로가서 정보를 바꾸고
   mysql 에 있는 readme.md 들어가서 테이블 정보 
@@ -45,6 +44,9 @@ const server = http.createServer((req, res) => {
         break;
       case "/recipe_list.js":
         serverReadFileModule(res, "recipe_list/recipe_list.js", "text/javascript", 200);
+        break;
+      case "/recipe_update.html":
+        serverReadFileModule(res, "recipe_list/recipe_update.html", "text/html", 200);
         break;
       case "/recipe_list_paging.js":
         serverReadFileModule(res, "recipe_list/recipe_list_paging.js", "text/javascript", 200);
@@ -116,6 +118,7 @@ const server = http.createServer((req, res) => {
         serverReadFileModule(res, "module/paging_recipe_list_imsi.js", "text/javascript", 200);
         break;
 
+
       //favicon에러처리
       case "/favicon.ico":
         (err) => {
@@ -165,21 +168,49 @@ const server = http.createServer((req, res) => {
     switch (urlPathName) {
       case "/liDelete":
         req.on("data", function (chunk) {
+          // let body = "";
+          // body += chunk;
+          // let postArray = [];
+          // let post = qs.parse(body);
+          // console.log("post 모듈 10번째줄", post);
+          // for (let i in post) {
+          //   postArray = (post[i]);
+          // }
+          // console.log(postArray);
           const deleteSet = reqOnData(chunk);
-          dbSet.query("delete from recipe_ingredients_table where recipe_id = 997", deleteSet, (err) => {
+          console.log("app.js" + deleteSet)
+          dbSet.query(`delete from recipe_ingredients_table where recipe_id = ?`, deleteSet, (err) => {
             if (err) {
               console.error("쿼리실행 실패", err);
             } else {
               console.log("쿼리실행성공");
             }
           })
-          // dbSet.query("delete from recipe_regist_table where recipe_id = 999", deleteSet, (err) => {
-          //   if (err) {
-          //     console.error("쿼리실행 실패", err);
-          //   } else {
-          //     console.log("쿼리실행성공");
-          //   }
-          // })
+          dbSet.query("SELECT * FROM recipe_ingredients_table", function (err, results) {
+            if (err) {
+              console.error(err);
+            } else {
+              fs.writeFileSync("recipe_list_data.json", JSON.stringify(results, null, 2));
+            }
+          });
+        })
+        req.on("end", function () {
+          res.writeHead(302, { Location: "/recipe_list" });
+          res.end();
+        });
+        break;
+
+      case "/u_action":
+        req.on("data", function (chunk) {
+          const deleteSet = reqOnData(chunk);
+
+          dbSet.query(`update recipe_ingredients_table set recipe_weight = ? where recipe_id = 996`, deleteSet, (err) => {
+            if (err) {
+              console.error("쿼리실행 실패", err);
+            } else {
+              console.log("쿼리실행성공");
+            }
+          })
           dbSet.query("SELECT * FROM recipe_ingredients_table", function (err, results) {
             if (err) {
               console.error(err);

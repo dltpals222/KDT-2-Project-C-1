@@ -7,9 +7,9 @@ function reqOnData(chunk,callback) {
   body += chunk;
   let postArray = [];
   let post = qs.parse(body);
-  console.log(post);
+  console.log("post 모듈 10번째줄",post);
   for (let i in post) {
-    postArray.push(post[i]);
+    postArray = (post[i]);
   }
   console.log(postArray);
   // dbSet.query(query, postArray, (err) => {
@@ -22,6 +22,7 @@ function reqOnData(chunk,callback) {
   if (callback) {
     callback(dbSet);
   }
+  return postArray
 }
 
 export default reqOnData;

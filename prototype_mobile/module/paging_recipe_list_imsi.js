@@ -31,7 +31,7 @@ const { multiAndSingleTagMaker, allMightyStyleEditor } = all_mighty_editor;
 const makeContent = (parent, object, i) => {
   const { jsonDataId, jsonDataTitle, jsonDataIngredients, jsonDataRegister, jsonDataRecommend, jsonDataViews } = object;
 
-  return `<br> <div style=\"margin-bottom: 1.5%;\">${jsonDataId[i - 1]} </div>
+  return `<br> <div id=${jsonDataId[i - 1]} style=\"margin-bottom: 1.5%;\">${jsonDataId[i - 1]} </div>
   <div style=\"margin-bottom: 1.5%;\">레시피 이름 : ${jsonDataTitle[i - 1]} </div>
   <div style=\"margin-bottom: 1.5%;\">필요 재료 : ${jsonDataIngredients[i - 1]} </div>
   <div style=\"margin-bottom: 1.5%;\">작성자 : ${jsonDataRegister[i - 1]}</div>
@@ -44,15 +44,13 @@ const makeContent = (parent, object, i) => {
  * @param {any} parent 부모태그 설정하는 곳
  * @param {string|number|[]|{}} formId form의 아이디를 설정하는 곳
  * @param {string|number|[]|{}} buttonId button의 아이디를 설정하는 곳
- * @param {string} value button에 넣을 텍스트(HTML로 입력된 것으로 HTML문법에 맞게 넣어도 가능!)
+ * @param {string} elementValue button에 넣을 텍스트(HTML로 입력된 것으로 HTML문법에 맞게 넣어도 가능!)
  * @returns {void}
  */
-const elementButton = (parent, formId, buttonId, value) => {
+const elementButton = (parent, formId, buttonId, elementValue) => {
   multiAndSingleTagMaker(parent, "form", formId, 1, (element) => {
-    multiAndSingleTagMaker(element,'input',{type : "text", name:"recipe_id"},1, ele3 => {
-      ele3.style.display = "none"
-      ele3.innerHTML = value
-    })
+    multiAndSingleTagMaker(element,'input',{type : "hidden", name:"recipe_id", value :elementValue}
+    )
     multiAndSingleTagMaker(element, "input", buttonId,);
   });
 };
@@ -103,6 +101,5 @@ export const listPageDOMApi = (parent, JsonListInfo, i) => {
     allMightyStyleEditor(element, recipeListConStyle);
     elementButton(element, {id : "form-update", action : `/liUpdate`, method : "POST"}, {id :"button-update", name : "recipe_id", value : "업데이트", type : 'submit'},JsonListInfo.jsonDataId[i - 1]);
     elementButton(element, {id : "form-delete" , action : `/liDelete`, method : "POST"}, {id :"button-delete", name : "recipe_id", value : "삭제", type : 'submit'},JsonListInfo.jsonDataId[i - 1]);
-
   });
 };

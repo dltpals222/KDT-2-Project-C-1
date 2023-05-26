@@ -6914,54 +6914,5 @@
     "recipe_weight": null,
     "regist_ingredients": "두부(25g), 포도(10g), 호두(1g), 검은깨(1g), 식빵(7.5g), 밀가루(5g), 계피가루(1g), 소금(0.1g), 꿀(2g), 식용유(5g), 물(8g)",
     "ingredients_id": null
-  },
-  {
-    "recipe_ingredients_id": 990,
-    "recipe_id": 990,
-    "recipe_weight": null,
-    "regist_ingredients": "땅콩호박(1/2개), 아몬드가루(13g), 버터(15g), 박력분(35g), 요거트(10g), 달걀(1/2개), 사과(1/2개), 전분(5g), 소금(0.5g), 호두(5g)",
-    "ingredients_id": null
-  },
-  {
-    "recipe_ingredients_id": 991,
-    "recipe_id": 991,
-    "recipe_weight": null,
-    "regist_ingredients": "고구마(50g), 바나나(17g), 달걀(1개), 크림치즈(10g), 우유(20g), 생크림(25g), 딸기잼(15g), 젤라틴(8g), 바닐라빈(1g), 올리고당(2g)",
-    "ingredients_id": null
-  },
-  {
-    "recipe_ingredients_id": 992,
-    "recipe_id": 992,
-    "recipe_weight": null,
-    "regist_ingredients": "단호박(200g), 새우살(120g), 삼색파프리카(80g), 양파(40g), 옥수수(20g), 모짜렐라치즈(20g), 춘권피(10장), 생크림(15g), 식용유(40g)",
-    "ingredients_id": null
-  },
-  {
-    "recipe_ingredients_id": 993,
-    "recipe_id": 993,
-    "recipe_weight": null,
-    "regist_ingredients": "크랜베리(8g), 슈가파우더(10g), 박력분(30g), 아몬드가루(10g), 백년초가루(2g), 우유(3g), 버터(25g)",
-    "ingredients_id": null
-  },
-  {
-    "recipe_ingredients_id": 994,
-    "recipe_id": 994,
-    "recipe_weight": null,
-    "regist_ingredients": "박력분(50g), 버터(27g), 달걀(1/4개), 아몬드가루(9g), 꿀(2g), 생크림(37g), 블랙초콜릿(83g), 키위(10g), 블루베리(10g), 체리(10g)",
-    "ingredients_id": null
-  },
-  {
-    "recipe_ingredients_id": 995,
-    "recipe_id": 995,
-    "recipe_weight": null,
-    "regist_ingredients": "대추고(5g), 대추(2알), 당근퓨레(5g), 녹차가루(5g), 팥앙금(5g), 박력분(150g), 꿀(15g), 버터(150g), 달걀(2개), 베이킹파우더(3g), 소금(0.8g)",
-    "ingredients_id": null
-  },
-  {
-    "recipe_ingredients_id": 996,
-    "recipe_id": 996,
-    "recipe_weight": null,
-    "regist_ingredients": "당근(10g), 시금치(10g), 사과(10g), 호두(5g), 크랜베리(5g), 박력분(150g), 꿀(15g), 버터(90g), 달걀(2개), 소금(1.5g), 베이킹소다(0.6g), 베이킹파우더(2.4g), 물(50g)",
-    "ingredients_id": null
   }
 ]
