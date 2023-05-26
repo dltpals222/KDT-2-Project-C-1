@@ -242,7 +242,7 @@ const server = http.createServer((req, res) => {
         console.log(urlPathName);
         break;
     } //if 문 내 switch 끝
-    dbSet.query(
+    /*     dbSet.query(
       "select * from recipe_regist_table as t1 inner join ( select recipe_id, group_concat(regist_ingredients) as regist_ingredients from recipe_ingredients_table group by recipe_id) as t2 on t1.recipe_id = t2.recipe_id;",
       function (err, results, fields) {
         fs.writeFileSync(
@@ -277,7 +277,7 @@ const server = http.createServer((req, res) => {
           JSON.stringify(results, null, 2)
         );
       }
-    );
+    ); */
   } else if (urlMethod === "POST") {
     //post 방식 데이터 mysql로 보내기
     req.on("data", function (chunk) {
