@@ -80,12 +80,12 @@ function showModernHeroes(jsonObj) {
   let heroes = jsonObj['members'];
 
   for (let i = 0; i < heroes.length; i++) {
-      var myArticle = document.createElement('article');
-      var myH2 = document.createElement('h2');
-      var myPara1 = document.createElement('p');
-      var myPara2 = document.createElement('p');
-      var myPara3 = document.createElement('p');
-      var myList = document.createElement('ul');
+      const myArticle = document.createElement('article');
+      const myH2 = document.createElement('h2');
+      const myPara1 = document.createElement('p');
+      const myPara2 = document.createElement('p');
+      const myPara3 = document.createElement('p');
+      const myList = document.createElement('ul');
 
       myH2.textContent = heroes[i].name;
       myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
