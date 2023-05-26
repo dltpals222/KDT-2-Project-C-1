@@ -129,6 +129,7 @@ main.appendChild(recipeInfo);
 ///레시피 제목(이름) 부분
 const recipeTitle = multiAndSingleTagMaker(recipeInfo, 'h1', 'recipeTitle', 1, (ele)=>{
   //ele.textContent = recipeViewRegisterInfo.recipe_title;
+  ele.textContent = '사과 새우 북엇국';
 });
 fontAndLayoutEditor(recipeTitle, '80%', '15%', 1, 'lightsalmon');
 kingGodFlexEditor(recipeTitle, 'row', 'center', 'center');
@@ -142,7 +143,9 @@ kingGodFlexEditor(ingredient, 'row', 'top', 'space-evenly');
 
 
 ///레시피에 사용된 재료들 리스트의 컨테이너
-const firstContainer = multiAndSingleTagMaker(ingredient, 'ul', 'firstContainer', 1);
+const firstContainer = multiAndSingleTagMaker(ingredient, 'ul', 'firstContainer', 1, (ele)=> {
+  ele.textContent = '황태해장국황태(채)15g(10개), 콩나물30g(1/6봉지), 무30g(5×3×2cm), 저염된장10g(2작은술), 물300ml(1½컵), 청양고추5g(1/2개), 다진마늘2g(1/3작은술'
+});
 fontAndLayoutEditor(firstContainer, '75%', '100%', 1, 'lightcoral');
 kingGodFlexEditor(firstContainer, 'column', 'center')
 firstContainer.style.padding = '0';
@@ -277,7 +280,9 @@ function uploadInnerOrderPicFile(file){
 ////////////////////////////////////////////////////////////////////////
 
 ///조리순서안의 조리방법 또는 내용
-const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1);
+const orderInfo = multiAndSingleTagMaker(orderList, 'div', 'orderInfo', 1, (ele) => {
+  ele.textContent = "2. 북어채를 잘게 손으로 찢어 찬물에 헹구어 준비한 후 양파, 표고버섯, 사과는 채 썰고 새우는 등쪽의 두세 마디에 꼬챙이를 넣어 내장을 뺀 후 헹군다.";
+});
 fontAndLayoutEditor(orderInfo, '50%','90%', 1, 'lightsalmon');
 kingGodFlexEditor(orderInfo, 'row', 'center', 'space-evenly');
 orderList.appendChild(orderInfo);
