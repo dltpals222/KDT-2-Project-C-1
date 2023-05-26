@@ -7,6 +7,7 @@ import serverReadFileModule from "./module/server_readfile.js";
 import serverPostModule from "./module/server_post.js";
 import dbSet from "./mysql/mysql_connect.js";
 import reqOnData from "./module/server_post.js";
+import objectA from "./module/obj_create_mod.js";
 
 /* 
   mysql_connect.js 로가서 정보를 바꾸고
