@@ -1,3 +1,4 @@
+import http from "http";
 import all_mighty_editor from "../module/all_mighty_editor.js";
 import recipeStepMaker from "../module/recipe_step_maker.js";
 // import { fileURLToPath } from "url";
@@ -120,7 +121,8 @@ const registIngredientsList = multiAndSingleTagMaker(
   1,
   (ele) => {
     fontAndLayoutEditor(ele, "auto", "100px", "1px solid black");
-    ele.textContent = "추가";
+    ele.textContent = "";
+    ele.style.overflow = "auto";
   }
 );
 
@@ -280,3 +282,10 @@ registIngredientsInput.addEventListener("keyup", function (event) {
 });
 
 //*재료추가 버튼 로직
+registIngredientsSubmit.addEventListener("click", function (event) {
+  event.preventDefault();
+  registIngredientsList.textContent += " " + registIngredientsInput.value;
+});
+
+//*POST 에 레시피 등록을 담아서 전송
+submitBtn.addEventListener("click", function (event) {});
