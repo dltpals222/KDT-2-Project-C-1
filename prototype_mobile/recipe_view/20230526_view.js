@@ -25,7 +25,7 @@ const {
 const main = multiAndSingleTagMaker(root,'div','main',1,(ele)=>{
   ele.textContent = '';
 });
-fontAndLayoutEditor(main, '100vw', '100vh', 1, 'sienna');
+fontAndLayoutEditor(main, '430px', '932px', 1, 'sienna');
 kingGodFlexEditor(main,'column','center','space-evenly');
 
 
@@ -46,7 +46,7 @@ kingGodFlexEditor(container, 'row', 'center', 'space-around');
 
 ///등록자의 이름
 const name = multiAndSingleTagMaker(main,'h3','name',1,(ele)=>{
-  ele.textContent = recipeViewRegisterInfo.recipe_register;
+  //ele.textContent = recipeViewRegisterInfo.recipe_register;
 });
 fontAndLayoutEditor(name, '50%', '50%', 1, 'lightsalmon');
 kingGodFlexEditor(name, 'row', 'center', 'center');
@@ -59,7 +59,7 @@ kingGodFlexEditor(viewNrecommend, 'row', 'center', 'space-evenly');
 
 ///조회수 부분
 const view = multiAndSingleTagMaker(viewNrecommend, 'span','view',1,(ele)=>{
-  ele.textContent = recipeViewRegisterInfo.recipe_views;
+  //ele.textContent = recipeViewRegisterInfo.recipe_views;
 });
 fontAndLayoutEditor(view, '40%', '80%', 1 , 'lightcoral');
 kingGodFlexEditor(view, 'row', 'center', 'center');
@@ -67,7 +67,7 @@ viewNrecommend.appendChild(view);
 
 ///추천수 부분
 const recommend = multiAndSingleTagMaker(viewNrecommend, 'span','view',1,(ele)=>{
-  ele.textContent = recipeViewRegisterInfo.recipe_recommend;
+  //ele.textContent = recipeViewRegisterInfo.recipe_recommend;
 });
 fontAndLayoutEditor(recommend, '40%', '80%', 1 , 'lightcoral');
 kingGodFlexEditor(recommend, 'row', 'center', 'center');
@@ -248,7 +248,7 @@ orderPic.onclick = () => {
 }
 */
 ////////////////////////////////////////////////////////////////////////
-
+/*
 ///조리순서사진을 클릭하면 파일업로드
 orderPic.onclick = () => {
   const input = document.createElement('input');
@@ -269,7 +269,7 @@ function uploadInnerOrderPicFile(file){
     output.innerText = reader.result;
   }
 }
-
+*/
 ////////////////////////////////////////////////////////////////////////
 
 ///조리순서안의 조리방법 또는 내용
