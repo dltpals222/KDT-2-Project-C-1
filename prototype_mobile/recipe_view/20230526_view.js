@@ -36,7 +36,8 @@ const mainPic = multiAndSingleTagMaker(main,'img','mainPic',1,(ele)=>{
 fontAndLayoutEditor(mainPic, '65%', '20%', 1 , 'lightgray');
 main.appendChild(mainPic);
 mainPic.style.cursor = 'pointer';
-mainPic.setAttribute('src', recipeViewRegisterInfo.thumbnail_img);
+//mainPic.setAttribute('src', recipeViewRegisterInfo.thumbnail_img);
+mainPic.setAttribute('src', 'http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00033_2.png');
 ////////////////////////////////////////////////////////////////////////
 
 ///사용자(등록자)의 이름 및 조회수 추천수 컨테이너
@@ -93,6 +94,7 @@ mainPic.addEventListener('click',function browseImgMainFile(){
 });
 */
 ////////////////////////////////////////////////////////////////////////
+/*
 ///메인사진을 클릭하면 파일업로드
 mainPic.onclick = () => {
   const input = document.createElement('input');
@@ -113,6 +115,7 @@ function uploadMainPicFile(file){
     output.innerText = reader.result;
   }
 }
+*/
 ////////////////////////////////////////////////////////////////////////
 
 ///레시피 정보(레시피 이름, 재료, 조리기구 등등)
@@ -125,7 +128,7 @@ main.appendChild(recipeInfo);
 
 ///레시피 제목(이름) 부분
 const recipeTitle = multiAndSingleTagMaker(recipeInfo, 'h1', 'recipeTitle', 1, (ele)=>{
-  ele.textContent = recipeViewRegisterInfo.recipe_title;
+  //ele.textContent = recipeViewRegisterInfo.recipe_title;
 });
 fontAndLayoutEditor(recipeTitle, '80%', '15%', 1, 'lightsalmon');
 kingGodFlexEditor(recipeTitle, 'row', 'center', 'center');
@@ -198,7 +201,8 @@ const orderPic = multiAndSingleTagMaker(orderList , 'img', 'orderPic', 1);
 fontAndLayoutEditor(orderPic, '40%','90%', 1, 'lightsalmon');
 orderList.appendChild(orderPic);
 orderPic.style.cursor = 'pointer';
-orderPic.setAttribute('src', recipeViewStep[0].recipe_step_img);
+//orderPic.setAttribute('src', recipeViewStep[0].recipe_step_img);
+orderPic.setAttribute('src', 'http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00033_2.png')
 
 /////////////////////////////////////////
 /*
@@ -338,8 +342,9 @@ const button = multiAndSingleTagMaker(main, 'button', 'button', 1, (ele)=>{
   ele.textContent = '목록';
 });
 button.style.cursor = 'pointer';
-fontAndLayoutEditor(button, '15%', '3%', 1, 'lightgray');
+fontAndLayoutEditor(button, '10%', '5%', 1, 'lightgray');
 kingGodFlexEditor(button, 'row', 'center', 'center');
+main.appendChild(button);
 /*
 button.onclick = () => {
   addEventListener('click', function(){
