@@ -7,9 +7,9 @@ const db = mysql.createConnection({
   // 본인 아이디 패스워드 db이름 사용할 것
   host: "localhost",
   user: "root",
-  password: "1q2w3e4r",
+  password: "admin1234",
   database: "msmg",
-  port : 3307
+  port: 3306,
 });
 db.connect();
 

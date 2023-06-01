@@ -1,3 +1,9 @@
+drop DATABASE msmg;
+
+CREATE DATABASE msmg DEFAULT CHARACTER set utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+
+use msmg
+
 
 CREATE TABLE ingredients_table (
 ingredients_id INT NOT NULL AUTO_INCREMENT,

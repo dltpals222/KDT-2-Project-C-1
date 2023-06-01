@@ -265,7 +265,7 @@ const server = http.createServer((req, res) => {
     if (urlPathName === "/recipe_write/regist") {
       //post 방식 데이터 mysql로 보내기
       req.on("data", function (chunk) {
-        reqOnData2(chunk, 1011);
+        reqOnData2(chunk, 1001);
       });
       //mysql에서 저장된 데이터를 json 파일로 저장하기
       req.on("end", function () {

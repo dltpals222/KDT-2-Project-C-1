@@ -6,7 +6,7 @@
     "thumbnail_img": "http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00028_2.png",
     "recipe_views": 1000,
     "recipe_recommend": 100,
-    "regist_ingredients": "연두부75g(3/4모), 칵테일새우20g(5마리), 달걀30g(1/2개), 생크림13g(1큰술), 설탕5g(1작은술), 무염버터5g(1작은술)고명시금치10g(3줄기), 고추, 레재료, 레재요"
+    "regist_ingredients": "연두부75g(3/4모), 칵테일새우20g(5마리), 달걀30g(1/2개), 생크림13g(1큰술), 설탕5g(1작은술), 무염버터5g(1작은술)고명시금치10g(3줄기)"
   },
   {
     "recipe_id": 2,
@@ -9000,12 +9000,12 @@
     "regist_ingredients": "얼갈이배추60g, 홍고추0.6g, 소스소개, 무침양념, 두부30g, 된장3.5g, 마늘1.5g, 깨2g, 참기름1g, 사과20g, 홍고추5g, 물15g"
   },
   {
-    "recipe_id": 1010,
-    "recipe_register": "비룡",
-    "recipe_title": "천십",
-    "thumbnail_img": " 레재료",
+    "recipe_id": 1001,
+    "recipe_register": null,
+    "recipe_title": "천일",
+    "thumbnail_img": null,
     "recipe_views": null,
     "recipe_recommend": null,
-    "regist_ingredients": " 고추 고추 고추"
+    "regist_ingredients": " 천일"
   }
 ]
